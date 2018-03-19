@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/19/入门-HTTP/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="1.何为HTTP（HyperText Transfer Protocol）I. 是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。II.HTTP的发展是由蒂姆·伯纳斯-李(Sir Timothy John Berners-Lee)于1989年在欧洲核子研究组织（CERN）所发起。 2.什么？上面太多不想看？好吧： a.HTTP 是一种规定客户端(浏览器)如何发">
-<meta property="og:updated_time" content="2018-03-19T14:25:29.512Z">
+<meta property="og:updated_time" content="2018-03-19T15:23:44.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="入门:HTTP">
 <meta name="twitter:description" content="1.何为HTTP（HyperText Transfer Protocol）I. 是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。II.HTTP的发展是由蒂姆·伯纳斯-李(Sir Timothy John Berners-Lee)于1989年在欧洲核子研究组织（CERN）所发起。 2.什么？上面太多不想看？好吧： a.HTTP 是一种规定客户端(浏览器)如何发">
@@ -121,7 +121,75 @@
 <hr>
 <h2 id="3-请求与响应"><a href="#3-请求与响应" class="headerlink" title="3.请求与响应"></a>3.请求与响应</h2><font color="gray" size="2">前言：环境Deepin15.5（debian）<br>终端运行<code>sudo apt-get install curl</code>安装curl命令（已安装请忽略前言）</font>
 
-<h4 id="I-请求"><a href="#I-请求" class="headerlink" title="I.请求"></a>I.请求</h4><p>  <strong>a.在终端运行</strong><br>  <code>curl -s -v -H &quot;Protoss: Oracle&quot; -- &quot;https://www.baidu.com&quot;</code><br>  <strong>b.得到Get请求</strong><br>    <code>&gt; GET / HTTP/1.1</code><br>    <code>&gt; Host: www.baidu.com</code><br>    <code>&gt; User-Agent: curl/7.59.0</code><br>    <code>&gt; Accept: */*</code><br>    <code>&gt; Protoss: Oracle</code><br>    <code>&gt;</code><br>  <strong>c.那么如何使用POST请求？</strong><br>    <code>curl -X POST -s -v -H &quot;Protoss: Oracle&quot; -- &quot;https://www.baidu.com&quot;</code><br>  <strong>d.得到POST请求内容</strong><br>    <code>&gt; POST / HTTP/1.1</code><br>    <code>&gt; Host: www.baidu.com</code><br>    <code>&gt; User-Agent: curl/7.59.0</code><br>    <code>&gt; Accept: */*</code><br>    <code>&gt; Protoss: Oracle</code><br>    <code>&gt;</code><br>  <strong>e.总结请求格式</strong><br>    <code>1 动词 路径 协议/版本</code><br>    <code>2 Key1: value1</code><br>    <code>2 Key2: value2</code><br>    <code>2 Key3: value3</code><br>    <code>2 Content-Type: application/x-www-form-urlencoded</code><br>    <code>2 Host: www.baidu.com</code><br>    <code>2 User-Agent: curl/7.54.0</code><br>    <code>3 （第三部分永远都是一个回车）</code><br>    <code>4 要上传的数据</code></p>
+<p>Curl命令：利用URL语法在命令行方式下工作的开源文件传输工具。<br><code>curl xxx.com</code>=读取xxx.com网页信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">全称</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-s</td>
+<td style="text-align:center">–silent</td>
+<td style="text-align:center">静默模式（不显示进度和错误）</td>
+</tr>
+<tr>
+<td style="text-align:center">-S</td>
+<td style="text-align:center">–show-error</td>
+<td style="text-align:center">显示错误</td>
+</tr>
+<tr>
+<td style="text-align:center">-h</td>
+<td style="text-align:center">–help</td>
+<td style="text-align:center">帮助</td>
+</tr>
+<tr>
+<td style="text-align:center">-H</td>
+<td style="text-align:center">–header</td>
+<td style="text-align:center">自定义头部信息传递给服务器</td>
+</tr>
+<tr>
+<td style="text-align:center">-x</td>
+<td style="text-align:center">–proxy</td>
+<td style="text-align:center">在指定端口上使用HTTP代理（后面跟host）</td>
+</tr>
+<tr>
+<td style="text-align:center">-X</td>
+<td style="text-align:center">–request</td>
+<td style="text-align:center">后面跟动作指定命令</td>
+</tr>
+<tr>
+<td style="text-align:center">-d</td>
+<td style="text-align:center">–data</td>
+<td style="text-align:center">HTTP POST方式传输数据 <code>--data &#39;data=xxx&#39;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">-D</td>
+<td style="text-align:center">–dump-header &lt;文件名&gt;</td>
+<td style="text-align:center">把header信息写入该文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-v</td>
+<td style="text-align:center">–verbose</td>
+<td style="text-align:center">显示更多信息</td>
+</tr>
+<tr>
+<td style="text-align:center">-V</td>
+<td style="text-align:center">–version</td>
+<td style="text-align:center">显示版本信息</td>
+</tr>
+<tr>
+<td style="text-align:center">-I</td>
+<td style="text-align:center">–head</td>
+<td style="text-align:center">显示文档信息</td>
+</tr>
+</tbody>
+</table>
+<p>突出一个大小写很重要</p>
+<h4 id="I-请求"><a href="#I-请求" class="headerlink" title="I.请求"></a>I.请求</h4><p>  <strong>a.在终端运行</strong><br>  <code>curl -s -v -H &quot;Protoss: Oracle&quot; -- &quot;https://www.baidu.com&quot;</code><br>  <strong>b.得到Get请求</strong><br>    <code>&gt; GET / HTTP/1.1</code><br>    <code>&gt; Host: www.baidu.com</code><br>    <code>&gt; User-Agent: curl/7.59.0</code><br>    <code>&gt; Accept: */*</code><br>    <code>&gt; Protoss: Oracle</code><br>    <code>&gt;</code><br>  <strong>c.那么如何使用POST请求？</strong><br>    <code>curl -X POST -s -v -H &quot;Protoss: Oracle&quot; -- &quot;https://www.baidu.com&quot;</code><br>  <strong>d.得到POST请求内容</strong><br>    <code>&gt; POST / HTTP/1.1</code><br>    <code>&gt; Host: www.baidu.com</code><br>    <code>&gt; User-Agent: curl/7.59.0</code><br>    <code>&gt; Accept: */*</code><br>    <code>&gt; Protoss: Oracle</code><br>    <code>&gt;</code><br>  <strong>e.总结请求格式</strong><br>    <code>1 动词 路径 协议/版本</code><br>    <code>2 Key1: value1</code><br>    <code>2 Key2: value2</code><br>    <code>2 Key3: value3</code><br>    <code>2 Content-Type: application/x-www-form-urlencoded</code><br>    <code>2 Host: www.baidu.com</code><br>    <code>2 User-Agent: curl/7.54.0</code><br>    <code>3 （第三部分永远都是一个回车,表达了请求头的结束和请求正文的开始）</code><br>    <code>4 要上传的数据</code></p>
 <font color="gray" size="2">1.请求最多包含<strong>四</strong>部分，最少包含<strong>三</strong>部分<br>2.第<strong>一</strong>部分中动词有：<strong>GET POST PUT PATCH DELETE</strong> HEAD OPTIONS 等<br>3.路径包括「查询参数」，但不包括「锚点」，没写路径的话，默认为/<br>4.第<strong>二</strong>部分中Content-Type标注了第<strong>四</strong>部分的格式</font>
 
 <h4 id="II-响应"><a href="#II-响应" class="headerlink" title="II.响应"></a>II.响应</h4><font color="gray" size="2">前言：Get和Post的响应实例过长…请参照请求代码自行尝试。</font>
@@ -211,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/入门-HTTP/" data-id="cjeybomjz0001cxg3j68pmtfb" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2018/03/19/入门-HTTP/" data-id="cjeyds1mf0002ccg3mrqcg5rf" class="article-share-link">Teilen</a>
       
       
     </footer>

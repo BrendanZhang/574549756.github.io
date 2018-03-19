@@ -33,6 +33,26 @@ II.HTTP的发展是由蒂姆·伯纳斯-李(Sir Timothy John Berners-Lee)于1989
 <font color=gray size=2>前言：环境Deepin15.5（debian）
 终端运行`sudo apt-get install curl`安装curl命令（已安装请忽略前言）</font>
 
+Curl命令：利用URL语法在命令行方式下工作的开源文件传输工具。
+`curl xxx.com`=读取xxx.com网页信息
+
+|参数|全称|作用|
+|:---:|:---:|:---:|
+|-s|--silent|静默模式（不显示进度和错误）|
+|-S|--show-error|显示错误|
+|-h|--help|帮助|
+|-H|--header|自定义头部信息传递给服务器|
+|-x|--proxy|在指定端口上使用HTTP代理（后面跟host）|
+|-X|--request|后面跟动作指定命令|
+|-d|--data|HTTP POST方式传输数据 `--data 'data=xxx'`|
+|-D|--dump-header <文件名>|把header信息写入该文件|
+|-v|--verbose|显示更多信息|
+|-V|--version|显示版本信息|
+|-I|--head|显示文档信息|
+
+突出一个大小写很重要
+
+
 #### I.请求
   **a.在终端运行**
   `curl -s -v -H "Protoss: Oracle" -- "https://www.baidu.com"`
@@ -60,7 +80,7 @@ II.HTTP的发展是由蒂姆·伯纳斯-李(Sir Timothy John Berners-Lee)于1989
     `2 Content-Type: application/x-www-form-urlencoded`
     `2 Host: www.baidu.com`
     `2 User-Agent: curl/7.54.0`
-    `3 （第三部分永远都是一个回车）`
+    `3 （第三部分永远都是一个回车,表达了请求头的结束和请求正文的开始）`
     `4 要上传的数据`
 <font color=gray size=2>1.请求最多包含**四**部分，最少包含**三**部分
 2.第**一**部分中动词有：**GET POST PUT PATCH DELETE** HEAD OPTIONS 等
