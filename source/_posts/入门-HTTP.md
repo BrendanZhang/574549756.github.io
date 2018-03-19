@@ -3,10 +3,10 @@ title: '入门:HTTP'
 date: 2018-03-19 20:11:03
 tags:
 ---
-##1.何为HTTP（HyperText Transfer Protocol）
+## 1.何为HTTP（HyperText Transfer Protocol）
 I. 是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。
 II.HTTP的发展是由蒂姆·伯纳斯-李(Sir Timothy John Berners-Lee)于1989年在欧洲核子研究组织（CERN）所发起。
-##2.什么？上面太多不想看？好吧：
+## 2.什么？上面太多不想看？好吧：
  **a.HTTP**
  是一种规定客户端(浏览器)如何发出请求，服务器如何响应请求的协议
  **b.服务器端口**
@@ -29,11 +29,11 @@ II.HTTP的发展是由蒂姆·伯纳斯-李(Sir Timothy John Berners-Lee)于1989
    域名系统：输入域名;输出IP。（输入baidu.com，电信~~运营商~~告诉你IP）
 
 ---
-##3.请求与响应
+## 3.请求与响应
 <font color=gray size=2>前言：环境Deepin15.5（debian）
 终端运行`sudo apt-get install curl`安装curl命令（已安装请忽略前言）</font>
 
-####I.请求
+#### I.请求
   **a.在终端运行**
   `curl -s -v -H "Protoss: Oracle" -- "https://www.baidu.com"`
   **b.得到Get请求**
@@ -67,7 +67,7 @@ II.HTTP的发展是由蒂姆·伯纳斯-李(Sir Timothy John Berners-Lee)于1989
 3.路径包括「查询参数」，但不包括「锚点」，没写路径的话，默认为/
 4.第**二**部分中Content-Type标注了第**四**部分的格式</font>
 
-####II.响应
+#### II.响应
 <font color=gray size=2>前言：Get和Post的响应实例过长...请参照请求代码自行尝试。</font>
 
   **a.响应格式**
@@ -102,13 +102,13 @@ II.HTTP的发展是由蒂姆·伯纳斯-李(Sir Timothy John Berners-Lee)于1989
 |5xx|**我（服务器）背锅**|
 |503|**Service Unavailable**由于临时的服务器维护或者过载，服务器当前无法处理请求。|
 
-##4.如何使用Google Chrome发送请求与查看响应
-####I.发送请求
+## 4.如何使用Google Chrome发送请求与查看响应
+#### I.发送请求
   a.F12打开开发者工具点击Network选项卡
   b.地址栏键入网址打开
   c.点击查看request，点击**View source**可以查看请求的前三部分
   d.如果有第四部分请求，则可以在 FormData 或 Payload 里面可以看到。（右键表头标签打开Method标签可查看Post Or Get）
-####II.查看响应
+#### II.查看响应
   a.F12打开开发者工具点击Network选项卡
   b.地址栏键入网址打开
   c.选中第一个响应
