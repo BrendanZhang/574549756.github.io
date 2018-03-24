@@ -28,10 +28,12 @@ V. `npm i` 安装Hexo模块（Hexo规格）
 VI. `hexo new 博客名` 创建博客
 这里注意`hexo new`命令创建一篇博客才是有效的，仅在/source/_posts添加MarkDown文件并不能创建博客。（不然给你hexo命令干吗用？）
 VII. `open _config.yml`打开配置文件更改网站配置（可用vim也可用其他软件）：
-     <font size=2 color=gray>把title改成标题名
-     把author改成你自己的名字（作者）
-     最后一行type改成`type: git`(git前有个空格，不做盲人。)
-     与type平齐加一行`repo: 仓库地址` 地址为`git@github.com:用户名.github.io`(地址前面有个空格，其余同上括号。)</font>
+
+<font size=2 color=gray>把title改成标题名
+把author改成你自己的名字（作者）
+最后一行type改成`type: git`(git前有个空格，不做盲人。)
+与type平齐加一行`repo: 仓库地址` 地址为`git@github.com:用户名.github.io`(地址前面有个空格，其余同上括号。)</font>
+
 VIII. `npm install hexo-developer-git --save`这步很重要，安装git部署插件。
 IX. `Hexo deploy`发布发布发布
 X. 这时候也许会遇到各种各样奇奇怪怪的问题~~比如~~:
@@ -61,5 +63,5 @@ III. 分支：
 IV. 新仓库：
     1.创建新仓库新仓库blog-Generator
     2.在myBlog里打开终端执行（注意点SSH地址）
-![SSH](https://video.jirengu.com/Fpl8Cw-Pb4FCBdE_OE_N0ftCrtry)
+![SSH](https://ws1.sinaimg.cn/large/006bYXGVgy1fpmuzxpa06j31j10zowq3.jpg)
     3.每次`hexo d之后`请`git add .` `git commit` `git push`三连击提交网站文件

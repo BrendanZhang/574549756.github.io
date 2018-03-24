@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.CSS（Cascading Style Sheets）层叠样式表I.诞生与发展i.两个人发明CSS哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。 ii.W3C接管CSS1997年初，W3C内成立CSS工作组 iii.CSS 2.11998年5月，删除了2.0中基本不">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="入门-CSS">
+<meta property="og:url" content="http://yoursite.com/2018/03/24/入门-CSS/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.CSS（Cascading Style Sheets）层叠样式表I.诞生与发展i.两个人发明CSS哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。 ii.W3C接管CSS1997年初，W3C内成立CSS工作组 iii.CSS 2.11998年5月，删除了2.0中基本不">
+<meta property="og:updated_time" content="2018-03-24T21:50:51.767Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="入门-CSS">
+<meta name="twitter:description" content="1.CSS（Cascading Style Sheets）层叠样式表I.诞生与发展i.两个人发明CSS哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。 ii.W3C接管CSS1997年初，W3C内成立CSS工作组 iii.CSS 2.11998年5月，删除了2.0中基本不">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/24/入门-CSS/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>入门-CSS | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/入门-CSS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">入门-CSS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-24T19:29:24+08:00">2018-03-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-CSS（Cascading-Style-Sheets）层叠样式表"><a href="#1-CSS（Cascading-Style-Sheets）层叠样式表" class="headerlink" title="1.CSS（Cascading Style Sheets）层叠样式表"></a>1.CSS（Cascading Style Sheets）层叠样式表</h2><h3 id="I-诞生与发展"><a href="#I-诞生与发展" class="headerlink" title="I.诞生与发展"></a>I.诞生与发展</h3><h4 id="i-两个人发明CSS"><a href="#i-两个人发明CSS" class="headerlink" title="i.两个人发明CSS"></a>i.两个人发明CSS</h4><p>哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）<br>伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。</p>
+<h4 id="ii-W3C接管CSS"><a href="#ii-W3C接管CSS" class="headerlink" title="ii.W3C接管CSS"></a>ii.W3C接管CSS</h4><p>1997年初，W3C内成立CSS工作组</p>
+<h4 id="iii-CSS-2-1"><a href="#iii-CSS-2-1" class="headerlink" title="iii.CSS 2.1"></a>iii.CSS 2.1</h4><p>1998年5月，删除了2.0中基本不被支持的内容和增加了一些已有的浏览器的扩展内容。<br>最受欢迎，支持最广泛的CSS。Which means：从IE 5.5支持CSS 2.1。<br>做前端，低于IE 8，不看，不管，不测试。Why?淘宝是这样的。而且现在的电脑，IE 11起好吗？</p>
+<h4 id="iv-CSS3"><a href="#iv-CSS3" class="headerlink" title="iv.CSS3"></a>iv.CSS3</h4><p>2011年开始。什么？CSS 3这么久了吗？对的，就是这么久。<br>·CSS选择器leval 3<br>·CSS媒体查询leval 3<br>·CSS Color leval 3<br>他们三个模块被统称为CSS 3。详情请点击<a href="https://www.w3.org/Style/CSS/specs.en.html" target="_blank" rel="noopener">CSS文档</a>内容超级多。</p>
+<h4 id="v-CSS-4？"><a href="#v-CSS-4？" class="headerlink" title="v.CSS 4？"></a>v.CSS 4？</h4><p>不会有CSS 4。只有各个模块leval 4<br>前端每18个月难度翻一倍…</p>
+<h4 id="vi-Tips"><a href="#vi-Tips" class="headerlink" title="vi.Tips:"></a>vi.Tips:</h4><p>·LESS CSS：简化过后功能更多的CSS语言<br>·SASS：同上，比上面的功能还多<br>·PostCSS：一种CSS处理程序，纠错之类的<br>三个周边工具，逼格超高。</p>
+<h3 id="II-如何学习"><a href="#II-如何学习" class="headerlink" title="II.如何学习"></a>II.如何学习</h3><h4 id="i-MDN"><a href="#i-MDN" class="headerlink" title="i.MDN"></a>i.MDN</h4><p>老朋友了不多介绍了。<br>可以看可以查</p>
+<h4 id="ii-CSS-Tricks"><a href="#ii-CSS-Tricks" class="headerlink" title="ii.CSS-Tricks"></a>ii.CSS-Tricks</h4><p>SNIPPETS标签下的代码片段<br>有效果以及代码。<br>这个网站里面有各种CSS的奇淫技巧（真是一个贴切的名字）。<br>善用搜索引擎可以搜一切技巧。前提：英语水平。</p>
+<h4 id="iii-博客"><a href="#iii-博客" class="headerlink" title="iii.博客"></a>iii.博客</h4><p>阮一峰CSS<br>张鑫旭CSS（CSS大神，精通精通精通CSS）</p>
+<h4 id="iv-Coderops"><a href="#iv-Coderops" class="headerlink" title="iv.Coderops"></a>iv.Coderops</h4><p>炫酷的CSS效果，超Cooooooooooooool。<br>按钮，加载条，各种。他为了表达CSS能做很多事情。<br>基本一周出一个特效。</p>
+<h4 id="v-《CSS揭秘》"><a href="#v-《CSS揭秘》" class="headerlink" title="v.《CSS揭秘》"></a>v.《CSS揭秘》</h4><p>CSS技巧，有汉化。八个章节，讲了很多基础特效。</p>
+<hr>
+<p><strong>规范文档是最强的，如果把文档研究透了，那太强了。</strong></p>
+<h2 id="2-自己敲一敲"><a href="#2-自己敲一敲" class="headerlink" title="2.自己敲一敲"></a>2.自己敲一敲</h2><h3 id="I-内联样式"><a href="#I-内联样式" class="headerlink" title="I.内联样式"></a>I.内联样式</h3><p><code>&lt;body style=&quot;background-color: black&quot;&gt;里面是内容&lt;/body&gt;</code><br><code>&lt;h1 style=&quot;text-align: center; color: white;&quot;&gt;内联样式&lt;/h1&gt;</code><br>在标签里面写CSS样式。也称为Style属性</p>
+<h3 id="II-但是这样标签好长呀"><a href="#II-但是这样标签好长呀" class="headerlink" title="II.但是这样标签好长呀"></a>II.但是这样标签好长呀</h3><pre><code>&lt;head&gt;
+  &lt;style&gt;
+    body{
+      background-color: gray;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+</code></pre><p>没问题，在头部加<code>&lt;style&gt;</code>标签就可以。</p>
+<h3 id="III-那style多了头部是不是会超级长"><a href="#III-那style多了头部是不是会超级长" class="headerlink" title="III.那style多了头部是不是会超级长"></a>III.那style多了头部是不是会超级长</h3><pre><code>&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;./a.css&quot;&gt;
+&lt;/head&gt;
+</code></pre><p>引入外部样式就可以<br><strong>CSS文件也可以引入CSS</strong><br><code>@import url(./需要引入的CSS.css);</code><br>在用a的时候先引入b</p>
+<h3 id="IV-float和clearfix"><a href="#IV-float和clearfix" class="headerlink" title="IV.float和clearfix"></a>IV.float和clearfix</h3><pre><code>&lt;ul style=&quot;list-style: none; margin: 0; padding: 0;&quot; class=&quot;clearfix&quot;&gt; //class之前为了去掉默认样式中的点和margin以及padding
+  &lt;li style=&quot;float:left;&quot;&gt;内容&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>想让表格的子元素横着排，给子元素加<code>style=&quot;float:left;&quot;</code>但是这时候有BUG<br>所以在父元素加<code>class=&quot;clearfix&quot;</code></p>
+<pre><code>.clearfix::after{
+  content: &apos;&apos;;
+  display: block;
+  clear: both;
+}
+</code></pre><h3 id="V-第一个选择器-gt"><a href="#V-第一个选择器-gt" class="headerlink" title="V.第一个选择器&gt;"></a>V.第一个选择器<code>&gt;</code></h3><p>表达了一个左边是父，右边是子。<br><strong>HTML默认字体大小：16px</strong></p>
+<h3 id="VI-padding的缩写"><a href="#VI-padding的缩写" class="headerlink" title="VI.padding的缩写"></a>VI.padding的缩写</h3><p>顺时针，上右下左。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/23/入门-HTML-II/" rel="next" title="入门-HTML-II">
+                <i class="fa fa-chevron-left"></i> 入门-HTML-II
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CSS（Cascading-Style-Sheets）层叠样式表"><span class="nav-number">1.</span> <span class="nav-text">1.CSS（Cascading Style Sheets）层叠样式表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-诞生与发展"><span class="nav-number">1.1.</span> <span class="nav-text">I.诞生与发展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-两个人发明CSS"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.两个人发明CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-W3C接管CSS"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.W3C接管CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iii-CSS-2-1"><span class="nav-number">1.1.3.</span> <span class="nav-text">iii.CSS 2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iv-CSS3"><span class="nav-number">1.1.4.</span> <span class="nav-text">iv.CSS3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-CSS-4？"><span class="nav-number">1.1.5.</span> <span class="nav-text">v.CSS 4？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vi-Tips"><span class="nav-number">1.1.6.</span> <span class="nav-text">vi.Tips:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-如何学习"><span class="nav-number">1.2.</span> <span class="nav-text">II.如何学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-MDN"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.MDN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-CSS-Tricks"><span class="nav-number">1.2.2.</span> <span class="nav-text">ii.CSS-Tricks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iii-博客"><span class="nav-number">1.2.3.</span> <span class="nav-text">iii.博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iv-Coderops"><span class="nav-number">1.2.4.</span> <span class="nav-text">iv.Coderops</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-《CSS揭秘》"><span class="nav-number">1.2.5.</span> <span class="nav-text">v.《CSS揭秘》</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-自己敲一敲"><span class="nav-number">2.</span> <span class="nav-text">2.自己敲一敲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-内联样式"><span class="nav-number">2.1.</span> <span class="nav-text">I.内联样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-但是这样标签好长呀"><span class="nav-number">2.2.</span> <span class="nav-text">II.但是这样标签好长呀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#III-那style多了头部是不是会超级长"><span class="nav-number">2.3.</span> <span class="nav-text">III.那style多了头部是不是会超级长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IV-float和clearfix"><span class="nav-number">2.4.</span> <span class="nav-text">IV.float和clearfix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V-第一个选择器-gt"><span class="nav-number">2.5.</span> <span class="nav-text">V.第一个选择器&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VI-padding的缩写"><span class="nav-number">2.6.</span> <span class="nav-text">VI.padding的缩写</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

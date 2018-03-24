@@ -5,16 +5,17 @@ tags:
 ---
 ## 1.什么是HTML
 
-I. HTML是超文本标记语言（**H**yper**T**ext**M**arkup **L**anguage，简称：**HTML**）是一种用于创建网页的标准标记语言。
-II. HTML版本(W3C组织制定规范)：
+### I. HTML
+是超文本标记语言（**H**yper**T**ext**M**arkup **L**anguage，简称：**HTML**）是一种用于创建网页的标准标记语言。
+### II. HTML版本(W3C组织制定规范)：
   i. HTML 4.01
   ii.XHTML
   iii. HTML 5
   iv. HTML 5.1
-III. 规范文档(Specification)
+### III. 规范文档(Specification)
   i. 由W3C写文档（Sir Timothy John Berners-Lee）
   ii. W3C根据浏览器的实际情况总结文档，并不是凭空想象。
-IV. DOCTYPE
+### IV. DOCTYPE
   i. 用来选择文档类型
   ii. DOCTYPE
   
@@ -41,7 +42,7 @@ I. MDN Web Docs（旧称Mozilla Developer Network、Mozilla Developer Center，�
 II. 就是查文档的。
 
 ## 4.HTML标签
-#### I.标签
+### I.标签
 |类型|元素|描述|备注|
 |:---:|:---:|:---:|:---:|
 |根元素|`<html>`|代表 HTML 或 XHTML 文档的根。其他所有元素必须是这个元素的子节点。|包含全局属性|
@@ -150,7 +151,7 @@ II. 就是查文档的。
 
 ---
 
-#### II.元素内容类型
+### II.元素内容类型
 
 每一个HTML元素都必须遵循定义了它可以包含哪一类内容的规则。 这些规则被归类为几个常见的元素内容模型（content model）。每个HTML元素都属于0个、1 个或多个内容模型，每个模型都有一些规则使得元素中的内容必须遵循一个HTML规范文档( HTML-conformant document)。
 
@@ -160,10 +161,10 @@ II. 就是查文档的。
 表单相关的内容类，描述了表单相关元素共有的内容规范；
 特殊内容类，描述了仅仅在某些特殊元素上才需要遵守的内容规范，通常这些元素都有特殊的上下文关系。
 
-##### i.元数据内容（Metadata content）
+#### i.元数据内容（Metadata content）
 此类元素 修改文档其余部分的陈述或者行为，建立与其他文档的链接，或者传达其他外带信息。
 属于这一类的元素有：`<base>, <command>, <link>, <meta>, <noscript>, <script>, <style> and <title>.`
-##### ii.流式元素（Flow content）
+#### ii.流式元素（Flow content）
 此类元素通常包含 文本或植入的内容。此类元素有：` <a>, <abbr>, <address>, <article>, <aside>, <audio>, <b>,<bdo>, <bdi>, <blockquote>, <br>, <button>, <canvas>, <cite>, <code>, <command>, <data>, <datalist>, <del>, <details>, <dfn>, <div>, <dl>, <em>, <embed>, <fieldset>, <figure>, <footer>, <form>, <h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <header>, <hgroup>, <hr>, <i>, <iframe>, <img>, <input>, <ins>, <kbd>, <keygen>, <label>, <main>, <map>, <mark>, <math>, <menu>, <meter>, <nav>, <noscript>, <object>, <ol>, <output>, <p>, <pre>, <progress>, <q>, <ruby>, <s>, <samp>, <script>, <section>, <select>, <small>, <span>, <strong>, <sub>, <sup>, <svg>, <table>, <template>, <textarea>, <time>, <ul>, <var>, <video>, <wbr>` 以及 Text.
 
 属于此类的少数其他元素（仅限于某种特殊情形，这些元素才会属于此类）：
@@ -171,13 +172,13 @@ II. 就是查文档的。
 `<link>`, 仅限于itemprop属性存在的情形
 `<meta>`, 仅限于itemprop属性存在的情形
 `<style>`, 仅限于 scoped属性存在的情形
-##### iii.章节元素（Sectioning content）
+#### iii.章节元素（Sectioning content）
 隶属于分节内容模型的元素 在当前的大纲中创建一个分节，此分节将定义`<header>`元素、`<footer> `元素和标题元素（heading content）的范围。
 属于此类的元素有： `<article>, <aside>, <nav> and <section>`. 
-##### iv.标题元素（Heading content）
+#### iv.标题元素（Heading content）
 标题内容 定义了分节的标题，而这个分节可能由一个明确的分节内容元素直接标记，也可能由标题本身隐式地定义。
 属于此分类的元素有： `<h1>, <h2>, <h3>, <h4>, <h5>, <h6>` and `<hgroup>`.
-##### v.短语元素（Phrasing content）
+#### v.短语元素（Phrasing content）
 短语元素（Phrasing content） 规定文本和它包含的标记。 一些Phrasing content就构成了段落.
 属于此类的元素有： `<abbr>, <audio>, <b>, <bdo>, <br>, <button>, <canvas>, <cite>, <code>, <command>, <datalist>, <dfn>, <em>, <embed>, <i>, <iframe>, <img>, <input>, <kbd>, <keygen>, <label>, <mark>, <math>, <meter>, <noscript>, <object>, <output>, <progress>, <q>, <ruby>, <samp>, <script>, <select>, <small>, <span>, <strong>, <sub>, <sup>, <svg>, <textarea>, <time>, <var>, <video>, <wbr>` 和 plain text (仅当所包含的内容不完全为空字符的时候).
 一些其他的元素也属于这个分类，但是只有当如下特殊情况时才会实现:
@@ -188,10 +189,10 @@ II. 就是查文档的。
 `<link>`, 如果itemprop属性存在的情形
 `<map>`, 当它仅包含 phrasing content 时
 `<meta>`,如果itemprop属性存在的情形
-##### vi.嵌入元素（Embedded content）
+#### vi.嵌入元素（Embedded content）
 Embedded content输入另一个资源或者将来自另一种标记语言或命名空间的内容插入到文档中。
 属于此类的元素有：`<audio>, <canvas>, <embed>, <iframe>, <img>, <math>, <object>, <svg>, <video>`.
-##### vii.交互元素（Interactive content）
+#### vii.交互元素（Interactive content）
 交互式内容包含为用户交互而特别设计的元素。 
 属于此类的元素有：`<a>，<button>，<details>，<embed>，<iframe>，<keygen>，<label>，<select>` 和 `<textarea>`。
 仅在特殊情形下才会属于此类的元素有:
@@ -201,7 +202,7 @@ Embedded content输入另一个资源或者将来自另一种标记语言或命�
 `<menu>`, 若type属性处于工具栏（toolbar）状态
 `<object>`, 若usemap属性存在
 `<video>`, 若controls属性存在
-##### viii.表单相关内容（Form-associated content）
+#### viii.表单相关内容（Form-associated content）
 表单相关的内容 包含 拥有表单父节点（exposed by a form attribute）的元素，一个表单父节点可以是`<form>`元素，也可以是其id在表单属性中被指定了的元素。（Form-associated content comprises elements that have a form owner, exposed by a form attribute. A form owner is either the containing `<form>` element or the element whose id is specified in the form attribute.）
 `<button>`
 `<fieldset>`
@@ -223,14 +224,14 @@ Embedded content输入另一个资源或者将来自另一种标记语言或命�
 包括当表单提交时可以用来组成表单数据的元素。 包括 `<button>，<input>，<keygen>，<object>，<select>` 和 `<textarea>`.
 **可重置的元素（resettable）**
 当表单重置时会被重置的元素。包括 `<input>，<keygen>，<output>，<select>` 和 `<textarea>`.
-##### ix.透明内容模型（Transparent content model）
+#### ix.透明内容模型（Transparent content model）
 如果一个元素拥有 transparent content mode， 即使将透明内容更换为子元素，其内容必须由合法的HTML5元素组成。
 例如，`<del>` 和 `<ins>` 是透明的：
 `<p>We hold these truths to be <del><em>sacred &amp; undeniable</em></del> <ins>self-evident</ins>.</p>`
 如果这两个元素被移除，这个程序段依然是合法的。
 `<p>We hold these truths to be <em>sacred &amp; undeniable</em> self-evident.</p>`
 
-#### III. 空元素
+### III. 空元素
 **一个空元素（empty element）**可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。
 HTML，SVG 和 MathML 的规范都详细定义了每个元素能包含的具体内容（define very precisely what each element can contain）。许多组合是没有任何语义含义的，比如一个 `<audio>` 元素嵌套在一个 `<hr>` 元素里。
 在 HTML 中，通常在一个空元素上使用一个闭标签是无效的。例如， `<input type="text"></input>` 的闭标签是无效的 HTML。
@@ -255,7 +256,7 @@ HTML，SVG 和 MathML 的规范都详细定义了每个元素能包含的具体�
 **在极少数情况下，空元素被错误地称为“无效元素”(void elements)。**
 <font color=gray>有始无终的诸位，不加闭标签</font>
 
-#### IV.可替换元素
+### IV.可替换元素
 CSS 里，可替换元素（replaced element）的展现不是由CSS来控制的。这些元素是一类 外观渲染独立于CSS的 外部对象。 典型的可替换元素有 `<img>`、 `<object>`、 `<video>` 和 表单元素，如`<textarea>`、 `<input>` 。 某些元素只在一些特殊情况下表现为可替换元素，例如 `<audio>` 和 `<canvas>` 。 通过 CSS content 属性来插入的对象 被称作 匿名可替换元素（anonymous replaced elements）。
 
 **自己决定自己宽高的元素**
@@ -263,3 +264,15 @@ CSS 里，可替换元素（replaced element）的展现不是由CSS来控制的
 CSS在某些情况下会对可替换元素做特殊处理，比如计算外边距和一些auto值。
 
 需要注意的是，一部分（并非全部）可替换元素，本身具有尺寸和基线（baseline），会被像vertical-align之类的一些 CSS 属性用到。
+
+### V.标签的属性
+**HTML标签没有块级元素和内联元素的区别，仅仅仅仅仅仅在CSS里有这种区别**
+`<div>`是块级元素？？？naive！
+`<style>
+  div{
+    display: inline;
+ }
+</style>`
+你曾经是个块级元素(默认)，但看看你现在的样子。
+<br>
+**HTML只做一件事情：定义他是什么，而他长什么样子和HTML没关系。**~~这种问题请交给CSS~~

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.常见HTML标签I. &amp;lt;iframe&amp;gt;标签目前用的很少，但是有些遗留项目可能会碰到它：页面里嵌套页面。 ①例子：jsbin举个例子：&amp;lt;iframe src=&amp;quot;http://qq.com&amp;quot; frameborder=&amp;quot;0&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;frameborder=0?为了把阴影框删了，因为太难看了太难看了太难看了。默认i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="入门-HTML-II">
+<meta property="og:url" content="http://yoursite.com/2018/03/23/入门-HTML-II/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.常见HTML标签I. &amp;lt;iframe&amp;gt;标签目前用的很少，但是有些遗留项目可能会碰到它：页面里嵌套页面。 ①例子：jsbin举个例子：&amp;lt;iframe src=&amp;quot;http://qq.com&amp;quot; frameborder=&amp;quot;0&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;frameborder=0?为了把阴影框删了，因为太难看了太难看了太难看了。默认i">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005XzYe2gy1fpn80xrwomj30qo0g4wkr.jpg">
+<meta property="og:updated_time" content="2018-03-23T19:24:43.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="入门-HTML-II">
+<meta name="twitter:description" content="1.常见HTML标签I. &amp;lt;iframe&amp;gt;标签目前用的很少，但是有些遗留项目可能会碰到它：页面里嵌套页面。 ①例子：jsbin举个例子：&amp;lt;iframe src=&amp;quot;http://qq.com&amp;quot; frameborder=&amp;quot;0&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;frameborder=0?为了把阴影框删了，因为太难看了太难看了太难看了。默认i">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/005XzYe2gy1fpn80xrwomj30qo0g4wkr.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/23/入门-HTML-II/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>入门-HTML-II | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/23/入门-HTML-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">入门-HTML-II</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T22:13:53+08:00">2018-03-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-常见HTML标签"><a href="#1-常见HTML标签" class="headerlink" title="1.常见HTML标签"></a>1.常见HTML标签</h1><h2 id="I-lt-iframe-gt-标签"><a href="#I-lt-iframe-gt-标签" class="headerlink" title="I. &lt;iframe&gt;标签"></a>I. <code>&lt;iframe&gt;</code>标签</h2><p>目前用的很少，但是有些遗留项目可能会碰到它：页面里嵌套页面。</p>
+<h3 id="①例子：jsbin"><a href="#①例子：jsbin" class="headerlink" title="①例子：jsbin"></a>①例子：jsbin</h3><p>举个例子：<code>&lt;iframe src=&quot;http://qq.com&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</code><br>frameborder=0?为了把阴影框删了，因为太难看了太难看了太难看了。<br>默认iframe宽100高50但是可以用CSS给它一个属性</p>
+<pre><code>&lt;style&gt;
+  iframe{
+  width: 100%;
+  hight: 500PX; //为什么宽度可以100%，高度必须输像素呢？因为CSS规定的
+  }
+&lt;/style&gt;
+</code></pre><h3 id="②还有些好玩的用法比如："><a href="#②还有些好玩的用法比如：" class="headerlink" title="②还有些好玩的用法比如："></a>②还有些好玩的用法比如：</h3><pre><code>&lt;body&gt;
+  &lt;iframe name=xxx src=&quot;#&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+  &lt;a target=xxx href=&quot;http://qq.com&quot;&gt;QQ&lt;/a&gt;
+  &lt;a target=xxx href=&quot;http://baidu.com&quot;&gt;百度&lt;/a&gt;
+&lt;/body&gt;
+</code></pre><p>厉害了呀，这样点击a标签就可以在iframe框里访问相应网页了。<br><img src="https://ws1.sinaimg.cn/large/005XzYe2gy1fpn80xrwomj30qo0g4wkr.jpg" alt="浏览效果"></p>
+<h2 id="II-lt-a-gt-标签（HTTP-GET-请求）"><a href="#II-lt-a-gt-标签（HTTP-GET-请求）" class="headerlink" title="II.&lt;a&gt;标签（HTTP GET 请求）"></a>II.<code>&lt;a&gt;</code>标签（HTTP GET 请求）</h2><h3 id="①关于target"><a href="#①关于target" class="headerlink" title="①关于target"></a>①关于target</h3><p>i.<code>&lt;a href=&quot;http://qq.com&quot; target=&quot;_blank&quot;&gt;qq&lt;/a&gt;</code><br>ii.<code>&lt;a href=&quot;http://qq.com&quot; target=&quot;_self&quot;&gt;qq&lt;/a&gt;</code><br>iii.<code>&lt;a href=&quot;http://qq.com&quot; target=&quot;_parent&quot;&gt;qq&lt;/a&gt;</code><br>iv.<code>&lt;a href=&quot;http://qq.com&quot; target=&quot;_top&quot;&gt;qq&lt;/a&gt;</code></p>
+<p><strong>这个target：规定了在哪里打开</strong><br>blank：新页面。<br>self：在自己身上打开。<br>parent：在他的父级打开，谁在他上面谁就是他爸咯。<br>top:顶层窗口，如果他爸爸有爸爸，那就在他爷爷那里打开。</p>
+<h3 id="②download属性"><a href="#②download属性" class="headerlink" title="②download属性"></a>②download属性</h3><p><code>&lt;a href=&quot;http://qq.com&quot; download&gt;下载&lt;/a&gt;</code><br>在<code>Content-Type: text/html</code>的时候用↑<br>或者<code>Content-Type: application/octet-stream</code>就不用download了<br>下安装包的时候他很常见哦。</p>
+<h3 id="③href属性"><a href="#③href属性" class="headerlink" title="③href属性"></a>③href属性</h3><p><code>&lt;a href=&quot;qq.com&quot;&gt;QQ&lt;/a&gt;</code>他会让你跳转到qq.com吗？<br>并不行，你前面没<code>http://</code>呀他会把qq.com看成是一个文件（还有文件叫.com呢？他不管他不管）。<br>你换成//试试？他会去找文件夹…<br><strong>//:你当前协议是什么协议，他就继承该协议。which means：无协议</strong><br>那怎么办嘛：<strong>要加协议名称呀</strong></p>
+<h4 id="i-问题来了，那我不能写本地路径我怎么调试我的index-html呢？"><a href="#i-问题来了，那我不能写本地路径我怎么调试我的index-html呢？" class="headerlink" title="i.问题来了，那我不能写本地路径我怎么调试我的index.html呢？"></a>i.问题来了，那我不能写本地路径我怎么调试我的index.html呢？</h4><p>方法一：上传github，用预览功能调试他。<br>方法二：下载一个小工具http-server<br><code>npm i -g http-server</code><br>他干吗用的呢？<br>还记得那年大明湖畔的nodejs服务器吗?没错就是他<br>运行的时候记得<code>http-server -c-1</code>不要缓存</p>
+<h4 id="ii-问题又来了，我写点别的行不行"><a href="#ii-问题又来了，我写点别的行不行" class="headerlink" title="ii.问题又来了，我写点别的行不行"></a>ii.问题又来了，我写点别的行不行</h4><p>可以，你加<code>#</code>或者<code>？</code>跟内容浏览器会自己识别你想表达的东西<br>但是<code>#</code>:不会发出请求。</p>
+<h3 id="JavaScript伪协议"><a href="#JavaScript伪协议" class="headerlink" title="JavaScript伪协议"></a>JavaScript伪协议</h3><p><code>&lt;a href=&quot;javascript: alert(’我在搞伪协议‘)；&quot;&gt;HiaHiaHia&lt;/a&gt;</code><br>这时候你点他，他会直接弹alert。这个伪协议不是url但是他会执行（这个可能会给同事留大坑。）<br><code>&lt;a href=&quot;javascript:；&quot;&gt;HiaHiaHia&lt;/a&gt;</code><br>还可以这样做：点击以后让他不会跳转（很神奇是不是，但是它真的可能会有这种需求。他只是想让这个herf被占着。）<br><code>&lt;a href=&quot;&quot;&gt;HiaHiaHia&lt;/a&gt;</code>什么都不写？那他会刷新。<br><code>&lt;a href=&quot;#&quot;&gt;HiaHiaHia&lt;/a&gt;</code>写个锚？好了如果它前面有<code>&lt;p&gt;</code>那他会跳转一下。<br>所以只有伪协议让他什么都不做</p>
+<h2 id="III-lt-form-gt-标签（HTTP-POST-请求）"><a href="#III-lt-form-gt-标签（HTTP-POST-请求）" class="headerlink" title="III.&lt;form&gt;标签（HTTP POST 请求）"></a>III.<code>&lt;form&gt;</code>标签（HTTP POST 请求）</h2><pre><code>&lt;form action=&quot;users&quot; method=&quot;post&quot;&gt;
+  &lt;input type=&quot;text&quot; name=”username“&gt;
+  &lt;input type=&quot;text&quot; name=”password“&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+&lt;/form&gt;
+</code></pre><p>一个典型的用户名提交窗口</p>
+<h3 id="①关于action"><a href="#①关于action" class="headerlink" title="①关于action"></a>①关于<code>action</code></h3><p>一个处理这个form信息的程序所在的URL。这个值可以被 <code>&lt;button&gt;</code> 或者 <code>&lt;input&gt;</code> 元素中的 formaction 属性重载（覆盖）。<br>你要在提交到哪里</p>
+<h3 id="②关于method"><a href="#②关于method" class="headerlink" title="②关于method"></a>②关于<code>method</code></h3><p>浏览器使用这种 HTTP 方式来提交 form. 可能的值有:<br>post: 指的是 HTTP POST 方法 ; 表单数据会包含在表单体内然后发送给服务器.<br>get: 指的是 HTTP GET 方法; 表单数据会附加在 action 属性的URI中，并以 ‘?’ 作为分隔符, 然后这样得到的 URI 再发送给服务器. 当这样做（数据暴露在URI里面）没什么副作用，或者表单仅包含ASCII字符时，再使用这种方法吧。<br>这个值可以被 <code>&lt;button&gt;</code> 或者 <code>&lt;input&gt;</code> 元素中的 <code>formmethod</code> 属性重载（覆盖）。</p>
+<p><strong>什么都不写，默认是GET，但是估计没人会这么无聊，你有<code>&lt;a&gt;</code>为何不用。</strong><br>在用<strong>get</strong>的时候，他会把数据传到查询参数里。<br><strong>post</strong>会直接放在第四部分，<strong>但是：</strong><br>你可以自己加呀<code>&lt;form action=&quot;users?yyy=2&quot; method=&quot;post&quot;&gt;</code>他也可以有查询参数</p>
+<h3 id="③关于input"><a href="#③关于input" class="headerlink" title="③关于input"></a>③关于<code>input</code></h3><h4 id="i-lt-input-gt"><a href="#i-lt-input-gt" class="headerlink" title="i.&lt;input&gt;"></a>i.<code>&lt;input&gt;</code></h4><p><code>type=&quot;submit&quot;</code>类型是提交 <code>value=&quot;提交&quot;</code>按钮上显示的是提交俩字<br><strong>如果表单里面没有提交按钮，那就无法提交form</strong><br>不可以有子元素</p>
+<h4 id="ii-lt-button-gt-标签"><a href="#ii-lt-button-gt-标签" class="headerlink" title="ii.&lt;button&gt;标签"></a>ii.<code>&lt;button&gt;</code>标签</h4><p>如果一个<code>&lt;form&gt;</code>里面<strong>只有一个按钮</strong>，他的<code>type</code>没写，那么他会自动升级为<strong>提交按钮</strong><br>可以有子元素</p>
+<h4 id="iii-checkbox"><a href="#iii-checkbox" class="headerlink" title="iii.checkbox"></a>iii.<code>checkbox</code></h4><p>就是做一个能勾的选项<code>&lt;input type=&quot;checkbox&quot; id=&quot;xxx&quot;&gt;但是点字没什么卵用</code></p>
+<p><input type="checkbox" id="xxx">但是点字没什么卵用<br><code>checkbox</code>也需要<code>name</code>不然无法传上去。<br>打钩上传，<code>name</code>对应上传name后面的内容。<br>checkbox可以有很多个，是不是感觉在做选择题？怎么判断正误呢？通过上传的<code>name</code>，每个选项有对应的<code>name</code>。</p>
+<h4 id="iv-lt-label-gt"><a href="#iv-lt-label-gt" class="headerlink" title="iv.&lt;label&gt;"></a>iv.<code>&lt;label&gt;</code></h4><p>神奇的标签<br><code>&lt;input type=&quot;checkbox&quot; id=&quot;xxx&quot;&gt;&lt;label for=&quot;xxx&quot;&gt;这样点字就有用了&lt;/label&gt;</code><br>可以让<code>&lt;checkbox&gt;</code>点字也有用。</p>
+<hr>
+<p><code>&lt;label for=&quot;xxx&quot;&gt;用户名&lt;/label&gt;&lt;input type=&quot;text&quot; name=”username“ id=&quot;xxx&quot;&gt;</code><br><code>&lt;label for=&quot;yyy&quot;&gt;密码&lt;/label&gt;&lt;input type=&quot;text&quot; name=”password“ id=&quot;yyy&quot;&gt;</code><br>对应<code>&lt;id&gt;</code>和<code>&lt;for&gt;</code>可以点击用户名和密码就进入输入窗。<strong>但是</strong>老司机觉得起名字好麻烦呀。so：<br><code>&lt;label&gt;用户名&lt;input type=&quot;text&quot; name=”username“ &gt;&lt;/label&gt;</code><br><strong>一样的效果。只需要把他包起来<code>&lt;label&gt;</code>成为了<code>&lt;input&gt;</code>的父亲</strong></p>
+<h4 id="v-radio"><a href="#v-radio" class="headerlink" title="v.radio"></a>v.<code>radio</code></h4><p><strong>单选框</strong>和checkbox对应。name相同的时候只能点一个。</p>
+<pre><code>&lt;label&gt;&lt;input name=&quot;难不难&quot; type=&quot;radio&quot; value=&quot;yes&quot;&gt;Yes&lt;/label&gt;
+&lt;label&gt;&lt;input name=&quot;难不难&quot; type=&quot;radio&quot; value=&quot;yes&quot;&gt;No&lt;/label&gt;
+</code></pre><p>难不难</p>
+<label><input name="难不难" type="radio" value="yes">Yes</label><br><label><input name="难不难" type="radio" value="yes">No</label>
+
+
+<h3 id="④关于name"><a href="#④关于name" class="headerlink" title="④关于name"></a>④关于<code>name</code></h3><p>提交完了以后<code>name后面的就会被提交</code><br>写<code>username</code>和<code>password</code>就会提交上去<code>username=blablabla&amp;passowrd=blablablabla</code><br>写<code>xxx</code>和<code>yyy</code>就会提交上去<br><code>xxx=blablabla&amp;yyy=blablabla</code></p>
+<p><code>checkbox</code>也需要<code>name</code></p>
+<p><strong>为什么说HTTP不安全，因为提交上去是什么直接就显示出来了，如果有人监听那他就直接知道用户名和密码了。所以要用HTTPS，关于这个协议和端口后面再说。</strong></p>
+<h3 id="⑤关于target"><a href="#⑤关于target" class="headerlink" title="⑤关于target"></a>⑤关于<code>target</code></h3><p><strong>其实他和<code>&lt;a&gt;</code>是兄弟，用法一样一样的。</strong></p>
+<h3 id="⑥关于-lt-select-gt"><a href="#⑥关于-lt-select-gt" class="headerlink" title="⑥关于&lt;select&gt;"></a>⑥关于<code>&lt;select&gt;</code></h3><p>下拉列表</p>
+<pre><code>&lt;select name=&quot;分组&quot;&gt;
+  &lt;option value=&quot;&quot;&gt;-&lt;/option&gt;
+  &lt;option value=&quot;1&quot;&gt;第一组&lt;/option&gt;
+  &lt;option value=&quot;2&quot;&gt;第二组&lt;/option&gt;
+  &lt;option value=&quot;3&quot; disabled&gt;第三组&lt;/option&gt;
+  &lt;option value=&quot;4&quot; selected&gt;第四组&lt;/option&gt;
+&lt;/select&gt;
+</code></pre><select name="group"><br>  <option value="">-</option><br>  <option value="1">第一组</option><br>  <option value="2">第二组</option><br>  <option value="3" disabled>第三组</option><br>  <option value="4" selected>第四组</option><br></select>
+
+<p>选谁提交后就是<code>name的值=相应value</code><br><strong>还有个属性叫做<code>multiple</code></strong><br>加在<code>&lt;select name=&quot;group&quot; mutiple&gt;</code><br>加完了以后选择的时候按住<code>ctrl</code>就可以多选了。</p>
+<h3 id="⑦关于-lt-textarea-gt"><a href="#⑦关于-lt-textarea-gt" class="headerlink" title="⑦关于&lt;textarea&gt;"></a>⑦关于<code>&lt;textarea&gt;</code></h3><p>需要输入大段文字的时候使用<br><code>&lt;textarea name=&quot;text&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;</code><br>这时候它是可以随意拉动的，但是我们不希望他变大变小所以用CSS：<br><code>&lt;textarea style=&quot;resize:none; width: 200px;height: 100px;&quot; name=&quot;text&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;</code><br><code>style=&quot;resize:none&quot;</code>让他不要乱动<br><code>width: 200px;height: 100px;</code>规定他的宽高<br>在他不能乱动的时候可以用<code>cols</code>和<code>rows</code>来控制宽高（列、行）然而列不准，所以我们还是用CSS控制吧。</p>
+<h2 id="IV-lt-table-gt-标签"><a href="#IV-lt-table-gt-标签" class="headerlink" title="IV.&lt;table&gt;标签"></a>IV.<code>&lt;table&gt;</code>标签</h2><p><code>head</code>头<code>body</code>身体<code>foot</code>脚  <strong>他们三个顺序没有区别，他一定会自动按顺序展示</strong><br><code>tr</code>行<code>td</code>内容<br><code>colgroup</code>和<code>col</code>列宽<br>其中哪一个不写可不可以？可以，他会自己匀到剩下的部分。<br>全不写可不可以？那他会按你写的顺序识别。<br>如何把表格的默认border取消？</p>
+<pre><code>&lt;style&gt;
+  table{
+    border-collapse: collapse;
+  }
+&lt;/style&gt;
+</code></pre>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/入门-HTML/" rel="next" title="入门-HTML">
+                <i class="fa fa-chevron-left"></i> 入门-HTML
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/24/入门-CSS/" rel="prev" title="入门-CSS">
+                入门-CSS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-常见HTML标签"><span class="nav-number">1.</span> <span class="nav-text">1.常见HTML标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-lt-iframe-gt-标签"><span class="nav-number">1.1.</span> <span class="nav-text">I. &lt;iframe&gt;标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#①例子：jsbin"><span class="nav-number">1.1.1.</span> <span class="nav-text">①例子：jsbin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#②还有些好玩的用法比如："><span class="nav-number">1.1.2.</span> <span class="nav-text">②还有些好玩的用法比如：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-lt-a-gt-标签（HTTP-GET-请求）"><span class="nav-number">1.2.</span> <span class="nav-text">II.&lt;a&gt;标签（HTTP GET 请求）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#①关于target"><span class="nav-number">1.2.1.</span> <span class="nav-text">①关于target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#②download属性"><span class="nav-number">1.2.2.</span> <span class="nav-text">②download属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#③href属性"><span class="nav-number">1.2.3.</span> <span class="nav-text">③href属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-问题来了，那我不能写本地路径我怎么调试我的index-html呢？"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">i.问题来了，那我不能写本地路径我怎么调试我的index.html呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-问题又来了，我写点别的行不行"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">ii.问题又来了，我写点别的行不行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript伪协议"><span class="nav-number">1.2.4.</span> <span class="nav-text">JavaScript伪协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-lt-form-gt-标签（HTTP-POST-请求）"><span class="nav-number">1.3.</span> <span class="nav-text">III.&lt;form&gt;标签（HTTP POST 请求）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#①关于action"><span class="nav-number">1.3.1.</span> <span class="nav-text">①关于action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#②关于method"><span class="nav-number">1.3.2.</span> <span class="nav-text">②关于method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#③关于input"><span class="nav-number">1.3.3.</span> <span class="nav-text">③关于input</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-lt-input-gt"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">i.&lt;input&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-lt-button-gt-标签"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">ii.&lt;button&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iii-checkbox"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">iii.checkbox</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iv-lt-label-gt"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">iv.&lt;label&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-radio"><span class="nav-number">1.3.3.5.</span> <span class="nav-text">v.radio</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#④关于name"><span class="nav-number">1.3.4.</span> <span class="nav-text">④关于name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#⑤关于target"><span class="nav-number">1.3.5.</span> <span class="nav-text">⑤关于target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#⑥关于-lt-select-gt"><span class="nav-number">1.3.6.</span> <span class="nav-text">⑥关于&lt;select&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#⑦关于-lt-textarea-gt"><span class="nav-number">1.3.7.</span> <span class="nav-text">⑦关于&lt;textarea&gt;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV-lt-table-gt-标签"><span class="nav-number">1.4.</span> <span class="nav-text">IV.&lt;table&gt;标签</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
