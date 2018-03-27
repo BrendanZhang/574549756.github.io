@@ -271,6 +271,381 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/入门-CSS-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/27/入门-CSS-II/" itemprop="url">入门-CSS-II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T18:00:56+08:00">2018-03-27</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-伪类"><a href="#1-伪类" class="headerlink" title="1.伪类"></a>1.伪类</h2><h3 id="I-从-before和-after讲起"><a href="#I-从-before和-after讲起" class="headerlink" title="I.从::before和::after讲起"></a>I.从<code>::before</code>和<code>::after</code>讲起</h3><pre><code>div::before{
+  content:‘&amp;’
+}
+div::after{
+  content:&apos;$&apos;
+}
+</code></pre><p>这样div的内容的前后就会被加上<code>&amp;</code>和<code>$</code>。<br>而且他还能加各种属性。</p>
+<h3 id="II-还记得那只太极吗？"><a href="#II-还记得那只太极吗？" class="headerlink" title="II.还记得那只太极吗？"></a>II.还记得那只太极吗？</h3><pre><code>CSS:
+body{
+  background-color: #444;
+}
+.balance{
+  width:200px;
+  height:200px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ffffff 0%,#ffffff 50%,#000000 51%,#000000 100%); 
+  position: relative;
+  margin:100px auto;
+}
+.dark{
+  width: 100px;
+  height: 100px;
+  border-radius:50%;
+  background: black;
+  position: absolute;
+  top: 25%;
+  left:0;
+}
+.light{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  top: 25%;
+  left:50%;
+}
+.dark .l1{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  position:absolute;
+  top: 40px;
+  left: 40px;
+}
+.light .dr{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+}
+HTML:
+&lt;div class=&quot;balance&quot;&gt;
+  &lt;div class=&quot;light&quot;&gt;
+      &lt;div class=&quot;dr&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;dark&quot;&gt;
+      &lt;div class=&quot;l1&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>很长对不对？</p>
+<pre><code>CSS:
+body{
+  background-color: #444;
+}
+.balance{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ffffff 0%,#ffffff 50%,#000000 51%,#000000 100%); 
+  position: relative;
+  margin:100px auto;
+}
+.balance::before{
+  content: &apos;&apos;;
+  width: 20px;
+  height: 20px;
+  border-radius:50%;
+  border: 40px solid black;
+  background: white;
+  position: absolute;
+  top: 25%;
+  left:0;
+}
+.balance::after{
+  content: &apos;&apos;;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  border: 40px solid white;
+  top: 25%;
+  left:50%;
+}
+HTML:
+&lt;div class=&quot;balance&quot;&gt;
+&lt;/div&gt;
+</code></pre><p>是不是短了很多？<br>只需要加上<code>::before</code>伪类之后在属性里添加<code>content: &#39;&#39;;</code>甚至不需要加<code>display:block;</code><br>为什么要用伪类呢？因为可以少写很多<div>这边就少写了两个。</div></p>
+<h3 id="III-在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。"><a href="#III-在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。" class="headerlink" title="III.在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。"></a>III.在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。</h3><p>选择器的nth-child(第几个li)属性<br>可以单独规定第几个li元素的属性。<br>例：</p>
+<pre><code>section.Portfolio&gt; nav &gt;ol &gt; li:nth-child(1){
+margin-left:0
+}
+</code></pre><p>这样第一个<code>&lt;li&gt;</code>就没有margin-left了。<br>什么？<code>nth-child(1)</code>写起来太麻烦？<br>你试试写<code>first-child</code>也可以。<br>那么单独设定几个怎么做？<br><code>nth-child(even)</code>奇数项<br><code>nth-child(odd)</code>偶数项</p>
+<h2 id="2-动画-keyframes"><a href="#2-动画-keyframes" class="headerlink" title="2.动画@keyframes"></a>2.动画<code>@keyframes</code></h2><h3 id="I-这个很容易敲错"><a href="#I-这个很容易敲错" class="headerlink" title="I.这个很容易敲错"></a>I.这个很容易敲错</h3><p>其实keyframes动画也是有生成器的。这里举个例子。</p>
+<pre><code>@keyframes spin{
+  from{
+    transform: rotate(0deg)
+  }
+  to{
+    transform: rotate(360deg)
+  }
+}
+</code></pre><p>这里设置了动画的内容<br>之后在想让他这么动的元素里面加上</p>
+<pre><code>.balance{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ffffff 0%,#ffffff 50%,#000000 51%,#000000 100%); 
+  position: relative;
+  margin:100px auto;
+  animation-duration: 3s; //动画时间： 3s
+  animation-name: spin;  //动画名称：spin（就是上面@keyframes后面的名字）
+  animation-iteration-count: infinite;  //这行代码规定了动画循环进行
+  animation-timing-function: linear;  //这行动画规定了动画线性播放（就是匀速）
+}
+</code></pre><h4 id="i-除此之外还有transition属性"><a href="#i-除此之外还有transition属性" class="headerlink" title="i.除此之外还有transition属性"></a>i.除此之外还有<code>transition</code>属性</h4><p>用来做一些小的变化<code>transition: all 0.3s; //表达了指定元素的一切变化的都加上transition变化属性，时间为0.3s</code></p>
+<h3 id="II-所以还是找Generator吧"><a href="#II-所以还是找Generator吧" class="headerlink" title="II.所以还是找Generator吧"></a>II.所以还是找Generator吧</h3><p><a href="http://www.theappguruz.com/tag-tools/web/CSSAnimations/" target="_blank" rel="noopener">这个是奇怪的动画的网站</a></p>
+<h2 id="3-传说中的布局"><a href="#3-传说中的布局" class="headerlink" title="3.传说中的布局"></a>3.传说中的布局</h2><h3 id="I-左右布局"><a href="#I-左右布局" class="headerlink" title="I.左右布局"></a>I.左右布局</h3><h4 id="i-通过定位的方法"><a href="#i-通过定位的方法" class="headerlink" title="i.通过定位的方法"></a>i.通过定位的方法</h4><p>HTML：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;JS Bin&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;box1&quot;&gt;
+  &lt;div class=&quot;left&quot;&gt;这边定宽&lt;/div&gt;
+  &lt;div class=&quot;right&quot;&gt;这边自适应&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>CSS：</p>
+<pre><code>.box1{
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+.box1 .left{
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-color: red;
+}
+
+.box1 .right{
+  margin-left: 100px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+</code></pre><p>通过定位属性以父元素box1为<code>position:relative</code>左边红盒子绝对定位吸附父元素。<br>右侧黑盒子用<code>margin-left: 100px;</code>让出红盒子的位置，同时<code>width: 100%;</code>来占据剩下的空间。来完成根据宽度自适应。</p>
+<h4 id="ii-通过float浮动"><a href="#ii-通过float浮动" class="headerlink" title="ii.通过float浮动"></a>ii.通过float浮动</h4><p>HTML:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;JS Bin&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;box1&quot; clearfix&gt;
+  &lt;div class=&quot;left&quot;&gt;这边浮动&lt;/div&gt;
+  &lt;div class=&quot;right&quot;&gt;这边自适应&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>CSS:</p>
+<pre><code>.clearfix::after{
+    content: &apos;&apos;;
+    display: block;
+    clear: both;
+}
+.box1 .left {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+.box1 .right {
+  margin-left: 100px;
+  height: 100px;
+  background-color: black;
+  display: inline-block;
+  vertical-align: top;  //修复上面那行造成的裂隙。
+}
+</code></pre><p>通过让左侧红盒子添加<code>float: left;</code>脱离文档流（记得在父元素加clearfix伪类以防高度坍塌）<br>同时右侧黑框<code>margin-left: 100px;</code>空出左侧红盒子的位置。<br>这时候有个小问题：</p>
+<h6 id="1-红盒子已经浮动了"><a href="#1-红盒子已经浮动了" class="headerlink" title="1.红盒子已经浮动了"></a>1.红盒子已经浮动了</h6><p>那么黑盒子会无视红盒子的位置尽量占满一整行。那它可能会覆盖红盒子呀。</p>
+<h6 id="2-有个叫做BFC的盒子："><a href="#2-有个叫做BFC的盒子：" class="headerlink" title="2.有个叫做BFC的盒子："></a>2.有个叫做BFC的盒子：</h6><p>①若浮动元素的块状兄弟元素为BFC，则不会占满一整行，而是根据浮动元素的宽度，占据该行剩下的宽度，避免与浮动元素重叠。<br>②浮动元素与其块状BFC兄弟元素之间的margin可以生效，这将继续减少兄弟元素的宽度。<br>③为了让黑盒子把红盒子的位置让出来，我们选择触发BFC：<br><code>float</code>的值不为<code>none</code><br><code>position</code>的值不为<code>static</code>或者<code>relative</code><br><code>display</code>的值为<code>table-cell</code>, <code>table-caption</code>, <code>inline-block</code>, <code>flex</code>, 或者 <code>inline-flex</code>中的其中一个。<br><code>overflow</code>的值不为<code>visible</code><br><strong>这样就做到了左右两边：红盒子不定宽，黑盒子自适应。</strong></p>
+<h3 id="II-传说中的圣杯布局"><a href="#II-传说中的圣杯布局" class="headerlink" title="II.传说中的圣杯布局"></a>II.传说中的圣杯布局</h3><p>HTML:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;JS Bin&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;box&quot; clearfix&gt;
+  &lt;div class=&quot;middle&quot;&gt;middle&lt;/div&gt;   //顺序，先中再左右。
+  &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;
+  &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>css:</p>
+<pre><code>.clearfix::after{    //清除浮动伪类
+    content: &apos;&apos;;
+    display: block;
+    clear: both;
+}
+.box{
+  padding:  0 100px;  //最外层给红黄两个盒子留宽度
+  height: 100px;
+}
+.box .middle {
+  float: left;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+.box .left {
+  float: left;
+  width: 100px;
+  margin-left: -100%;
+  background-color: red;
+  position: relative;
+  left: -100px;    //往左边推出去
+  height: 100%;
+}
+.box .right {
+  float: left;
+  width: 100px;
+  margin-left: -100px;
+  background-color: yellow;
+  position: relative;
+  right: -100px;    //往右边推出去
+  height:100%;
+}
+</code></pre><p>给最外面的<code>box</code>加<code>padding</code>让出左右红黄盒子的位置。<br>给红黄盒子添加<code>position: relative;</code>让黑盒子不会受到他们俩位置变化的影响。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/入门-CSS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -376,8 +751,52 @@
   display: block;
   clear: both;
 }
-</code></pre><h3 id="V-第一个选择器-gt"><a href="#V-第一个选择器-gt" class="headerlink" title="V.第一个选择器&gt;"></a>V.第一个选择器<code>&gt;</code></h3><p>表达了一个左边是父，右边是子。<br><strong>HTML默认字体大小：16px</strong></p>
+</code></pre><p>还可以用什么呢？让块横着排的方法？<br>有一个叫做<code>display: inline-block;</code>可以让块像内联元素一样排列了。<br><strong>但是，建议还是用<code>float</code>吧</strong></p>
+<h3 id="V-第一个选择器-gt"><a href="#V-第一个选择器-gt" class="headerlink" title="V.第一个选择器&gt;"></a>V.第一个选择器<code>&gt;</code></h3><p>表达了一个左边是父，右边是子。<br><strong>HTML默认字体大小：16px</strong></p>
 <h3 id="VI-padding的缩写"><a href="#VI-padding的缩写" class="headerlink" title="VI.padding的缩写"></a>VI.padding的缩写</h3><p>顺时针，上右下左。</p>
+<h3 id="VII-一个元素的高度是由什么决定的？"><a href="#VII-一个元素的高度是由什么决定的？" class="headerlink" title="VII.一个元素的高度是由什么决定的？"></a>VII.一个元素的高度是由什么决定的？</h3><h4 id="由内容决定"><a href="#由内容决定" class="headerlink" title="由内容决定"></a><strong>由内容决定</strong></h4><p><strong><code>&lt;div&gt;</code>高度由其内部文档流元素的高度综合决定。</strong></p>
+<h5 id="文档流："><a href="#文档流：" class="headerlink" title="文档流："></a><strong>文档流</strong>：</h5><p>文档内元素的流动方向。</p>
+<h5 id="流动方向："><a href="#流动方向：" class="headerlink" title="流动方向："></a><strong>流动方向</strong>：</h5><p><strong>内联元素</strong>从左至右流动，若流动受到阻碍（例如宽度不够），则换行继续从左往右流。<br><strong>块级元素</strong>自上而下流动，每个块占一行(管你宽度多少他就不用)。</p>
+<h5 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h5><p>tip1：内联元素在宽度不够的时候如果有border，他不会在另起一行的部分加上border，而会截断这个border。<br>tip2：中文会截断换行，英文如果不空格，打死不换行。<br>如果你希望英文也会截断，请加入一个属性<code>word-break:break-all;</code>默认为<code>word-break:break-word</code><br>如果你希望他一直不断<code>word-break:keep-all;</code>了解一下。<br>中文网站推荐：<code>word-break:break-all;</code></p>
+<h4 id="那么-lt-span-gt-这种内联元素的高度由什么决定呢？"><a href="#那么-lt-span-gt-这种内联元素的高度由什么决定呢？" class="headerlink" title="那么&lt;span&gt;这种内联元素的高度由什么决定呢？"></a><strong>那么<code>&lt;span&gt;</code>这种内联元素的高度由什么决定呢？</strong></h4><h5 id="字体设计（基线）"><a href="#字体设计（基线）" class="headerlink" title="字体设计（基线）"></a>字体设计（基线）</h5><p>基线 上部 下部<br>对齐是基于基线的。<br>我们常说的<code>font-size: 100px;</code>指的是字体（注意是字体）的最高点和最低点的竖直距离。<br>但为什么把字放在<code>&lt;span&gt;</code>里面加上border会比字体本身高度要多出来呢？<br><strong>因为</strong>:这个字体设计的<strong>建议行高</strong>，就是字体大小的倍数（例如100px大小的字体，span高度140，那么建议高度就是1.4）</p>
+<h6 id="这时候怎么破呢？"><a href="#这时候怎么破呢？" class="headerlink" title="这时候怎么破呢？"></a>这时候怎么破呢？</h6><p>改它的行高系数呗<code>line-height: 1.2;</code>把他系数固定就好了。</p>
+<h5 id="那么有多个-lt-span-gt-的-lt-div-gt-的高度怎么说？"><a href="#那么有多个-lt-span-gt-的-lt-div-gt-的高度怎么说？" class="headerlink" title="那么有多个&lt;span&gt;的&lt;div&gt;的高度怎么说？"></a>那么有多个<code>&lt;span&gt;</code>的<code>&lt;div&gt;</code>的高度怎么说？</h5><p>一旦涉及到内联元素，div的高度就玄学了呀。<br>字体小的时候<code>&lt;div&gt;</code>可以用line-height来控制高度，想要确定的高度就拿padding凑凑吧。<br>有时候迫不得已…定死height这个属性，可能会出现无穷无尽的问题（很难维护之类的）。<br>所以<code>display: inline-block;</code>之后通过改变padding的方式改变宽高好一点。<br><strong><code>inline-block</code>状态下不会合并外边距。</strong>这时候可能下面会有一条诡异的空隙<br>这时候需要<code>vertical-align: top;</code><br><code>&lt;span&gt;</code>是不接受宽高这个属性的。</p>
+<h3 id="感觉再不练Grid布局，真的就要累死人了。"><a href="#感觉再不练Grid布局，真的就要累死人了。" class="headerlink" title="感觉再不练Grid布局，真的就要累死人了。"></a>感觉再不练Grid布局，真的就要累死人了。</h3><p>早就有grid布局插件了。</p>
+<h3 id="VIIIposition"><a href="#VIIIposition" class="headerlink" title="VIIIposition"></a>VIII<code>position</code></h3><h4 id="position-fixed"><a href="#position-fixed" class="headerlink" title="position: fixed;"></a><code>position: fixed;</code></h4><p>可以脱离文档流。相对于屏幕脱离文档流。<br>这时候他飘了，不像一个正常规则下的排列了，只能<code>width: 100%;</code>这种巨坑把它卡死…后面又是好多大坑。</p>
+<h4 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a><code>background-position</code></h4><p><code>background-position: center center;</code>可以让背景图片在<code>&lt;div&gt;</code>里面居中<br>但是很多时候由于图片过大导致超出div范围所以加入<code>background-size: cover;</code>属性使其自适应。<br>同样，在<code>&lt;div&gt;</code>加入属性<code>max-width: 800px</code>则会使div在800px以内缩放自适应。<br><code>margin-left：auto;</code><br><code>margin-right:auto;</code>即可水平居中。</p>
+<h4 id="position-absolute绝对定位"><a href="#position-absolute绝对定位" class="headerlink" title="position: absolute绝对定位"></a><code>position: absolute</code>绝对定位</h4><p>和<code>position: fixed</code>不同的是<br><code>absolute</code>可以相对父级（或以上）元素有<code>position: relative;</code>的第一个元素相对定位。<br>在我发现footer在到处飘的时候通过它绝对定位(需要设置width left right)</p>
+<h3 id="IX-如何用CSS画个三角玩玩。"><a href="#IX-如何用CSS画个三角玩玩。" class="headerlink" title="IX.如何用CSS画个三角玩玩。"></a>IX.如何用CSS画个三角玩玩。</h3><pre><code>div{
+border: 10px solid red;
+width: 0px;
+height: 0px;
+border-top-color:black;
+border-right-color:blue;
+border-left-color:green;
+}
+</code></pre><p>现在我们有四个三角形</p>
+<pre><code>div{
+border: 10px solid red;
+width: 0px;
+height: 0px;
+border-top-color:black;
+border-right-color:blue;
+border-left-color:green;
+border-top-width:0px;
+}
+</code></pre><p>现在我们有三个长得不一样的三角形了。</p>
+<pre><code>div{
+border: 100px solid transparent;
+width: 0px;
+height: 0px;
+border-top-color:transparent;
+border-right-color:transparent;
+border-left-color:red;
+border-top-width:0px;
+}
+</code></pre><p>把不需要的三角形部分透明就OK了呀。那么top和right的color属性也不需要了。</p>
+<h4 id="i-CSS-3的属性"><a href="#i-CSS-3的属性" class="headerlink" title="i.CSS 3的属性"></a>i.CSS 3的属性</h4><h5 id="线性渐变：linear-gradient"><a href="#线性渐变：linear-gradient" class="headerlink" title="线性渐变：linear gradient"></a>线性渐变：<code>linear gradient</code></h5><p>他有相应的生成工具：<code>ultimate CSS Gradient Generator</code><a href="http://www.colorzilla.com/gradient-editor/" target="_blank" rel="noopener">Google it</a>.</p>
+<h4 id="ii-CSS-tricks-shape"><a href="#ii-CSS-tricks-shape" class="headerlink" title="ii.CSS tricks shape"></a>ii.CSS tricks shape</h4><p><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">这个网站教你用CSS画画</a></p>
+<h4 id="iii-iconfont"><a href="#iii-iconfont" class="headerlink" title="iii.iconfont"></a>iii.iconfont</h4><p><a href="http://iconfont.cn/" target="_blank" rel="noopener">这个网站是找图标的</a><br>svg需要记住三个属性<br><code>width</code>宽<br><code>height</code>高（需要和宽一起变化）<br><code>fill</code>颜色（这是svg的语法）</p>
 
           
         
@@ -2265,7 +2684,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

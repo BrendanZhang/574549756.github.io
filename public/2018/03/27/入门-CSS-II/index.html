@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.伪类I.从::before和::after讲起div::before{   content:‘&amp;amp;’ } div::after{   content:&amp;apos;$&amp;apos; } 这样div的内容的前后就会被加上&amp;amp;和$。而且他还能加各种属性。 II.还记得那只太极吗？CSS: body{   background-color: #444; } .balance{   width">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="入门-CSS-II">
+<meta property="og:url" content="http://yoursite.com/2018/03/27/入门-CSS-II/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.伪类I.从::before和::after讲起div::before{   content:‘&amp;amp;’ } div::after{   content:&amp;apos;$&amp;apos; } 这样div的内容的前后就会被加上&amp;amp;和$。而且他还能加各种属性。 II.还记得那只太极吗？CSS: body{   background-color: #444; } .balance{   width">
+<meta property="og:updated_time" content="2018-03-27T15:29:33.746Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="入门-CSS-II">
+<meta name="twitter:description" content="1.伪类I.从::before和::after讲起div::before{   content:‘&amp;amp;’ } div::after{   content:&amp;apos;$&amp;apos; } 这样div的内容的前后就会被加上&amp;amp;和$。而且他还能加各种属性。 II.还记得那只太极吗？CSS: body{   background-color: #444; } .balance{   width">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/27/入门-CSS-II/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>入门-CSS-II | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/入门-CSS-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">入门-CSS-II</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T18:00:56+08:00">2018-03-27</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-伪类"><a href="#1-伪类" class="headerlink" title="1.伪类"></a>1.伪类</h2><h3 id="I-从-before和-after讲起"><a href="#I-从-before和-after讲起" class="headerlink" title="I.从::before和::after讲起"></a>I.从<code>::before</code>和<code>::after</code>讲起</h3><pre><code>div::before{
+  content:‘&amp;’
+}
+div::after{
+  content:&apos;$&apos;
+}
+</code></pre><p>这样div的内容的前后就会被加上<code>&amp;</code>和<code>$</code>。<br>而且他还能加各种属性。</p>
+<h3 id="II-还记得那只太极吗？"><a href="#II-还记得那只太极吗？" class="headerlink" title="II.还记得那只太极吗？"></a>II.还记得那只太极吗？</h3><pre><code>CSS:
+body{
+  background-color: #444;
+}
+.balance{
+  width:200px;
+  height:200px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ffffff 0%,#ffffff 50%,#000000 51%,#000000 100%); 
+  position: relative;
+  margin:100px auto;
+}
+.dark{
+  width: 100px;
+  height: 100px;
+  border-radius:50%;
+  background: black;
+  position: absolute;
+  top: 25%;
+  left:0;
+}
+.light{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  top: 25%;
+  left:50%;
+}
+.dark .l1{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  position:absolute;
+  top: 40px;
+  left: 40px;
+}
+.light .dr{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+}
+HTML:
+&lt;div class=&quot;balance&quot;&gt;
+  &lt;div class=&quot;light&quot;&gt;
+      &lt;div class=&quot;dr&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;dark&quot;&gt;
+      &lt;div class=&quot;l1&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>很长对不对？</p>
+<pre><code>CSS:
+body{
+  background-color: #444;
+}
+.balance{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ffffff 0%,#ffffff 50%,#000000 51%,#000000 100%); 
+  position: relative;
+  margin:100px auto;
+}
+.balance::before{
+  content: &apos;&apos;;
+  width: 20px;
+  height: 20px;
+  border-radius:50%;
+  border: 40px solid black;
+  background: white;
+  position: absolute;
+  top: 25%;
+  left:0;
+}
+.balance::after{
+  content: &apos;&apos;;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  border: 40px solid white;
+  top: 25%;
+  left:50%;
+}
+HTML:
+&lt;div class=&quot;balance&quot;&gt;
+&lt;/div&gt;
+</code></pre><p>是不是短了很多？<br>只需要加上<code>::before</code>伪类之后在属性里添加<code>content: &#39;&#39;;</code>甚至不需要加<code>display:block;</code><br>为什么要用伪类呢？因为可以少写很多<div>这边就少写了两个。</div></p>
+<h3 id="III-在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。"><a href="#III-在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。" class="headerlink" title="III.在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。"></a>III.在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。</h3><p>选择器的nth-child(第几个li)属性<br>可以单独规定第几个li元素的属性。<br>例：</p>
+<pre><code>section.Portfolio&gt; nav &gt;ol &gt; li:nth-child(1){
+margin-left:0
+}
+</code></pre><p>这样第一个<code>&lt;li&gt;</code>就没有margin-left了。<br>什么？<code>nth-child(1)</code>写起来太麻烦？<br>你试试写<code>first-child</code>也可以。<br>那么单独设定几个怎么做？<br><code>nth-child(even)</code>奇数项<br><code>nth-child(odd)</code>偶数项</p>
+<h2 id="2-动画-keyframes"><a href="#2-动画-keyframes" class="headerlink" title="2.动画@keyframes"></a>2.动画<code>@keyframes</code></h2><h3 id="I-这个很容易敲错"><a href="#I-这个很容易敲错" class="headerlink" title="I.这个很容易敲错"></a>I.这个很容易敲错</h3><p>其实keyframes动画也是有生成器的。这里举个例子。</p>
+<pre><code>@keyframes spin{
+  from{
+    transform: rotate(0deg)
+  }
+  to{
+    transform: rotate(360deg)
+  }
+}
+</code></pre><p>这里设置了动画的内容<br>之后在想让他这么动的元素里面加上</p>
+<pre><code>.balance{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ffffff 0%,#ffffff 50%,#000000 51%,#000000 100%); 
+  position: relative;
+  margin:100px auto;
+  animation-duration: 3s; //动画时间： 3s
+  animation-name: spin;  //动画名称：spin（就是上面@keyframes后面的名字）
+  animation-iteration-count: infinite;  //这行代码规定了动画循环进行
+  animation-timing-function: linear;  //这行动画规定了动画线性播放（就是匀速）
+}
+</code></pre><h4 id="i-除此之外还有transition属性"><a href="#i-除此之外还有transition属性" class="headerlink" title="i.除此之外还有transition属性"></a>i.除此之外还有<code>transition</code>属性</h4><p>用来做一些小的变化<code>transition: all 0.3s; //表达了指定元素的一切变化的都加上transition变化属性，时间为0.3s</code></p>
+<h3 id="II-所以还是找Generator吧"><a href="#II-所以还是找Generator吧" class="headerlink" title="II.所以还是找Generator吧"></a>II.所以还是找Generator吧</h3><p><a href="http://www.theappguruz.com/tag-tools/web/CSSAnimations/" target="_blank" rel="noopener">这个是奇怪的动画的网站</a></p>
+<h2 id="3-传说中的布局"><a href="#3-传说中的布局" class="headerlink" title="3.传说中的布局"></a>3.传说中的布局</h2><h3 id="I-左右布局"><a href="#I-左右布局" class="headerlink" title="I.左右布局"></a>I.左右布局</h3><h4 id="i-通过定位的方法"><a href="#i-通过定位的方法" class="headerlink" title="i.通过定位的方法"></a>i.通过定位的方法</h4><p>HTML：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;JS Bin&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;box1&quot;&gt;
+  &lt;div class=&quot;left&quot;&gt;这边定宽&lt;/div&gt;
+  &lt;div class=&quot;right&quot;&gt;这边自适应&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>CSS：</p>
+<pre><code>.box1{
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+.box1 .left{
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-color: red;
+}
+
+.box1 .right{
+  margin-left: 100px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+</code></pre><p>通过定位属性以父元素box1为<code>position:relative</code>左边红盒子绝对定位吸附父元素。<br>右侧黑盒子用<code>margin-left: 100px;</code>让出红盒子的位置，同时<code>width: 100%;</code>来占据剩下的空间。来完成根据宽度自适应。</p>
+<h4 id="ii-通过float浮动"><a href="#ii-通过float浮动" class="headerlink" title="ii.通过float浮动"></a>ii.通过float浮动</h4><p>HTML:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;JS Bin&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;box1&quot; clearfix&gt;
+  &lt;div class=&quot;left&quot;&gt;这边浮动&lt;/div&gt;
+  &lt;div class=&quot;right&quot;&gt;这边自适应&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>CSS:</p>
+<pre><code>.clearfix::after{
+    content: &apos;&apos;;
+    display: block;
+    clear: both;
+}
+.box1 .left {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+.box1 .right {
+  margin-left: 100px;
+  height: 100px;
+  background-color: black;
+  display: inline-block;
+  vertical-align: top;  //修复上面那行造成的裂隙。
+}
+</code></pre><p>通过让左侧红盒子添加<code>float: left;</code>脱离文档流（记得在父元素加clearfix伪类以防高度坍塌）<br>同时右侧黑框<code>margin-left: 100px;</code>空出左侧红盒子的位置。<br>这时候有个小问题：</p>
+<h6 id="1-红盒子已经浮动了"><a href="#1-红盒子已经浮动了" class="headerlink" title="1.红盒子已经浮动了"></a>1.红盒子已经浮动了</h6><p>那么黑盒子会无视红盒子的位置尽量占满一整行。那它可能会覆盖红盒子呀。</p>
+<h6 id="2-有个叫做BFC的盒子："><a href="#2-有个叫做BFC的盒子：" class="headerlink" title="2.有个叫做BFC的盒子："></a>2.有个叫做BFC的盒子：</h6><p>①若浮动元素的块状兄弟元素为BFC，则不会占满一整行，而是根据浮动元素的宽度，占据该行剩下的宽度，避免与浮动元素重叠。<br>②浮动元素与其块状BFC兄弟元素之间的margin可以生效，这将继续减少兄弟元素的宽度。<br>③为了让黑盒子把红盒子的位置让出来，我们选择触发BFC：<br><code>float</code>的值不为<code>none</code><br><code>position</code>的值不为<code>static</code>或者<code>relative</code><br><code>display</code>的值为<code>table-cell</code>, <code>table-caption</code>, <code>inline-block</code>, <code>flex</code>, 或者 <code>inline-flex</code>中的其中一个。<br><code>overflow</code>的值不为<code>visible</code><br><strong>这样就做到了左右两边：红盒子不定宽，黑盒子自适应。</strong></p>
+<h3 id="II-传说中的圣杯布局"><a href="#II-传说中的圣杯布局" class="headerlink" title="II.传说中的圣杯布局"></a>II.传说中的圣杯布局</h3><p>HTML:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;JS Bin&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;box&quot; clearfix&gt;
+  &lt;div class=&quot;middle&quot;&gt;middle&lt;/div&gt;   //顺序，先中再左右。
+  &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;
+  &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>css:</p>
+<pre><code>.clearfix::after{    //清除浮动伪类
+    content: &apos;&apos;;
+    display: block;
+    clear: both;
+}
+.box{
+  padding:  0 100px;  //最外层给红黄两个盒子留宽度
+  height: 100px;
+}
+.box .middle {
+  float: left;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+.box .left {
+  float: left;
+  width: 100px;
+  margin-left: -100%;
+  background-color: red;
+  position: relative;
+  left: -100px;    //往左边推出去
+  height: 100%;
+}
+.box .right {
+  float: left;
+  width: 100px;
+  margin-left: -100px;
+  background-color: yellow;
+  position: relative;
+  right: -100px;    //往右边推出去
+  height:100%;
+}
+</code></pre><p>给最外面的<code>box</code>加<code>padding</code>让出左右红黄盒子的位置。<br>给红黄盒子添加<code>position: relative;</code>让黑盒子不会受到他们俩位置变化的影响。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/24/入门-CSS/" rel="next" title="入门-CSS">
+                <i class="fa fa-chevron-left"></i> 入门-CSS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-伪类"><span class="nav-number">1.</span> <span class="nav-text">1.伪类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-从-before和-after讲起"><span class="nav-number">1.1.</span> <span class="nav-text">I.从::before和::after讲起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-还记得那只太极吗？"><span class="nav-number">1.2.</span> <span class="nav-text">II.还记得那只太极吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#III-在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。"><span class="nav-number">1.3.</span> <span class="nav-text">III.在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-动画-keyframes"><span class="nav-number">2.</span> <span class="nav-text">2.动画@keyframes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-这个很容易敲错"><span class="nav-number">2.1.</span> <span class="nav-text">I.这个很容易敲错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-除此之外还有transition属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">i.除此之外还有transition属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-所以还是找Generator吧"><span class="nav-number">2.2.</span> <span class="nav-text">II.所以还是找Generator吧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-传说中的布局"><span class="nav-number">3.</span> <span class="nav-text">3.传说中的布局</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-左右布局"><span class="nav-number">3.1.</span> <span class="nav-text">I.左右布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-通过定位的方法"><span class="nav-number">3.1.1.</span> <span class="nav-text">i.通过定位的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-通过float浮动"><span class="nav-number">3.1.2.</span> <span class="nav-text">ii.通过float浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-红盒子已经浮动了"><span class="nav-number">3.1.2.0.1.</span> <span class="nav-text">1.红盒子已经浮动了</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-有个叫做BFC的盒子："><span class="nav-number">3.1.2.0.2.</span> <span class="nav-text">2.有个叫做BFC的盒子：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-传说中的圣杯布局"><span class="nav-number">3.2.</span> <span class="nav-text">II.传说中的圣杯布局</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

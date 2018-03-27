@@ -97,6 +97,9 @@ CSS技巧，有汉化。八个章节，讲了很多基础特效。
       display: block;
       clear: both;
     }
+还可以用什么呢？让块横着排的方法？
+有一个叫做`display: inline-block;`可以让块像内联元素一样排列了。
+**但是，建议还是用`float`吧**
 
 ### V.第一个选择器`>`
 表达了一个左边是父，右边是子。
@@ -104,3 +107,103 @@ CSS技巧，有汉化。八个章节，讲了很多基础特效。
 
 ### VI.padding的缩写
 顺时针，上右下左。
+
+### VII.一个元素的高度是由什么决定的？
+#### **由内容决定**
+**`<div>`高度由其内部文档流元素的高度综合决定。**
+##### **文档流**：
+文档内元素的流动方向。
+##### **流动方向**：
+**内联元素**从左至右流动，若流动受到阻碍（例如宽度不够），则换行继续从左往右流。
+**块级元素**自上而下流动，每个块占一行(管你宽度多少他就不用)。
+##### Tips:
+tip1：内联元素在宽度不够的时候如果有border，他不会在另起一行的部分加上border，而会截断这个border。
+tip2：中文会截断换行，英文如果不空格，打死不换行。
+如果你希望英文也会截断，请加入一个属性`word-break:break-all;`默认为`word-break:break-word`
+如果你希望他一直不断`word-break:keep-all;`了解一下。
+中文网站推荐：`word-break:break-all;`
+#### **那么`<span>`这种内联元素的高度由什么决定呢？**
+##### 字体设计（基线）
+基线 上部 下部
+对齐是基于基线的。
+我们常说的`font-size: 100px;`指的是字体（注意是字体）的最高点和最低点的竖直距离。
+但为什么把字放在`<span>`里面加上border会比字体本身高度要多出来呢？
+**因为**:这个字体设计的**建议行高**，就是字体大小的倍数（例如100px大小的字体，span高度140，那么建议高度就是1.4）
+###### 这时候怎么破呢？
+改它的行高系数呗`line-height: 1.2;`把他系数固定就好了。
+
+##### 那么有多个`<span>`的`<div>`的高度怎么说？
+一旦涉及到内联元素，div的高度就玄学了呀。
+字体小的时候`<div>`可以用line-height来控制高度，想要确定的高度就拿padding凑凑吧。
+有时候迫不得已...定死height这个属性，可能会出现无穷无尽的问题（很难维护之类的）。
+所以`display: inline-block;`之后通过改变padding的方式改变宽高好一点。
+**`inline-block`状态下不会合并外边距。**这时候可能下面会有一条诡异的空隙
+这时候需要`vertical-align: top;`
+`<span>`是不接受宽高这个属性的。
+
+### 感觉再不练Grid布局，真的就要累死人了。
+早就有grid布局插件了。
+
+### VIII`position`
+#### `position: fixed;`
+可以脱离文档流。相对于屏幕脱离文档流。
+这时候他飘了，不像一个正常规则下的排列了，只能`width: 100%;`这种巨坑把它卡死...后面又是好多大坑。
+#### `background-position`
+`background-position: center center;`可以让背景图片在`<div>`里面居中
+但是很多时候由于图片过大导致超出div范围所以加入`background-size: cover;`属性使其自适应。
+同样，在`<div>`加入属性`max-width: 800px`则会使div在800px以内缩放自适应。
+`margin-left：auto;`
+`margin-right:auto;`即可水平居中。
+#### `position: absolute`绝对定位
+和`position: fixed`不同的是
+`absolute`可以相对父级（或以上）元素有`position: relative;`的第一个元素相对定位。
+在我发现footer在到处飘的时候通过它绝对定位(需要设置width left right)
+
+### IX.如何用CSS画个三角玩玩。
+	div{
+    border: 10px solid red;
+    width: 0px;
+    height: 0px;
+    border-top-color:black;
+    border-right-color:blue;
+    border-left-color:green;
+    }
+现在我们有四个三角形
+	
+    div{
+    border: 10px solid red;
+    width: 0px;
+    height: 0px;
+    border-top-color:black;
+    border-right-color:blue;
+    border-left-color:green;
+    border-top-width:0px;
+    }
+
+现在我们有三个长得不一样的三角形了。
+
+    div{
+    border: 100px solid transparent;
+    width: 0px;
+    height: 0px;
+    border-top-color:transparent;
+    border-right-color:transparent;
+    border-left-color:red;
+    border-top-width:0px;
+    }
+
+把不需要的三角形部分透明就OK了呀。那么top和right的color属性也不需要了。
+#### i.CSS 3的属性
+##### 线性渐变：`linear gradient`
+他有相应的生成工具：`ultimate CSS Gradient Generator`[Google it](http://www.colorzilla.com/gradient-editor/).
+
+
+#### ii.CSS tricks shape
+[这个网站教你用CSS画画](https://css-tricks.com/examples/ShapesOfCSS/)
+
+#### iii.iconfont
+[这个网站是找图标的](http://iconfont.cn/)
+svg需要记住三个属性
+`width`宽
+`height`高（需要和宽一起变化）
+`fill`颜色（这是svg的语法）

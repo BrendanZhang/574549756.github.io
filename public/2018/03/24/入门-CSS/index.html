@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/24/入门-CSS/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="1.CSS（Cascading Style Sheets）层叠样式表I.诞生与发展i.两个人发明CSS哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。 ii.W3C接管CSS1997年初，W3C内成立CSS工作组 iii.CSS 2.11998年5月，删除了2.0中基本不">
-<meta property="og:updated_time" content="2018-03-24T21:50:51.767Z">
+<meta property="og:updated_time" content="2018-03-27T15:31:17.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="入门-CSS">
 <meta name="twitter:description" content="1.CSS（Cascading Style Sheets）层叠样式表I.诞生与发展i.两个人发明CSS哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。 ii.W3C接管CSS1997年初，W3C内成立CSS工作组 iii.CSS 2.11998年5月，删除了2.0中基本不">
@@ -376,8 +376,52 @@
   display: block;
   clear: both;
 }
-</code></pre><h3 id="V-第一个选择器-gt"><a href="#V-第一个选择器-gt" class="headerlink" title="V.第一个选择器&gt;"></a>V.第一个选择器<code>&gt;</code></h3><p>表达了一个左边是父，右边是子。<br><strong>HTML默认字体大小：16px</strong></p>
+</code></pre><p>还可以用什么呢？让块横着排的方法？<br>有一个叫做<code>display: inline-block;</code>可以让块像内联元素一样排列了。<br><strong>但是，建议还是用<code>float</code>吧</strong></p>
+<h3 id="V-第一个选择器-gt"><a href="#V-第一个选择器-gt" class="headerlink" title="V.第一个选择器&gt;"></a>V.第一个选择器<code>&gt;</code></h3><p>表达了一个左边是父，右边是子。<br><strong>HTML默认字体大小：16px</strong></p>
 <h3 id="VI-padding的缩写"><a href="#VI-padding的缩写" class="headerlink" title="VI.padding的缩写"></a>VI.padding的缩写</h3><p>顺时针，上右下左。</p>
+<h3 id="VII-一个元素的高度是由什么决定的？"><a href="#VII-一个元素的高度是由什么决定的？" class="headerlink" title="VII.一个元素的高度是由什么决定的？"></a>VII.一个元素的高度是由什么决定的？</h3><h4 id="由内容决定"><a href="#由内容决定" class="headerlink" title="由内容决定"></a><strong>由内容决定</strong></h4><p><strong><code>&lt;div&gt;</code>高度由其内部文档流元素的高度综合决定。</strong></p>
+<h5 id="文档流："><a href="#文档流：" class="headerlink" title="文档流："></a><strong>文档流</strong>：</h5><p>文档内元素的流动方向。</p>
+<h5 id="流动方向："><a href="#流动方向：" class="headerlink" title="流动方向："></a><strong>流动方向</strong>：</h5><p><strong>内联元素</strong>从左至右流动，若流动受到阻碍（例如宽度不够），则换行继续从左往右流。<br><strong>块级元素</strong>自上而下流动，每个块占一行(管你宽度多少他就不用)。</p>
+<h5 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h5><p>tip1：内联元素在宽度不够的时候如果有border，他不会在另起一行的部分加上border，而会截断这个border。<br>tip2：中文会截断换行，英文如果不空格，打死不换行。<br>如果你希望英文也会截断，请加入一个属性<code>word-break:break-all;</code>默认为<code>word-break:break-word</code><br>如果你希望他一直不断<code>word-break:keep-all;</code>了解一下。<br>中文网站推荐：<code>word-break:break-all;</code></p>
+<h4 id="那么-lt-span-gt-这种内联元素的高度由什么决定呢？"><a href="#那么-lt-span-gt-这种内联元素的高度由什么决定呢？" class="headerlink" title="那么&lt;span&gt;这种内联元素的高度由什么决定呢？"></a><strong>那么<code>&lt;span&gt;</code>这种内联元素的高度由什么决定呢？</strong></h4><h5 id="字体设计（基线）"><a href="#字体设计（基线）" class="headerlink" title="字体设计（基线）"></a>字体设计（基线）</h5><p>基线 上部 下部<br>对齐是基于基线的。<br>我们常说的<code>font-size: 100px;</code>指的是字体（注意是字体）的最高点和最低点的竖直距离。<br>但为什么把字放在<code>&lt;span&gt;</code>里面加上border会比字体本身高度要多出来呢？<br><strong>因为</strong>:这个字体设计的<strong>建议行高</strong>，就是字体大小的倍数（例如100px大小的字体，span高度140，那么建议高度就是1.4）</p>
+<h6 id="这时候怎么破呢？"><a href="#这时候怎么破呢？" class="headerlink" title="这时候怎么破呢？"></a>这时候怎么破呢？</h6><p>改它的行高系数呗<code>line-height: 1.2;</code>把他系数固定就好了。</p>
+<h5 id="那么有多个-lt-span-gt-的-lt-div-gt-的高度怎么说？"><a href="#那么有多个-lt-span-gt-的-lt-div-gt-的高度怎么说？" class="headerlink" title="那么有多个&lt;span&gt;的&lt;div&gt;的高度怎么说？"></a>那么有多个<code>&lt;span&gt;</code>的<code>&lt;div&gt;</code>的高度怎么说？</h5><p>一旦涉及到内联元素，div的高度就玄学了呀。<br>字体小的时候<code>&lt;div&gt;</code>可以用line-height来控制高度，想要确定的高度就拿padding凑凑吧。<br>有时候迫不得已…定死height这个属性，可能会出现无穷无尽的问题（很难维护之类的）。<br>所以<code>display: inline-block;</code>之后通过改变padding的方式改变宽高好一点。<br><strong><code>inline-block</code>状态下不会合并外边距。</strong>这时候可能下面会有一条诡异的空隙<br>这时候需要<code>vertical-align: top;</code><br><code>&lt;span&gt;</code>是不接受宽高这个属性的。</p>
+<h3 id="感觉再不练Grid布局，真的就要累死人了。"><a href="#感觉再不练Grid布局，真的就要累死人了。" class="headerlink" title="感觉再不练Grid布局，真的就要累死人了。"></a>感觉再不练Grid布局，真的就要累死人了。</h3><p>早就有grid布局插件了。</p>
+<h3 id="VIIIposition"><a href="#VIIIposition" class="headerlink" title="VIIIposition"></a>VIII<code>position</code></h3><h4 id="position-fixed"><a href="#position-fixed" class="headerlink" title="position: fixed;"></a><code>position: fixed;</code></h4><p>可以脱离文档流。相对于屏幕脱离文档流。<br>这时候他飘了，不像一个正常规则下的排列了，只能<code>width: 100%;</code>这种巨坑把它卡死…后面又是好多大坑。</p>
+<h4 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a><code>background-position</code></h4><p><code>background-position: center center;</code>可以让背景图片在<code>&lt;div&gt;</code>里面居中<br>但是很多时候由于图片过大导致超出div范围所以加入<code>background-size: cover;</code>属性使其自适应。<br>同样，在<code>&lt;div&gt;</code>加入属性<code>max-width: 800px</code>则会使div在800px以内缩放自适应。<br><code>margin-left：auto;</code><br><code>margin-right:auto;</code>即可水平居中。</p>
+<h4 id="position-absolute绝对定位"><a href="#position-absolute绝对定位" class="headerlink" title="position: absolute绝对定位"></a><code>position: absolute</code>绝对定位</h4><p>和<code>position: fixed</code>不同的是<br><code>absolute</code>可以相对父级（或以上）元素有<code>position: relative;</code>的第一个元素相对定位。<br>在我发现footer在到处飘的时候通过它绝对定位(需要设置width left right)</p>
+<h3 id="IX-如何用CSS画个三角玩玩。"><a href="#IX-如何用CSS画个三角玩玩。" class="headerlink" title="IX.如何用CSS画个三角玩玩。"></a>IX.如何用CSS画个三角玩玩。</h3><pre><code>div{
+border: 10px solid red;
+width: 0px;
+height: 0px;
+border-top-color:black;
+border-right-color:blue;
+border-left-color:green;
+}
+</code></pre><p>现在我们有四个三角形</p>
+<pre><code>div{
+border: 10px solid red;
+width: 0px;
+height: 0px;
+border-top-color:black;
+border-right-color:blue;
+border-left-color:green;
+border-top-width:0px;
+}
+</code></pre><p>现在我们有三个长得不一样的三角形了。</p>
+<pre><code>div{
+border: 100px solid transparent;
+width: 0px;
+height: 0px;
+border-top-color:transparent;
+border-right-color:transparent;
+border-left-color:red;
+border-top-width:0px;
+}
+</code></pre><p>把不需要的三角形部分透明就OK了呀。那么top和right的color属性也不需要了。</p>
+<h4 id="i-CSS-3的属性"><a href="#i-CSS-3的属性" class="headerlink" title="i.CSS 3的属性"></a>i.CSS 3的属性</h4><h5 id="线性渐变：linear-gradient"><a href="#线性渐变：linear-gradient" class="headerlink" title="线性渐变：linear gradient"></a>线性渐变：<code>linear gradient</code></h5><p>他有相应的生成工具：<code>ultimate CSS Gradient Generator</code><a href="http://www.colorzilla.com/gradient-editor/" target="_blank" rel="noopener">Google it</a>.</p>
+<h4 id="ii-CSS-tricks-shape"><a href="#ii-CSS-tricks-shape" class="headerlink" title="ii.CSS tricks shape"></a>ii.CSS tricks shape</h4><p><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">这个网站教你用CSS画画</a></p>
+<h4 id="iii-iconfont"><a href="#iii-iconfont" class="headerlink" title="iii.iconfont"></a>iii.iconfont</h4><p><a href="http://iconfont.cn/" target="_blank" rel="noopener">这个网站是找图标的</a><br>svg需要记住三个属性<br><code>width</code>宽<br><code>height</code>高（需要和宽一起变化）<br><code>fill</code>颜色（这是svg的语法）</p>
 
       
     </div>
@@ -420,6 +464,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/入门-CSS-II/" rel="prev" title="入门-CSS-II">
+                入门-CSS-II <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -493,7 +541,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -550,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CSS（Cascading-Style-Sheets）层叠样式表"><span class="nav-number">1.</span> <span class="nav-text">1.CSS（Cascading Style Sheets）层叠样式表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-诞生与发展"><span class="nav-number">1.1.</span> <span class="nav-text">I.诞生与发展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-两个人发明CSS"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.两个人发明CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-W3C接管CSS"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.W3C接管CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iii-CSS-2-1"><span class="nav-number">1.1.3.</span> <span class="nav-text">iii.CSS 2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iv-CSS3"><span class="nav-number">1.1.4.</span> <span class="nav-text">iv.CSS3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-CSS-4？"><span class="nav-number">1.1.5.</span> <span class="nav-text">v.CSS 4？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vi-Tips"><span class="nav-number">1.1.6.</span> <span class="nav-text">vi.Tips:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-如何学习"><span class="nav-number">1.2.</span> <span class="nav-text">II.如何学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-MDN"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.MDN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-CSS-Tricks"><span class="nav-number">1.2.2.</span> <span class="nav-text">ii.CSS-Tricks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iii-博客"><span class="nav-number">1.2.3.</span> <span class="nav-text">iii.博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iv-Coderops"><span class="nav-number">1.2.4.</span> <span class="nav-text">iv.Coderops</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-《CSS揭秘》"><span class="nav-number">1.2.5.</span> <span class="nav-text">v.《CSS揭秘》</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-自己敲一敲"><span class="nav-number">2.</span> <span class="nav-text">2.自己敲一敲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-内联样式"><span class="nav-number">2.1.</span> <span class="nav-text">I.内联样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-但是这样标签好长呀"><span class="nav-number">2.2.</span> <span class="nav-text">II.但是这样标签好长呀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#III-那style多了头部是不是会超级长"><span class="nav-number">2.3.</span> <span class="nav-text">III.那style多了头部是不是会超级长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IV-float和clearfix"><span class="nav-number">2.4.</span> <span class="nav-text">IV.float和clearfix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V-第一个选择器-gt"><span class="nav-number">2.5.</span> <span class="nav-text">V.第一个选择器&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VI-padding的缩写"><span class="nav-number">2.6.</span> <span class="nav-text">VI.padding的缩写</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CSS（Cascading-Style-Sheets）层叠样式表"><span class="nav-number">1.</span> <span class="nav-text">1.CSS（Cascading Style Sheets）层叠样式表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-诞生与发展"><span class="nav-number">1.1.</span> <span class="nav-text">I.诞生与发展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-两个人发明CSS"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.两个人发明CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-W3C接管CSS"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.W3C接管CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iii-CSS-2-1"><span class="nav-number">1.1.3.</span> <span class="nav-text">iii.CSS 2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iv-CSS3"><span class="nav-number">1.1.4.</span> <span class="nav-text">iv.CSS3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-CSS-4？"><span class="nav-number">1.1.5.</span> <span class="nav-text">v.CSS 4？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vi-Tips"><span class="nav-number">1.1.6.</span> <span class="nav-text">vi.Tips:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-如何学习"><span class="nav-number">1.2.</span> <span class="nav-text">II.如何学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-MDN"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.MDN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-CSS-Tricks"><span class="nav-number">1.2.2.</span> <span class="nav-text">ii.CSS-Tricks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iii-博客"><span class="nav-number">1.2.3.</span> <span class="nav-text">iii.博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iv-Coderops"><span class="nav-number">1.2.4.</span> <span class="nav-text">iv.Coderops</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-《CSS揭秘》"><span class="nav-number">1.2.5.</span> <span class="nav-text">v.《CSS揭秘》</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-自己敲一敲"><span class="nav-number">2.</span> <span class="nav-text">2.自己敲一敲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-内联样式"><span class="nav-number">2.1.</span> <span class="nav-text">I.内联样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-但是这样标签好长呀"><span class="nav-number">2.2.</span> <span class="nav-text">II.但是这样标签好长呀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#III-那style多了头部是不是会超级长"><span class="nav-number">2.3.</span> <span class="nav-text">III.那style多了头部是不是会超级长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IV-float和clearfix"><span class="nav-number">2.4.</span> <span class="nav-text">IV.float和clearfix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V-第一个选择器-gt"><span class="nav-number">2.5.</span> <span class="nav-text">V.第一个选择器&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VI-padding的缩写"><span class="nav-number">2.6.</span> <span class="nav-text">VI.padding的缩写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VII-一个元素的高度是由什么决定的？"><span class="nav-number">2.7.</span> <span class="nav-text">VII.一个元素的高度是由什么决定的？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#由内容决定"><span class="nav-number">2.7.1.</span> <span class="nav-text">由内容决定</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文档流："><span class="nav-number">2.7.1.1.</span> <span class="nav-text">文档流：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#流动方向："><span class="nav-number">2.7.1.2.</span> <span class="nav-text">流动方向：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Tips"><span class="nav-number">2.7.1.3.</span> <span class="nav-text">Tips:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#那么-lt-span-gt-这种内联元素的高度由什么决定呢？"><span class="nav-number">2.7.2.</span> <span class="nav-text">那么&lt;span&gt;这种内联元素的高度由什么决定呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#字体设计（基线）"><span class="nav-number">2.7.2.1.</span> <span class="nav-text">字体设计（基线）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#这时候怎么破呢？"><span class="nav-number">2.7.2.1.1.</span> <span class="nav-text">这时候怎么破呢？</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#那么有多个-lt-span-gt-的-lt-div-gt-的高度怎么说？"><span class="nav-number">2.7.2.2.</span> <span class="nav-text">那么有多个&lt;span&gt;的&lt;div&gt;的高度怎么说？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感觉再不练Grid布局，真的就要累死人了。"><span class="nav-number">2.8.</span> <span class="nav-text">感觉再不练Grid布局，真的就要累死人了。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VIIIposition"><span class="nav-number">2.9.</span> <span class="nav-text">VIIIposition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#position-fixed"><span class="nav-number">2.9.1.</span> <span class="nav-text">position: fixed;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-position"><span class="nav-number">2.9.2.</span> <span class="nav-text">background-position</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#position-absolute绝对定位"><span class="nav-number">2.9.3.</span> <span class="nav-text">position: absolute绝对定位</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IX-如何用CSS画个三角玩玩。"><span class="nav-number">2.10.</span> <span class="nav-text">IX.如何用CSS画个三角玩玩。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-CSS-3的属性"><span class="nav-number">2.10.1.</span> <span class="nav-text">i.CSS 3的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线性渐变：linear-gradient"><span class="nav-number">2.10.1.1.</span> <span class="nav-text">线性渐变：linear gradient</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ii-CSS-tricks-shape"><span class="nav-number">2.10.2.</span> <span class="nav-text">ii.CSS tricks shape</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iii-iconfont"><span class="nav-number">2.10.3.</span> <span class="nav-text">iii.iconfont</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
