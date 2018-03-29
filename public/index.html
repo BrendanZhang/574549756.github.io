@@ -593,6 +593,22 @@ margin-left:0
   height:100%;
 }
 </code></pre><p>给最外面的<code>box</code>加<code>padding</code>让出左右红黄盒子的位置。<br>给红黄盒子添加<code>position: relative;</code>让黑盒子不会受到他们俩位置变化的影响。</p>
+<h3 id="III-关于居中"><a href="#III-关于居中" class="headerlink" title="III.关于居中"></a>III.关于居中</h3><h4 id="i-让图片居中"><a href="#i-让图片居中" class="headerlink" title="i.让图片居中"></a>i.让图片居中</h4><pre><code>background: url(&quot;wallhaven-w-min.jpg&quot;) no-repeat center center ;
+background-size: cover;
+</code></pre><h4 id="ii-让div水平居中"><a href="#ii-让div水平居中" class="headerlink" title="ii.让div水平居中"></a>ii.让div水平居中</h4><pre><code>margin-left:auto;
+margin-right:auto;
+</code></pre><h4 id="iii-内联元素居中："><a href="#iii-内联元素居中：" class="headerlink" title="iii.内联元素居中："></a>iii.内联元素居中：</h4><p>给内联元素的父元素加:<code>text-align:center;</code><br>如果不是内联元素，但是想让它居中怎么办？<br><code>display:inline-block</code>了解一下。但是但是但是加完以后下面会有诡异的裂隙，所以需要：<br><code>vertical-align: top;</code></p>
+<h4 id="iv-让div在父级元素中绝对居中"><a href="#iv-让div在父级元素中绝对居中" class="headerlink" title="iv.让div在父级元素中绝对居中"></a>iv.让div在父级元素中绝对居中</h4><p>父级元素加：<code>position:relative;</code><br>子元素(需要对齐的div):</p>
+<pre><code>div{
+ position: absolute;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ margin: auto;
+}
+</code></pre><h2 id="4-写点别的"><a href="#4-写点别的" class="headerlink" title="4.写点别的"></a>4.写点别的</h2><h3 id="I-src和href有啥子区别？"><a href="#I-src和href有啥子区别？" class="headerlink" title="I.src和href有啥子区别？"></a>I.<code>src</code>和<code>href</code>有啥子区别？</h3><p>在写<code>link</code>的时候，必须要写<code>href</code><br>在<code>&lt;a&gt;</code>标签的时候用<code>href</code><br>在写<code>script</code>的时候，必须要写<code>src</code><br>在写<code>img</code>的时候，必须要写<code>src</code><br>在写<code>iframe</code>的时候，必须要写<code>src</code></p>
+<p>如果一定要区别的话<code>href</code>一般指的外部文档<br><code>src</code>会嵌入文档里</p>
 
           
         

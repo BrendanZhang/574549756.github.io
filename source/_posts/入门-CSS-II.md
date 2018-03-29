@@ -311,3 +311,43 @@ css:
     }
 给最外面的`box`加`padding`让出左右红黄盒子的位置。
 给红黄盒子添加`position: relative;`让黑盒子不会受到他们俩位置变化的影响。
+### III.关于居中
+#### i.让图片居中
+	
+    background: url("wallhaven-w-min.jpg") no-repeat center center ;
+	background-size: cover;
+    
+#### ii.让div水平居中
+
+	margin-left:auto;
+	margin-right:auto;
+#### iii.内联元素居中：
+给内联元素的父元素加:`text-align:center;`
+如果不是内联元素，但是想让它居中怎么办？
+`display:inline-block`了解一下。但是但是但是加完以后下面会有诡异的裂隙，所以需要：
+`vertical-align: top;`
+
+#### iv.让div在父级元素中绝对居中
+父级元素加：`position:relative; `
+子元素(需要对齐的div):
+	
+    div{
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ 	bottom: 0;
+ 	right: 0;
+ 	margin: auto;
+	}
+
+
+## 4.写点别的
+### I.`src`和`href`有啥子区别？
+在写`link`的时候，必须要写`href`
+在`<a>`标签的时候用`href`
+在写`script`的时候，必须要写`src`
+在写`img`的时候，必须要写`src`
+在写`iframe`的时候，必须要写`src`
+
+如果一定要区别的话`href`一般指的外部文档
+`src`会嵌入文档里
