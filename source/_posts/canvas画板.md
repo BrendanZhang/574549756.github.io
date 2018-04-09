@@ -4,6 +4,7 @@ date: 2018-04-05 11:35:09
 tags: canvas
 ---
 ## 1.尝试用div画画
+```
 // 按下去鼠标
     doucment.onmousedown = function(){
         console.log(x)
@@ -16,11 +17,11 @@ tags: canvas
 	document.onmouseup = function(){
     	console.log(1)
     }
-    
+```
 ### 最好单独用div
 	`<div id="canvas"></div>`
 ### 那么上面代码优化为
-	
+```
     var div = document.getElementById('canvas')
     //按下鼠标
     div.onmousedown = function(x){
@@ -39,7 +40,7 @@ tags: canvas
     div.onmouseup = function(z){
     	console.log(1)
     }
-    
+```
 ### 小技巧（Flag）
 通过一个变量`var painting = false`
 全局变量的时候默认为false
@@ -108,3 +109,40 @@ if(document.body.ontouchstart !== undefined){
 
 ## 4.补充点功能
 ### 改变画笔颜色
+#### I.首先让图标变好看点
+我们需要`iconfont.cn`搞点图标玩玩
+把搞到的图标代替button按钮
+设置id便于选择器选择。
+```
+<svg id="pen" class="icon">
+	<use xlink:href="#icon-pencil"></use>
+</svg>
+<svg id="eraser" class="icon">
+	<use xlink:href="#icon-eraser"></use>
+</svg>
+```
+CSS
+```
+.actions{
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+.actions svg.active{
+	fill: red;
+}
+```
+那么在js中调用active状态，通过`classList.remove('')`和`classList.add('')`来添加和移除相应class
+```
+var eraserEnabled = false
+pen.onclick = function(){
+	eraserEnabled = false;
+	pen.classList.add("active")
+	eraser.classList.remove("active")
+}
+eraser.onclick = function(){
+	eraserEnabled = true
+	eraser.classList.add("active")
+	pen.classList.remove("active")
+}
+```
