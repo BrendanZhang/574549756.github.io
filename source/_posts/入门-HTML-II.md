@@ -11,6 +11,7 @@ tags:
 举个例子：`<iframe src="http://qq.com" frameborder="0"></iframe>`
 frameborder=0?为了把阴影框删了，因为太难看了太难看了太难看了。
 默认iframe宽100高50但是可以用CSS给它一个属性
+
 ```
 <style>
   iframe{
@@ -19,14 +20,17 @@ frameborder=0?为了把阴影框删了，因为太难看了太难看了太难看
   }
 </style>
 ```
+
 ### ②还有些好玩的用法比如：
+
 ```
 <body>
   <iframe name=xxx src="#" frameborder="0"></iframe>
   <a target=xxx href="http://qq.com">QQ</a>
   <a target=xxx href="http://baidu.com">百度</a>
 </body>
-``` 
+```
+
 厉害了呀，这样点击a标签就可以在iframe框里访问相应网页了。
 ![浏览效果](https://ws1.sinaimg.cn/large/005XzYe2gy1fpn80xrwomj30qo0g4wkr.jpg)
 
@@ -82,13 +86,15 @@ top:顶层窗口，如果他爸爸有爸爸，那就在他爷爷那里打开。
 所以只有伪协议让他什么都不做
 
 ## III.`<form>`标签（HTTP POST 请求）
+
 ```
 <form action="users" method="post">
   <input type="text" name=”username“>
 <input type="text" name=”password“>
   <input type="submit" value="提交">
 </form>
-``` 
+```
+
 一个典型的用户名提交窗口
 
 ### ①关于`action`
@@ -139,10 +145,12 @@ checkbox可以有很多个，是不是感觉在做选择题？怎么判断正误
 
 #### v.`radio`
 **单选框**和checkbox对应。name相同的时候只能点一个。
+
 ```
 <label><input name="难不难" type="radio" value="yes">Yes</label>
 <label><input name="难不难" type="radio" value="yes">No</label>
 ```
+
 难不难
 <label><input name="难不难" type="radio" value="yes">Yes</label>
 <label><input name="难不难" type="radio" value="yes">No</label>
@@ -166,6 +174,7 @@ checkbox可以有很多个，是不是感觉在做选择题？怎么判断正误
 ### ⑥关于`<select>`
 
 下拉列表
+
 ```
 <select name="分组">
   <option value="">-</option>
@@ -175,6 +184,7 @@ checkbox可以有很多个，是不是感觉在做选择题？怎么判断正误
   <option value="4" selected>第四组</option>
 </select>
 ```
+
 <select name="group">
   <option value="">-</option>
   <option value="1">第一组</option>
@@ -206,6 +216,7 @@ checkbox可以有很多个，是不是感觉在做选择题？怎么判断正误
 很大程度上，他还是非常智能的。
 
 **如何把表格的默认border取消？**
+
 ```
 <style>
   table{
@@ -213,5 +224,6 @@ checkbox可以有很多个，是不是感觉在做选择题？怎么判断正误
     }
 </style>
 ```
+
 table选择器`border-collapse`属性
-改变表格默认border
+改变表格默认border。
