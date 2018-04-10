@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/24/入门-CSS/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="1.CSS（Cascading Style Sheets）层叠样式表I.诞生与发展i.两个人发明CSS哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。 ii.W3C接管CSS1997年初，W3C内成立CSS工作组 iii.CSS 2.11998年5月，删除了2.0中基本不">
-<meta property="og:updated_time" content="2018-03-27T15:31:17.319Z">
+<meta property="og:updated_time" content="2018-04-10T04:21:53.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="入门-CSS">
 <meta name="twitter:description" content="1.CSS（Cascading Style Sheets）层叠样式表I.诞生与发展i.两个人发明CSS哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。 ii.W3C接管CSS1997年初，W3C内成立CSS工作组 iii.CSS 2.11998年5月，删除了2.0中基本不">
@@ -355,28 +355,13 @@
 <hr>
 <p><strong>规范文档是最强的，如果把文档研究透了，那太强了。</strong></p>
 <h2 id="2-自己敲一敲"><a href="#2-自己敲一敲" class="headerlink" title="2.自己敲一敲"></a>2.自己敲一敲</h2><h3 id="I-内联样式"><a href="#I-内联样式" class="headerlink" title="I.内联样式"></a>I.内联样式</h3><p><code>&lt;body style=&quot;background-color: black&quot;&gt;里面是内容&lt;/body&gt;</code><br><code>&lt;h1 style=&quot;text-align: center; color: white;&quot;&gt;内联样式&lt;/h1&gt;</code><br>在标签里面写CSS样式。也称为Style属性</p>
-<h3 id="II-但是这样标签好长呀"><a href="#II-但是这样标签好长呀" class="headerlink" title="II.但是这样标签好长呀"></a>II.但是这样标签好长呀</h3><pre><code>&lt;head&gt;
-  &lt;style&gt;
-    body{
-      background-color: gray;
-    }
-  &lt;/style&gt;
-&lt;/head&gt;
-</code></pre><p>没问题，在头部加<code>&lt;style&gt;</code>标签就可以。</p>
-<h3 id="III-那style多了头部是不是会超级长"><a href="#III-那style多了头部是不是会超级长" class="headerlink" title="III.那style多了头部是不是会超级长"></a>III.那style多了头部是不是会超级长</h3><pre><code>&lt;head&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;./a.css&quot;&gt;
-&lt;/head&gt;
-</code></pre><p>引入外部样式就可以<br><strong>CSS文件也可以引入CSS</strong><br><code>@import url(./需要引入的CSS.css);</code><br>在用a的时候先引入b</p>
-<h3 id="IV-float和clearfix"><a href="#IV-float和clearfix" class="headerlink" title="IV.float和clearfix"></a>IV.float和clearfix</h3><pre><code>&lt;ul style=&quot;list-style: none; margin: 0; padding: 0;&quot; class=&quot;clearfix&quot;&gt; //class之前为了去掉默认样式中的点和margin以及padding
-  &lt;li style=&quot;float:left;&quot;&gt;内容&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre><p>想让表格的子元素横着排，给子元素加<code>style=&quot;float:left;&quot;</code>但是这时候有BUG<br>所以在父元素加<code>class=&quot;clearfix&quot;</code></p>
-<pre><code>.clearfix::after{
-  content: &apos;&apos;;
-  display: block;
-  clear: both;
-}
-</code></pre><p>还可以用什么呢？让块横着排的方法？<br>有一个叫做<code>display: inline-block;</code>可以让块像内联元素一样排列了。<br><strong>但是，建议还是用<code>float</code>吧</strong></p>
+<h3 id="II-但是这样标签好长呀"><a href="#II-但是这样标签好长呀" class="headerlink" title="II.但是这样标签好长呀"></a>II.但是这样标签好长呀</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        body&#123;</span></span><br><span class="line"><span class="undefined">          background-color: gray;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>没问题，在头部加<code>&lt;style&gt;</code>标签就可以。</p>
+<h3 id="III-那style多了头部是不是会超级长"><a href="#III-那style多了头部是不是会超级长" class="headerlink" title="III.那style多了头部是不是会超级长"></a>III.那style多了头部是不是会超级长</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./a.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>引入外部样式就可以<br><strong>CSS文件也可以引入CSS</strong><br><code>@import url(./需要引入的CSS.css);</code><br>在用a的时候先引入b</p>
+<h3 id="IV-float和clearfix"><a href="#IV-float和clearfix" class="headerlink" title="IV.float和clearfix"></a>IV.float和clearfix</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">ul</span> style=<span class="string">"list-style: none; margin: 0; padding: 0;"</span> class=<span class="string">"clearfix"</span>&gt; <span class="comment">//class之前为了去掉默认样式中的点和margin以及padding</span></span><br><span class="line">    &lt;<span class="selector-tag">li</span> style=<span class="string">"float:left;"</span>&gt;内容&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>想让表格的子元素横着排，给子元素加<code>style=&quot;float:left;&quot;</code>但是这时候有BUG<br>所以在父元素加<code>class=&quot;clearfix&quot;</code><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还可以用什么呢？让块横着排的方法？<br>有一个叫做<code>display: inline-block;</code>可以让块像内联元素一样排列了。<br><strong>但是，建议还是用<code>float</code>吧</strong></p>
 <h3 id="V-第一个选择器-gt"><a href="#V-第一个选择器-gt" class="headerlink" title="V.第一个选择器&gt;"></a>V.第一个选择器<code>&gt;</code></h3><p>表达了一个左边是父，右边是子。<br><strong>HTML默认字体大小：16px</strong></p>
 <h3 id="VI-padding的缩写"><a href="#VI-padding的缩写" class="headerlink" title="VI.padding的缩写"></a>VI.padding的缩写</h3><p>顺时针，上右下左。</p>
 <h3 id="VII-一个元素的高度是由什么决定的？"><a href="#VII-一个元素的高度是由什么决定的？" class="headerlink" title="VII.一个元素的高度是由什么决定的？"></a>VII.一个元素的高度是由什么决定的？</h3><h4 id="由内容决定"><a href="#由内容决定" class="headerlink" title="由内容决定"></a><strong>由内容决定</strong></h4><p><strong><code>&lt;div&gt;</code>高度由其内部文档流元素的高度综合决定。</strong></p>
@@ -390,38 +375,13 @@
 <h3 id="VIIIposition"><a href="#VIIIposition" class="headerlink" title="VIIIposition"></a>VIII<code>position</code></h3><h4 id="position-fixed"><a href="#position-fixed" class="headerlink" title="position: fixed;"></a><code>position: fixed;</code></h4><p>可以脱离文档流。相对于屏幕脱离文档流。<br>这时候他飘了，不像一个正常规则下的排列了，只能<code>width: 100%;</code>这种巨坑把它卡死…后面又是好多大坑。</p>
 <h4 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a><code>background-position</code></h4><p><code>background-position: center center;</code>可以让背景图片在<code>&lt;div&gt;</code>里面居中<br>但是很多时候由于图片过大导致超出div范围所以加入<code>background-size: cover;</code>属性使其自适应。<br>同样，在<code>&lt;div&gt;</code>加入属性<code>max-width: 800px</code>则会使div在800px以内缩放自适应。<br><code>margin-left：auto;</code><br><code>margin-right:auto;</code>即可水平居中。</p>
 <h4 id="position-absolute绝对定位"><a href="#position-absolute绝对定位" class="headerlink" title="position: absolute绝对定位"></a><code>position: absolute</code>绝对定位</h4><p>和<code>position: fixed</code>不同的是<br><code>absolute</code>可以相对父级（或以上）元素有<code>position: relative;</code>的第一个元素相对定位。<br>在我发现footer在到处飘的时候通过它绝对定位(需要设置width left right)</p>
-<h3 id="IX-如何用CSS画个三角玩玩。"><a href="#IX-如何用CSS画个三角玩玩。" class="headerlink" title="IX.如何用CSS画个三角玩玩。"></a>IX.如何用CSS画个三角玩玩。</h3><pre><code>div{
-border: 10px solid red;
-width: 0px;
-height: 0px;
-border-top-color:black;
-border-right-color:blue;
-border-left-color:green;
-}
-</code></pre><p>现在我们有四个三角形</p>
-<pre><code>div{
-border: 10px solid red;
-width: 0px;
-height: 0px;
-border-top-color:black;
-border-right-color:blue;
-border-left-color:green;
-border-top-width:0px;
-}
-</code></pre><p>现在我们有三个长得不一样的三角形了。</p>
-<pre><code>div{
-border: 100px solid transparent;
-width: 0px;
-height: 0px;
-border-top-color:transparent;
-border-right-color:transparent;
-border-left-color:red;
-border-top-width:0px;
-}
-</code></pre><p>把不需要的三角形部分透明就OK了呀。那么top和right的color属性也不需要了。</p>
+<h3 id="IX-如何用CSS画个三角玩玩。"><a href="#IX-如何用CSS画个三角玩玩。" class="headerlink" title="IX.如何用CSS画个三角玩玩。"></a>IX.如何用CSS画个三角玩玩。</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">10px</span> solid red;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">border-top-color</span>:black;</span><br><span class="line">    <span class="attribute">border-right-color</span>:blue;</span><br><span class="line">    <span class="attribute">border-left-color</span>:green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们有四个三角形<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">10px</span> solid red;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">border-top-color</span>:black;</span><br><span class="line">    <span class="attribute">border-right-color</span>:blue;</span><br><span class="line">    <span class="attribute">border-left-color</span>:green;</span><br><span class="line">    <span class="attribute">border-top-width</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在我们有三个长得不一样的三角形了。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">border-top-color</span>:transparent;</span><br><span class="line">    <span class="attribute">border-right-color</span>:transparent;</span><br><span class="line">    <span class="attribute">border-left-color</span>:red;</span><br><span class="line">    <span class="attribute">border-top-width</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>把不需要的三角形部分透明就OK了呀。那么top和right的color属性也不需要了。</p>
 <h4 id="i-CSS-3的属性"><a href="#i-CSS-3的属性" class="headerlink" title="i.CSS 3的属性"></a>i.CSS 3的属性</h4><h5 id="线性渐变：linear-gradient"><a href="#线性渐变：linear-gradient" class="headerlink" title="线性渐变：linear gradient"></a>线性渐变：<code>linear gradient</code></h5><p>他有相应的生成工具：<code>ultimate CSS Gradient Generator</code><a href="http://www.colorzilla.com/gradient-editor/" target="_blank" rel="noopener">Google it</a>.</p>
 <h4 id="ii-CSS-tricks-shape"><a href="#ii-CSS-tricks-shape" class="headerlink" title="ii.CSS tricks shape"></a>ii.CSS tricks shape</h4><p><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">这个网站教你用CSS画画</a></p>
-<h4 id="iii-iconfont"><a href="#iii-iconfont" class="headerlink" title="iii.iconfont"></a>iii.iconfont</h4><p><a href="http://iconfont.cn/" target="_blank" rel="noopener">这个网站是找图标的</a><br>svg需要记住三个属性<br><code>width</code>宽<br><code>height</code>高（需要和宽一起变化）<br><code>fill</code>颜色（这是svg的语法）</p>
+<h4 id="iii-iconfont"><a href="#iii-iconfont" class="headerlink" title="iii.iconfont"></a>iii.iconfont</h4><p><a href="http://iconfont.cn/" target="_blank" rel="noopener">这个网站是找图标的</a><br>svg需要记住三个属性<br><code>width</code>宽<br><code>height</code>高（需要和宽一起变化）<br><code>fill</code>颜色（这是svg的语法,用来改变svg图标的颜色）</p>
 
       
     </div>
@@ -541,7 +501,7 @@ border-top-width:0px;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -564,7 +524,9 @@ border-top-width:0px;
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

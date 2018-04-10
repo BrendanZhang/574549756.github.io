@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.尝试用div画画123456789101112// 按下去鼠标    doucment.onmousedown = function()&amp;#123;        console.log(x)    &amp;#125;//动鼠标	document.onmousemove = function()&amp;#123;    	console.log(y)    &amp;#125;//松开鼠标	document.on">
+<meta name="keywords" content="canvas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas画板">
+<meta property="og:url" content="http://yoursite.com/2018/04/05/canvas画板/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.尝试用div画画123456789101112// 按下去鼠标    doucment.onmousedown = function()&amp;#123;        console.log(x)    &amp;#125;//动鼠标	document.onmousemove = function()&amp;#123;    	console.log(y)    &amp;#125;//松开鼠标	document.on">
+<meta property="og:updated_time" content="2018-04-09T07:41:50.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas画板">
+<meta name="twitter:description" content="1.尝试用div画画123456789101112// 按下去鼠标    doucment.onmousedown = function()&amp;#123;        console.log(x)    &amp;#125;//动鼠标	document.onmousemove = function()&amp;#123;    	console.log(y)    &amp;#125;//松开鼠标	document.on">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/05/canvas画板/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>canvas画板 | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/05/canvas画板/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">canvas画板</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-05T11:35:09+08:00">2018-04-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-尝试用div画画"><a href="#1-尝试用div画画" class="headerlink" title="1.尝试用div画画"></a>1.尝试用div画画</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 按下去鼠标</span></span><br><span class="line">    doucment.onmousedown = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(x)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//动鼠标</span></span><br><span class="line">	<span class="built_in">document</span>.onmousemove = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(y)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//松开鼠标</span></span><br><span class="line">	<span class="built_in">document</span>.onmouseup = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最好单独用div"><a href="#最好单独用div" class="headerlink" title="最好单独用div"></a>最好单独用div</h3><pre><code>`&lt;div id=&quot;canvas&quot;&gt;&lt;/div&gt;`
+</code></pre><h3 id="那么上面代码优化为"><a href="#那么上面代码优化为" class="headerlink" title="那么上面代码优化为"></a>那么上面代码优化为</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">div</span> = document.getElementById(<span class="string">'canvas'</span>)</span><br><span class="line"><span class="comment">//按下鼠标</span></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.onmousedown</span> = function(x)&#123;</span><br><span class="line">	<span class="selector-tag">var</span> x = <span class="selector-tag">a</span>.clientX</span><br><span class="line">    <span class="selector-tag">var</span> y = <span class="selector-tag">a</span>.clientY</span><br><span class="line">    <span class="selector-tag">var</span> divA = document.createElement(<span class="string">'div'</span>)</span><br><span class="line">    divA<span class="selector-class">.style</span> = <span class="string">"width: 6px; height: 6px;"</span>+<span class="string">"background:black; border-radius: 3px;"</span></span><br><span class="line">    <span class="selector-tag">div</span>.appendChild(divA)</span><br><span class="line">    <span class="string">"position: absolute; left: "</span>+(x-<span class="number">3</span>) +<span class="string">"px;"</span> + <span class="string">"top: "</span>+(y-<span class="number">3</span>)+<span class="string">"px;"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//动鼠标</span></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.onmousemove</span> = function(y)&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//松开鼠标</span></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.onmouseup</span> = function(z)&#123;</span><br><span class="line">	console.log(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小技巧（Flag）"><a href="#小技巧（Flag）" class="headerlink" title="小技巧（Flag）"></a>小技巧（Flag）</h3><p>通过一个变量<code>var painting = false</code><br>全局变量的时候默认为false<br>在按下去鼠标的时候<code>painting = true</code><br>移动鼠标div将其作为判断条件，如果 <code>if(painting){}</code>如果painting存在则继续<br>在松开鼠标的时候改变变量painting为false</p>
+<h2 id="2-然而做了这么多，他画画还是断断续续的，所以告诉我们画画不能用div，要用canvas"><a href="#2-然而做了这么多，他画画还是断断续续的，所以告诉我们画画不能用div，要用canvas" class="headerlink" title="2.然而做了这么多，他画画还是断断续续的，所以告诉我们画画不能用div，要用canvas"></a><strong>2.然而做了这么多，他画画还是断断续续的，所以告诉我们画画不能用div，要用canvas</strong></h2><h3 id="canvas不能用CSS控制宽高"><a href="#canvas不能用CSS控制宽高" class="headerlink" title="canvas不能用CSS控制宽高"></a>canvas不能用CSS控制宽高</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">context</span>.strokesStyle描边</span><br><span class="line"><span class="built_in">context</span>.strokeRect(xx,yy,xxx,yyy)初始坐标，结束坐标</span><br><span class="line"><span class="built_in">context</span>.fillStyle = <span class="string">'颜色'</span><span class="comment">;填充</span></span><br><span class="line"><span class="built_in">context</span>.fillStyle(xx,yy,xxx,yyy)初始坐标，结束坐标</span><br><span class="line"></span><br><span class="line"><span class="built_in">context</span>.clearRect(xx,yy,xxx,yyy)初始坐标，宽度，高度（清除）</span><br></pre></td></tr></table></figure>
+<h3 id="圆弧"><a href="#圆弧" class="headerlink" title="圆弧"></a>圆弧</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">context</span><span class="selector-class">.arc</span>(x,y,半径,起始角度,结束角度,顺时针或者逆时针(默认顺时针，anticlockwise逆时针));</span><br><span class="line"><span class="comment">//注意这里的结束角度不是度数，而是用元周率度量的所以要用Math.PI就是180度Math.PI/2就是90度</span></span><br></pre></td></tr></table></figure>
+<p>除了矩形都要context.beginPath()一下</p>
+<p>canvas里面的坐标都是想对于canvas的而不是想对于视口的，所以要修正他。</p>
+<h3 id="如何创建补间"><a href="#如何创建补间" class="headerlink" title="如何创建补间"></a>如何创建补间</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">context</span> = xxx<span class="variable">.getContext</span>('<span class="number">2</span>d')</span><br><span class="line"><span class="keyword">context</span><span class="variable">.beginPath</span>();</span><br><span class="line"><span class="keyword">context</span><span class="variable">.moveTo</span>(<span class="number">0</span>,<span class="number">0</span>) <span class="comment">//起点</span></span><br><span class="line"><span class="keyword">context</span><span class="variable">.lineWidth</span> = <span class="number">5</span>  <span class="comment">//宽度</span></span><br><span class="line"><span class="keyword">context</span><span class="variable">.lineTo</span>(<span class="number">200</span>,<span class="number">0</span>)  <span class="comment">//终点</span></span><br><span class="line"><span class="keyword">context</span><span class="variable">.stroke</span>()  <span class="comment">//</span></span><br><span class="line"><span class="keyword">context</span><span class="variable">.closePath</span>() <span class="comment">//闭合</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取用户视口的宽高的方法（这个是最简单的了）"><a href="#获取用户视口的宽高的方法（这个是最简单的了）" class="headerlink" title="获取用户视口的宽高的方法（这个是最简单的了）"></a>获取用户视口的宽高的方法（这个是最简单的了）</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> pageWidth = document<span class="selector-class">.documentElement</span><span class="selector-class">.clientWidth</span></span><br><span class="line"><span class="selector-tag">var</span> pageHeight = document<span class="selector-class">.documentElement</span><span class="selector-class">.clientHeight</span></span><br><span class="line">yyy<span class="selector-class">.width</span> = pageWidth</span><br><span class="line">yyy<span class="selector-class">.height</span> = pageHeight</span><br><span class="line"><span class="comment">//获取用户视口尺寸</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window<span class="selector-class">.onresize</span> = funtion()&#123;</span><br><span class="line">  <span class="selector-tag">var</span> pageWidth = document<span class="selector-class">.documentElement</span><span class="selector-class">.clientWidth</span></span><br><span class="line">  <span class="selector-tag">var</span> pageHeight = document<span class="selector-class">.documentElement</span><span class="selector-class">.clientHeight</span></span><br><span class="line">  yyy<span class="selector-class">.width</span> = pageWidth</span><br><span class="line">  yyy<span class="selector-class">.height</span> = pageHeight</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//改变宽高时，同步宽高。</span></span><br><span class="line"><span class="comment">//resize事件来改变宽高</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-如何让移动端也用上呢？"><a href="#3-如何让移动端也用上呢？" class="headerlink" title="3.如何让移动端也用上呢？"></a>3.如何让移动端也用上呢？</h2><h3 id="需要一个特性检测"><a href="#需要一个特性检测" class="headerlink" title="需要一个特性检测"></a>需要一个特性检测</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">document</span>.body.ontouchstart !== <span class="literal">undefined</span>)&#123;</span><br><span class="line">	<span class="comment">//如果存在说明他是触屏设备</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	如果不存在，那么说明不是触屏设备，监听鼠标操作是正确的。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="触屏是支持多点触控的"><a href="#触屏是支持多点触控的" class="headerlink" title="触屏是支持多点触控的"></a>触屏是支持多点触控的</h3><p>所以touch时间需要把用户滑动的手指都用数组储存起来<br>放在touches里面，所以找坐标的工作要交给<code>var x = aaa.touchs[0].clientX</code>以及<code>var y = aaa.touch[0].clientY</code> </p>
+<h2 id="4-补充点功能"><a href="#4-补充点功能" class="headerlink" title="4.补充点功能"></a>4.补充点功能</h2><h3 id="改变画笔颜色"><a href="#改变画笔颜色" class="headerlink" title="改变画笔颜色"></a>改变画笔颜色</h3><h4 id="I-首先让图标变好看点"><a href="#I-首先让图标变好看点" class="headerlink" title="I.首先让图标变好看点"></a>I.首先让图标变好看点</h4><p>我们需要<code>iconfont.cn</code>搞点图标玩玩<br>把搞到的图标代替button按钮<br>设置id便于选择器选择。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">id</span>=<span class="string">"pen"</span> <span class="attr">class</span>=<span class="string">"icon"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">use</span> <span class="attr">xlink:href</span>=<span class="string">"#icon-pencil"</span>&gt;</span><span class="tag">&lt;/<span class="name">use</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">id</span>=<span class="string">"eraser"</span> <span class="attr">class</span>=<span class="string">"icon"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">use</span> <span class="attr">xlink:href</span>=<span class="string">"#icon-eraser"</span>&gt;</span><span class="tag">&lt;/<span class="name">use</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>CSS<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.actions</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>: fixed;</span><br><span class="line">	<span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.actions</span> <span class="selector-tag">svg</span><span class="selector-class">.active</span>&#123;</span><br><span class="line">	<span class="attribute">fill</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么在js中调用active状态，通过<code>classList.remove(&#39;&#39;)</code>和<code>classList.add(&#39;&#39;)</code>来添加和移除相应class<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var eraserEnabled = <span class="literal">false</span></span><br><span class="line">pen.onclick = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	eraserEnabled = <span class="literal">false</span>;</span><br><span class="line">	pen.classList.add(<span class="string">"active"</span>)</span><br><span class="line">	eraser.classList.<span class="built_in">remove</span>(<span class="string">"active"</span>)</span><br><span class="line">&#125;</span><br><span class="line">eraser.onclick = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	eraserEnabled = <span class="literal">true</span></span><br><span class="line">	eraser.classList.add(<span class="string">"active"</span>)</span><br><span class="line">	pen.classList.<span class="built_in">remove</span>(<span class="string">"active"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/canvas/" rel="tag"># canvas</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/02/入门-JavaScript/" rel="next" title="入门-JavaScript">
+                <i class="fa fa-chevron-left"></i> 入门-JavaScript
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/10/JavaScript-数据/" rel="prev" title="JavaScript-数据">
+                JavaScript-数据 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-尝试用div画画"><span class="nav-number">1.</span> <span class="nav-text">1.尝试用div画画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最好单独用div"><span class="nav-number">1.1.</span> <span class="nav-text">最好单独用div</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么上面代码优化为"><span class="nav-number">1.2.</span> <span class="nav-text">那么上面代码优化为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小技巧（Flag）"><span class="nav-number">1.3.</span> <span class="nav-text">小技巧（Flag）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-然而做了这么多，他画画还是断断续续的，所以告诉我们画画不能用div，要用canvas"><span class="nav-number">2.</span> <span class="nav-text">2.然而做了这么多，他画画还是断断续续的，所以告诉我们画画不能用div，要用canvas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas不能用CSS控制宽高"><span class="nav-number">2.1.</span> <span class="nav-text">canvas不能用CSS控制宽高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆弧"><span class="nav-number">2.2.</span> <span class="nav-text">圆弧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何创建补间"><span class="nav-number">2.3.</span> <span class="nav-text">如何创建补间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取用户视口的宽高的方法（这个是最简单的了）"><span class="nav-number">2.4.</span> <span class="nav-text">获取用户视口的宽高的方法（这个是最简单的了）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-如何让移动端也用上呢？"><span class="nav-number">3.</span> <span class="nav-text">3.如何让移动端也用上呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要一个特性检测"><span class="nav-number">3.1.</span> <span class="nav-text">需要一个特性检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触屏是支持多点触控的"><span class="nav-number">3.2.</span> <span class="nav-text">触屏是支持多点触控的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-补充点功能"><span class="nav-number">4.</span> <span class="nav-text">4.补充点功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#改变画笔颜色"><span class="nav-number">4.1.</span> <span class="nav-text">改变画笔颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#I-首先让图标变好看点"><span class="nav-number">4.1.1.</span> <span class="nav-text">I.首先让图标变好看点</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

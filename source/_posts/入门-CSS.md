@@ -211,4 +211,4 @@ div{
 svg需要记住三个属性
 `width`宽
 `height`高（需要和宽一起变化）
-`fill`颜色（这是svg的语法）
+`fill`颜色（这是svg的语法,用来改变svg图标的颜色）

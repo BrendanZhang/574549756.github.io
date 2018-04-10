@@ -11,22 +11,22 @@ tags:
 举个例子：`<iframe src="http://qq.com" frameborder="0"></iframe>`
 frameborder=0?为了把阴影框删了，因为太难看了太难看了太难看了。
 默认iframe宽100高50但是可以用CSS给它一个属性
-	
+```
     <style>
       iframe{
       width: 100%;
       hight: 500PX; //为什么宽度可以100%，高度必须输像素呢？因为CSS规定的
       }
 	</style>
-
+```
 ### ②还有些好玩的用法比如：
-
+```
 	<body>
       <iframe name=xxx src="#" frameborder="0"></iframe>
       <a target=xxx href="http://qq.com">QQ</a>
       <a target=xxx href="http://baidu.com">百度</a>
     </body>
-    
+``` 
 厉害了呀，这样点击a标签就可以在iframe框里访问相应网页了。
 ![浏览效果](https://ws1.sinaimg.cn/large/005XzYe2gy1fpn80xrwomj30qo0g4wkr.jpg)
 
@@ -82,13 +82,13 @@ top:顶层窗口，如果他爸爸有爸爸，那就在他爷爷那里打开。
 所以只有伪协议让他什么都不做
 
 ## III.`<form>`标签（HTTP POST 请求）
-	
+```
     <form action="users" method="post">
       <input type="text" name=”username“>
 	  <input type="text" name=”password“>
       <input type="submit" value="提交">
     </form>
-    
+``` 
 一个典型的用户名提交窗口
 
 ### ①关于`action`
@@ -203,10 +203,13 @@ checkbox可以有很多个，是不是感觉在做选择题？怎么判断正误
 `colgroup`和`col`列宽
 其中哪一个不写可不可以？可以，他会自己匀到剩下的部分。
 全不写可不可以？那他会按你写的顺序识别。
-如何把表格的默认border取消？
-	
+很大程度上，他还是非常智能的。
+
+**如何把表格的默认border取消？**
+```
     <style>
       table{
         border-collapse: collapse;
       }
     </style>
+```
