@@ -63,40 +63,43 @@ CSS技巧，有汉化。八个章节，讲了很多基础特效。
 在标签里面写CSS样式。也称为Style属性
 
 ### II.但是这样标签好长呀
-
-    <head>
-      <style>
+```
+<head>
+    <style>
         body{
           background-color: gray;
         }
-      </style>
-    </head>
-
+    </style>
+</head>
+```
 没问题，在头部加`<style>`标签就可以。
 
 ### III.那style多了头部是不是会超级长
-
-    <head>
-      <link rel="stylesheet" href="./a.css">
-    </head>
-
+```
+<head>
+   <link rel="stylesheet" href="./a.css">
+</head>
+```
 引入外部样式就可以
 **CSS文件也可以引入CSS**
 `@import url(./需要引入的CSS.css);`
 在用a的时候先引入b
 
 ### IV.float和clearfix
-    <ul style="list-style: none; margin: 0; padding: 0;" class="clearfix"> //class之前为了去掉默认样式中的点和margin以及padding
-      <li style="float:left;">内容</li>
-    </ul>
+```
+<ul style="list-style: none; margin: 0; padding: 0;" class="clearfix"> //class之前为了去掉默认样式中的点和margin以及padding
+    <li style="float:left;">内容</li>
+</ul>
+```
 想让表格的子元素横着排，给子元素加`style="float:left;"`但是这时候有BUG
 所以在父元素加`class="clearfix"`
-
-    .clearfix::after{
-      content: '';
-      display: block;
-      clear: both;
-    }
+```
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+```
 还可以用什么呢？让块横着排的方法？
 有一个叫做`display: inline-block;`可以让块像内联元素一样排列了。
 **但是，建议还是用`float`吧**
@@ -160,17 +163,19 @@ tip2：中文会截断换行，英文如果不空格，打死不换行。
 在我发现footer在到处飘的时候通过它绝对定位(需要设置width left right)
 
 ### IX.如何用CSS画个三角玩玩。
-	div{
+```
+div{
     border: 10px solid red;
     width: 0px;
     height: 0px;
     border-top-color:black;
     border-right-color:blue;
     border-left-color:green;
-    }
+}
+```
 现在我们有四个三角形
-	
-    div{
+```	
+div{
     border: 10px solid red;
     width: 0px;
     height: 0px;
@@ -178,11 +183,11 @@ tip2：中文会截断换行，英文如果不空格，打死不换行。
     border-right-color:blue;
     border-left-color:green;
     border-top-width:0px;
-    }
-
+}
+```
 现在我们有三个长得不一样的三角形了。
-
-    div{
+```
+div{
     border: 100px solid transparent;
     width: 0px;
     height: 0px;
@@ -190,8 +195,8 @@ tip2：中文会截断换行，英文如果不空格，打死不换行。
     border-right-color:transparent;
     border-left-color:red;
     border-top-width:0px;
-    }
-
+}
+```
 把不需要的三角形部分透明就OK了呀。那么top和right的color属性也不需要了。
 #### i.CSS 3的属性
 ##### 线性渐变：`linear gradient`
