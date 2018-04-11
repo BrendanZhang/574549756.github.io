@@ -271,6 +271,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/11/JavaScript-类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/11/JavaScript-类型/" itemprop="url">JavaScript-类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-11T10:10:04+08:00">2018-04-11</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-首先要搞清楚什么是内存"><a href="#1-首先要搞清楚什么是内存" class="headerlink" title="1.首先要搞清楚什么是内存"></a>1.首先要搞清楚什么是内存</h1><p>干吗用的？存东西用的。通电存东西，断电就GG。<br>外存没有内存快<br>最快的外存不就是SSD嘛，因为它能接近内存的速度。<br>机械硬盘，就很容易坏，十年基本就坏了。<br>SSD，不容易坏，但是一坏就全坏了。</p>
+<h2 id="I-它是怎么工作的"><a href="#I-它是怎么工作的" class="headerlink" title="I.它是怎么工作的"></a>I.它是怎么工作的</h2><h3 id="i-举个例子"><a href="#i-举个例子" class="headerlink" title="i.举个例子"></a>i.举个例子</h3><p>假设内存有2G<br>开机<br>操作系统 512M<br>浏览器 1G （浏览器真的很占内存）<br>假设浏览器两个页面</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">页面<span class="number">1</span>（<span class="number">100</span>M）</span><br><span class="line">        HTML+CSS+JS+网络HTTP+其他 </span><br><span class="line">页面<span class="number">2</span>（<span class="number">100</span>M）</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<p>假设JS分到了100M<br>我们写了一个<code>var a = 1</code><br>小心翼翼分成两个大区</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">代码区</span><br><span class="line">        a</span><br><span class="line">        </span><br><span class="line">数据区</span><br><span class="line">        <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>如果写复杂点</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = <span class="string">'Oracle'</span></span><br><span class="line"><span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">var</span> o = &#123;</span><br><span class="line">        name:<span class="string">'Oracle'</span>,</span><br><span class="line">        age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">var</span> c = true</span><br><span class="line">o<span class="selector-class">.gender</span> = <span class="string">'male'</span></span><br><span class="line"><span class="selector-tag">var</span> o2 = &#123;</span><br><span class="line">        name: <span class="string">'Protoss'</span></span><br><span class="line">&#125;</span><br><span class="line">o2 = o</span><br><span class="line">第一步：变量提升，把var都放在前面</span><br><span class="line">之后依次执行</span><br></pre></td></tr></table></figure>
+<p>其实数据区也分为两个——<br>Stack（栈）和Heap（堆）</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Stack（栈内存）</span><br><span class="line">        <span class="selector-tag">a</span>:<span class="number">64</span>位浮点数储存a</span><br><span class="line">        <span class="selector-tag">b</span>:<span class="number">64</span>位浮点数储存b</span><br><span class="line">        b=<span class="selector-tag">a</span>:把a存的东西，覆盖到b上</span><br><span class="line">        c:第一位为<span class="number">1</span>后面全是<span class="number">0</span>存一个true</span><br><span class="line">        <span class="selector-tag">var</span> o =&#123;&#125;:存一个地址ADDR <span class="number">100</span> <span class="comment">//去Heap（堆内存）找</span></span><br><span class="line">        o<span class="selector-class">.gender</span> = <span class="string">'male'</span>:找到o的地址（ADDR <span class="number">100</span>）把它加进去。</span><br><span class="line">        <span class="selector-tag">var</span> o2 = &#123;&#125;:和o一样存一个地址ADDR <span class="number">200</span></span><br><span class="line">        o2 = o: 和<span class="selector-tag">b</span> = a的操作一样，不一样的是把o的地址给o2</span><br><span class="line">                o2的ADDR <span class="number">200</span>变成了ADDR <span class="number">100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Heap（堆内存）</span><br><span class="line">        ADDR <span class="number">100</span></span><br><span class="line">                name:<span class="string">'Oracle'</span></span><br><span class="line">                age: <span class="number">24</span></span><br><span class="line">                <span class="comment">/////////////</span></span><br><span class="line">                gender: <span class="string">'male'</span></span><br><span class="line">        ADDR <span class="number">200</span></span><br><span class="line">                name:<span class="string">'protoss'</span></span><br></pre></td></tr></table></figure>
+<p>这一套操作</p>
+<h3 id="ii-数据"><a href="#ii-数据" class="headerlink" title="ii.数据"></a>ii.数据</h3><p>数字：64位<br>字符：16位（ES3）<br>值：<br><strong>简单</strong>:存Stack<br><strong>复杂</strong>(obj):存Heap地址（还是存在Stack里面）</p>
+<h3 id="iii-引用"><a href="#iii-引用" class="headerlink" title="iii.引用"></a>iii.引用</h3><p>object存入ADDR 100<br>就可以称object是对象的<strong>引用</strong><br>所有变量和对象的<strong>关系</strong>，都是<strong>引用关系</strong></p>
+<h3 id="iv-存在对象问题的时候，走一遍i里的流程就清楚了"><a href="#iv-存在对象问题的时候，走一遍i里的流程就清楚了" class="headerlink" title="iv.存在对象问题的时候，走一遍i里的流程就清楚了"></a>iv.存在对象问题的时候，走一遍i里的流程就清楚了</h3><p>PS：连续赋值从右往左顺序拆开写。</p>
+<h2 id="II-垃圾回收"><a href="#II-垃圾回收" class="headerlink" title="II.垃圾回收"></a>II.垃圾回收</h2><p>GC<br>如果一个<code>对象</code><strong>没有被引用</strong><br>它就是<strong>垃圾</strong><br>将被回收</p>
+<h3 id="i-例"><a href="#i-例" class="headerlink" title="i.例"></a>i.例</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;name:<span class="string">'a'</span>&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = &#123;name:<span class="string">'b'</span>&#125;</span><br><span class="line"><span class="selector-tag">a</span> = b</span><br></pre></td></tr></table></figure>
+<p>这时候，b和a指向了同一个ADDR<br>那么a原来的ADDR就变成了垃圾<br><strong>没人罩着，就要被干掉…</strong></p>
+<h3 id="ii-IE有个BUG"><a href="#ii-IE有个BUG" class="headerlink" title="ii.IE有个BUG"></a>ii.IE有个BUG</h3><p>如果把页面关了(body没了，他引用的地址断了)<br>地址之间互相引用，但不和外部联系<br>他们本应该被清掉<br>但是（尤其IE6）IE里，你只要不关掉整个IE，他们会一直存着。<br>垃圾一直存着…内存boom。<br>所以需要在页面关闭之前执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onunload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.body.onclick = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//然而需要把所有的监听的函数都设为null，需要写很多行。</span></span><br></pre></td></tr></table></figure>
+<p>这就是传说中的——内存泄漏：<br>由于浏览器的BUG,使得该被标记为垃圾的东西，没有被标记为垃圾。</p>
+<h1 id="2-深拷贝？浅拷贝？"><a href="#2-深拷贝？浅拷贝？" class="headerlink" title="2.深拷贝？浅拷贝？"></a>2.深拷贝？浅拷贝？</h1><h2 id="I-深拷贝"><a href="#I-深拷贝" class="headerlink" title="I.深拷贝"></a>I.深拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span> = <span class="number">2</span></span><br><span class="line"><span class="comment">//a = 1不改变</span></span><br></pre></td></tr></table></figure>
+<p>b的改变不影响a<br>这就是深拷贝<br>基本类型 赋值 就是深拷贝</p>
+<h2 id="II-浅拷贝"><a href="#II-浅拷贝" class="headerlink" title="II.浅拷贝"></a>II.浅拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;</span><br><span class="line">        name: <span class="string">'a'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span><span class="selector-class">.name</span> = <span class="string">'b'</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.name</span> <span class="comment">// 也是b了</span></span><br></pre></td></tr></table></figure>
+<p>指向同一个ADDR改变地址对应的内容后<br>a也变了。<br>这就是浅拷贝。</p>
+<h1 id="3-类型互相转换"><a href="#3-类型互相转换" class="headerlink" title="3.类型互相转换"></a>3.类型互相转换</h1><h2 id="I-方法"><a href="#I-方法" class="headerlink" title="I.方法"></a>I.方法</h2><h3 id="i-转字符串-toString"><a href="#i-转字符串-toString" class="headerlink" title="i.转字符串.toString"></a>i.转字符串<code>.toString</code></h3><p><code>null</code>不可以，会报错<br><code>undefined</code>不可以，会报错<br><code>object</code>并不能得到想要的<code>key:value</code>只会得到<code>[obj,Obj]</code></p>
+<p>我们热爱的<code>console.log</code>就是这个原理<br>如果你<code>console.log</code>的东西不是字符串，他会自动加上一个<code>toString</code></p>
+<h4 id="toString太长了老司机怎么转的？"><a href="#toString太长了老司机怎么转的？" class="headerlink" title=".toString太长了老司机怎么转的？"></a><code>.toString</code>太长了老司机怎么转的？</h4><p>数字：加上一个空字符串就好了。<br><code>1 + &#39;&#39;</code><br>布尔：加上一个空字符串就好了。<br><code>true + &#39;&#39;</code><br>顺序可反。<br>而且<code>&#39;&#39; + null</code>和<code>&#39;&#39; + undefined</code>也可以哟</p>
+<h4 id="这时候就引出一个问题"><a href="#这时候就引出一个问题" class="headerlink" title="这时候就引出一个问题"></a>这时候就引出一个问题</h4><p><code>1+1</code>等于2<br><code>1 + &#39;1&#39;</code>算什么<br>加号会优先加相同类型的东西，所以他会先把数字变成字符串。</p>
+<h4 id="全局方法window-String"><a href="#全局方法window-String" class="headerlink" title="全局方法window.String()"></a>全局方法<code>window.String()</code></h4><p>把不是字符串的东西，变成字符串。（可以变<code>null</code>和<code>undefined</code>）</p>
+<h4 id="所以最方便的转字符串方法是加上一个空字符串"><a href="#所以最方便的转字符串方法是加上一个空字符串" class="headerlink" title="所以最方便的转字符串方法是加上一个空字符串"></a>所以最方便的转字符串方法是加上一个空字符串</h4><h3 id="ii-转布尔Boolean"><a href="#ii-转布尔Boolean" class="headerlink" title="ii.转布尔Boolean()"></a>ii.转布尔<code>Boolean()</code></h3><p>字符串:  <code>Boolean(1) //true</code><br>        <code>Boolean(0) //false</code><br>        <code>Boolean(2) //true</code><br>        <code>Boolean( ) //true</code><br>null:   <code>Boolean(null) //false</code><br>undefined: <code>Boolean(undefined) //false</code><br>对象:    <code>Boolean({}) //true</code><br>        <code>Boolean({name:&#39;Oracle&#39;})  //true</code></p>
+<h4 id="这个API好长…"><a href="#这个API好长…" class="headerlink" title="这个API好长…"></a>这个API好长…</h4><p><code>!</code>可以取反<br>那么取反两次不就是原来的吗</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">!!null //false</span><br><span class="line">!!<span class="number">0</span> //false</span><br><span class="line">!!&#123;&#125; //true</span><br><span class="line">!!&#123;name:'Oracle'&#125; //true</span><br></pre></td></tr></table></figure>
+<h4 id="所有类型都可以变成布尔但是好难记哦"><a href="#所有类型都可以变成布尔但是好难记哦" class="headerlink" title="所有类型都可以变成布尔但是好难记哦"></a>所有类型都可以变成布尔但是好难记哦</h4><p>只有五个特殊的<br>number： 只有两个是false<code>0</code>和<code>NaN</code><br>String： 只有空字符串是<code>false</code>其他全是<code>true</code><br>null： 就一个值，<code>false</code><br>undefined：就一个值<code>false</code><br>object：都是<code>true</code>所有的数组和函数</p>
+<p>也就是有五个<code>falsy</code>值<br><code>0</code><br><code>NaN</code><br><code>&#39;&#39;</code><br><code>null</code><br><code>undefined</code><br>还有个<code>false</code>因为他本来就是<code>false</code></p>
+<h3 id="iii-转number"><a href="#iii-转number" class="headerlink" title="iii.转number"></a>iii.转number</h3><h4 id="朴实方法Number-39-1-39"><a href="#朴实方法Number-39-1-39" class="headerlink" title="朴实方法Number(&#39;1&#39;)"></a>朴实方法<code>Number(&#39;1&#39;)</code></h4><h4 id="全局方法parseInt-39-1-39-10"><a href="#全局方法parseInt-39-1-39-10" class="headerlink" title="全局方法parseInt(&#39;1&#39;,10)"></a>全局方法<code>parseInt(&#39;1&#39;,10)</code></h4><p><code>10</code>代表是看做十进制转换<br>但是<code>parseInt(&#39;011&#39;)  //11</code><br>因为后面的参数没写，所以当成10进制。<br>用它转非数字<code>parseInt(&#39;s&#39;) //NaN</code><br>数字非数字混合 <code>parseInt(&#39;1s&#39;) //1</code><br>所以得到他的规则：从头开始解析能解析的，一旦遇到不能解析的，就返回。</p>
+<h4 id="有浮点数的话parseFloat-39-1-23-39"><a href="#有浮点数的话parseFloat-39-1-23-39" class="headerlink" title="有浮点数的话parseFloat(&#39;1.23&#39;)"></a>有浮点数的话<code>parseFloat(&#39;1.23&#39;)</code></h4><p><code>parse</code>是解析</p>
+<h4 id="39-1-39-0骚方法（最常用）"><a href="#39-1-39-0骚方法（最常用）" class="headerlink" title="&#39;1&#39;-0骚方法（最常用）"></a><code>&#39;1&#39;-0</code>骚方法（最常用）</h4><p>任何一个东西-0就会得到一个<code>number</code></p>
+<h4 id="取正-39-1-39-更骚的方法"><a href="#取正-39-1-39-更骚的方法" class="headerlink" title="取正+ &#39;1&#39;更骚的方法"></a>取正<code>+ &#39;1&#39;</code>更骚的方法</h4><p>负数也可以取正？<code>+ &#39;-1&#39;</code>这个是可以的，结果还是<code>-1</code>。</p>
+<h3 id="iv-转object"><a href="#iv-转object" class="headerlink" title="iv.转object"></a>iv.转object</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/JavaScript-数据/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -439,10 +599,12 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> person = </span><br><span class="line">&#123;</span><br><span class="line"><span class="string">'name'</span>:<span class="string">'Oracle'</span>,</span><br><span class="line"><span class="string">'age'</span>:<span class="string">'24'</span>,</span><br><span class="line"><span class="string">'gender'</span>:<span class="string">'male'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>变成这种<code>键-值</code>组合</p>
 <h3 id="i-语法"><a href="#i-语法" class="headerlink" title="i.语法"></a>i.语法</h3><p><code>{</code>开头<br><code>}</code>结尾<br>左边的键，可以不用引号，左边永远都是字符串。<br>右边该怎么写怎么写<br>需要变量去容纳它<code>var person =</code>，他就是一个类型是对象的变量<br>读取它<code>person[&#39;name&#39;]</code>这个<code>name</code>必须加引号<br>为了避免之前有变量也叫name<br>如果他符合标识符规则那可以<code>person.name</code></p>
-<h3 id="ii-对象里还可以套对象"><a href="#ii-对象里还可以套对象" class="headerlink" title="ii.对象里还可以套对象"></a>ii.对象里还可以套对象</h3><p><strong>那么对象里套的对象，里面的对象是否可以是自己？</strong>这个麻烦了</p>
+<h3 id="ii-对象里还可以套对象"><a href="#ii-对象里还可以套对象" class="headerlink" title="ii.对象里还可以套对象"></a>ii.对象里还可以套对象</h3><p><strong>那么对象里套的对象，里面的对象是否可以是自己？</strong><br>这个麻烦了<br><strong>解决这个问题之前请参见(JavaScript-类型)</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span> = a</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span><span class="selector-class">.self</span><span class="selector-class">.self</span>是什么</span><br></pre></td></tr></table></figure>
+<p>首先对象存了一个ADDR然后不断引用这个地址</p>
 <h3 id="iii-空字符串是否能当做key？"><a href="#iii-空字符串是否能当做key？" class="headerlink" title="iii.空字符串是否能当做key？"></a>iii.空字符串是否能当做key？</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;'':'oracle'&#125;</span><br><span class="line">person['']   <span class="comment">//oracle</span></span><br></pre></td></tr></table></figure>
 <p>可以</p>
-<h3 id="iv-key的第一个字是否可以是数字"><a href="#iv-key的第一个字是否可以是数字" class="headerlink" title="iv.key的第一个字是否可以是数字"></a>iv.key的第一个字是否可以是数字</h3><p>不可以。<br><code>9name: &#39;oracle&#39;,</code> 这种是不可以<br>如果不加引号，key必须依照标识符（变量名）原则<br>不加引号，写起来舒服。加上引号，功能多。</p>
+<h3 id="iv-key的第一个字是否可以是数字"><a href="#iv-key的第一个字是否可以是数字" class="headerlink" title="iv.key的第一个字是否可以是数字"></a>iv.key的第一个字是否可以是数字</h3><p>不可以。<br><code>9name: &#39;oracle&#39;,</code> 这种是不可以<br>如果不加引号，key必须依照标识符（变量名）原则<br>不加引号，写起来舒服。加上引号，功能多。<br>同理，如果是<strong>数组</strong>那么读取数组成员的时候就<strong>不能用点结构</strong><br>单独的数值不能作为标识符。数组成员只能用方括号<code>arr[0]</code>来表示</p>
 <h3 id="v-key能不能有空格"><a href="#v-key能不能有空格" class="headerlink" title="v.key能不能有空格"></a>v.key能不能有空格</h3><p>一样的规则，有引号就可以，没有就GG</p>
 <h3 id="vi-key可不可以加中文"><a href="#vi-key可不可以加中文" class="headerlink" title="vi.key可不可以加中文"></a>vi.key可不可以加中文</h3><p>可以，因为中文可以当做变量名。</p>
 <h3 id="vii-for-in"><a href="#vii-for-in" class="headerlink" title="vii.for in"></a>vii.for in</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="built_in">key</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2520,131 +2682,6 @@ margin-left:0
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/17/脚本入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/17/脚本入门/" itemprop="url">脚本入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-17T20:56:33+08:00">2018-03-17</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-脚本"><a href="#1-脚本" class="headerlink" title="1.脚本"></a>1.脚本</h2><p>哇这一篇突然不会写了，sh脚本就命令行怎么用你就怎么写<br>node.js脚本就js怎么写你就怎么写，查文档找替换的命令就可以.</p>
-<p><font size="4" color="gray">最后js文件第一行加shebang</font><br><code>！/user/bin/env node</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2692,7 +2729,7 @@ margin-left:0
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

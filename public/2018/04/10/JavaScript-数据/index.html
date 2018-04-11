@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/04/10/JavaScript-数据/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="1.数据类型种类&amp;amp;备注七种数据类型： 1234567number;string;boolean;symbol;undefined;null;object 没有array类也没有function类，因为他们都算object。永远不要说JS里一切都是对象 I.numberi.整数和小数1是一个整数如何得到1.1这个数呢?可以用0.1也可以用.1 ii.科学计数法1.23e2是合理的可识别的12">
-<meta property="og:updated_time" content="2018-04-10T09:10:53.000Z">
+<meta property="og:updated_time" content="2018-04-11T09:36:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-数据">
 <meta name="twitter:description" content="1.数据类型种类&amp;amp;备注七种数据类型： 1234567number;string;boolean;symbol;undefined;null;object 没有array类也没有function类，因为他们都算object。永远不要说JS里一切都是对象 I.numberi.整数和小数1是一个整数如何得到1.1这个数呢?可以用0.1也可以用.1 ii.科学计数法1.23e2是合理的可识别的12">
@@ -439,10 +439,12 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> person = </span><br><span class="line">&#123;</span><br><span class="line"><span class="string">'name'</span>:<span class="string">'Oracle'</span>,</span><br><span class="line"><span class="string">'age'</span>:<span class="string">'24'</span>,</span><br><span class="line"><span class="string">'gender'</span>:<span class="string">'male'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>变成这种<code>键-值</code>组合</p>
 <h3 id="i-语法"><a href="#i-语法" class="headerlink" title="i.语法"></a>i.语法</h3><p><code>{</code>开头<br><code>}</code>结尾<br>左边的键，可以不用引号，左边永远都是字符串。<br>右边该怎么写怎么写<br>需要变量去容纳它<code>var person =</code>，他就是一个类型是对象的变量<br>读取它<code>person[&#39;name&#39;]</code>这个<code>name</code>必须加引号<br>为了避免之前有变量也叫name<br>如果他符合标识符规则那可以<code>person.name</code></p>
-<h3 id="ii-对象里还可以套对象"><a href="#ii-对象里还可以套对象" class="headerlink" title="ii.对象里还可以套对象"></a>ii.对象里还可以套对象</h3><p><strong>那么对象里套的对象，里面的对象是否可以是自己？</strong>这个麻烦了</p>
+<h3 id="ii-对象里还可以套对象"><a href="#ii-对象里还可以套对象" class="headerlink" title="ii.对象里还可以套对象"></a>ii.对象里还可以套对象</h3><p><strong>那么对象里套的对象，里面的对象是否可以是自己？</strong><br>这个麻烦了<br><strong>解决这个问题之前请参见(JavaScript-类型)</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span> = a</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span><span class="selector-class">.self</span><span class="selector-class">.self</span>是什么</span><br></pre></td></tr></table></figure>
+<p>首先对象存了一个ADDR然后不断引用这个地址</p>
 <h3 id="iii-空字符串是否能当做key？"><a href="#iii-空字符串是否能当做key？" class="headerlink" title="iii.空字符串是否能当做key？"></a>iii.空字符串是否能当做key？</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;'':'oracle'&#125;</span><br><span class="line">person['']   <span class="comment">//oracle</span></span><br></pre></td></tr></table></figure>
 <p>可以</p>
-<h3 id="iv-key的第一个字是否可以是数字"><a href="#iv-key的第一个字是否可以是数字" class="headerlink" title="iv.key的第一个字是否可以是数字"></a>iv.key的第一个字是否可以是数字</h3><p>不可以。<br><code>9name: &#39;oracle&#39;,</code> 这种是不可以<br>如果不加引号，key必须依照标识符（变量名）原则<br>不加引号，写起来舒服。加上引号，功能多。</p>
+<h3 id="iv-key的第一个字是否可以是数字"><a href="#iv-key的第一个字是否可以是数字" class="headerlink" title="iv.key的第一个字是否可以是数字"></a>iv.key的第一个字是否可以是数字</h3><p>不可以。<br><code>9name: &#39;oracle&#39;,</code> 这种是不可以<br>如果不加引号，key必须依照标识符（变量名）原则<br>不加引号，写起来舒服。加上引号，功能多。<br>同理，如果是<strong>数组</strong>那么读取数组成员的时候就<strong>不能用点结构</strong><br>单独的数值不能作为标识符。数组成员只能用方括号<code>arr[0]</code>来表示</p>
 <h3 id="v-key能不能有空格"><a href="#v-key能不能有空格" class="headerlink" title="v.key能不能有空格"></a>v.key能不能有空格</h3><p>一样的规则，有引号就可以，没有就GG</p>
 <h3 id="vi-key可不可以加中文"><a href="#vi-key可不可以加中文" class="headerlink" title="vi.key可不可以加中文"></a>vi.key可不可以加中文</h3><p>可以，因为中文可以当做变量名。</p>
 <h3 id="vii-for-in"><a href="#vii-for-in" class="headerlink" title="vii.for in"></a>vii.for in</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="built_in">key</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -496,6 +498,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/11/JavaScript-类型/" rel="prev" title="JavaScript-类型">
+                JavaScript-类型 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -569,7 +575,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
