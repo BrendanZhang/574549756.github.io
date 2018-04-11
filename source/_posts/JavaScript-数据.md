@@ -186,7 +186,7 @@ var person =
 ### ii.对象里还可以套对象
 **那么对象里套的对象，里面的对象是否可以是自己？**
 这个麻烦了
-**解决这个问题之前请参见([JavaScript-类型](https://574549756.github.io/2018/04/10/JavaScript-%E6%95%B0%E6%8D%AE/))**
+**解决这个问题之前请参见([JavaScript-类型](https://574549756.github.io/2018/04/11/JavaScript-%E7%B1%BB%E5%9E%8B/))**
 
 ```
 var a = {}
