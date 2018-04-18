@@ -40,6 +40,8 @@ tags: JS
         }
     </script>
 ```
+## 找父级
+`.parentNode`
 
 
 # 2.关于不找兄弟直接监听父级元素
@@ -148,3 +150,96 @@ document.querySelector()      //只会获取到第一个元素
 .offsetTop      //获取元素距离页面顶部的像素数。
 window.scrollTo(X,Y)    //滑动到某个位置X：左右 Y：上下。改成0就是不会划。
 ```
+
+# 7.用js做动画
+
+```
+#div1{
+	width: 100px;
+	height: 100px;
+	background: black;
+}
+
+div1.style.position = 'relative'
+div1.style.left = 0
+
+var n = 0
+var id = setInterval( ()=> {
+	n = n+10
+	div1.style.left = n + 'px'
+	if(n>=200){
+		window.clearInterval(id)
+	}
+},40)
+```
+
+通过每秒动很多下，让人感觉它是个动画。
+`.setInterval`让他按延迟一直动
+`.setTimeout`让他延迟几秒后动一下
+`window.clearInterval(id)`让他在条件下停止
+
+# 8.console.log调试大法
+
+发现bug的时候，请console.log相关变量
+看看哪个值和想象中不一样。
+
+```
+let n = 25 //一共动多少次
+let duration = 500 / n  //多长时间动一次
+let currentTop = window.scrollY
+let targetTop = top - 80
+let distance = (targetTop - currentTop)/ n
+let i = 0
+let id = setInterval(()=>{
+    if(i===n){
+    window.clearInterval(id)
+    return
+    }
+    i = i + 1
+    window.scrollTo(0,currentTop + distance * i)
+},duration)
+```
+
+平滑的滚屏，但是还不够平滑。
+## 我们需要神奇的tween.js
+缓动
+要调用他需要cdnjs(google it)
+这个库还是蛮好的。
+
+```
+        function animate(time) {
+            requestAnimationFrame(animate);    //请求动画帧数（问浏览器这台机器可以让你有多少FPS）
+            TWEEN.update(time);
+        }
+        requestAnimationFrame(animate);
+
+///////////////////////tween文档让加的告诉我们间隔多少毫秒动一次///////////////////////////
+        
+        for(let i = 0; i<aTags.length; i++){
+            aTags[i].onclick = function(x){
+                x.preventDefault()          //阻止默认动作
+                let a = x.currentTarget
+                let href = a.getAttribute('href') //'#siteAbout'
+                let element = document.querySelector(href)
+                let rect = element.getBoundingClientRect()
+                let top = element.offsetTop
+
+                let currentTop = window.scrollY
+                let targetTop = top - 80
+                let s = targetTop - currentTop              //路程
+                var t = Math.abs((s/100)*300)           //时间（绝对值）
+                if(t>500){t = 500}
+                var coords = { y: currentTop };         //初始位置
+                var tween = new TWEEN.Tween(coords)         //初始位置
+                    .to({ y: targetTop}, t)             //结束位置，时间（不能使负值）
+                    .easing(TWEEN.Easing.Quadratic.InOut)   //缓动类型
+                    .onUpdate(function () {             //在这里coords.y已经变了
+                        window.scrollTo(0,coords.y)         //如何更新界面（向下滚动coords.y）
+                    })
+                    .start();       //开始缓动
+            }
+        }
+```
+
+通过tween.js来计算滚动速度
+Math.abs()来得出绝对值
