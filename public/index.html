@@ -271,6 +271,684 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/DOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/25/DOM/" itemprop="url">DOM</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T19:02:01+08:00">2018-04-25</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-DOM是什么"><a href="#1-DOM是什么" class="headerlink" title="1.DOM是什么"></a>1.DOM是什么</h1><p>Document Object Model<br>XML文档<br>把文档变成对象的一种模型</p>
+<h2 id="I-DOM标准"><a href="#I-DOM标准" class="headerlink" title="I.DOM标准"></a>I.DOM标准</h2><p><code>Element</code>对象：<code>body</code> <code>head</code> <code>meta</code> <code>title</code> <code>script</code> <code>h1</code> <code>h2</code> <code>p</code>这些都是<code>Element</code>对象<br><code>Text</code>对象专门指文本：<code>span</code> 之类的<br><code>Document</code>对象：<code>html</code>因为它是用<code>Document</code>构造出来的<br><code>Comment</code>对象：注释</p>
+<p>而他们原型链的顶端叫做<code>Node</code><br>就像我们熟知的<code>Object.prorotype</code></p>
+<p>每一个标签都有它相应的构造函数，浏览器看到标签就用对应的构造函数给它构造出一个对应的内存中的对象。</p>
+<pre><code>构造函数
+</code></pre><p>页面中节点  ========&gt;  对象</p>
+<h1 id="2-Node的接口"><a href="#2-Node的接口" class="headerlink" title="2.Node的接口"></a>2.Node的接口</h1><p>就像讨论Object.prototype一样<br>需要注意<code>Node</code>也是一种<code>object</code></p>
+<p>因为超级多，记几个单词然后：<br><code>child</code>/<code>children</code>/<code>parent</code><br><code>node</code><br><code>first</code>/<code>last</code><br><code>next</code>/<code>previous</code><br><code>sibling</code>/<code>siblings</code><br><code>type</code><br><code>value</code>/<code>text</code>/<code>content</code><br><code>inner</code>/<code>outer</code><br><code>element</code><br>互相组合</p>
+<h2 id="I-childNodes"><a href="#I-childNodes" class="headerlink" title="I.childNodes"></a>I.childNodes</h2><p>所有的子节点（不是子元素）<br>所以一旦有回车，就会得到一个text</p>
+<p>所以想要所有标签请使用<code>children</code></p>
+<p><code>nextSibling</code>是下一个兄弟节点（有回车也会返回text）</p>
+<p><code>nextElementSibling</code>才是下一个兄弟标签（就是兼容性不好）</p>
+<p>导致这一堆奇怪问题的原因:<code>DOM</code>不是设计来给<code>HTML</code>用的，是给<code>XML</code>用的，所以不是很配套。</p>
+<h2 id="II-常用接口"><a href="#II-常用接口" class="headerlink" title="II.常用接口"></a>II.常用接口</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">接口</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">childNodes</td>
+<td style="text-align:center">所有子节点</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">firstChild</td>
+<td style="text-align:center">第一个子节点</td>
+</tr>
+<tr>
+<td style="text-align:center">innerText</td>
+<td style="text-align:center">内容文本</td>
+<td style="text-align:center">IE加的那点料，在小于等于IE11中修改<code>innerText</code>会移除当前元素的子节点，且永久性破坏所有后代文本节点</td>
+</tr>
+<tr>
+<td style="text-align:center">lastChild</td>
+<td style="text-align:center">最后一个子节点</td>
+</tr>
+<tr>
+<td style="text-align:center">nextSibling</td>
+<td style="text-align:center">下一个节点</td>
+</tr>
+<tr>
+<td style="text-align:center">nodeName</td>
+<td style="text-align:center">节点名称</td>
+<td style="text-align:center">（获取的是大写除了svg）</td>
+</tr>
+<tr>
+<td style="text-align:center">nodeType</td>
+<td style="text-align:center">节点类型</td>
+<td style="text-align:center">1:element 3:text 8:comment 9:document 10:DOCTYPE 11:DocumentFragment</td>
+</tr>
+<tr>
+<td style="text-align:center">nodeValue</td>
+<td style="text-align:center">value是一个包含当前节点的值的字符串（如果有的话）。</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">outerText</td>
+<td style="text-align:center">是一个非标准的属性。作为一个获得器，它返回与Node.innerText一致的值</td>
+<td style="text-align:center">作为一个设置器，它将删除当前节点并将其替换为给定的文本。</td>
+</tr>
+<tr>
+<td style="text-align:center">ownerDocument</td>
+<td style="text-align:center">会返回当前节点的顶层的 document 对象</td>
+<td style="text-align:center">返回祖先</td>
+</tr>
+<tr>
+<td style="text-align:center">parentElement</td>
+<td style="text-align:center">父级元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">parentNode</td>
+<td style="text-align:center">父级节点</td>
+<td style="text-align:center">和上面那位作用不一样吗？</td>
+</tr>
+<tr>
+<td style="text-align:center">previousSibling</td>
+<td style="text-align:center">上一个兄弟节点</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">textContent</td>
+<td style="text-align:center">内容文本</td>
+<td style="text-align:center">FF和Opera加的那点料,会获取所有元素内容，包括<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="3-方法"><a href="#3-方法" class="headerlink" title="3.方法"></a>3.方法</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">appendChild()</td>
+<td style="text-align:center">将一个节点添加到指定父节点的子节点列表末尾。</td>
+</tr>
+<tr>
+<td style="text-align:center">cloneNode()</td>
+<td style="text-align:center">拷贝节点，可选深拷贝或浅拷贝</td>
+</tr>
+<tr>
+<td style="text-align:center">contains()</td>
+<td style="text-align:center">判断传入的节点是否为该节点的后代节点。</td>
+</tr>
+<tr>
+<td style="text-align:center">hasChildNodes()</td>
+<td style="text-align:center">一个元素是否有子节点</td>
+</tr>
+<tr>
+<td style="text-align:center">insertBefore()</td>
+<td style="text-align:center">把一个东西插入一个东西的前面</td>
+</tr>
+<tr>
+<td style="text-align:center">isEqualNode()</td>
+<td style="text-align:center">两个节点是否相等</td>
+</tr>
+<tr>
+<td style="text-align:center">isSameNode()</td>
+<td style="text-align:center">两个节点是否是同一个节点<code>===</code></td>
+</tr>
+<tr>
+<td style="text-align:center">removeChild()</td>
+<td style="text-align:center">（从页面）干掉辣个子节点（但是他还在内存里）</td>
+</tr>
+<tr>
+<td style="text-align:center">replaceChild()</td>
+<td style="text-align:center">替换子节点 （被替换的还在内存里）</td>
+</tr>
+<tr>
+<td style="text-align:center">normalize()</td>
+<td style="text-align:center">常规化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="I-cloneNode"><a href="#I-cloneNode" class="headerlink" title="I.cloneNode()"></a>I.cloneNode()</h2><p><code>var dupNode = node.cloneNode(deep)</code></p>
+<p>deep是可选参数，是否采用深拷贝。如果为true，则该节点的所有后代节点也都会被克隆，如果为false，则只克隆该节点本身</p>
+<h3 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h3><p>深拷贝和浅拷贝只针对Object，Array这种复杂类型<br>简单来说，浅复制只复制一层对象的属性，而深复制则递归复制了所有层级。</p>
+<h2 id="II-normalize"><a href="#II-normalize" class="headerlink" title="II.normalize()"></a>II.normalize()</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wrapper = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line"></span><br><span class="line">wrapper.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">"part 1"</span>)); <span class="comment">//俩都是文本</span></span><br><span class="line">wrapper.appentChild(<span class="built_in">document</span>.createTextNode(<span class="string">"part 2"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//这时候 wrapper.childNodes.length === 2</span></span><br><span class="line"><span class="comment">//wrapper.childNodes[0].textContent === "part 1"</span></span><br><span class="line"><span class="comment">//wrapper.childNodes[1].textContent === "part 2"</span></span><br><span class="line"></span><br><span class="line">wrapper.normalize();</span><br><span class="line"></span><br><span class="line"><span class="comment">//常规化以后 wrapper.childNodes.length === 1</span></span><br><span class="line">wrapper.childNodes[<span class="number">0</span>].textContent === <span class="string">"Part 1 Part 2"</span></span><br></pre></td></tr></table></figure>
+<p>使这个 拆成两部分的文本合在一起了。（把不合常规的常规化）</p>
+<h2 id="III-学习方法"><a href="#III-学习方法" class="headerlink" title="III.学习方法"></a>III.学习方法</h2><p>1.他写的什么就是什么意思，看懂单词就明白它是干嘛的了<br>2.看懂单词还是不知道怎么用？查MDN吧…</p>
+<p>把该记的特殊的记住就可以了。</p>
+<h1 id="4-Document接口"><a href="#4-Document接口" class="headerlink" title="4.Document接口"></a>4.Document接口</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">接口</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">anchors</td>
+<td style="text-align:center">获取页面<code>&lt;a&gt;</code>标签</td>
+<td style="text-align:center"><code>H5已弃用</code>。由于向后兼容的原因，该属性只返回那些拥有<code>name</code>属性的<code>a</code>元素，而不是拥有<code>id</code>属性的<code>a</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:center">body</td>
+<td style="text-align:center">获取<code>&lt;body&gt;</code>元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">characterSet</td>
+<td style="text-align:center">就是<code>char</code>（字符）字符编码</td>
+<td style="text-align:center"><code>document.characterSet</code>看它的字符编码是什么</td>
+</tr>
+<tr>
+<td style="text-align:center">childElementCount</td>
+<td style="text-align:center">返回一个无符号长整型数字，表示给定元素的子元素数</td>
+</tr>
+<tr>
+<td style="text-align:center">children</td>
+<td style="text-align:center">获取子元素咯</td>
+<td style="text-align:center"><code>document</code>是<code>html</code>的父级哟，但<code>html</code>还是根元素</td>
+</tr>
+<tr>
+<td style="text-align:center">doctype</td>
+<td style="text-align:center">就是<code>!DOCTYPE</code>协议咯</td>
+</tr>
+<tr>
+<td style="text-align:center">documentElement</td>
+<td style="text-align:center">返回文档对象的根元素</td>
+<td style="text-align:center"><code>HTML</code>文档的<html>元素</html></td>
+</tr>
+<tr>
+<td style="text-align:center">domain</td>
+<td style="text-align:center">域名</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">fullscreen</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">head</td>
+<td style="text-align:center">头部</td>
+</tr>
+<tr>
+<td style="text-align:center">hidden</td>
+<td style="text-align:center">是否被隐藏？</td>
+<td style="text-align:center">返回布尔值</td>
+</tr>
+<tr>
+<td style="text-align:center">images</td>
+<td style="text-align:center">获取页面中所有<code>&lt;img&gt;</code>标签</td>
+</tr>
+<tr>
+<td style="text-align:center">links</td>
+<td style="text-align:center">获取页面中所有<code>&lt;a&gt;</code>标签</td>
+</tr>
+<tr>
+<td style="text-align:center">location</td>
+<td style="text-align:center">返回一个 Location 对象</td>
+<td style="text-align:center">包含有文档的 URL 相关的信息，并提供了改变该 URL 和加载其他 URL 的方法。</td>
+</tr>
+<tr>
+<td style="text-align:center">onxxxxxxxx</td>
+<td style="text-align:center">当xxx时的事件监听</td>
+<td style="text-align:center"><code>onclick</code> <code>onmousemove</code> <code>onmousedown</code> 之类的</td>
+</tr>
+<tr>
+<td style="text-align:center">origin</td>
+<td style="text-align:center">源</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">plugins</td>
+<td style="text-align:center">检测用户有没有开启插件</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">readyState</td>
+<td style="text-align:center">检测用户是否是否下载完毕</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">referrer</td>
+<td style="text-align:center">引荐者</td>
+<td style="text-align:center">发请求的时候，浏览器要告诉服务器，它是通过什么渠道进来的。服务器可以通过<code>referrer</code>来拒绝为其他网站提供服务</td>
+</tr>
+<tr>
+<td style="text-align:center">scripts</td>
+<td style="text-align:center">获取所有<code>script</code>标签</td>
+</tr>
+<tr>
+<td style="text-align:center">scrollingElement</td>
+<td style="text-align:center">正在滚动的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">styleSheets</td>
+<td style="text-align:center">获取所有CSS</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">title</td>
+<td style="text-align:center">获取所有<code>&lt;title&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">visibilityState</td>
+<td style="text-align:center">获取页面是否被显示（当前标签是否被激活）</td>
+<td style="text-align:center">返回布尔值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="I-方法"><a href="#I-方法" class="headerlink" title="I.方法"></a>I.方法</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">close()</td>
+<td style="text-align:center">关闭文档</td>
+<td style="text-align:center">关闭向当前文档的数据写入，想要打开要使用document.open()</td>
+</tr>
+<tr>
+<td style="text-align:center">createDocumentFragment()</td>
+<td style="text-align:center">创建一个DocumentFragment</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">createElement()</td>
+<td style="text-align:center">创建由tagName 指定的HTML元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">createTextNode()</td>
+<td style="text-align:center">创建一个文本节点</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">execCommand()</td>
+<td style="text-align:center">执行一个命令</td>
+<td style="text-align:center">允许命令操纵可编辑区域的内容，主要用于富文本编辑器，相关内容查mdn</td>
+</tr>
+<tr>
+<td style="text-align:center">exitFullscreen()</td>
+<td style="text-align:center">退出全屏</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getElementById()</td>
+<td style="text-align:center">通过<code>id</code>获取元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getElementsByClassName()</td>
+<td style="text-align:center">通过<code>class</code>名获取元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getElementsByName()</td>
+<td style="text-align:center">通过<code>name</code>属性获取元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getElementsByTagName</td>
+<td style="text-align:center">通过<code>标签名</code>获取元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getSelection()</td>
+<td style="text-align:center">获取用户选中的文本</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">hasFocus()</td>
+<td style="text-align:center">用户是否<code>focus</code>到当前页面</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">open()</td>
+<td style="text-align:center">和<code>close</code>对应</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">querySelector()</td>
+<td style="text-align:center">通过<code>选择器（css）</code>获取元素</td>
+<td style="text-align:center">抄jQuery的</td>
+</tr>
+<tr>
+<td style="text-align:center">querySelectorALL()</td>
+<td style="text-align:center">通过<code>选择器（css）</code>获取元素（返回所有元素）</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">registerElement()</td>
+<td style="text-align:center">在浏览器注册一个新的 自定义元素 ，返回一个该元素的构造函数。</td>
+<td style="text-align:center">用的并不多…建议使用：customElements.define（）</td>
+</tr>
+<tr>
+<td style="text-align:center">write()</td>
+<td style="text-align:center">写文本</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">writeln()</td>
+<td style="text-align:center">写一行文本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="i-close"><a href="#i-close" class="headerlink" title="i.close()"></a>i.close()</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">hello</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        documetn.write(1)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="number">2</span>)</span></span><br><span class="line"><span class="javascript">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="number">3</span>)</span></span><br><span class="line"><span class="undefined">        &#125;,3000)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>document =&gt; open =&gt; write =&gt; close =&gt; open</code></p>
+<p>每次在<code>script</code>执行完以后页面会关闭，如果有延时性的<code>write</code>，就会把页面冲掉<br>上面代码块中首先有<code>hello</code>和<code>1</code> <code>2</code>这时候文档close<br>但是文档<code>close</code>了之后写了<code>3</code><br>所以就会把页面冲掉</p>
+<p>所以在写write的时候要谨慎设置延时和异步 </p>
+<h1 id="5-Element接口"><a href="#5-Element接口" class="headerlink" title="5.Element接口"></a>5.Element接口</h1><p>最熟悉的<code>classList.add()</code><br>而且<code>Element</code>也可以<code>querySelector()</code>的<br>可以<code>div.querySelector()</code></p>
+<h3 id="i-innerHTML和innerText"><a href="#i-innerHTML和innerText" class="headerlink" title="i.innerHTML和innerText"></a>i.innerHTML和innerText</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"text"</span> id=<span class="string">"input1"</span>&gt; &lt;<span class="selector-tag">button</span> id=x&gt;写入页面&lt;/button&gt;</span><br><span class="line">    &lt;<span class="selector-tag">div</span> id=<span class="string">"output"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">x<span class="selector-class">.onclick</span> = function()&#123;</span><br><span class="line">    output<span class="selector-class">.innerHTML</span> = input1.value</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*x.onclick = function()&#123;</span></span><br><span class="line"><span class="comment">    output.innerText = input1.value</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+<p>innerHTML可以识别写入页面的代码<code>&lt;b&gt;&lt;/b&gt;</code>就会加粗<code>&lt;i&gt;&lt;/i&gt;</code>就会变斜<br><code>&lt;script&gt;&lt;/script&gt;</code>怎么搞<br>那麻烦了，用户真拿这个输入框把<code>cookie</code>爬了怎么办。<br>所以还是很危险的<br>他会把用户写的标签，真的当做开发者写的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/JavaScript-函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/23/JavaScript-函数/" itemprop="url">JavaScript-函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T03:48:49+08:00">2018-04-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>函数就是一段可以反复调用的代码块。</p>
+<h1 id="1-函数的五种声明方式："><a href="#1-函数的五种声明方式：" class="headerlink" title="1.函数的五种声明方式："></a>1.函数的五种声明方式：</h1><h2 id="I-具名函数"><a href="#I-具名函数" class="headerlink" title="I.具名函数"></a>I.具名函数</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title">f</span>(x,y)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">x+y</span></span><br><span class="line">&#125;</span><br><span class="line">f.name // <span class="string">'f'</span></span><br></pre></td></tr></table></figure>
+<p>.name就是函数名</p>
+<h2 id="II-匿名函数"><a href="#II-匿名函数" class="headerlink" title="II.匿名函数"></a>II.匿名函数</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f</span><br><span class="line">f = <span class="function"><span class="keyword">function</span><span class="params">(x,y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line">&#125;</span><br><span class="line">f.name <span class="comment">//'f'</span></span><br></pre></td></tr></table></figure>
+<p>.name就是变量名</p>
+<p>如果要声明匿名函数，必须把它给一个变量</p>
+<h2 id="III-具名函数赋值"><a href="#III-具名函数赋值" class="headerlink" title="III.具名函数赋值"></a>III.具名函数赋值</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f</span><br><span class="line">f = <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">x,y</span>)</span>&#123; <span class="keyword">return</span> x+y &#125;</span><br><span class="line">f.name <span class="comment">// 'f2'</span></span><br><span class="line"><span class="built_in">console</span>.log(f2) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>.name随具名函数的函数名</p>
+<p>和具名函数的区别： <code>f.name</code>是他相应具名函数的名字。<br><code>console.log(f)</code>的时候，会报错,因为js会找不到<code>f2</code><br>就很蠢：<strong>这就是它的不一致性</strong><br>这是个作用域问题：<br><code>function f2(){}</code>中的<code>f2</code>只能作用于花括号内</p>
+<h2 id="IV-window-Function"><a href="#IV-window-Function" class="headerlink" title="IV.window.Function"></a>IV.window.Function</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> f = new Function(<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'return x+y'</span>)</span><br><span class="line">f<span class="selector-class">.name</span> <span class="comment">// anonymous</span></span><br></pre></td></tr></table></figure>
+<p>.name 是<code>anonymous</code> 他他娘的是匿名的，名字叫<code>匿名的</code></p>
+<p>很不常用<br>所有的部分用字符串表示，字符串可以拼起来，也可以在里面加变量。</p>
+<h2 id="V-箭头函数"><a href="#V-箭头函数" class="headerlink" title="V.箭头函数"></a>V.箭头函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">x,y</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> x+y</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> sum = <span class="function">(<span class="params">x,y</span>) =&gt;</span> x+y</span><br><span class="line"> <span class="keyword">var</span> n2 = <span class="function"><span class="params">n</span> =&gt;</span> n*n</span><br></pre></td></tr></table></figure>
+<p>.name 是变量名</p>
+<p><strong>只有一个参数</strong>，不需要圆括号<br>如果<strong>只有一句话</strong>，不需要花括号也不需要return(也不能返回对象)<br><strong>多句话</strong>的时候，用<strong>分号</strong>隔开</p>
+<p>箭头函数是匿名的（没看到地方写名字呀）</p>
+<h1 id="2-调用函数"><a href="#2-调用函数" class="headerlink" title="2.调用函数"></a>2.调用函数</h1><p>调用： call</p>
+<h2 id="I-函数是如何储存在内存里的"><a href="#I-函数是如何储存在内存里的" class="headerlink" title="I.函数是如何储存在内存里的"></a>I.函数是如何储存在内存里的</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Function(<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'return x+y'</span>)  <span class="comment">//这时候栈里面存了地址ADDR</span></span><br><span class="line"><span class="comment">//堆里存了函数的内容：</span></span><br><span class="line"><span class="string">name:</span>   <span class="comment">//名字，他叫匿名的</span></span><br><span class="line"><span class="string">params:</span> [<span class="string">'x'</span>,<span class="string">'y'</span>]   <span class="comment">//参数</span></span><br><span class="line"><span class="string">fbody:</span> <span class="string">'return x+y'</span>     <span class="comment">//函数体</span></span><br><span class="line"><span class="string">__proto__:</span>指向函数，里面有个call</span><br></pre></td></tr></table></figure>
+<p><code>eval：把字符串当代码执行</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f.call = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.evaleval（f.functionBody）</span><br><span class="line">&#125;</span><br><span class="line">f()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.eval(f.functionBody)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以理解为：f指的是这个对象<br>f.call()指的是执行这个对象的函数体</p>
+<p><strong>可以执行代码的对象被叫做函数</strong></p>
+<h2 id="II-f-1-2-和f-call-undefined-1-2"><a href="#II-f-1-2-和f-call-undefined-1-2" class="headerlink" title="II.f(1,2)和f.call(undefined,1,2)"></a>II.f(1,2)和f.call(undefined,1,2)</h2><p>f.call()才是硬核（hardcore）调用<br>贴心的f()语法糖</p>
+<p>不吃糖的选手一定喜欢玩黑魂<br>不吃糖才能更加从容的了解this</p>
+<h2 id="III-如何使用call"><a href="#III-如何使用call" class="headerlink" title="III.如何使用call"></a>III.如何使用call</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x,y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line">&#125;</span><br><span class="line">f.call(<span class="literal">undefined</span>,<span class="number">1</span>,<span class="number">2</span>)   <span class="comment">//3</span></span><br><span class="line"><span class="comment">//第一个参数写undefined，从第二个参数开始传</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-this-arguments"><a href="#3-this-arguments" class="headerlink" title="3.this? arguments?"></a>3.this? arguments?</h1><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f.call(undefined,<span class="number">1</span>,<span class="number">2</span>) <span class="comment">//3</span></span><br><span class="line"><span class="comment">//这时候好玩了，第一个参数就是this</span></span><br><span class="line"><span class="comment">//第二第三个参数就是arguments</span></span><br></pre></td></tr></table></figure>
+<h2 id="I-规律"><a href="#I-规律" class="headerlink" title="I.规律"></a>I.规律</h2><p>1.call的第一个参数可以用this得到<br>2.call的后面的参数可以用arguments得到</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line">f.call(<span class="literal">undefined</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>arguments会打出参数（除了第一个）组成<strong>伪数组</strong><br><strong>普通模式下：</strong><br>如果this是undefined，浏览器会自动把this变成window(潜规则)<br><strong>严格模式下：</strong><br>this是什么他就打什么。</p>
+<p><strong>所以，this就是call的第一个参数</strong></p>
+<p>为何JS一定要this，一定要new。因为：<strong>要长得像JAVA</strong></p>
+<h1 id="4-call-stack"><a href="#4-call-stack" class="headerlink" title="4. call stack"></a>4. call stack</h1><h2 id="I-调用队栈"><a href="#I-调用队栈" class="headerlink" title="I.调用队栈"></a>I.调用队栈</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'a'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'b'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'b'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'c'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'c'</span></span><br><span class="line">&#125;</span><br><span class="line">a.call()</span><br><span class="line">b.call()</span><br><span class="line">c.call()</span><br></pre></td></tr></table></figure>
+<p>先进后出：<br>先a.call()再console.log(‘a’)<br>然后console.log(‘a’)抹<br>a.call()最后被抹掉</p>
+<p><strong>先进入call stack的后出去</strong></p>
+<h2 id="II-递归"><a href="#II-递归" class="headerlink" title="II.递归"></a>II.递归</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> <span class="built_in">sum</span>(n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(n =+ <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n + <span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, n-<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, <span class="number">5</span>)  //<span class="number">5</span> + <span class="built_in">sum</span>(<span class="number">4</span>)</span><br><span class="line">//<span class="built_in">sum</span>(<span class="number">10</span>)  //<span class="number">10</span> + <span class="built_in">sum</span>(<span class="number">9</span>)</span><br><span class="line">//<span class="built_in">sum</span>(<span class="number">4</span>)  //<span class="number">4</span> + <span class="built_in">sum</span>(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>求sum(5)的时候发现要找sum(4)<br>求sum(4)的时候发现要求sum(3)<br>…<br>一路找到sum(1)<br>之后一个一个抹掉，出来到sum(5)</p>
+<h2 id="III-什么叫Stack-Overflow"><a href="#III-什么叫Stack-Overflow" class="headerlink" title="III.什么叫Stack Overflow"></a>III.什么叫Stack Overflow</h2><p>栈溢出</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> <span class="built_in">sum</span>(n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(n =+ <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n + <span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, n-<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, <span class="number">1000000</span>)</span><br></pre></td></tr></table></figure>
+<p>如果栈的长度没有1000000就会爆栈</p>
+<p>chrome里压stack是有上限的</p>
+<p>同时Stack Overflow是个网站，专门讨论bug的</p>
+<h1 id="5-作用域（scope）"><a href="#5-作用域（scope）" class="headerlink" title="5.作用域（scope）"></a>5.作用域（scope）</h1><h2 id="I-tree"><a href="#I-tree" class="headerlink" title="I.tree"></a>I.tree</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">a</span> = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>()&#123;</span></span><br><span class="line">    var <span class="keyword">a</span> = <span class="number">2</span></span><br><span class="line">    f2.call()</span><br><span class="line">    console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>()&#123;</span></span><br><span class="line">        var <span class="keyword">a</span> = <span class="number">3</span></span><br><span class="line">        console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1.call()</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">           全局作用域（window/<span class="built_in">global</span>）</span><br><span class="line">                       |</span><br><span class="line">   f1的作用域                         变量<span class="keyword">a</span></span><br><span class="line">       |</span><br><span class="line">变量<span class="keyword">a</span>      f2的作用域</span><br><span class="line">              |</span><br><span class="line">            变量<span class="keyword">a</span></span><br></pre></td></tr></table></figure>
+<p>如果把<code>var a = 2</code>改成<code>a = 2</code>JS会优先认为这是个赋值<br>JS会在上一级作用域找，找到了就用这个a—— <strong>就近原则</strong><br>什么时候<code>a = 2</code>算声明全局？<br>在找到最后也没找到<code>a</code>的时候</p>
+<h2 id="II-声明提升"><a href="#II-声明提升" class="headerlink" title="II.声明提升"></a>II.声明提升</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    <span class="comment">//var a 应该在这里</span></span><br><span class="line">    f2.call()   </span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>           <span class="comment">//变量提升： 先把它拆开看 var a 和 a = 2。 a = 2在这里</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//这里也有</span></span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">3</span>       <span class="comment">//这里也有</span></span><br><span class="line">        <span class="built_in">console</span>.log(a)  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1.call()</span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br></pre></td></tr></table></figure>
+<p>拿到代码先提升<strong>声明</strong>部分<br>声明部分声明部分声明部分<br>改装完毕后它是这样的：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line">function f1()&#123;</span><br><span class="line">    <span class="selector-tag">var</span> <span class="selector-tag">a</span>               <span class="comment">//提升声明</span></span><br><span class="line">    function f2()&#123;          <span class="comment">//函数声明就不是声明了吗？也要提升</span></span><br><span class="line">        <span class="selector-tag">var</span> <span class="selector-tag">a</span>           <span class="comment">//提升声明</span></span><br><span class="line">        <span class="selector-tag">a</span> = <span class="number">3</span></span><br><span class="line">        console.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">    f2.call()</span><br><span class="line">    console.log(a)</span><br><span class="line">    <span class="selector-tag">a</span> = <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">f1.call()</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
+<p>所以调用f1以后<code>a</code>是什么？<br>赋值在console.log后面，f2的作用域又碰不到<br>那只有undefined咯</p>
+<p>作用域仅代表变量<strong>是哪个</strong><br>不表达变量的<strong>值</strong></p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">1</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">2</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">3</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">4</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">5</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">6</span>&lt;/<span class="built_in">li</span>&gt;    </span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> liTags = document.querySelectorAll('<span class="built_in">li</span>')</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> i=<span class="number">0</span>; i&lt;liTags.<span class="built_in">length</span>; i++)&#123;</span><br><span class="line">    </span><br><span class="line">    liTags[i].onclick = function()&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(i)  //这个i是多少</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(i)</span><br></pre></td></tr></table></figure>
+<p>i还是那个i</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> liTags</span><br><span class="line"><span class="selector-tag">var</span> i</span><br><span class="line">liTags = document.querySelectorAll(<span class="string">'li'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(var i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    liTags[i]<span class="selector-class">.onclick</span> = function()&#123;</span><br><span class="line">        console.log(i)  <span class="comment">//这个i是多少</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(i)</span><br></pre></td></tr></table></figure>
+<p>遍历之后才是点击，结果是6</p>
+<p><strong>只要它不是当场执行，都有可能变。</strong></p>
+<h1 id="6-闭包（Closure）"><a href="#6-闭包（Closure）" class="headerlink" title="6.闭包（Closure）"></a>6.闭包（Closure）</h1><p>如果一个函数，使用了它范围外的变量，那么这个（函数+这个变量）就叫做闭包。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/JavaScript-数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1582,325 +2260,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/入门-CSS-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/27/入门-CSS-II/" itemprop="url">入门-CSS-II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T18:00:56+08:00">2018-03-27</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-伪类"><a href="#1-伪类" class="headerlink" title="1.伪类"></a>1.伪类</h2><h3 id="I-从-before和-after讲起"><a href="#I-从-before和-after讲起" class="headerlink" title="I.从::before和::after讲起"></a>I.从<code>::before</code>和<code>::after</code>讲起</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">::before</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:‘&amp;’</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">'$'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样div的内容的前后就会被加上<code>&amp;</code>和<code>$</code>。<br>而且他还能加各种属性。</p>
-<h3 id="II-还记得那只太极吗？"><a href="#II-还记得那只太极吗？" class="headerlink" title="II.还记得那只太极吗？"></a>II.还记得那只太极吗？</h3><p>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#444</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.balance</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to bottom, #ffffff 0%,#ffffff 50%,#000000 51%,#000000 100%); </span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">100px</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.dark</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>:<span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: black;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">25%</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.light</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: white;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">25%</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.dark</span> <span class="selector-class">.l1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: white;</span><br><span class="line">  <span class="attribute">position</span>:absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.light</span> <span class="selector-class">.dr</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: black;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>HTML:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"balance"</span>&gt;</span><br><span class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"light"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"dr"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"dark"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"l1"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>很长对不对？<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#444</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.balance</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to bottom, #ffffff 0%,#ffffff 50%,#000000 51%,#000000 100%); </span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">100px</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.balance</span><span class="selector-pseudo">::before</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>:<span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">40px</span> solid black;</span><br><span class="line">  <span class="attribute">background</span>: white;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">25%</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.balance</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: black;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">40px</span> solid white;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">25%</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>HTML:<br><code>&lt;div class=&quot;balance&quot;&gt;&lt;/div&gt;</code><br>是不是短了很多？<br>只需要加上<code>::before</code>伪类之后在属性里添加<code>content: &#39;&#39;;</code>甚至不需要加<code>display:block;</code><br>为什么要用伪类呢？因为可以少写很多<div>这边就少写了两个。</div></p>
-<h3 id="III-在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。"><a href="#III-在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。" class="headerlink" title="III.在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。"></a>III.在设置margin、padding的时候不希望表格ol或者ul的边上的li设置到。</h3><p>选择器的nth-child(第几个li)属性<br>可以单独规定第几个li元素的属性。<br>例：</p>
-<pre><code>section.Portfolio&gt; nav &gt;ol &gt; li:nth-child(1){
-margin-left:0
-}
-</code></pre><p>这样第一个<code>&lt;li&gt;</code>就没有margin-left了。<br>什么？<code>nth-child(1)</code>写起来太麻烦？<br>你试试写<code>first-child</code>也可以。<br>那么单独设定几个怎么做？<br><code>nth-child(even)</code>奇数项<br><code>nth-child(odd)</code>偶数项</p>
-<h2 id="2-动画-keyframes"><a href="#2-动画-keyframes" class="headerlink" title="2.动画@keyframes"></a>2.动画<code>@keyframes</code></h2><h3 id="I-这个很容易敲错"><a href="#I-这个很容易敲错" class="headerlink" title="I.这个很容易敲错"></a>I.这个很容易敲错</h3><p>其实keyframes动画也是有生成器的。这里举个例子。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> spin&#123;</span><br><span class="line">  <span class="selector-tag">from</span>&#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(0deg)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">to</span>&#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(360deg)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里设置了动画的内容<br>之后在想让他这么动的元素里面加上<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.balance</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: linear-gradient(to bottom, <span class="number">#ffffff</span> <span class="number">0%</span>,<span class="number">#ffffff</span> <span class="number">50%</span>,<span class="number">#000000</span> <span class="number">51%</span>,<span class="number">#000000</span> <span class="number">100%</span>); </span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">100px</span> auto;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">3s</span>; <span class="comment">//动画时间： 3s</span></span><br><span class="line">  <span class="attribute">animation-name</span>: spin;  <span class="comment">//动画名称：spin（就是上面@keyframes后面的名字）</span></span><br><span class="line">  <span class="attribute">animation-iteration-count</span>: infinite;  <span class="comment">//这行代码规定了动画循环进行</span></span><br><span class="line">  <span class="attribute">animation-timing-function</span>: linear;  <span class="comment">//这行动画规定了动画线性播放（就是匀速）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="i-除此之外还有transition属性"><a href="#i-除此之外还有transition属性" class="headerlink" title="i.除此之外还有transition属性"></a>i.除此之外还有<code>transition</code>属性</h4><p>用来做一些小的变化<code>transition: all 0.3s; //表达了指定元素的一切变化的都加上transition变化属性，时间为0.3s</code></p>
-<h3 id="II-所以还是找Generator吧"><a href="#II-所以还是找Generator吧" class="headerlink" title="II.所以还是找Generator吧"></a>II.所以还是找Generator吧</h3><p><a href="http://www.theappguruz.com/tag-tools/web/CSSAnimations/" target="_blank" rel="noopener">这个是奇怪的动画的网站</a></p>
-<h2 id="3-传说中的布局"><a href="#3-传说中的布局" class="headerlink" title="3.传说中的布局"></a>3.传说中的布局</h2><h3 id="I-左右布局"><a href="#I-左右布局" class="headerlink" title="I.左右布局"></a>I.左右布局</h3><h4 id="i-通过定位的方法"><a href="#i-通过定位的方法" class="headerlink" title="i.通过定位的方法"></a>i.通过定位的方法</h4><p>HTML：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS Bin<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>这边定宽<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>这边自适应<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>CSS：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box1</span> <span class="selector-class">.left</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box1</span> <span class="selector-class">.right</span>&#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: black;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过定位属性以父元素box1为<code>position:relative</code>左边红盒子绝对定位吸附父元素。<br>右侧黑盒子用<code>margin-left: 100px;</code>让出红盒子的位置，同时<code>width: 100%;</code>来占据剩下的空间。来完成根据宽度自适应。</p>
-<h4 id="ii-通过float浮动"><a href="#ii-通过float浮动" class="headerlink" title="ii.通过float浮动"></a>ii.通过float浮动</h4><p>HTML:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS Bin<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span> <span class="attr">clearfix</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>这边浮动<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>这边自适应<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>CSS:<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>::after&#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box1</span> <span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box1</span> <span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: black;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">vertical-align</span>: top;  <span class="comment">//修复上面那行造成的裂隙。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过让左侧红盒子添加<code>float: left;</code>脱离文档流（记得在父元素加clearfix伪类以防高度坍塌）<br>同时右侧黑框<code>margin-left: 100px;</code>空出左侧红盒子的位置。<br>这时候有个小问题：</p>
-<h6 id="1-红盒子已经浮动了"><a href="#1-红盒子已经浮动了" class="headerlink" title="1.红盒子已经浮动了"></a>1.红盒子已经浮动了</h6><p>那么黑盒子会无视红盒子的位置尽量占满一整行。那它可能会覆盖红盒子呀。</p>
-<h6 id="2-有个叫做BFC的盒子："><a href="#2-有个叫做BFC的盒子：" class="headerlink" title="2.有个叫做BFC的盒子："></a>2.有个叫做BFC的盒子：</h6><p>①若浮动元素的块状兄弟元素为BFC，则不会占满一整行，而是根据浮动元素的宽度，占据该行剩下的宽度，避免与浮动元素重叠。<br>②浮动元素与其块状BFC兄弟元素之间的margin可以生效，这将继续减少兄弟元素的宽度。<br>③为了让黑盒子把红盒子的位置让出来，我们选择触发BFC：<br><code>float</code>的值不为<code>none</code><br><code>position</code>的值不为<code>static</code>或者<code>relative</code><br><code>display</code>的值为<code>table-cell</code>, <code>table-caption</code>, <code>inline-block</code>, <code>flex</code>, 或者 <code>inline-flex</code>中的其中一个。<br><code>overflow</code>的值不为<code>visible</code><br><strong>这样就做到了左右两边：红盒子不定宽，黑盒子自适应。</strong></p>
-<h3 id="II-传说中的圣杯布局"><a href="#II-传说中的圣杯布局" class="headerlink" title="II.传说中的圣杯布局"></a>II.传说中的圣杯布局</h3><p>HTML:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS Bin<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span> <span class="attr">clearfix</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"middle"</span>&gt;</span>middle<span class="tag">&lt;/<span class="name">div</span>&gt;</span>   //顺序，先中再左右。</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>css:<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>::after&#123;    <span class="comment">//清除浮动伪类</span></span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">padding</span>:  <span class="number">0</span> <span class="number">100px</span>;  <span class="comment">//最外层给红黄两个盒子留宽度</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> <span class="selector-class">.middle</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> <span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">left</span>: -<span class="number">100px</span>;    <span class="comment">//往左边推出去</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> <span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">right</span>: -<span class="number">100px</span>;    <span class="comment">//往右边推出去</span></span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>给最外面的<code>box</code>加<code>padding</code>让出左右红黄盒子的位置。<br>给红黄盒子添加<code>position: relative;</code>让黑盒子不会受到他们俩位置变化的影响。</p>
-<h3 id="III-关于居中"><a href="#III-关于居中" class="headerlink" title="III.关于居中"></a>III.关于居中</h3><h4 id="i-让图片居中"><a href="#i-让图片居中" class="headerlink" title="i.让图片居中"></a>i.让图片居中</h4><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">background</span>: url(<span class="string">"wallhaven-w-min.jpg"</span>) no-repeat <span class="built_in">center</span> <span class="built_in">center</span> ;</span><br><span class="line"><span class="built_in">background</span>-size: cover;</span><br></pre></td></tr></table></figure>
-<h4 id="ii-让div水平居中"><a href="#ii-让div水平居中" class="headerlink" title="ii.让div水平居中"></a>ii.让div水平居中</h4><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">margin-<span class="built_in">left</span>:<span class="built_in">auto</span>;</span><br><span class="line">margin-<span class="built_in">right</span>:<span class="built_in">auto</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="iii-内联元素居中："><a href="#iii-内联元素居中：" class="headerlink" title="iii.内联元素居中："></a>iii.内联元素居中：</h4><p>给内联元素的父元素加:<code>text-align:center;</code><br>如果不是内联元素，但是想让它居中怎么办？<br><code>display:inline-block</code>了解一下。但是但是但是加完以后下面会有诡异的裂隙，所以需要：<br><code>vertical-align: top;</code></p>
-<h4 id="iv-让div在父级元素中绝对居中"><a href="#iv-让div在父级元素中绝对居中" class="headerlink" title="iv.让div在父级元素中绝对居中"></a>iv.让div在父级元素中绝对居中</h4><p>父级元素加：<code>position:relative;</code><br>子元素(需要对齐的div):<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line"> 	<span class="attribute">position</span>: absolute;</span><br><span class="line"> 	<span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line"> 	<span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line"> 	<span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line"> 	<span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line"> 	<span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="4-写点别的"><a href="#4-写点别的" class="headerlink" title="4.写点别的"></a>4.写点别的</h2><h3 id="I-src和href有啥子区别？"><a href="#I-src和href有啥子区别？" class="headerlink" title="I.src和href有啥子区别？"></a>I.<code>src</code>和<code>href</code>有啥子区别？</h3><p>在写<code>link</code>的时候，必须要写<code>href</code><br>在<code>&lt;a&gt;</code>标签的时候用<code>href</code><br>在写<code>script</code>的时候，必须要写<code>src</code><br>在写<code>img</code>的时候，必须要写<code>src</code><br>在写<code>iframe</code>的时候，必须要写<code>src</code></p>
-<p>如果一定要区别的话<code>href</code>一般指的外部文档<br><code>src</code>会嵌入文档里<br><strong>其实没什么规律…就是记住，多用就行</strong></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/入门-CSS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/24/入门-CSS/" itemprop="url">入门-CSS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-24T19:29:24+08:00">2018-03-24</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-CSS（Cascading-Style-Sheets）层叠样式表"><a href="#1-CSS（Cascading-Style-Sheets）层叠样式表" class="headerlink" title="1.CSS（Cascading Style Sheets）层叠样式表"></a>1.CSS（Cascading Style Sheets）层叠样式表</h2><h3 id="I-诞生与发展"><a href="#I-诞生与发展" class="headerlink" title="I.诞生与发展"></a>I.诞生与发展</h3><h4 id="i-两个人发明CSS"><a href="#i-两个人发明CSS" class="headerlink" title="i.两个人发明CSS"></a>i.两个人发明CSS</h4><p>哈肯·维姆·莱（Håkon Wium Lie）提出CSS的最初建议（1994）<br>伯特·波斯(Bert Bos)当时正在设计一个叫”Argo”的浏览器，他们决定一起合作设计CSS。</p>
-<h4 id="ii-W3C接管CSS"><a href="#ii-W3C接管CSS" class="headerlink" title="ii.W3C接管CSS"></a>ii.W3C接管CSS</h4><p>1997年初，W3C内成立CSS工作组</p>
-<h4 id="iii-CSS-2-1"><a href="#iii-CSS-2-1" class="headerlink" title="iii.CSS 2.1"></a>iii.CSS 2.1</h4><p>1998年5月，删除了2.0中基本不被支持的内容和增加了一些已有的浏览器的扩展内容。<br>最受欢迎，支持最广泛的CSS。Which means：从IE 5.5支持CSS 2.1。<br>做前端，低于IE 8，不看，不管，不测试。Why?淘宝是这样的。而且现在的电脑，IE 11起好吗？</p>
-<h4 id="iv-CSS3"><a href="#iv-CSS3" class="headerlink" title="iv.CSS3"></a>iv.CSS3</h4><p>2011年开始。什么？CSS 3这么久了吗？对的，就是这么久。<br>·CSS选择器leval 3<br>·CSS媒体查询leval 3<br>·CSS Color leval 3<br>他们三个模块被统称为CSS 3。详情请点击<a href="https://www.w3.org/Style/CSS/specs.en.html" target="_blank" rel="noopener">CSS文档</a>内容超级多。</p>
-<h4 id="v-CSS-4？"><a href="#v-CSS-4？" class="headerlink" title="v.CSS 4？"></a>v.CSS 4？</h4><p>不会有CSS 4。只有各个模块leval 4<br>前端每18个月难度翻一倍…</p>
-<h4 id="vi-Tips"><a href="#vi-Tips" class="headerlink" title="vi.Tips:"></a>vi.Tips:</h4><p>·LESS CSS：简化过后功能更多的CSS语言<br>·SASS：同上，比上面的功能还多<br>·PostCSS：一种CSS处理程序，纠错之类的<br>三个周边工具，逼格超高。</p>
-<h3 id="II-如何学习"><a href="#II-如何学习" class="headerlink" title="II.如何学习"></a>II.如何学习</h3><h4 id="i-MDN"><a href="#i-MDN" class="headerlink" title="i.MDN"></a>i.MDN</h4><p>老朋友了不多介绍了。<br>可以看可以查</p>
-<h4 id="ii-CSS-Tricks"><a href="#ii-CSS-Tricks" class="headerlink" title="ii.CSS-Tricks"></a>ii.CSS-Tricks</h4><p>SNIPPETS标签下的代码片段<br>有效果以及代码。<br>这个网站里面有各种CSS的奇淫技巧（真是一个贴切的名字）。<br>善用搜索引擎可以搜一切技巧。前提：英语水平。</p>
-<h4 id="iii-博客"><a href="#iii-博客" class="headerlink" title="iii.博客"></a>iii.博客</h4><p>阮一峰CSS<br>张鑫旭CSS（CSS大神，精通精通精通CSS）</p>
-<h4 id="iv-Coderops"><a href="#iv-Coderops" class="headerlink" title="iv.Coderops"></a>iv.Coderops</h4><p>炫酷的CSS效果，超Cooooooooooooool。<br>按钮，加载条，各种。他为了表达CSS能做很多事情。<br>基本一周出一个特效。</p>
-<h4 id="v-《CSS揭秘》"><a href="#v-《CSS揭秘》" class="headerlink" title="v.《CSS揭秘》"></a>v.《CSS揭秘》</h4><p>CSS技巧，有汉化。八个章节，讲了很多基础特效。</p>
-<hr>
-<p><strong>规范文档是最强的，如果把文档研究透了，那太强了。</strong></p>
-<h2 id="2-自己敲一敲"><a href="#2-自己敲一敲" class="headerlink" title="2.自己敲一敲"></a>2.自己敲一敲</h2><h3 id="I-内联样式"><a href="#I-内联样式" class="headerlink" title="I.内联样式"></a>I.内联样式</h3><p><code>&lt;body style=&quot;background-color: black&quot;&gt;里面是内容&lt;/body&gt;</code><br><code>&lt;h1 style=&quot;text-align: center; color: white;&quot;&gt;内联样式&lt;/h1&gt;</code><br>在标签里面写CSS样式。也称为Style属性</p>
-<h3 id="II-但是这样标签好长呀"><a href="#II-但是这样标签好长呀" class="headerlink" title="II.但是这样标签好长呀"></a>II.但是这样标签好长呀</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        body&#123;</span></span><br><span class="line"><span class="undefined">          background-color: gray;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>没问题，在头部加<code>&lt;style&gt;</code>标签就可以。</p>
-<h3 id="III-那style多了头部是不是会超级长"><a href="#III-那style多了头部是不是会超级长" class="headerlink" title="III.那style多了头部是不是会超级长"></a>III.那style多了头部是不是会超级长</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./a.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>引入外部样式就可以<br><strong>CSS文件也可以引入CSS</strong><br><code>@import url(./需要引入的CSS.css);</code><br>在用a的时候先引入b</p>
-<h3 id="IV-float和clearfix"><a href="#IV-float和clearfix" class="headerlink" title="IV.float和clearfix"></a>IV.float和clearfix</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">ul</span> style=<span class="string">"list-style: none; margin: 0; padding: 0;"</span> class=<span class="string">"clearfix"</span>&gt; <span class="comment">//class之前为了去掉默认样式中的点和margin以及padding</span></span><br><span class="line">    &lt;<span class="selector-tag">li</span> style=<span class="string">"float:left;"</span>&gt;内容&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-<p>想让表格的子元素横着排，给子元素加<code>style=&quot;float:left;&quot;</code>但是这时候有BUG<br>所以在父元素加<code>class=&quot;clearfix&quot;</code><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>还可以用什么呢？让块横着排的方法？<br>有一个叫做<code>display: inline-block;</code>可以让块像内联元素一样排列了。<br><strong>但是，建议还是用<code>float</code>吧</strong></p>
-<h3 id="V-第一个选择器-gt"><a href="#V-第一个选择器-gt" class="headerlink" title="V.第一个选择器&gt;"></a>V.第一个选择器<code>&gt;</code></h3><p>表达了一个左边是父，右边是子。<br><strong>HTML默认字体大小：16px</strong></p>
-<h3 id="VI-padding的缩写"><a href="#VI-padding的缩写" class="headerlink" title="VI.padding的缩写"></a>VI.padding的缩写</h3><p>顺时针，上右下左。</p>
-<h3 id="VII-一个元素的高度是由什么决定的？"><a href="#VII-一个元素的高度是由什么决定的？" class="headerlink" title="VII.一个元素的高度是由什么决定的？"></a>VII.一个元素的高度是由什么决定的？</h3><h4 id="由内容决定"><a href="#由内容决定" class="headerlink" title="由内容决定"></a><strong>由内容决定</strong></h4><p><strong><code>&lt;div&gt;</code>高度由其内部文档流元素的高度综合决定。</strong></p>
-<h5 id="文档流："><a href="#文档流：" class="headerlink" title="文档流："></a><strong>文档流</strong>：</h5><p>文档内元素的流动方向。</p>
-<h5 id="流动方向："><a href="#流动方向：" class="headerlink" title="流动方向："></a><strong>流动方向</strong>：</h5><p><strong>内联元素</strong>从左至右流动，若流动受到阻碍（例如宽度不够），则换行继续从左往右流。<br><strong>块级元素</strong>自上而下流动，每个块占一行(管你宽度多少他就不用)。</p>
-<h5 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h5><p>tip1：内联元素在宽度不够的时候如果有border，他不会在另起一行的部分加上border，而会截断这个border。<br>tip2：中文会截断换行，英文如果不空格，打死不换行。<br>如果你希望英文也会截断，请加入一个属性<code>word-break:break-all;</code>默认为<code>word-break:break-word</code><br>如果你希望他一直不断<code>word-break:keep-all;</code>了解一下。<br>中文网站推荐：<code>word-break:break-all;</code></p>
-<h4 id="那么-lt-span-gt-这种内联元素的高度由什么决定呢？"><a href="#那么-lt-span-gt-这种内联元素的高度由什么决定呢？" class="headerlink" title="那么&lt;span&gt;这种内联元素的高度由什么决定呢？"></a><strong>那么<code>&lt;span&gt;</code>这种内联元素的高度由什么决定呢？</strong></h4><h5 id="字体设计（基线）"><a href="#字体设计（基线）" class="headerlink" title="字体设计（基线）"></a>字体设计（基线）</h5><p>基线 上部 下部<br>对齐是基于基线的。<br>我们常说的<code>font-size: 100px;</code>指的是字体（注意是字体）的最高点和最低点的竖直距离。<br>但为什么把字放在<code>&lt;span&gt;</code>里面加上border会比字体本身高度要多出来呢？<br><strong>因为</strong>:这个字体设计的<strong>建议行高</strong>，就是字体大小的倍数（例如100px大小的字体，span高度140，那么建议高度就是1.4）</p>
-<h6 id="这时候怎么破呢？"><a href="#这时候怎么破呢？" class="headerlink" title="这时候怎么破呢？"></a>这时候怎么破呢？</h6><p>改它的行高系数呗<code>line-height: 1.2;</code>把他系数固定就好了。</p>
-<h5 id="那么有多个-lt-span-gt-的-lt-div-gt-的高度怎么说？"><a href="#那么有多个-lt-span-gt-的-lt-div-gt-的高度怎么说？" class="headerlink" title="那么有多个&lt;span&gt;的&lt;div&gt;的高度怎么说？"></a>那么有多个<code>&lt;span&gt;</code>的<code>&lt;div&gt;</code>的高度怎么说？</h5><p>一旦涉及到内联元素，div的高度就玄学了呀。<br>字体小的时候<code>&lt;div&gt;</code>可以用line-height来控制高度，想要确定的高度就拿padding凑凑吧。<br>有时候迫不得已…定死height这个属性，可能会出现无穷无尽的问题（很难维护之类的）。<br>所以<code>display: inline-block;</code>之后通过改变padding的方式改变宽高好一点。<br><strong><code>inline-block</code>状态下不会合并外边距。</strong>这时候可能下面会有一条诡异的空隙<br>这时候需要<code>vertical-align: top;</code><br><code>&lt;span&gt;</code>是不接受宽高这个属性的。</p>
-<h3 id="感觉再不练Grid布局，真的就要累死人了。"><a href="#感觉再不练Grid布局，真的就要累死人了。" class="headerlink" title="感觉再不练Grid布局，真的就要累死人了。"></a>感觉再不练Grid布局，真的就要累死人了。</h3><p>早就有grid布局插件了。</p>
-<h3 id="VIIIposition"><a href="#VIIIposition" class="headerlink" title="VIIIposition"></a>VIII<code>position</code></h3><h4 id="position-fixed"><a href="#position-fixed" class="headerlink" title="position: fixed;"></a><code>position: fixed;</code></h4><p>可以脱离文档流。相对于屏幕脱离文档流。<br>这时候他飘了，不像一个正常规则下的排列了，只能<code>width: 100%;</code>这种巨坑把它卡死…后面又是好多大坑。</p>
-<h4 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a><code>background-position</code></h4><p><code>background-position: center center;</code>可以让背景图片在<code>&lt;div&gt;</code>里面居中<br>但是很多时候由于图片过大导致超出div范围所以加入<code>background-size: cover;</code>属性使其自适应。<br>同样，在<code>&lt;div&gt;</code>加入属性<code>max-width: 800px</code>则会使div在800px以内缩放自适应。<br><code>margin-left：auto;</code><br><code>margin-right:auto;</code>即可水平居中。</p>
-<h4 id="position-absolute绝对定位"><a href="#position-absolute绝对定位" class="headerlink" title="position: absolute绝对定位"></a><code>position: absolute</code>绝对定位</h4><p>和<code>position: fixed</code>不同的是<br><code>absolute</code>可以相对父级（或以上）元素有<code>position: relative;</code>的第一个元素相对定位。<br>在我发现footer在到处飘的时候通过它绝对定位(需要设置width left right)</p>
-<h3 id="IX-如何用CSS画个三角玩玩。"><a href="#IX-如何用CSS画个三角玩玩。" class="headerlink" title="IX.如何用CSS画个三角玩玩。"></a>IX.如何用CSS画个三角玩玩。</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">10px</span> solid red;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">border-top-color</span>:black;</span><br><span class="line">    <span class="attribute">border-right-color</span>:blue;</span><br><span class="line">    <span class="attribute">border-left-color</span>:green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在我们有四个三角形<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">10px</span> solid red;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">border-top-color</span>:black;</span><br><span class="line">    <span class="attribute">border-right-color</span>:blue;</span><br><span class="line">    <span class="attribute">border-left-color</span>:green;</span><br><span class="line">    <span class="attribute">border-top-width</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>现在我们有三个长得不一样的三角形了。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">border-top-color</span>:transparent;</span><br><span class="line">    <span class="attribute">border-right-color</span>:transparent;</span><br><span class="line">    <span class="attribute">border-left-color</span>:red;</span><br><span class="line">    <span class="attribute">border-top-width</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>把不需要的三角形部分透明就OK了呀。那么top和right的color属性也不需要了。</p>
-<h4 id="i-CSS-3的属性"><a href="#i-CSS-3的属性" class="headerlink" title="i.CSS 3的属性"></a>i.CSS 3的属性</h4><h5 id="线性渐变：linear-gradient"><a href="#线性渐变：linear-gradient" class="headerlink" title="线性渐变：linear gradient"></a>线性渐变：<code>linear gradient</code></h5><p>他有相应的生成工具：<code>ultimate CSS Gradient Generator</code><a href="http://www.colorzilla.com/gradient-editor/" target="_blank" rel="noopener">Google it</a>.</p>
-<h4 id="ii-CSS-tricks-shape"><a href="#ii-CSS-tricks-shape" class="headerlink" title="ii.CSS tricks shape"></a>ii.CSS tricks shape</h4><p><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">这个网站教你用CSS画画</a></p>
-<h4 id="iii-iconfont"><a href="#iii-iconfont" class="headerlink" title="iii.iconfont"></a>iii.iconfont</h4><p><a href="http://iconfont.cn/" target="_blank" rel="noopener">这个网站是找图标的</a><br>svg需要记住三个属性<br><code>width</code>宽<br><code>height</code>高（需要和宽一起变化）<br><code>fill</code>颜色（这是svg的语法,用来改变svg图标的颜色）</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1948,7 +2307,7 @@ margin-left:0
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1975,7 +2334,9 @@ margin-left:0
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
