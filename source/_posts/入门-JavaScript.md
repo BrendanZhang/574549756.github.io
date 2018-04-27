@@ -32,6 +32,7 @@ vh是指的视口高度（屏幕大小）`viewport height`
 
 网站根目录`/favicon.ico`
 访问网站的`logo`
+有时候网站没在这里放icon，那只能用到`http://favicon.byi.pw/?url=相应网址`
 
 `元素名.previousSibling`
 获取元素名上一个元素
