@@ -351,3 +351,124 @@ console.log(i)
 # 6.闭包（Closure）
 
 如果一个函数，使用了它范围外的变量，那么这个（函数+这个变量）就叫做闭包。
+
+# 7.全局变量可耻！
+
+```
+<script>
+function(){
+    var parent = document.querySelector('#self')
+    console.log(parent)
+}.call()
+</script>
+```
+
+parent是个全局变量，直接声明赋值会覆盖它
+所以我们希望在用这个函数的局部变量——立即调用
+
+就是声明一个匿名函数，然后立即调用。只是为了用局部变量
+
+## I.浏览器会认为这是个语法错误
+所以需要一些小技巧来改一下↓这一坨
+
+```
+<script>
+function(){
+    var parent = document.querySelector('#self')
+    console.log(parent)
+}.call()
+</script>
+```
+
+### i.括号
+
+```
+<script>
+(function(){
+    var parent = document.querySelector('#self')
+    console.log(parent)
+}.call())
+</script>
+```
+
+### ii.括号写在调用之前
+
+```
+<script>
+(function(){
+    var parent = document.querySelector('#self')
+    console.log(parent)
+}).call()
+</script>
+```
+
+### iii.符号
+负号
+因为不需要这个值，只是为了这个局部变量
+为了让浏览器知道：现在不是在声明一个函数，而是在声明并调用求值
+
+```
+<script>
+-function(){
+    var parent = document.querySelector('#self')
+    console.log(parent)
+}.call()
+</script>
+```
+
+同理`+`也可以咯
+
+```
+<script>
+-function(){
+    var parent = document.querySelector('#self')
+    console.log(parent)
+}.call()
+</script>
+```
+
+那`!`取反 `~`二进制的取反都可以
+
+只要触发，让浏览器明白这不是一个声明而是一个立即执行函数，就可以。浏览器就不报错。 
+
+## II.为了解决这个问题，我们有了`let`
+
+```
+<script>
+{
+    let parent = document.querySelector('#self')
+    console.log(parent)
+}
+</script>
+```
+
+用一个代码块来把它框起来，这时候不能用`var`因为：
+`var`这个东西只认函数，有函数就认没函数就创建全局变量。
+但是`let`不一样，它的作用域就在这个代码块里面
+
+做个试验
+
+```
+<script>
+{
+    var parent = document.querySelector('#self')  
+}
+console.log(parent)
+</script>
+```
+
+**这时候，有一个变量提升**
+
+```
+<script>
+var parent
+{
+    parent = document.querySelector('#self')  
+}
+console.log(parent)
+</script>
+```
+
+这没办法呀，`var`就这样跑出去声明了一个全局变量，因为块包不住它。
+
+### i.伟大的es6特性

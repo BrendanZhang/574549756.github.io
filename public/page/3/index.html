@@ -99,23 +99,19 @@
 
 
 
-  <meta name="description" content="1.脚本哇这一篇突然不会写了，sh脚本就命令行怎么用你就怎么写node.js脚本就js怎么写你就怎么写，查文档找替换的命令就可以. 最后js文件第一行加shebang！/user/bin/env node">
-<meta property="og:type" content="article">
-<meta property="og:title" content="脚本入门">
-<meta property="og:url" content="http://yoursite.com/2018/03/17/脚本入门/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Protoss Oracle">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
-<meta property="og:description" content="1.脚本哇这一篇突然不会写了，sh脚本就命令行怎么用你就怎么写node.js脚本就js怎么写你就怎么写，查文档找替换的命令就可以. 最后js文件第一行加shebang！/user/bin/env node">
-<meta property="og:updated_time" content="2018-03-19T14:23:27.755Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="脚本入门">
-<meta name="twitter:description" content="1.脚本哇这一篇突然不会写了，sh脚本就命令行怎么用你就怎么写node.js脚本就js怎么写你就怎么写，查文档找替换的命令就可以. 最后js文件第一行加shebang！/user/bin/env node">
+<meta name="twitter:title" content="Protoss Oracle">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/17/脚本入门/"/>
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
 
 
 
@@ -125,7 +121,7 @@
   };
 </script>
 
-  <title>脚本入门 | Protoss Oracle</title>
+  <title>Protoss Oracle</title>
   
 
 
@@ -172,7 +168,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,9 +254,9 @@
           
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -274,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/17/脚本入门/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/17/命令行使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张博涵">
@@ -291,7 +288,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">脚本入门</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/17/命令行使用/" itemprop="url">命令行使用</a></h1>
         
 
         <div class="post-meta">
@@ -303,7 +302,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-17T20:56:33+08:00">2018-03-17</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-17T02:07:03+08:00">2018-03-17</time>
             
 
             
@@ -340,9 +339,103 @@
       
 
       
-        <h2 id="1-脚本"><a href="#1-脚本" class="headerlink" title="1.脚本"></a>1.脚本</h2><p>哇这一篇突然不会写了，sh脚本就命令行怎么用你就怎么写<br>node.js脚本就js怎么写你就怎么写，查文档找替换的命令就可以.</p>
-<p><font size="4" color="gray">最后js文件第一行加shebang</font><br><code>！/user/bin/env node</code></p>
+        
+          
+            <h3 id="一-命令行"><a href="#一-命令行" class="headerlink" title="一. 命令行"></a>一. 命令行</h3><font color="gray">命令提示符是在操作系统中，提示进行命令输入的一种工作提示符。<br><del>图形界面的爷爷。</del><br>在了解后，可以用命令行完成任何图形界面下可以完成事情。</font>
 
+<hr>
+<h3 id="二-常用命令"><a href="#二-常用命令" class="headerlink" title="二. 常用命令"></a>二. 常用命令</h3><p>######<font color="gray">有些常用的关于文件操作的命令</font></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">缩写</th>
+<th style="text-align:center">全拼</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">touch</td>
+<td style="text-align:center">还是touch</td>
+<td style="text-align:center">创建文件</td>
+<td style="text-align:center">不存在就摸不到，所以摸一下</td>
+</tr>
+<tr>
+<td style="text-align:center">mkdir</td>
+<td style="text-align:center">make directory</td>
+<td style="text-align:center">创建目录(路径)</td>
+<td style="text-align:center">什么都不加是在当前目录创建路径，要在目标位置创建请标明-p目标路径</td>
+</tr>
+<tr>
+<td style="text-align:center">echo</td>
+<td style="text-align:center">echo</td>
+<td style="text-align:center">创建文件</td>
+<td style="text-align:center">echo “添加进去的东西” &gt; 文件名.后缀。中间的&gt;换成&gt;!则是覆盖</td>
+</tr>
+<tr>
+<td style="text-align:center">mv</td>
+<td style="text-align:center">move</td>
+<td style="text-align:center">移动</td>
+<td style="text-align:center">mv 文件名 文件名则可以重命名该文件</td>
+</tr>
+<tr>
+<td style="text-align:center">cp</td>
+<td style="text-align:center">copy</td>
+<td style="text-align:center">复制</td>
+<td style="text-align:center">现在清楚为什么CAD的copy命令默认快捷键是CP而不是CO了吧</td>
+</tr>
+<tr>
+<td style="text-align:center">rm</td>
+<td style="text-align:center">remove</td>
+<td style="text-align:center">删除</td>
+<td style="text-align:center">-f强行删文件 -r删目录 -rf强删目录</td>
+</tr>
+<tr>
+<td style="text-align:center">pwd</td>
+<td style="text-align:center">Print Working Directory</td>
+<td style="text-align:center">显示当前目录</td>
+<td style="text-align:center">拿来看绝对路径的</td>
+</tr>
+<tr>
+<td style="text-align:center">cd</td>
+<td style="text-align:center">change directory</td>
+<td style="text-align:center">改变目录</td>
+<td style="text-align:center">很常用</td>
+</tr>
+<tr>
+<td style="text-align:center">-r</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">目录相关</td>
+<td style="text-align:center">和目录相关加-r</td>
+</tr>
+<tr>
+<td style="text-align:center">-f</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">强制相关</td>
+<td style="text-align:center">需要强行的加-f</td>
+</tr>
+<tr>
+<td style="text-align:center">in -s</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">建立软链</td>
+<td style="text-align:center">in -s 真实文件 链接</td>
+</tr>
+<tr>
+<td style="text-align:center">cat</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">查看文件内容</td>
+<td style="text-align:center">配置git生成SSH公钥的时候用过</td>
+</tr>
+</tbody>
+</table>
+<p><strong>还有命令不认识怎么办？——explainshell.com欢迎您<br>不知道这个操作怎么完成怎么办？——Plz Google it.</strong><br><strong><em>文章太长不想看？——tldr(too long didnt read)</em></strong><br>①打开命令行键入<code>npm install -g tldr</code>报错就在开头加<code>sudo</code><br>②安装完成后<code>tldr 你要查的快捷键</code>回车，显示该命令如何操作。<br>③愉快的使用命令行吧。</p>
+<hr>
+<h3 id="三-自定义命令行"><a href="#三-自定义命令行" class="headerlink" title="三. 自定义命令行"></a>三. 自定义命令行</h3><p>####~/.bashrc文件的自动运行<br>该的作用是在启动Git Bash之前执行命令（可以理解为开机自动启动）<br>例：<br><code>touch ~/.bashrc</code>创建文件<br><code>start ~/.bashrc</code>开启文件or<code>echo &quot;echo &#39;Here I am.&#39;&quot; &gt;&gt; ~/.bashrc</code>命令行编辑文件加入Here I am.内容。<br>重启Git Bash看到我们输入的Here I am.</p>
+<p>####alias命令设置快捷键<br>在~/.bashrc文件里添加<br><code>alias 缩写=&#39;命令&#39;</code><br>例如：<code>alias ga=‘git add’</code><br>保存退出后运行<code>source ~/.bashrc</code>输入ga就可以自动添加文件到git暂存区了。</p>
+
+          
+        
       
     </div>
 
@@ -362,32 +455,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/03/17/配置Hexo博客/" rel="next" title="配置Hexo博客">
-                <i class="fa fa-chevron-left"></i> 配置Hexo博客
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/19/入门-HTTP/" rel="prev" title="入门-HTTP">
-                入门-HTTP <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -397,19 +470,18 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -430,17 +502,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -514,22 +577,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-脚本"><span class="nav-number">1.</span> <span class="nav-text">1.脚本</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -657,10 +704,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
-
-
 
   
 
