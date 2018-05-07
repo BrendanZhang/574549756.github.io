@@ -337,3 +337,28 @@ x.onclick = function(){
 2.还有动画、AJAX等模块，DOM操作只是一小部分
 3.功能强大，功能丰富
 4.jQuery使用了`prototype`还有需要了解`new`
+
+## III.$()的几种用法
+
+### i.$(object)
+传入一个object，将该对象封装到jQuery对象中并返回
+
+### ii.$(callback)
+传进去参数是函数的时候，在document对象上绑定一个ready事件监听函数，当DOM结构加载完成的时候执行
+
+```
+$(function(){
+})
+//以上代码和下面的效果是一样的
+$(document).ready(function(){
+    ...//代码
+})
+```
+
+### iii.$(jQuery object)
+传进去的参数是一个jQuery对象的时候，则创建该jQuery对象的一个副本并返回。副本与传入jQuery对象的引用完全相同的元素
+
+### iv.$()
+什么都不传，返回一个空jQuery对象，属性length: 0 
+可以用来复用jQuery对象：
+创建空jQuery对象，需要时先手动修改其中元素，再调用jQuery方法。避免重复创建jQuery对象。
