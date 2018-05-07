@@ -24,7 +24,7 @@ Server Rendered Javascript
 JSON + padding = JSONP
 
 ```
-${query.callbackName}.call(undefined,/*从这里开始*/{
+${query.callback}.call(undefined,/*从这里开始*/{
     "success": true,
     "left": ${newAmount}
 }/*到这里结束是JSON*/)
