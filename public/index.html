@@ -271,6 +271,278 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/09/AJAX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/09/AJAX/" itemprop="url">AJAX</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-09T08:21:28+08:00">2018-05-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-关于发送请求"><a href="#0-关于发送请求" class="headerlink" title="0.关于发送请求"></a>0.关于发送请求</h1><h2 id="I-如何发送请求"><a href="#I-如何发送请求" class="headerlink" title="I.如何发送请求"></a>I.如何发送请求</h2><ul>
+<li>用<code>form</code>可以发送请求，但是会刷新页面或新开页面</li>
+<li>用<code>a</code>可以发<code>GET</code>请求，但是也会刷新页面或新开页面</li>
+<li>用<code>img</code>可以发<code>GET</code>请求，但是只能以图片的形式展示</li>
+<li>用<code>script</code>可以发<code>GET</code>请求，但是只能以脚本的形式运行</li>
+<li>用<code>link</code>可以发<code>GET</code>请求，但是只能以<code>CSS</code>、<code>favicon</code>的形式展示</li>
+</ul>
+<p><strong>有没有一种方法可以：</strong></p>
+<ul>
+<li><code>GET</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code>请求都可以做到</li>
+<li>想用什么形式展示就以什么形式展示</li>
+</ul>
+<h2 id="II-伟大的巨硬-Microsoft"><a href="#II-伟大的巨硬-Microsoft" class="headerlink" title="II.伟大的巨硬(Microsoft)"></a>II.伟大的巨硬(Microsoft)</h2><ul>
+<li>在IE5率先在<code>JS</code>中引入<code>ActiveX</code>对象（API），使得JS可以直接发起HTTP请求。</li>
+<li>随后<code>Mozilla</code>、<code>Safari</code>、<code>Opera</code>也跟进了，命名<code>XMLHttpRequest</code>，并被纳入<code>W3C</code>规范</li>
+</ul>
+<h3 id="i-结果巨硬飘了"><a href="#i-结果巨硬飘了" class="headerlink" title="i.结果巨硬飘了"></a>i.结果巨硬飘了</h3><ul>
+<li>巨硬认为自己的<code>IE6</code>已经无敌了，所以解散了开发小组</li>
+<li>给了<code>chrome</code>巨大的机会（现在反超IE，占有量达到40%）</li>
+</ul>
+<h3 id="ii-Google-Gmail展示了网页的体验也可以那么好"><a href="#ii-Google-Gmail展示了网页的体验也可以那么好" class="headerlink" title="ii.Google Gmail展示了网页的体验也可以那么好"></a>ii.Google Gmail展示了网页的体验也可以那么好</h3><p>页面不刷新，仅局部更新<br>网页的体验强了，很多事情不需要使用软件来完成了。<br>前端程序员开始专心于JavaScript<br>所以还是要感谢伟大的巨硬的<code>ActiveX</code></p>
+<h1 id="1-AJAX"><a href="#1-AJAX" class="headerlink" title="1.AJAX"></a>1.AJAX</h1><p>Jesse James Garrett<br>将异步的<code>JavaScript</code>和<code>XML</code>这两项技术<br>称为<code>AJAX</code></p>
+<ul>
+<li><code>async</code>异步</li>
+<li><code>JavaScript</code>我们热爱的JS</li>
+<li><code>and</code>和</li>
+<li><code>XML</code>XML</li>
+</ul>
+<h2 id="I-技术要点"><a href="#I-技术要点" class="headerlink" title="I.技术要点"></a>I.技术要点</h2><ul>
+<li>使用<code>XMLHttpRequest</code>发送请求</li>
+<li>服务器返回<code>XML</code>格式的字符串（现在都用<code>JSON</code>）</li>
+<li><code>JS</code>解析<code>XML</code>，并更新局部页面</li>
+</ul>
+<p><strong>需要知道如何使用<code>原生JS</code>来发送<code>AJAX</code>请求</strong></p>
+<h2 id="II-格式"><a href="#II-格式" class="headerlink" title="II.格式"></a>II.格式</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">myButton.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="params">(e)</span>=&gt;</span>&#123;</span><br><span class="line">    let request = <span class="keyword">new</span> XMLHttpRequest()   <span class="regexp">//</span>声明一个XMLHttpRequest对象</span><br><span class="line">    request.onreadystatechange = <span class="function"><span class="params">()</span>=&gt;</span>&#123;      <span class="regexp">//</span>监听状态改变，尽量往上放</span><br><span class="line">        <span class="built_in">console</span>.log(request.readyState)</span><br><span class="line">    &#125;</span><br><span class="line">    request.open(<span class="string">'GET'</span>, <span class="string">'/xxx'</span>)    <span class="regexp">//</span>配置request <span class="string">'Method'</span>, <span class="string">'url'</span>, <span class="string">'是否异步'</span>后三个一般不传默认就行</span><br><span class="line">    request.send()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="i-readystate"><a href="#i-readystate" class="headerlink" title="i.readystate"></a>i.readystate</h3><p>当前请求的状态</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">值</th>
+<th style="text-align:center">状态</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">UNSENT（未打开）</td>
+<td style="text-align:center">代理被创建，但尚未调用 open() 方法。</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">OPENED（未发送）</td>
+<td style="text-align:center">open() 方法已经被调用。send（）方法还未被调用</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">HEADERS_RECEIVED（已获取响应头）</td>
+<td style="text-align:center">send() 方法已经被调用，并且头部和状态已经可获得。</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">LOADING（正在下载响应体）</td>
+<td style="text-align:center">下载中； responseText 属性已经包含部分数据。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">DONE（请求完成）</td>
+<td style="text-align:center">整个请求过程已经完毕（请求，已经把响应 下载完毕）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ii-request-status"><a href="#ii-request-status" class="headerlink" title="ii.request.status"></a>ii.request.status</h3><p>请求得到的响应状态码</p>
+<p><code>&gt;= 200</code>请求成功<br><code>&gt;= 300</code>浏览器会再发一个新的请求<br><code>&gt;= 400</code>请求失败</p>
+<h1 id="2-JSON"><a href="#2-JSON" class="headerlink" title="2.JSON"></a>2.JSON</h1><p>这是一种语言<br>JSON（<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation）<br>是一种由<strong>Douglas Crockford</strong>构想和设计、轻量级的<strong>数据交换语言</strong><br>该语言以易于让人阅读的文字为基础，用来传输由属性值或者序列性的值组成的数据对象。</p>
+<ul>
+<li>Douglas和Brandon互相不爽…</li>
+<li>Douglas抄JS写了个JSON</li>
+<li>Douglas写了本蝴蝶书告诉我们JS哪里哪里很毒瘤。明着diss…</li>
+</ul>
+<h2 id="I-JSON-vs-JS"><a href="#I-JSON-vs-JS" class="headerlink" title="I.JSON vs JS"></a>I.JSON vs JS</h2><ul>
+<li>JSON 没有抄 function 和 undefined</li>
+<li>JSON 的字符串首尾必须是 “”</li>
+<li>JSON 对象：{“name”:”Oracle”} JS 对象： {name: ‘Oracle’}</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">JS</th>
+<th style="text-align:center">JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">undefined</td>
+<td style="text-align:center">没有</td>
+</tr>
+<tr>
+<td style="text-align:center">null</td>
+<td style="text-align:center">null</td>
+</tr>
+<tr>
+<td style="text-align:center">[‘a’,’b’]</td>
+<td style="text-align:center">[“a”,”b”]</td>
+</tr>
+<tr>
+<td style="text-align:center">function fn(){}</td>
+<td style="text-align:center">没有</td>
+</tr>
+<tr>
+<td style="text-align:center">{name: ‘Oracle’}</td>
+<td style="text-align:center">{“name”:”Oracle”}</td>
+</tr>
+<tr>
+<td style="text-align:center">‘Oracle’</td>
+<td style="text-align:center">“Oracle”</td>
+</tr>
+<tr>
+<td style="text-align:center">var a = {};a.self = a</td>
+<td style="text-align:center">搞不定（没有变量这个东西）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{__proto__}</code></td>
+<td style="text-align:center">没有原型链</td>
+</tr>
+</tbody>
+</table>
+<h2 id="II-为什么用JSON"><a href="#II-为什么用JSON" class="headerlink" title="II.为什么用JSON"></a>II.为什么用JSON</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务器</span></span><br><span class="line"><span class="built_in">else</span> <span class="built_in">if</span> (path === <span class="string">'/xxx'</span>)&#123;</span><br><span class="line">        response.statusCode = <span class="number">200</span></span><br><span class="line">        response.setHeader(<span class="string">'Content-type'</span>, <span class="string">'text/xml;charset=utf-8'</span>)</span><br><span class="line">        response.<span class="built_in">write</span>(`</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"note"</span>:&#123;</span><br><span class="line">                <span class="string">"to"</span>: <span class="string">"James Raynor"</span></span><br><span class="line">                <span class="string">"from"</span>: <span class="string">"Sarah Kerrigan"</span></span><br><span class="line">                <span class="string">"heading"</span>: <span class="string">"Message"</span></span><br><span class="line">                <span class="string">"body"</span>: <span class="string">"For Im the queen of blades.Vengeance shall be mine."</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        `)<span class="comment">//返回一个字符串，这个字符串，凑巧刚好符合JSON对象语法</span></span><br><span class="line">        <span class="comment">// 这不是对象这不是对象这不是对象</span></span><br><span class="line">        response.<span class="built_in">end</span>()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>tigongde<br>tigongde<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let string = request<span class="selector-class">.responseText</span>       <span class="comment">//把JSON字符串放进容器</span></span><br><span class="line">let <span class="selector-tag">object</span> = Window<span class="selector-class">.JSON</span><span class="selector-class">.parse</span>(string)      <span class="comment">//这个 JSON.parse 是浏览器提供的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//把符合JSON语法的字符串，转换成JS中对应的值</span></span><br></pre></td></tr></table></figure></p>
+<p>这时候，前端希望用和 JS 比较像的 JSON ，而放弃使用 XML 了</p>
+<h1 id="3-同源策略与CORS跨域"><a href="#3-同源策略与CORS跨域" class="headerlink" title="3.同源策略与CORS跨域"></a>3.同源策略与CORS跨域</h1><h2 id="I-同源策略"><a href="#I-同源策略" class="headerlink" title="I.同源策略"></a>I.同源策略</h2><p>只有 域名+端口+协议 一模一样才允许发 AJAX 请求</p>
+<ol>
+<li><code>http://baidu.com</code> 可以向 <code>http://www.baidu.com</code> 发 AJAX 请求吗？   ——NO</li>
+<li><code>http://baidu.com：80</code> 可以向 <code>http://baidu.com：81</code> 发 AJAX 请求吗？    ——NO</li>
+</ol>
+<p>为什么？<br>你试试<code>http://www.12306.cn</code>和<code>http://12306.cn</code>是不是同一个网站</p>
+<ul>
+<li>浏览器不能冒险呀，不能让你AJAX各种读用户数据呀。</li>
+</ul>
+<p>浏览器必须保证：</p>
+<ul>
+<li>只有 域名+端口+域名 一模一样才允许发 AJAX 请求</li>
+</ul>
+<h2 id="II-CORS跨域"><a href="#II-CORS跨域" class="headerlink" title="II.CORS跨域"></a>II.CORS跨域</h2><p><strong>C</strong>ross-<strong>O</strong>rigin <strong>R</strong>esource <strong>S</strong>haring<br>跨          站         资源          共享</p>
+<p>除了JSONP还有个别的方法<br>CORS可以：告诉浏览器，我们俩是兄弟呀，别阻止他。</p>
+<p>给你要访问的网站的后端打个电话商量一下。让他在相应接口加一条：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">response</span><span class="selector-class">.setHeader</span>(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'你想允许哪个域名+端口+协议'</span>)</span><br></pre></td></tr></table></figure>
+<p>你们就可以愉快的玩耍了</p>
+<h3 id="为什么要用CORS"><a href="#为什么要用CORS" class="headerlink" title="为什么要用CORS"></a>为什么要用CORS</h3><p>因为 <code>JSONP</code> 不能发 <code>POST</code> 呀</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/JSONP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2085,244 +2357,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/JavaScript-数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/10/JavaScript-数据/" itemprop="url">JavaScript-数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-10T12:17:16+08:00">2018-04-10</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h1><h3 id="种类-amp-备注"><a href="#种类-amp-备注" class="headerlink" title="种类&amp;备注"></a>种类&amp;备注</h3><p>七种数据类型：</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">number<span class="comment">;</span></span><br><span class="line">string<span class="comment">;</span></span><br><span class="line">boolean<span class="comment">;</span></span><br><span class="line">symbol<span class="comment">;</span></span><br><span class="line">undefined<span class="comment">;</span></span><br><span class="line">null<span class="comment">;</span></span><br><span class="line">object</span><br></pre></td></tr></table></figure>
-<p>没有array类也没有function类，因为他们都算object。<br><strong>永远不要说JS里一切都是对象</strong></p>
-<h2 id="I-number"><a href="#I-number" class="headerlink" title="I.number"></a>I.number</h2><h3 id="i-整数和小数"><a href="#i-整数和小数" class="headerlink" title="i.整数和小数"></a>i.整数和小数</h3><p><code>1</code>是一个整数<br>如何得到<code>1.1</code>这个数呢?<br>可以用<code>0.1</code>也可以用<code>.1</code></p>
-<h3 id="ii-科学计数法"><a href="#ii-科学计数法" class="headerlink" title="ii.科学计数法"></a>ii.科学计数法</h3><p><code>1.23e2</code>是合理的可识别的<code>123</code></p>
-<h3 id="iii-二进制"><a href="#iii-二进制" class="headerlink" title="iii.二进制"></a>iii.二进制</h3><p>开头是<code>0b</code>的</p>
-<h3 id="iv-八进制"><a href="#iv-八进制" class="headerlink" title="iv.八进制"></a>iv.八进制</h3><p>开头是<code>0</code>的，后来ES5添加了0o11语法</p>
-<h3 id="v-十六进制"><a href="#v-十六进制" class="headerlink" title="v.十六进制"></a>v.十六进制</h3><p>开头是<code>0x</code>的</p>
-<h2 id="II-string"><a href="#II-string" class="headerlink" title="II.string"></a>II.string</h2><h3 id="i-空字符串"><a href="#i-空字符串" class="headerlink" title="i.空字符串"></a>i.空字符串</h3><p><code>&#39;&#39;</code>或者<code>&quot;&quot;</code>空字符串，里面什么都没有</p>
-<h3 id="ii-转义符"><a href="#ii-转义符" class="headerlink" title="ii.转义符"></a>ii.转义符</h3><p>表达这个字符串里面只有一个<code>&#39;</code>怎么办<br><code>&quot;&#39;&quot;</code>这么来<br>那么问题来了，我要表达这个字符串是<code>&quot;&#39;</code>怎么办，一个单引号一个双引号区分不开呀<br>这时候需要一个<code>\</code>反杠，<code>\</code>来告诉浏览器，这个引号不是拿来结束字符串的。<br>这就叫做，<strong>转义符</strong><br>他不仅仅有这个作用还有：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">转义符</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">Unicode</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>\0</code></td>
-<td style="text-align:center">null</td>
-<td style="text-align:center">（\u0000）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\b</code></td>
-<td style="text-align:center">后退键</td>
-<td style="text-align:center">（\u0008）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\f</code></td>
-<td style="text-align:center">换页符</td>
-<td style="text-align:center">（\u000C）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\n</code></td>
-<td style="text-align:center">换行符</td>
-<td style="text-align:center">（\u000A）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\r</code></td>
-<td style="text-align:center">回车键</td>
-<td style="text-align:center">（\u000D）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\t</code></td>
-<td style="text-align:center">制表符</td>
-<td style="text-align:center">（\u0009）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\v</code></td>
-<td style="text-align:center">垂直制表符</td>
-<td style="text-align:center">（\u000B）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\&#39;</code></td>
-<td style="text-align:center">单引号</td>
-<td style="text-align:center">（\u0027）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\&quot;</code></td>
-<td style="text-align:center">双引号</td>
-<td style="text-align:center">（\u0022）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\\</code></td>
-<td style="text-align:center">反斜杠</td>
-<td style="text-align:center">（\u005C）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="iii-多行字符串"><a href="#iii-多行字符串" class="headerlink" title="iii.多行字符串"></a>iii.多行字符串</h3><p>不是字符串里面有回车<br>而是我希望字符串有换行</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = '<span class="number">1234</span>5 \</span><br><span class="line">        <span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
-<p>就像命令行一样</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var s2 = '<span class="number">1234</span>5' + '<span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
-<p>这样也可以<br><strong>但是方法一有个很鬼的问题</strong></p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = '<span class="number">1234</span>5 \     //反杠后面如果有一堆空格</span><br><span class="line"><span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
-<p>反杠后面有一堆空格那么就热闹了，反杠会把第一个空格变成…字符串里的空格…<br>遭重了，很坑很坑。<br>所以最好用第二个方法了。</p>
-<p><strong>既然这个这么坑，那JS要解决它呀</strong><br>所以在ES6里就有了这个符号`就是这个点</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s4 = `<span class="number">12345</span></span><br><span class="line"><span class="number">67890</span>`</span><br></pre></td></tr></table></figure>
-<p>他会记录里面的一切，包括回车<br>所以这就是11个字符<code>s4.length</code>是<code>11</code></p>
-<h2 id="III-boolean"><a href="#III-boolean" class="headerlink" title="III.boolean"></a>III.boolean</h2><h3 id="i-George-Boole"><a href="#i-George-Boole" class="headerlink" title="i.George Boole"></a>i.George Boole</h3><p>数学家、哲学家，发明逻辑学。<br>为了纪念他，我们把<code>ture</code>和<code>false</code>两个值叫做布尔<br><code>&amp;&amp;</code>与<br><code>||</code>或</p>
-<h2 id="IV-symbol"><a href="#IV-symbol" class="headerlink" title="IV.symbol"></a>IV.symbol</h2><h3 id="i-是什么"><a href="#i-是什么" class="headerlink" title="i.是什么"></a>i.是什么</h3><p>ES6引入了新的数据类型Symbol，用于生成一个全局唯一的值。</p>
-<h3 id="ii-怎么用"><a href="#ii-怎么用" class="headerlink" title="ii.怎么用"></a>ii.怎么用</h3><p>借用方方老师的例子<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> race = &#123;</span><br><span class="line">  protoss: <span class="symbol">'protos</span>s', <span class="comment">// 神族</span></span><br><span class="line">  terran: <span class="symbol">'terra</span>n', <span class="comment">// 人族</span></span><br><span class="line">  zerg: <span class="symbol">'zer</span>g' <span class="comment">// 虫族</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createRole(<span class="class"><span class="keyword">type</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">protoss</span>)</span>&#123;选择神族兵种&#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">terran</span>)</span>&#123;选择人族兵种&#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">zerg</span>)</span>&#123;选择虫族兵种&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>打星际选择兵种。race的键-值组合中，值显得并不重要。<br>那么值甚至可以乱敲只要他们三个种族的值不重复就可以。<br>那么Symbol可以替代对应的值</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> race = &#123;</span><br><span class="line">  protoss: Symbol(),</span><br><span class="line">  terran: Symbol(),</span><br><span class="line">  zerg: Symbol()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">race<span class="selector-class">.protoss</span> !== race<span class="selector-class">.terran</span> <span class="comment">// true</span></span><br><span class="line">race<span class="selector-class">.protoss</span> !== race<span class="selector-class">.zerg</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>还可以给<code>Symbol()</code>加个注释<code>Symbol(&#39;protoss&#39;)</code>仅仅就是个提示，起什么和值没有任何关系。</p>
-<p>总结：占位置的。起名字福音。</p>
-<h2 id="V-undefined和null"><a href="#V-undefined和null" class="headerlink" title="V.undefined和null"></a>V.undefined和null</h2><h3 id="i-null"><a href="#i-null" class="headerlink" title="i.null"></a>i.null</h3><p>是一个类型。只有一个值<code>null</code></p>
-<h3 id="ii-undefined"><a href="#ii-undefined" class="headerlink" title="ii.undefined"></a>ii.undefined</h3><p>是一个类型。只有一个值<code>undefined</code></p>
-<h3 id="iii-这两个兄弟干嘛的"><a href="#iii-这两个兄弟干嘛的" class="headerlink" title="iii.这两个兄弟干嘛的"></a>iii.这两个兄弟干嘛的</h3><p>这是个BUG，语言问题。<br>都表达了一个：<code>什么也没有</code>原创BUG哟</p>
-<h3 id="iv-那他们有什么区别呢？？？"><a href="#iv-那他们有什么区别呢？？？" class="headerlink" title="iv.那他们有什么区别呢？？？"></a>iv.那他们有什么区别呢？？？</h3><p>① 变量没有值 - undefined<br>② 如果你想有一个对象（<code>obj</code>），但是目前不想赋值，那就给他一个<code>null</code>（推荐）.<code>var obj = null</code><br>如果你有一个非对象，目前不想赋值，那就给他一个<code>undefined</code>（推荐）。<code>var n</code>那它就是一个<code>undefine</code><br>③ <strong>②为惯例 ①为语法</strong><br>总结一下，null是空对象，undefined是非对象。</p>
-<h2 id="VI-object"><a href="#VI-object" class="headerlink" title="VI.object"></a>VI.object</h2><p>之前说的，都是基本（简单）类型，到了对象，就是复杂类型了。<br>复杂类型由简单类型组成。<br>举个例子：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> name = <span class="string">'Oracle'</span></span><br><span class="line"><span class="selector-tag">var</span> age = <span class="string">'24'</span></span><br><span class="line"><span class="selector-tag">var</span> gender = <span class="string">'male'</span></span><br></pre></td></tr></table></figure>
-<p>他们三个都是一对一，冥冥之中似乎可以放在一起。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> person = </span><br><span class="line">&#123;</span><br><span class="line"><span class="string">'name'</span>:<span class="string">'Oracle'</span>,</span><br><span class="line"><span class="string">'age'</span>:<span class="string">'24'</span>,</span><br><span class="line"><span class="string">'gender'</span>:<span class="string">'male'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>变成这种<code>键-值</code>组合</p>
-<h3 id="i-语法"><a href="#i-语法" class="headerlink" title="i.语法"></a>i.语法</h3><p><code>{</code>开头<br><code>}</code>结尾<br>左边的键，可以不用引号，左边永远都是字符串。<br>右边该怎么写怎么写<br>需要变量去容纳它<code>var person =</code>，他就是一个类型是对象的变量<br>读取它<code>person[&#39;name&#39;]</code>这个<code>name</code>必须加引号<br>为了避免之前有变量也叫name<br>如果他符合标识符规则那可以<code>person.name</code></p>
-<h3 id="ii-对象里还可以套对象"><a href="#ii-对象里还可以套对象" class="headerlink" title="ii.对象里还可以套对象"></a>ii.对象里还可以套对象</h3><p><strong>那么对象里套的对象，里面的对象是否可以是自己？</strong><br>这个麻烦了<br><strong>解决这个问题之前请参见(<a href="https://574549756.github.io/2018/04/11/JavaScript-%E7%B1%BB%E5%9E%8B/" target="_blank" rel="noopener">JavaScript-类型</a>)</strong></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span> = a</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span><span class="selector-class">.self</span><span class="selector-class">.self</span>是什么</span><br></pre></td></tr></table></figure>
-<p>首先对象存了一个ADDR然后不断引用这个地址</p>
-<h3 id="iii-空字符串是否能当做key？"><a href="#iii-空字符串是否能当做key？" class="headerlink" title="iii.空字符串是否能当做key？"></a>iii.空字符串是否能当做key？</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;'':'oracle'&#125;</span><br><span class="line">person['']   <span class="comment">//oracle</span></span><br></pre></td></tr></table></figure>
-<p>可以</p>
-<h3 id="iv-key的第一个字是否可以是数字"><a href="#iv-key的第一个字是否可以是数字" class="headerlink" title="iv.key的第一个字是否可以是数字"></a>iv.key的第一个字是否可以是数字</h3><p>不可以。<br><code>9name: &#39;oracle&#39;,</code> 这种是不可以<br>如果不加引号，key必须依照标识符（变量名）原则<br>不加引号，写起来舒服。加上引号，功能多。<br>同理，如果是<strong>数组</strong>那么读取数组成员的时候就<strong>不能用点结构</strong><br>单独的数值不能作为标识符。数组成员只能用方括号<code>arr[0]</code>来表示</p>
-<h3 id="v-key能不能有空格"><a href="#v-key能不能有空格" class="headerlink" title="v.key能不能有空格"></a>v.key能不能有空格</h3><p>一样的规则，有引号就可以，没有就GG</p>
-<h3 id="vi-key可不可以加中文"><a href="#vi-key可不可以加中文" class="headerlink" title="vi.key可不可以加中文"></a>vi.key可不可以加中文</h3><p>可以，因为中文可以当做变量名。</p>
-<h3 id="vii-for-in"><a href="#vii-for-in" class="headerlink" title="vii.for in"></a>vii.for in</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="built_in">key</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>遍历数组的<code>key</code>但是<br>出现<code>key</code>的顺序是看天的。<br>那我想打出值呢？</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(person[<span class="built_in">key</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那一起打呢？</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="built_in">key</span>,person[<span class="built_in">key</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>和上面说的一样，随机的</p>
-<h2 id="VII-typeof"><a href="#VII-typeof" class="headerlink" title="VII.typeof"></a>VII.typeof</h2><h3 id="i-干吗用的？"><a href="#i-干吗用的？" class="headerlink" title="i.干吗用的？"></a>i.干吗用的？</h3><p>看类型的</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="built_in">t</span> = <span class="number">1</span></span><br><span class="line">typeof <span class="built_in">t</span> //<span class="string">"number"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> <span class="built_in">t</span> = <span class="built_in">true</span></span><br><span class="line">typeof <span class="built_in">t</span> //<span class="string">"boolean"</span></span><br></pre></td></tr></table></figure>
-<h3 id="ii-但是有一个特殊"><a href="#ii-但是有一个特殊" class="headerlink" title="ii.但是有一个特殊"></a>ii.但是有一个特殊</h3><p><strong>这是JS的BUG</strong><br>他叫做<code>null</code><br>如果测<code>typeof null</code>会返回<code>‘object’</code><br>如果声明一个<code>函数</code><br>用<code>typeof fn</code>本应该是<code>‘object’</code>但是他会返回<code>‘function’</code><br>什么时候函数也是独立的类型了？</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2370,7 +2404,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2403,7 +2437,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
