@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/04/11/JavaScript-类型/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="1.首先要搞清楚什么是内存干吗用的？存东西用的。通电存东西，断电就GG。外存没有内存快最快的外存不就是SSD嘛，因为它能接近内存的速度。机械硬盘，就很容易坏，十年基本就坏了。SSD，不容易坏，但是一坏就全坏了。 I.它是怎么工作的i.举个例子假设内存有2G开机操作系统 512M浏览器 1G （浏览器真的很占内存）假设浏览器两个页面 1234页面1（100M）        HTML+CSS+JS+">
-<meta property="og:updated_time" content="2018-05-14T07:48:48.000Z">
+<meta property="og:updated_time" content="2018-05-14T07:50:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-类型">
 <meta name="twitter:description" content="1.首先要搞清楚什么是内存干吗用的？存东西用的。通电存东西，断电就GG。外存没有内存快最快的外存不就是SSD嘛，因为它能接近内存的速度。机械硬盘，就很容易坏，十年基本就坏了。SSD，不容易坏，但是一坏就全坏了。 I.它是怎么工作的i.举个例子假设内存有2G开机操作系统 512M浏览器 1G （浏览器真的很占内存）假设浏览器两个页面 1234页面1（100M）        HTML+CSS+JS+">
@@ -388,8 +388,9 @@
 <p>64位：</p>
 <ul>
 <li>新生代32MB</li>
-<li>老生代1.4GB<h3 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h3>新生代存的都是生存周期短的对象<br>垃圾回收机制——在储存空间快满的时候，就进行一次垃圾回收</li>
+<li>老生代1.4GB</li>
 </ul>
+<h3 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h3><p>新生代存的都是生存周期短的对象<br>垃圾回收机制——在储存空间快满的时候，就进行一次垃圾回收</p>
 <ol>
 <li>将新生代内存分为两部分：From(使用状态)和To(闲置状态)</li>
 <li>GC进入From空间搜查一遍，看看谁没有被其他活动对象引用，没有被罩着的被无情拖走。</li>
