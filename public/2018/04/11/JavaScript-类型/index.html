@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/04/11/JavaScript-类型/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="1.首先要搞清楚什么是内存干吗用的？存东西用的。通电存东西，断电就GG。外存没有内存快最快的外存不就是SSD嘛，因为它能接近内存的速度。机械硬盘，就很容易坏，十年基本就坏了。SSD，不容易坏，但是一坏就全坏了。 I.它是怎么工作的i.举个例子假设内存有2G开机操作系统 512M浏览器 1G （浏览器真的很占内存）假设浏览器两个页面 1234页面1（100M）        HTML+CSS+JS+">
-<meta property="og:updated_time" content="2018-04-11T09:36:47.000Z">
+<meta property="og:updated_time" content="2018-05-14T07:33:04.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-类型">
 <meta name="twitter:description" content="1.首先要搞清楚什么是内存干吗用的？存东西用的。通电存东西，断电就GG。外存没有内存快最快的外存不就是SSD嘛，因为它能接近内存的速度。机械硬盘，就很容易坏，十年基本就坏了。SSD，不容易坏，但是一坏就全坏了。 I.它是怎么工作的i.举个例子假设内存有2G开机操作系统 512M浏览器 1G （浏览器真的很占内存）假设浏览器两个页面 1234页面1（100M）        HTML+CSS+JS+">
@@ -354,13 +354,109 @@
 <h3 id="ii-数据"><a href="#ii-数据" class="headerlink" title="ii.数据"></a>ii.数据</h3><p>数字：64位<br>字符：16位（ES3）<br>值：<br><strong>简单</strong>:存Stack<br><strong>复杂</strong>(obj):存Heap地址（还是存在Stack里面）</p>
 <h3 id="iii-引用"><a href="#iii-引用" class="headerlink" title="iii.引用"></a>iii.引用</h3><p>object存入ADDR 100<br>就可以称object是对象的<strong>引用</strong><br>所有变量和对象的<strong>关系</strong>，都是<strong>引用关系</strong></p>
 <h3 id="iv-存在对象问题的时候，走一遍i里的流程就清楚了"><a href="#iv-存在对象问题的时候，走一遍i里的流程就清楚了" class="headerlink" title="iv.存在对象问题的时候，走一遍i里的流程就清楚了"></a>iv.存在对象问题的时候，走一遍i里的流程就清楚了</h3><p>PS：连续赋值从右往左顺序拆开写。</p>
-<h2 id="II-垃圾回收"><a href="#II-垃圾回收" class="headerlink" title="II.垃圾回收"></a>II.垃圾回收</h2><p>GC<br>如果一个<code>对象</code><strong>没有被引用</strong><br>它就是<strong>垃圾</strong><br>将被回收</p>
-<h3 id="i-例"><a href="#i-例" class="headerlink" title="i.例"></a>i.例</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;name:<span class="string">'a'</span>&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = &#123;name:<span class="string">'b'</span>&#125;</span><br><span class="line"><span class="selector-tag">a</span> = b</span><br></pre></td></tr></table></figure>
+<h1 id="2-垃圾回收-GC"><a href="#2-垃圾回收-GC" class="headerlink" title="2.垃圾回收(GC)"></a>2.垃圾回收(GC)</h1><p><strong>Garbage Collection</strong></p>
+<p>我们热爱的V8引擎就是为了JavaScript在浏览器执行而打造的。<br>可申请的最大内存不是很高：</p>
+<ul>
+<li>64位系统下1.4GB</li>
+<li>32位系统下约700MB</li>
+</ul>
+<p>如果一个<code>对象</code><strong>没有被引用</strong><br>它就是<strong>垃圾</strong><br>将被回收</p>
+<h2 id="i-关于活动对象"><a href="#i-关于活动对象" class="headerlink" title="i.关于活动对象"></a>i.关于活动对象</h2><p>在一个函数对象被调用的时候，会创建一个活动对象<br>首先将该函数的每个形参和实参，都添加为该活动对象的属性和值。<br>将该函数体内显示声明和变量的函数，也添加为该活动的属性（在刚进入该函数执行环境的时候，未赋值，所以值为undefined，这个是JS提前声明机制）<br>然后将这个活动对象作为该函数执行环境的作用于链的最前端，并将这个函数对象的<code>[scope]</code>属性里作用域链接接入到该函数执行环境作用域链的后端。</p>
+<p>这就是我们常说的，大哥罩小弟的模式。</p>
+<p>如果一个对象和其关联对象不再通过引用关系被当前活动对象引用了，这个对象就会被垃圾回收。<br><strong>没人罩着就会被干掉</strong></p>
+<h2 id="ii-如何判断"><a href="#ii-如何判断" class="headerlink" title="ii.如何判断"></a>ii.如何判断</h2><p>变量进入环境（在函数中声明一个变量）的时候，就将这个变量标记为<code>&quot;进入环境&quot;</code>。<br>变量离开环境时，则将其标记为<code>&quot;离开环境&quot;</code></p>
+<p>可以用任何方式来标记变量。例如：</p>
+<ul>
+<li>可以通过翻转某个特殊标记来记录一个变量何时进入环境</li>
+<li>或者使用一个变量列表来计入进入环境的变量，以及另一个变量列表来记录离开环境的变量</li>
+</ul>
+<ol>
+<li>垃圾回收器会在运行的时候给存储在内存中所有变量加上标记（如上所说）</li>
+<li>然后，会去掉运行环境中的变量以及被环境中变量所引用的变量的标记</li>
+<li>在此之后，依然有标记的变量就会被视为准备清除的变量，原因在运行环境中已经无法访问到这些变量了。</li>
+<li>最后，垃圾回收器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间。<h2 id="iii-例"><a href="#iii-例" class="headerlink" title="iii.例"></a>iii.例</h2></li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;name:<span class="string">'a'</span>&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = &#123;name:<span class="string">'b'</span>&#125;</span><br><span class="line"><span class="selector-tag">a</span> = b</span><br></pre></td></tr></table></figure>
 <p>这时候，b和a指向了同一个ADDR<br>那么a原来的ADDR就变成了垃圾<br><strong>没人罩着，就要被干掉…</strong></p>
-<h3 id="ii-IE有个BUG"><a href="#ii-IE有个BUG" class="headerlink" title="ii.IE有个BUG"></a>ii.IE有个BUG</h3><p>如果把页面关了(body没了，他引用的地址断了)<br>地址之间互相引用，但不和外部联系<br>他们本应该被清掉<br>但是（尤其IE6）IE里，你只要不关掉整个IE，他们会一直存着。<br>垃圾一直存着…内存boom。<br>所以需要在页面关闭之前执行：</p>
+<h2 id="vi-V8引擎的垃圾回收策略"><a href="#vi-V8引擎的垃圾回收策略" class="headerlink" title="vi.V8引擎的垃圾回收策略"></a>vi.V8引擎的垃圾回收策略</h2><p>但是由于不同对象的生存周期不同，所以无法只用一种回收策略解决问题，这样效率也不高<br>V8采用了一种<code>&#39;代&#39;</code>回收的策略，将内存分为两个<code>&#39;代&#39;</code>。没错，就是代沟的那个代<br>新生代(new generation)和老生代(old generation)</p>
+<p>新生代中的对象为存活时间较短的对象。<br>老生代中的对象为存活时间较长或者常驻内存的对象，分别对新老声带采用不同的垃圾回收算法以提高效率。<br>对象最开始都会先被分到新生代(如果新生代占用的内存满了，那就直接分到老生代)<br>新生代对象会在满足某些条件后，晋升到老生代。</p>
+<h3 id="两代的内存分配"><a href="#两代的内存分配" class="headerlink" title="两代的内存分配"></a>两代的内存分配</h3><p>默认情况下：<br>32位：</p>
+<ul>
+<li>新生代16MB</li>
+<li>老生代700MB<br>64位：</li>
+<li>新生代32MB</li>
+<li>老生代1.4GB<h3 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h3>新生代存的都是生存周期短的对象<br>垃圾回收机制——在储存空间快满的时候，就进行一次垃圾回收</li>
+</ul>
+<ol>
+<li>将新生代内存分为两部分：From(使用状态)和To(闲置状态)</li>
+<li>GC进入From空间搜查一遍，看看谁没有被其他活动对象引用，没有被罩着的被无情拖走。</li>
+<li>From空间里依旧被活动对象罩着的家伙被复制一遍以后放进To空间</li>
+<li>清空From空间里所有内存(上一步中被罩着的家伙在To里面幸存了下来)</li>
+<li>交换From空间和To空间(让这两个房间名交换一下)</li>
+<li>在From空间里新增新对象</li>
+<li>这时候GC又进来搜查了，接下来的故事就这么循环下去了。</li>
+</ol>
+<p>由于仅仅复制存活的对象，而且对于生命周期短的场景存货对象只占少部分，所以它在时间效率上很优秀。<br>但是每次只能使用堆内存的一半，这是由划分空间和复制机制决定的——牺牲空间，换取时间</p>
+<h3 id="晋升"><a href="#晋升" class="headerlink" title="晋升"></a>晋升</h3><p>当一个对象经过多次复制依旧存活的时候<br>它就会被认为是生命周期较长的对象——（GC：你居然一直有大哥罩着？）<br>这种较长生命周期的对象随后会被移动到老生代中，采用新算法进行管理。</p>
+<p>条件：</p>
+<ol>
+<li>对象从From空间复制到To空间的时候，会检查它内存地址来判断这个对象是否已经经历过一次回收。如果已经经历过了，会将该对象从From空间移动到老生代中，如果没有，则复制到To空间。<strong>就是说，如果一个对象是二次经理从From空间复制到To空间，那么这个对象就会被移动到老生代中</strong></li>
+<li>要从From空间复制一个对象到To空间时，如果To空间已经使用超过25%，则这个对象直接晋升到老生代中。设置25%这个值的原因是，当本次回收完成之后，这个To空间会变成From空间，接下来的内存分配将在这个空间中进行。如果占比过高，则会影响后续的内存分配。</li>
+</ol>
+<h3 id="老生代"><a href="#老生代" class="headerlink" title="老生代"></a>老生代</h3><p>老生代中，存货对象占较大比重，如果继续采用新生代的算法管理(Scavenge)，会存在两个问题：</p>
+<ol>
+<li>存活对象较多，复制存活对象效率很低。</li>
+<li>采用Scavenge算法会浪费一半内存，老生代占用内存很大（远超新生代），所以浪费严重。<br>所以在V8老生代中主要采用Mark-Sweep和与Mark-Conpact相结合的方式进行垃圾回收</li>
+</ol>
+<h4 id="Mark-Sweep"><a href="#Mark-Sweep" class="headerlink" title="Mark-Sweep"></a>Mark-Sweep</h4><p>Mark-Sweep（标记清除）,分为标记和清除两个截断。</p>
+<p>与Scavenge不同，Mark-Sweep并不会将内存分为两份，所以不存在浪费一半空间的行为。<br>Mark-Sweep在标记截断遍历堆内存中的所有对象，并标记活着的对象<br>总结一下：</p>
+<ol>
+<li>Scavenge仅复制活着的对象，而Mark-Sweep只清除死了的对象。</li>
+<li>活对象在新生代中只占较少部分，死对象在老生代中只占较少部分。</li>
+</ol>
+<p>流程：</p>
+<ol>
+<li>遍历堆内存中所有的对象</li>
+<li>GC大魔王标记存活对象</li>
+<li>大魔王GC进来巡视，回收死亡的对象（被标记的存活对象得以幸免）</li>
+</ol>
+<p>但是这种方式存在问题：</p>
+<ul>
+<li>在进行一次清除回收以后，内存空间会存在不连续（GC把没有大哥罩着的干掉了，但是他们的座位还在那空着）</li>
+<li>这种内存碎片会对后续的内存分配造成问题</li>
+<li>如果需要分配一个大内存的情况，由于剩余的碎片空间不足以完成此次分配，就会提前触发垃圾回收，但是这次回收并不需要被触发。</li>
+</ul>
+<h4 id="Mark-Compact"><a href="#Mark-Compact" class="headerlink" title="Mark-Compact"></a>Mark-Compact</h4><p>为了解决Mark-Sweep的内存碎片问题，提出了Mark-Compact（标记整理）<br>Mark-Compact由Mark-Sweep演变而来。<br>作用是在标记完存货对象以后，会将活着的对象向内存空间的一端移动<br>移动完成后，清理边界外的所有内存</p>
+<p>流程：</p>
+<ol>
+<li>遍历内存中所有对象</li>
+<li>GC进入标记阶段，标记存活对象</li>
+<li>GC进入整理阶段，标记为存活的对象向内存空间的一侧移动，没被标记的原地待命</li>
+<li>GC进入清除截断，大魔王GC把另一侧的内存全都回收了</li>
+</ol>
+<h4 id="结合"><a href="#结合" class="headerlink" title="结合"></a>结合</h4><ul>
+<li>回收策略中， Mark-Sweep 和 Mark-Compact 结合使用</li>
+<li>由于 Mark-Conpact 需要移动对象，所以它执行速度慢</li>
+<li>在V8取舍上，主要使用 Mark-Sweep ,在空间不足以从新生代中晋升来的对象进行分配的时候，才使用Mark-Compact</li>
+</ul>
+<h3 id="V8垃圾处理机制总结"><a href="#V8垃圾处理机制总结" class="headerlink" title="V8垃圾处理机制总结"></a>V8垃圾处理机制总结</h3><p>V8的垃圾回收机制分为新生代和老生代</p>
+<p>新生代：</p>
+<ul>
+<li>使用Scavenge</li>
+<li>Cheney算法</li>
+<li>内存分两块From(使用)和To(闲置)</li>
+<li>进入From + 快占满的时候存活对象进入To + 清空From + 调换From和To + 循环</li>
+<li>两个条件晋升到老生代</li>
+</ul>
+<p>老生代：</p>
+<ul>
+<li>Mark-Sweep （标记清除）和 Mark-Compact （标记整理）</li>
+<li>Mark-Sweep 碎片内存</li>
+<li>Mark-Compact 清除前整理 + 活的去一侧 + 清空另一侧 + 速度慢<h2 id="v-IE有个BUG"><a href="#v-IE有个BUG" class="headerlink" title="v.IE有个BUG"></a>v.IE有个BUG</h2>如果把页面关了(body没了，他引用的地址断了)<br>地址之间互相引用，但不和外部联系<br>他们本应该被清掉<br>但是（尤其IE6）IE里，你只要不关掉整个IE，他们会一直存着。<br>垃圾一直存着…内存boom。<br>所以需要在页面关闭之前执行：</li>
+</ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onunload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.body.onclick = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//然而需要把所有的监听的函数都设为null，需要写很多行。</span></span><br></pre></td></tr></table></figure>
 <p>这就是传说中的——内存泄漏：<br>由于浏览器的BUG,使得该被标记为垃圾的东西，没有被标记为垃圾。</p>
-<h1 id="2-深拷贝？浅拷贝？"><a href="#2-深拷贝？浅拷贝？" class="headerlink" title="2.深拷贝？浅拷贝？"></a>2.深拷贝？浅拷贝？</h1><h2 id="I-深拷贝"><a href="#I-深拷贝" class="headerlink" title="I.深拷贝"></a>I.深拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span> = <span class="number">2</span></span><br><span class="line"><span class="comment">//a = 1不改变</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-深拷贝？浅拷贝？"><a href="#3-深拷贝？浅拷贝？" class="headerlink" title="3.深拷贝？浅拷贝？"></a>3.深拷贝？浅拷贝？</h1><h2 id="I-深拷贝"><a href="#I-深拷贝" class="headerlink" title="I.深拷贝"></a>I.深拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span> = <span class="number">2</span></span><br><span class="line"><span class="comment">//a = 1不改变</span></span><br></pre></td></tr></table></figure>
 <p>b的改变不影响a<br>这就是深拷贝<br>基本类型 赋值 就是深拷贝</p>
 <h2 id="II-浅拷贝"><a href="#II-浅拷贝" class="headerlink" title="II.浅拷贝"></a>II.浅拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;</span><br><span class="line">        name: <span class="string">'a'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span><span class="selector-class">.name</span> = <span class="string">'b'</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.name</span> <span class="comment">// 也是b了</span></span><br></pre></td></tr></table></figure>
 <p>指向同一个ADDR改变地址对应的内容后<br>a也变了。<br>这就是浅拷贝。</p>
@@ -570,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-首先要搞清楚什么是内存"><span class="nav-number">1.</span> <span class="nav-text">1.首先要搞清楚什么是内存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-它是怎么工作的"><span class="nav-number">1.1.</span> <span class="nav-text">I.它是怎么工作的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-举个例子"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.举个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-数据"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-引用"><span class="nav-number">1.1.3.</span> <span class="nav-text">iii.引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-存在对象问题的时候，走一遍i里的流程就清楚了"><span class="nav-number">1.1.4.</span> <span class="nav-text">iv.存在对象问题的时候，走一遍i里的流程就清楚了</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-垃圾回收"><span class="nav-number">1.2.</span> <span class="nav-text">II.垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-例"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-IE有个BUG"><span class="nav-number">1.2.2.</span> <span class="nav-text">ii.IE有个BUG</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-深拷贝？浅拷贝？"><span class="nav-number">2.</span> <span class="nav-text">2.深拷贝？浅拷贝？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-深拷贝"><span class="nav-number">2.1.</span> <span class="nav-text">I.深拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-浅拷贝"><span class="nav-number">2.2.</span> <span class="nav-text">II.浅拷贝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-类型互相转换"><span class="nav-number">3.</span> <span class="nav-text">3.类型互相转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-方法"><span class="nav-number">3.1.</span> <span class="nav-text">I.方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-转字符串-toString"><span class="nav-number">3.1.1.</span> <span class="nav-text">i.转字符串.toString</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#toString太长了老司机怎么转的？"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">.toString太长了老司机怎么转的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这时候就引出一个问题"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">这时候就引出一个问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局方法window-String"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">全局方法window.String()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所以最方便的转字符串方法是加上一个空字符串"><span class="nav-number">3.1.1.4.</span> <span class="nav-text">所以最方便的转字符串方法是加上一个空字符串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-转布尔Boolean"><span class="nav-number">3.1.2.</span> <span class="nav-text">ii.转布尔Boolean()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这个API好长…"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">这个API好长…</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所有类型都可以变成布尔但是好难记哦"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">所有类型都可以变成布尔但是好难记哦</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-转number"><span class="nav-number">3.1.3.</span> <span class="nav-text">iii.转number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#朴实方法Number-39-1-39"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">朴实方法Number(&#39;1&#39;)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局方法parseInt-39-1-39-10"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">全局方法parseInt(&#39;1&#39;,10)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有浮点数的话parseFloat-39-1-23-39"><span class="nav-number">3.1.3.3.</span> <span class="nav-text">有浮点数的话parseFloat(&#39;1.23&#39;)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#39-1-39-0骚方法（最常用）"><span class="nav-number">3.1.3.4.</span> <span class="nav-text">&#39;1&#39;-0骚方法（最常用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取正-39-1-39-更骚的方法"><span class="nav-number">3.1.3.5.</span> <span class="nav-text">取正+ &#39;1&#39;更骚的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-转object"><span class="nav-number">3.1.4.</span> <span class="nav-text">iv.转object</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-首先要搞清楚什么是内存"><span class="nav-number">1.</span> <span class="nav-text">1.首先要搞清楚什么是内存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-它是怎么工作的"><span class="nav-number">1.1.</span> <span class="nav-text">I.它是怎么工作的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-举个例子"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.举个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-数据"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-引用"><span class="nav-number">1.1.3.</span> <span class="nav-text">iii.引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-存在对象问题的时候，走一遍i里的流程就清楚了"><span class="nav-number">1.1.4.</span> <span class="nav-text">iv.存在对象问题的时候，走一遍i里的流程就清楚了</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-垃圾回收-GC"><span class="nav-number">2.</span> <span class="nav-text">2.垃圾回收(GC)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#i-关于活动对象"><span class="nav-number">2.1.</span> <span class="nav-text">i.关于活动对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ii-如何判断"><span class="nav-number">2.2.</span> <span class="nav-text">ii.如何判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iii-例"><span class="nav-number">2.3.</span> <span class="nav-text">iii.例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vi-V8引擎的垃圾回收策略"><span class="nav-number">2.4.</span> <span class="nav-text">vi.V8引擎的垃圾回收策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两代的内存分配"><span class="nav-number">2.4.1.</span> <span class="nav-text">两代的内存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新生代"><span class="nav-number">2.4.2.</span> <span class="nav-text">新生代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#晋升"><span class="nav-number">2.4.3.</span> <span class="nav-text">晋升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#老生代"><span class="nav-number">2.4.4.</span> <span class="nav-text">老生代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-Sweep"><span class="nav-number">2.4.4.1.</span> <span class="nav-text">Mark-Sweep</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-Compact"><span class="nav-number">2.4.4.2.</span> <span class="nav-text">Mark-Compact</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结合"><span class="nav-number">2.4.4.3.</span> <span class="nav-text">结合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V8垃圾处理机制总结"><span class="nav-number">2.4.5.</span> <span class="nav-text">V8垃圾处理机制总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-IE有个BUG"><span class="nav-number">2.5.</span> <span class="nav-text">v.IE有个BUG</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-深拷贝？浅拷贝？"><span class="nav-number">3.</span> <span class="nav-text">3.深拷贝？浅拷贝？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-深拷贝"><span class="nav-number">3.1.</span> <span class="nav-text">I.深拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-浅拷贝"><span class="nav-number">3.2.</span> <span class="nav-text">II.浅拷贝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-类型互相转换"><span class="nav-number">4.</span> <span class="nav-text">3.类型互相转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-方法"><span class="nav-number">4.1.</span> <span class="nav-text">I.方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-转字符串-toString"><span class="nav-number">4.1.1.</span> <span class="nav-text">i.转字符串.toString</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#toString太长了老司机怎么转的？"><span class="nav-number">4.1.1.1.</span> <span class="nav-text">.toString太长了老司机怎么转的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这时候就引出一个问题"><span class="nav-number">4.1.1.2.</span> <span class="nav-text">这时候就引出一个问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局方法window-String"><span class="nav-number">4.1.1.3.</span> <span class="nav-text">全局方法window.String()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所以最方便的转字符串方法是加上一个空字符串"><span class="nav-number">4.1.1.4.</span> <span class="nav-text">所以最方便的转字符串方法是加上一个空字符串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-转布尔Boolean"><span class="nav-number">4.1.2.</span> <span class="nav-text">ii.转布尔Boolean()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这个API好长…"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">这个API好长…</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所有类型都可以变成布尔但是好难记哦"><span class="nav-number">4.1.2.2.</span> <span class="nav-text">所有类型都可以变成布尔但是好难记哦</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-转number"><span class="nav-number">4.1.3.</span> <span class="nav-text">iii.转number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#朴实方法Number-39-1-39"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">朴实方法Number(&#39;1&#39;)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局方法parseInt-39-1-39-10"><span class="nav-number">4.1.3.2.</span> <span class="nav-text">全局方法parseInt(&#39;1&#39;,10)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有浮点数的话parseFloat-39-1-23-39"><span class="nav-number">4.1.3.3.</span> <span class="nav-text">有浮点数的话parseFloat(&#39;1.23&#39;)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#39-1-39-0骚方法（最常用）"><span class="nav-number">4.1.3.4.</span> <span class="nav-text">&#39;1&#39;-0骚方法（最常用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取正-39-1-39-更骚的方法"><span class="nav-number">4.1.3.5.</span> <span class="nav-text">取正+ &#39;1&#39;更骚的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-转object"><span class="nav-number">4.1.4.</span> <span class="nav-text">iv.转object</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
