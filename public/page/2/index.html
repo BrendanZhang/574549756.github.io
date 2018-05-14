@@ -383,7 +383,10 @@
 <h3 id="两代的内存分配"><a href="#两代的内存分配" class="headerlink" title="两代的内存分配"></a>两代的内存分配</h3><p>默认情况下：<br>32位：</p>
 <ul>
 <li>新生代16MB</li>
-<li>老生代700MB<br>64位：</li>
+<li>老生代700MB</li>
+</ul>
+<p>64位：</p>
+<ul>
 <li>新生代32MB</li>
 <li>老生代1.4GB<h3 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h3>新生代存的都是生存周期短的对象<br>垃圾回收机制——在储存空间快满的时候，就进行一次垃圾回收</li>
 </ul>
@@ -406,8 +409,9 @@
 <h3 id="老生代"><a href="#老生代" class="headerlink" title="老生代"></a>老生代</h3><p>老生代中，存货对象占较大比重，如果继续采用新生代的算法管理(Scavenge)，会存在两个问题：</p>
 <ol>
 <li>存活对象较多，复制存活对象效率很低。</li>
-<li>采用Scavenge算法会浪费一半内存，老生代占用内存很大（远超新生代），所以浪费严重。<br>所以在V8老生代中主要采用Mark-Sweep和与Mark-Conpact相结合的方式进行垃圾回收</li>
+<li>采用Scavenge算法会浪费一半内存，老生代占用内存很大（远超新生代），所以浪费严重。</li>
 </ol>
+<p>所以在V8老生代中主要采用Mark-Sweep和与Mark-Conpact相结合的方式进行垃圾回收</p>
 <h4 id="Mark-Sweep"><a href="#Mark-Sweep" class="headerlink" title="Mark-Sweep"></a>Mark-Sweep</h4><p>Mark-Sweep（标记清除）,分为标记和清除两个截断。</p>
 <p>与Scavenge不同，Mark-Sweep并不会将内存分为两份，所以不存在浪费一半空间的行为。<br>Mark-Sweep在标记截断遍历堆内存中的所有对象，并标记活着的对象<br>总结一下：</p>
 <ol>
