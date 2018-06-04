@@ -271,6 +271,234 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/异步＆回调/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/04/异步＆回调/" itemprop="url">异步＆回调</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T21:41:23+08:00">2018-06-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-概念"><a href="#0-概念" class="headerlink" title="0.概念"></a>0.概念</h1><h2 id="I-异步"><a href="#I-异步" class="headerlink" title="I.异步"></a>I.异步</h2><p>异步加载也叫非阻塞模式加载，在浏览器下载JS的同事，还会执行后续的页面处理。</p>
+<p><strong>不等自己这行代码运行完，直接运行下一行代码，就是异步</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    console.<span class="built_in">log</span>(<span class="string">'这里这里看这里'</span>)</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br><span class="line">console.<span class="built_in">log</span>(<span class="string">'不看不看不看'</span>)</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">setTimeout还沉浸在它的delay时间里的时候</span><br><span class="line">已经打印出了<span class="string">'不看不看不看'</span></span><br><span class="line">一秒后才打印出<span class="string">'这里这里看这里'</span></span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h3 id="i-什么时候需要异步"><a href="#i-什么时候需要异步" class="headerlink" title="i.什么时候需要异步"></a>i.什么时候需要异步</h3><h4 id="在等待过程中不能像alert一样阻塞程序运行"><a href="#在等待过程中不能像alert一样阻塞程序运行" class="headerlink" title="在等待过程中不能像alert一样阻塞程序运行"></a>在等待过程中不能像alert一样阻塞程序运行</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">for</span><span class="params">(var i=<span class="number">0</span>; i&lt;<span class="number">100000</span>;i++)</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">alert</span><span class="params">(<span class="string">'遍历完成'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>JS是单线程的</li>
+<li>他会老老实实等待遍历完成以后再alert</li>
+<li>严重堵塞了后面的代码执行。</li>
+</ul>
+<h4 id="需要等待的情况"><a href="#需要等待的情况" class="headerlink" title="需要等待的情况"></a>需要等待的情况</h4><ul>
+<li>我们知道有一个叫做 <code>window.onload</code> 的api</li>
+<li>在我们需要在<code>head</code>里面加入<code>script</code>代码的时候，会将代码写在<code>windowl.onload</code>里面</li>
+<li>因为在我们操作<code>dom</code>的时候<code>script</code>后面的<code>html</code>代码还没开始加载</li>
+<li>人家还没存在就想操作人家，臣妾做不到呀。</li>
+<li><code>window.onload</code>里面的代码是在文档全部加载完毕后执行的，相当于异步</li>
+</ul>
+<h4 id="等待的情况需要异步"><a href="#等待的情况需要异步" class="headerlink" title="等待的情况需要异步"></a>等待的情况需要异步</h4><p>有时候页面不需要一次性把所有代码都加载，更多的时候我们是按照某个需求采取加载某段代码的。</p>
+<h3 id="ii-我们经常用到异步"><a href="#ii-我们经常用到异步" class="headerlink" title="ii.我们经常用到异步"></a>ii.我们经常用到异步</h3><ul>
+<li><code>setTimeout</code>和<code>setInterval</code>定时器</li>
+<li><code>ajax</code>网络请求</li>
+<li>事件绑定</li>
+</ul>
+<h2 id="II-同步"><a href="#II-同步" class="headerlink" title="II.同步"></a>II.同步</h2><p>和人类的思维顺序最匹配的运行方式</p>
+<ul>
+<li>谁先写，谁先运行。</li>
+<li>当前行代码任务执行完了得到结果后，再执行下一行</li>
+</ul>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built-in">log</span>(<span class="string">'first'</span>)</span><br><span class="line">console.<span class="built-in">log</span>(<span class="string">'second'</span>)</span><br><span class="line">console.<span class="built-in">log</span>(<span class="string">'third'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">天天都能看到的顺序执行</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="III-区别"><a href="#III-区别" class="headerlink" title="III.区别"></a>III.区别</h2><p>同步或非同步，标明是否将整个流程按顺序完成<br>阻塞或非阻塞，意味着调用函数会不会立即告诉你结果</p>
+<h2 id="IV-回调"><a href="#IV-回调" class="headerlink" title="IV.回调"></a>IV.回调</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In computer programming, <span class="selector-tag">a</span> callback is <span class="selector-tag">a</span> reference to <span class="selector-tag">a</span> piece of </span><br><span class="line">executable <span class="selector-tag">code</span> that is passed as an argument to other <span class="selector-tag">code</span>.</span><br><span class="line">                                                    ——维基说的</span><br></pre></td></tr></table></figure>
+<ul>
+<li>JS 中的回调函数定义为：</li>
+<li>函数 A 作为参数(函数引用)传递到另一个函数 B 中</li>
+<li>并且这个函数 B 执行函数 A </li>
+<li>我们就说函数 A 叫做回调函数</li>
+<li>如果没有名称(函数表达式)，就叫做匿名回调函数。</li>
+<li>函数 B 调用函数 A 叫做调用回调函数</li>
+</ul>
+<h3 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h3><ul>
+<li>资源加载：动态加载 JS 文件后执行回调，加载 iframe 后执行回调， ajax 操作回调，图片加载完成执行回调。</li>
+<li>DOM 事件以及 Node.js 事件基于回调机制</li>
+<li>setTimeout的延迟为0，我们喜闻乐见的立即执行函数</li>
+<li>链式调用 </li>
+<li>setTimeout setInterval的函数调用得到返回值。</li>
+</ul>
+<h1 id="1-执行顺序"><a href="#1-执行顺序" class="headerlink" title="1.执行顺序"></a>1.执行顺序</h1><p>同步优先、异步靠边、回调垫底<br>           ↓<br>   同步 =&gt; 异步 =&gt; 回调</p>
+<h1 id="2-举个栗子"><a href="#2-举个栗子" class="headerlink" title="2.举个栗子"></a>2.举个栗子</h1><h2 id="I-关于伟大的setTimeout"><a href="#I-关于伟大的setTimeout" class="headerlink" title="I.关于伟大的setTimeout"></a>I.关于伟大的setTimeout</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for(<span class="name">var</span> i=0<span class="comment">; i&lt;5; i++)&#123;</span></span><br><span class="line">    setTimeout(<span class="name">function</span>()&#123;</span><br><span class="line">        console.log(<span class="name">i</span>)</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(<span class="name">i</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这是个非常经典的题</li>
+<li>如果靠猜可能有两种答案</li>
+<li>0 1 2 3 4 5 5</li>
+<li>5 5 5 5 5 5 5</li>
+</ul>
+<h3 id="i-分析一下"><a href="#i-分析一下" class="headerlink" title="i.分析一下"></a>i.分析一下</h3><ol>
+<li><code>for</code>循环和循环体外部的<code>console.log</code>是同步的，所以先执行<code>for</code>循环，再执行外部的<code>console.log</code>(同步优先)</li>
+<li><code>for</code>循环里有一个<code>setTimeout</code>回调<code>function()</code>，它是垫底的，所以只能最后执行(回调垫底)</li>
+<li>为什么最先输出5？<ul>
+<li><code>for</code> 循环先执行，但是不会给setTimeout传参(回调垫底)</li>
+<li>等<code>for</code>循环执行完，就会给<code>setTimeout</code>传参</li>
+<li>而外部的<code>console.log</code>打印出5是因为<code>for</code>循环执行完成了</li>
+</ul>
+</li>
+</ol>
+<h4 id="概括一下"><a href="#概括一下" class="headerlink" title="概括一下"></a>概括一下</h4><ul>
+<li>里面的兄弟<code>setTimeout</code>想等一秒</li>
+<li><code>for</code>这位老大哥已经遍历完了</li>
+<li>等里面的<code>setTimeout</code>准备好了的时候</li>
+<li><code>for</code>给它丢过去一个<code>5</code></li>
+</ul>
+<h2 id="II-关于Promise的例子"><a href="#II-关于Promise的例子" class="headerlink" title="II.关于Promise的例子"></a>II.关于Promise的例子</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">2</span>), <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">    resolve(<span class="literal">true</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">a.then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">8</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">6</span>), <span class="number">0</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="i-分析一下-1"><a href="#i-分析一下-1" class="headerlink" title="i.分析一下"></a>i.分析一下</h3><ol>
+<li><p><code>a</code>是一个<code>Promise</code>，本身<code>Promise</code>对象是同步的，但是<code>then()</code>和<code>catch()</code>方法是异步的</p>
+<ul>
+<li>先执行<code>a</code>里面的<code>Promise</code>同步代码(同步优先)</li>
+<li><code>console.log(1)</code></li>
+<li><code>setTimeout(() =&gt; console.log(2), 0)</code> 好家伙你是回调，先等着(回调垫底)</li>
+<li><code>console.log(3)</code></li>
+<li><code>console.log(4)</code></li>
+</ul>
+</li>
+<li><p>接着执行 <code>resolve(true)</code> 进入<code>then()</code></p>
+<ul>
+<li><code>then</code>是异步的，他下面还有同步任务没有执行完</li>
+<li>所以<code>then</code>里的内容也放进消息队列里等候(异步靠边)</li>
+</ul>
+</li>
+<li><p><code>b</code>也是一个<code>Promise</code>对象，同步，执行内部同步代码。</p>
+<ul>
+<li><code>console.log(5)</code></li>
+<li><code>setTimeout(() =&gt; console.log(6), 0)</code> 回调去排队(回调垫底)</li>
+</ul>
+</li>
+<li><p>最后同步<code>console.log(7)</code>输出7</p>
+</li>
+<li>JS回头看到了消息队列<ul>
+<li>只有一个是异步，<code>then()</code>出来输出8</li>
+<li>异步over</li>
+<li>回调函数，这时候有两个<code>setTimeout</code>在等待</li>
+<li>由于他们俩时间是一样的，都是0</li>
+<li>所以不受时间影响，只和排队的先后顺序有关</li>
+<li>所以先输出<code>a</code>里的2</li>
+<li>再输出<code>b</code>里的6</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/用JS做一个AJAX/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2113,235 +2341,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/JavaScript-对象/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/12/JavaScript-对象/" itemprop="url">JavaScript-对象</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T15:46:37+08:00">2018-04-12</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-全局对象"><a href="#1-全局对象" class="headerlink" title="1.全局对象"></a>1.全局对象</h1><h2 id="I-window（global）"><a href="#I-window（global）" class="headerlink" title="I.window（global）"></a>I.window（global）</h2><p>标准里他叫做global<br>浏览器上他叫做window<br>是一个对象</p>
-<h3 id="i-属性"><a href="#i-属性" class="headerlink" title="i.属性"></a>i.属性</h3><p>例：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">global</span>.parseInt</span><br><span class="line"><span class="keyword">global</span>.parseFloat</span><br></pre></td></tr></table></figure>
-<h3 id="ii-属性分为两类"><a href="#ii-属性分为两类" class="headerlink" title="ii.属性分为两类"></a>ii.属性分为两类</h3><p>如果函数是<code>window.</code>那么这个<code>window.</code>可以省掉，毕竟它是全局函数。</p>
-<h4 id="ECMAScript规定要有的"><a href="#ECMAScript规定要有的" class="headerlink" title="ECMAScript规定要有的"></a>ECMAScript规定要有的</h4><p>比如</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">parseInt</span><br><span class="line">parseFloat</span><br><span class="line"><span class="function"><span class="title">Number</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">String</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Boolean</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Object</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-<p>必须得有</p>
-<h4 id="私有的（浏览器私有的）"><a href="#私有的（浏览器私有的）" class="headerlink" title="私有的（浏览器私有的）"></a>私有的（浏览器私有的）</h4><p>比如</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alert（弹框提示）</span><br><span class="line">prompt（用户填写）</span><br><span class="line">confirm（用户确认）</span><br><span class="line">console（开发者打印）</span><br><span class="line"><span class="function"><span class="title">document</span><span class="params">(能对文档做的所有操作)</span><span class="title">DOM</span><span class="params">(w3c制定)</span></span></span><br><span class="line"><span class="function"><span class="title">history</span><span class="params">(浏览器操作)</span><span class="title">BOM</span></span></span><br></pre></td></tr></table></figure>
-<p>都是浏览器自己实现的</p>
-<h1 id="2-简单类型与对象的区别"><a href="#2-简单类型与对象的区别" class="headerlink" title="2.简单类型与对象的区别"></a>2.简单类型与对象的区别</h1><h2 id="I-Number"><a href="#I-Number" class="headerlink" title="I.Number()"></a>I.Number()</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="var-n-1"><a href="#var-n-1" class="headerlink" title="var n = 1"></a>var n = 1</h4><p>但是它不能.toString</p>
-<h4 id="var-n-new-Number-1"><a href="#var-n-new-Number-1" class="headerlink" title="var n = new Number(1)"></a>var n = new Number(1)</h4><p>这个方法很少人用…</p>
-<figure class="highlight clojure-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">1=&gt;</span><span class="clojure">&#123;valueOf():<span class="number">1</span>,&#125; //把<span class="number">1</span>转变成对象</span></span><br></pre></td></tr></table></figure>
-<p>历史遗留问题</p>
-<h4 id="如何写的简单同时又可以用-toString呢？"><a href="#如何写的简单同时又可以用-toString呢？" class="headerlink" title="如何写的简单同时又可以用.toString呢？"></a>如何写的简单同时又可以用.toString呢？</h4><p>临时转换：</p>
-<figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">temp = <span class="function"><span class="keyword">new</span> <span class="title">Number</span>(n)</span></span><br><span class="line"><span class="function"><span class="title">temp</span>.<span class="title">toString</span>()</span></span><br><span class="line"><span class="function">拿到对象里的值再输出</span></span><br><span class="line"><span class="function">然后去除<span class="title">temp</span>的<span class="title">ADDR</span></span></span><br><span class="line"><span class="function">对象内容被回收</span></span><br><span class="line"><span class="function"><span class="title">END</span></span></span><br></pre></td></tr></table></figure>
-<p>所以在：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">n</span> = 1</span><br><span class="line"><span class="keyword">n</span>.<span class="keyword">toString</span>() <span class="comment">//发生了一次temp的转换</span></span><br></pre></td></tr></table></figure>
-<p><strong>JS之父做的操作</strong></p>
-<h2 id="II-String"><a href="#II-String" class="headerlink" title="II.String()"></a>II.String()</h2><p>操作和Number()一样</p>
-<h3 id="记几个API吧"><a href="#记几个API吧" class="headerlink" title="记几个API吧"></a>记几个API吧</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">API</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.charAt(n)</td>
-<td style="text-align:center">获取第n位的字符</td>
-<td style="text-align:center">n为第几位</td>
-</tr>
-<tr>
-<td style="text-align:center">.charCodeAt(n)</td>
-<td style="text-align:center">获取某一个索引对应的字符的编码</td>
-<td style="text-align:center">n为第几位。</td>
-</tr>
-<tr>
-<td style="text-align:center">(数字).toString(进制数)</td>
-<td style="text-align:center">将数字转换为制定进制数</td>
-<td style="text-align:center">可以和<code>.charCodeAt(n)</code>组合使用</td>
-</tr>
-<tr>
-<td style="text-align:center">concat()</td>
-<td style="text-align:center">连接两个字符串</td>
-<td style="text-align:center"><code>字符串1.concat(字符串2)</code>和命令行的<code>cat</code>是不是兄弟</td>
-</tr>
-<tr>
-<td style="text-align:center">endsWith()</td>
-<td style="text-align:center">一个字符串以什么结尾</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">.trim()</td>
-<td style="text-align:center">去掉两边的空格</td>
-<td style="text-align:center"><code>字符串.trim()</code></td>
-</tr>
-<tr>
-<td style="text-align:center">.slice</td>
-<td style="text-align:center">切片，保留指定位</td>
-<td style="text-align:center"><code>目标字符串.slice(0,2)</code>仅保留前两位（这两个数字包前不包后）</td>
-</tr>
-<tr>
-<td style="text-align:center">.replace</td>
-<td style="text-align:center">替换</td>
-<td style="text-align:center"><code>字符串.replace(&#39;要换谁&#39;,&#39;换成谁&#39;)</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="III-Bullean"><a href="#III-Bullean" class="headerlink" title="III.Bullean()"></a>III.Bullean()</h2><p>里面东西超少</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">toString</span></span><br><span class="line"><span class="attribute">valueOf</span></span><br></pre></td></tr></table></figure>
-<h2 id="IV-null和undefined没有对应的函数"><a href="#IV-null和undefined没有对应的函数" class="headerlink" title="IV.null和undefined没有对应的函数"></a>IV.null和undefined没有对应的函数</h2><h2 id="V-object"><a href="#V-object" class="headerlink" title="V.object"></a>V.object</h2><p>之前都是基本类型<br>现在到了对象</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> o2 = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line"><span class="comment">// 他俩都是空的，但是。</span></span><br><span class="line">o1 === o2 <span class="comment">//false</span></span><br><span class="line"><span class="comment">// 回到前面ADDR和对象的关系，o1和o2的地址不一样，就算内容一样，也不相等。</span></span><br></pre></td></tr></table></figure>
-<p>所以，直接用<code>var o1 = {}</code>吧，他俩没差，还少敲几个字符。你又不是敲java。</p>
-<h2 id="VI-总结一下"><a href="#VI-总结一下" class="headerlink" title="VI.总结一下"></a>VI.总结一下</h2><p>他们都有<code>toString()</code>和<code>valueOf()</code><br>那岂不是很占内存<br>可不可以都用同一个<code>toString()</code>和<code>valueOf()</code></p>
-<p>如何让他们都指向同一个<code>toString()</code>和<code>valueOf()</code>呢？</p>
-<h3 id="JS向你掏出来了一只-proto"><a href="#JS向你掏出来了一只-proto" class="headerlink" title="JS向你掏出来了一只__proto__"></a>JS向你掏出来了一只<code>__proto__</code></h3><h1 id="3-原型"><a href="#3-原型" class="headerlink" title="3.原型"></a>3.原型</h1><h2 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var o1 = new object()</span><br><span class="line">o1.name = <span class="string">'oracle'</span></span><br><span class="line">o1.age = <span class="string">'24'</span></span><br><span class="line"><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span></span><br><span class="line">o1 ADDR <span class="number">200</span>:</span><br><span class="line">name: oracle</span><br><span class="line">age: <span class="number">24</span></span><br><span class="line">...</span><br><span class="line">__proto__:ADDR <span class="number">100</span> <span class="regexp">//</span>用__proto__指向共用属性</span><br><span class="line"><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span></span><br><span class="line">ADDR <span class="number">100</span>(共用属性):</span><br><span class="line">...</span><br><span class="line">toString: A10</span><br><span class="line">valueOf: A11</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>他们都指向共用属性，检查一下？</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">o1</span> === o2 //<span class="literal">false</span></span><br><span class="line">//因为他们是不同对象</span><br><span class="line">o1.<span class="attr">toString</span> === o2.<span class="built_in">toString</span> //<span class="literal">true</span></span><br><span class="line">//但他们的.<span class="built_in">toString</span>都指向共用属性</span><br></pre></td></tr></table></figure>
-<h2 id="I-那么简单类型的共用属性呢？"><a href="#I-那么简单类型的共用属性呢？" class="headerlink" title="I.那么简单类型的共用属性呢？"></a>I.那么简单类型的共用属性呢？</h2><p>想象一棵树，根部是<code>object</code>的共有属性。</p>
-<h3 id="i-比如number"><a href="#i-比如number" class="headerlink" title="i.比如number"></a>i.比如number</h3><p><code>var n = nwe Number(1)</code><br>这里面的<code>toString</code>和<code>obj</code>里的不一样耶。他都可以转进制数。<br>而且他还有别的<code>.toFixed</code>什么的</p>
-<p>首先，number会指向一个number才有的共用属性：</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">toFixed</span></span><br><span class="line">toExponential</span><br><span class="line"><span class="built_in">toString</span></span><br><span class="line">...</span><br><span class="line"><span class="variable">__proto__</span>: Object <span class="comment">//这一层再放一个__proto__去找所有对象的共用属性</span></span><br></pre></td></tr></table></figure>
-<p>然后在number的共用属性里面，找对象的共用属性<br><strong>自己用不一样的，再从别处引用一样的</strong></p>
-<h2 id="II-这就是原型链"><a href="#II-这就是原型链" class="headerlink" title="II.这就是原型链"></a>II.这就是原型链</h2><p>从它的类型到它的类型的共用属性在到对象的共用属性，一条链过去，一路都是节点。</p>
-<h3 id="i-prototype"><a href="#i-prototype" class="headerlink" title="i.prototype"></a>i.prototype</h3><p>如果一个哈希没有被引用的话，他会被浏览器垃圾回收（没大哥罩着就要被干掉）<br>那么共用属性在没人引用的时候，就是prototype在引用他。</p>
-<p>从现在起，把共用属性这个词，换成<strong>原型</strong>。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype</span><br><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;</span><br><span class="line">o1.__proto__ === <span class="built_in">Object</span>.prototype  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>这样就清晰了，它们一直以来，引用的是谁。</p>
-<h3 id="ii-Number-prototype"><a href="#ii-Number-prototype" class="headerlink" title="ii.Number.prototype"></a>ii.Number.prototype</h3><p>了解到<code>number</code>属性自己的原型里面还有引用对象的原型，做个测试：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>)</span><br><span class="line">n1.__proto__ === <span class="built_in">Number</span>.prototype <span class="comment">//true</span></span><br><span class="line">n1.__proto__.__proto__  === <span class="built_in">Object</span>.prototype  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>那么我们就可以理解为什么<br><code>n1.hasOwnProperty(&#39;2&#39;)  //false</code><br>n1可以调用他第一层<code>__proto__</code>里没有的<code>.hasOwnProperty</code>了<br>因为会一层一层的找，第一层找不到找第二层。<br><strong>这条链子在JS引擎开启的时候就连上了</strong></p>
-<h2 id="III-proto-和prototype有什么区别"><a href="#III-proto-和prototype有什么区别" class="headerlink" title="III.__proto__和prototype有什么区别"></a>III.<code>__proto__</code>和<code>prototype</code>有什么区别</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String<span class="selector-class">.prototype</span>   <span class="comment">//是 String 的共用属性的引用（不让共用属性被清理）</span></span><br><span class="line">s.__proto__   <span class="comment">//是 String 的共用属性的引用（真的是要用它）</span></span><br></pre></td></tr></table></figure>
-<h3 id="i-形式上呢？"><a href="#i-形式上呢？" class="headerlink" title="i.形式上呢？"></a>i.形式上呢？</h3><p>var 接对象 = new 接函数(也是对象)</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 对象 = <span class="keyword">new</span> <span class="type"></span>函数()</span><br><span class="line">对象.__proto__ === 函数.prototype</span><br></pre></td></tr></table></figure>
-<p>那么我们可以说他们的区别：<br><code>__proto__</code>是对象的属性<br><code>prototype</code>是函数的属性</p>
-<h2 id="IV-特殊的function"><a href="#IV-特殊的function" class="headerlink" title="IV.特殊的function"></a>IV.特殊的function</h2><p>找寻本源：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Object</span>.prototype <span class="comment">//false</span></span><br><span class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>问题来了，我们把<code>__proto__</code>当成链<br>把<code>prototype</code>当成锚</p>
-<p><code>Function</code>本身也是一个<code>Function</code>对象</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="function"><span class="keyword">Function</span></span> = new <span class="function"><span class="keyword">Function</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">Function</span>.<span class="title">__proto__</span></span> === <span class="function"><span class="keyword">Function</span>.<span class="title">prototype</span></span>   //true</span><br><span class="line">//他自己是<span class="function"><span class="keyword">Function</span></span>对象，我要通过<span class="function"><span class="keyword">Function</span></span>对象会指向<span class="function"><span class="keyword">Function</span></span>函数。</span><br></pre></td></tr></table></figure>
-<p>思考一下，是不是先有鸡还是先有蛋的问题。<br>并不是，我有一个<code>Function.prototype</code>才可以调用这个函数构造<code>Function对象</code>。<br>但是它本身已经存在了，为什么要构造自己，所以<code>Function.__proto__</code>会指向自己。</p>
-<p>同理<code>看似Object.prototype</code>是大BOSS，谁都指向他。<br>其实他也是通过<code>Function.prototype</code>构造的，也就是说是<code>Function</code>是<code>Object</code>的<strong>构造函数</strong>。</p>
-<p><strong>有没有一种垂帘听政的感觉</strong></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2389,7 +2388,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
