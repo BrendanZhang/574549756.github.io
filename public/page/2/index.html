@@ -271,6 +271,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/16/JavaScript-记了两个API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/16/JavaScript-记了两个API/" itemprop="url">JavaScript-记了两个API</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-16T21:28:55+08:00">2018-04-16</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-关于JS找兄弟"><a href="#1-关于JS找兄弟" class="headerlink" title="1.关于JS找兄弟"></a>1.关于JS找兄弟</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">            siteWelcome.classList.remove(<span class="string">'active'</span>)</span></span><br><span class="line"><span class="undefined">    &#125;,3000)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(<span class="built_in">window</span>.scrollY &gt; <span class="number">0</span>)&#123;</span></span><br><span class="line"><span class="actionscript">            topNavBar.classList.add(<span class="string">'sticky'</span>)</span></span><br><span class="line"><span class="actionscript">        &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">            topNavBar.classList.remove(<span class="string">'sticky'</span>)                </span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> aTags = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'menuTigger'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;aTags.length; i++)&#123;</span></span><br><span class="line"><span class="actionscript">        aTags[i].onmouseenter = <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> a = x.currentTarget</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> brother = a.nextSibling             <span class="comment">//这种找兄弟...真的毛病多。</span></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">while</span>(brother.tagName !== <span class="string">'UL'</span>)&#123;   <span class="comment">//nodeType去查文档，表达了不同元素节点。 1是元素节点 3是文字 PS:为什么大写UL，因为brother.tagName会返回一个大写的UL。</span></span></span><br><span class="line"><span class="actionscript">                brother = brother.nextSibling    <span class="comment">//递归找节点，不是节点继续找。</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="actionscript">            brother.classList.add(<span class="string">'active'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="actionscript">        aTags[i].onmouseleave = <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> a = x.currentTarget</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> brother = a.nextSibling</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">while</span>(brother.tagName !== <span class="string">'UL'</span>)&#123;</span></span><br><span class="line"><span class="undefined">                brother = brother.nextSibling</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="actionscript">            brother.classList.remove(<span class="string">'active'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="找父级"><a href="#找父级" class="headerlink" title="找父级"></a>找父级</h2><p><code>.parentNode</code></p>
+<h1 id="2-关于不找兄弟直接监听父级元素"><a href="#2-关于不找兄弟直接监听父级元素" class="headerlink" title="2.关于不找兄弟直接监听父级元素"></a>2.关于不找兄弟直接监听父级元素</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let liTags = document.getElementsByClassName(<span class="string">'menuTigger'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseenter</span> = function(x)&#123;</span><br><span class="line">        let <span class="selector-tag">li</span> = x.currentTarget</span><br><span class="line">        let brother = <span class="selector-tag">li</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>]</span><br><span class="line">        brother<span class="selector-class">.classList</span><span class="selector-class">.add</span>(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseleave</span> = function(x)&#123;</span><br><span class="line">        let <span class="selector-tag">li</span> = x.currentTarget</span><br><span class="line">        let brother = <span class="selector-tag">li</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>]</span><br><span class="line">        brother<span class="selector-class">.classList</span><span class="selector-class">.remove</span>(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-既然a和ul都要active，那我为什么不把他们的父元素active呢？"><a href="#3-既然a和ul都要active，那我为什么不把他们的父元素active呢？" class="headerlink" title="3.既然a和ul都要active，那我为什么不把他们的父元素active呢？"></a>3.既然a和ul都要active，那我为什么不把他们的父元素active呢？</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let liTags = document.getElementsByClassName(<span class="string">'menuTigger'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseenter</span> = function(x)&#123;</span><br><span class="line">        x<span class="selector-class">.currentTarget</span><span class="selector-class">.classList</span><span class="selector-class">.add</span>(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseleave</span> = function(x)&#123;</span><br><span class="line">        x<span class="selector-class">.currentTarget</span><span class="selector-class">.classList</span><span class="selector-class">.remove</span>(<span class="string">'active'</span>)            </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-不想每个都加-menuTigger那么我们就加个选择器吧"><a href="#4-不想每个都加-menuTigger那么我们就加个选择器吧" class="headerlink" title="4.不想每个都加.menuTigger那么我们就加个选择器吧"></a>4.不想每个都加.menuTigger那么我们就加个选择器吧</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let liTags = document.querySelectorAll(<span class="string">'nav.menu &gt; ul &gt; li'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseenter</span> = function(x)&#123;</span><br><span class="line">        x<span class="selector-class">.currentTarget</span><span class="selector-class">.classList</span><span class="selector-class">.add</span>(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseleave</span> = function(x)&#123;</span><br><span class="line">        x<span class="selector-class">.currentTarget</span><span class="selector-class">.classList</span><span class="selector-class">.remove</span>(<span class="string">'active'</span>)            </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>给nav一个.menu的class然后给他一个选择器，其中<code>querySelectorALL</code>就可以啦</p>
+<h1 id="5-关于调整锚点"><a href="#5-关于调整锚点" class="headerlink" title="5.关于调整锚点"></a>5.关于调整锚点</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let aTags = document.querySelectorAll(<span class="string">'nav.menu &gt; ul &gt; li &gt; a'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i = <span class="number">0</span>; i&lt;aTags.length; i++)</span></span>&#123;</span><br><span class="line">    aTags[i]<span class="selector-class">.onclick</span> = function(x)&#123;</span><br><span class="line">        x.preventDefault()          <span class="comment">//阻止默认动作</span></span><br><span class="line">        let <span class="selector-tag">a</span> = x.currentTarget</span><br><span class="line">        <span class="selector-tag">a</span>.getAttribute(<span class="string">'href'</span>)   <span class="comment">//用户写什么，打什么。不像a.href是带http协议的。</span></span><br><span class="line">        console.log(<span class="selector-tag">a</span>.getAttribute(<span class="string">'href'</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="需要获取div距离顶部的距离"><a href="#需要获取div距离顶部的距离" class="headerlink" title="需要获取div距离顶部的距离"></a>需要获取div距离顶部的距离</h2><p><code>getBoundingClientRect</code>这个api可以返回一组矩形集合（数组）<br>一组用于描述边框的只读属性（left top right bottom）单位px<br>除了width和heigth外的属性都相对于视口左上角位置而言。</p>
+<p>计算边界矩形时，会考虑视口区域（或其他可滚动元素）内的滚动操作which means:<br>滚动的时候这个值会变，不是计算页面顶部而是计算视口顶部。<br><strong>不想让他变的话：</strong><br>给top和left加上当前滚动位置：<code>window.scrollX</code>和<code>window.scrollY</code>这样获取与当前滚动位置无关的常量值。<br>为兼容请使用：<code>window.pageXOffset</code>和<code>window.pageYOffset</code></p>
+<h2 id="这个才是我们需要的"><a href="#这个才是我们需要的" class="headerlink" title="这个才是我们需要的"></a>这个才是我们需要的</h2><p><code>element.offsetTop</code></p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> aTags = <span class="built_in">document</span>.querySelectorAll(<span class="string">'nav.menu &gt; ul &gt; li &gt; a'</span>)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;aTags.length; i++)&#123;</span><br><span class="line">    aTags[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">        x.preventDefault()          <span class="comment">//阻止默认动作</span></span><br><span class="line">        <span class="keyword">let</span> a = x.currentTarget</span><br><span class="line">        <span class="keyword">let</span> href = a.getAttribute(<span class="string">'href'</span>) <span class="comment">//'#siteAbout'</span></span><br><span class="line">        <span class="keyword">let</span> element = <span class="built_in">document</span>.querySelector(href)</span><br><span class="line">        <span class="keyword">let</span> <span class="built_in">rect</span> = element.getBoundingClientRect()</span><br><span class="line">        <span class="keyword">let</span> top = element.offsetTop</span><br><span class="line">        <span class="built_in">window</span>.scrollTo(<span class="number">0</span>,top<span class="number">-80</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="6-总结一下"><a href="#6-总结一下" class="headerlink" title="6.总结一下"></a>6.总结一下</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">setTimeout</span><span class="params">()</span></span>        <span class="comment">//设置延迟</span></span><br><span class="line">window<span class="selector-class">.onscroll</span> <span class="comment">//滚动时触发</span></span><br><span class="line">window<span class="selector-class">.scrollY</span>      <span class="comment">//获取滚动高度</span></span><br><span class="line">document.querySelectorALL()   <span class="comment">//接收一个选择器，获取选择器的所有元素</span></span><br><span class="line"><span class="selector-class">.onmouseenter</span>   <span class="comment">//鼠标进入元素的时候触发函数</span></span><br><span class="line"><span class="selector-class">.onmouseleave</span>       <span class="comment">//鼠标离开元素的时候触发函数</span></span><br><span class="line"><span class="selector-class">.preventDefault</span> <span class="comment">//调用它就不会有默认的动作了</span></span><br><span class="line">.getAttribute()     <span class="comment">//获取用户在元素上写的原文（不加HTTP协议）</span></span><br><span class="line">document.querySelector()      <span class="comment">//只会获取到第一个元素</span></span><br><span class="line"><span class="selector-class">.offsetTop</span>      <span class="comment">//获取元素距离页面顶部的像素数。</span></span><br><span class="line">window.scrollTo(X,Y)    <span class="comment">//滑动到某个位置X：左右 Y：上下。改成0就是不会划。</span></span><br></pre></td></tr></table></figure>
+<h1 id="7-用js做动画"><a href="#7-用js做动画" class="headerlink" title="7.用js做动画"></a>7.用js做动画</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#div1&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">background</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">div1<span class="selector-class">.style</span><span class="selector-class">.position</span> = <span class="string">'relative'</span></span><br><span class="line">div1<span class="selector-class">.style</span><span class="selector-class">.left</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">var</span> n = <span class="number">0</span></span><br><span class="line"><span class="selector-tag">var</span> id = setInterval( ()=&gt; &#123;</span><br><span class="line">	n = n+<span class="number">10</span></span><br><span class="line">	div1<span class="selector-class">.style</span><span class="selector-class">.left</span> = n + <span class="string">'px'</span></span><br><span class="line">	<span class="keyword">if</span>(n&gt;=<span class="number">200</span>)&#123;</span><br><span class="line">		window.clearInterval(id)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,<span class="number">40</span>)</span><br></pre></td></tr></table></figure>
+<p>通过每秒动很多下，让人感觉它是个动画。<br><code>.setInterval</code>让他按延迟一直动<br><code>.setTimeout</code>让他延迟几秒后动一下<br><code>window.clearInterval(id)</code>让他在条件下停止</p>
+<h1 id="8-console-log调试大法"><a href="#8-console-log调试大法" class="headerlink" title="8.console.log调试大法"></a>8.console.log调试大法</h1><p>发现bug的时候，请console.log相关变量<br>看看哪个值和想象中不一样。</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">n</span> = <span class="number">25</span> //一共动多少次</span><br><span class="line"><span class="keyword">let</span> <span class="attr">duration</span> = <span class="number">500</span> / n  //多长时间动一次</span><br><span class="line"><span class="keyword">let</span> <span class="attr">currentTop</span> = window.scrollY</span><br><span class="line"><span class="keyword">let</span> <span class="attr">targetTop</span> = top - <span class="number">80</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">distance</span> = (targetTop - currentTop)/ n</span><br><span class="line"><span class="keyword">let</span> <span class="attr">i</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">id</span> = setInterval(()=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="attr">i===n)&#123;</span></span><br><span class="line">    window.clearInterval(id)</span><br><span class="line">    return</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attr">i</span> = i + <span class="number">1</span></span><br><span class="line">    window.scrollTo(<span class="number">0</span>,currentTop + distance * i)</span><br><span class="line">&#125;,duration)</span><br></pre></td></tr></table></figure>
+<p>平滑的滚屏，但是还不够平滑。</p>
+<h2 id="我们需要神奇的tween-js"><a href="#我们需要神奇的tween-js" class="headerlink" title="我们需要神奇的tween.js"></a>我们需要神奇的tween.js</h2><p>缓动<br>要调用他需要cdnjs(google it)<br>这个库还是蛮好的。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">            requestAnimationFrame(animate);    <span class="comment">//请求动画帧数（问浏览器这台机器可以让你有多少FPS）</span></span><br><span class="line">            TWEEN.update(time);</span><br><span class="line">        &#125;</span><br><span class="line">        requestAnimationFrame(animate);</span><br><span class="line"></span><br><span class="line"><span class="comment">///////////////////////tween文档让加的告诉我们间隔多少毫秒动一次///////////////////////////</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;aTags.length; i++)&#123;</span><br><span class="line">            aTags[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">                x.preventDefault()          <span class="comment">//阻止默认动作</span></span><br><span class="line">                <span class="keyword">let</span> a = x.currentTarget</span><br><span class="line">                <span class="keyword">let</span> href = a.getAttribute(<span class="string">'href'</span>) <span class="comment">//'#siteAbout'</span></span><br><span class="line">                <span class="keyword">let</span> element = <span class="built_in">document</span>.querySelector(href)</span><br><span class="line">                <span class="keyword">let</span> <span class="built_in">rect</span> = element.getBoundingClientRect()</span><br><span class="line">                <span class="keyword">let</span> top = element.offsetTop</span><br><span class="line"></span><br><span class="line">                <span class="keyword">let</span> currentTop = <span class="built_in">window</span>.scrollY</span><br><span class="line">                <span class="keyword">let</span> targetTop = top - <span class="number">80</span></span><br><span class="line">                <span class="keyword">let</span> s = targetTop - currentTop              <span class="comment">//路程</span></span><br><span class="line">                <span class="keyword">var</span> t = <span class="built_in">Math</span>.abs((s/<span class="number">100</span>)*<span class="number">300</span>)           <span class="comment">//时间（绝对值）</span></span><br><span class="line">                <span class="keyword">if</span>(t&gt;<span class="number">500</span>)&#123;t = <span class="number">500</span>&#125;</span><br><span class="line">                <span class="keyword">var</span> coords = &#123; <span class="attribute">y</span>: currentTop &#125;;         <span class="comment">//初始位置</span></span><br><span class="line">                <span class="keyword">var</span> tween = <span class="keyword">new</span> TWEEN.Tween(coords)         <span class="comment">//初始位置</span></span><br><span class="line">                    .to(&#123; <span class="attribute">y</span>: targetTop&#125;, t)             <span class="comment">//结束位置，时间（不能使负值）</span></span><br><span class="line">                    .easing(TWEEN.Easing.Quadratic.InOut)   <span class="comment">//缓动类型</span></span><br><span class="line">                    .onUpdate(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;             <span class="comment">//在这里coords.y已经变了</span></span><br><span class="line">                        <span class="built_in">window</span>.scrollTo(<span class="number">0</span>,coords.y)         <span class="comment">//如何更新界面（向下滚动coords.y）</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                    .start();       <span class="comment">//开始缓动</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>通过tween.js来计算滚动速度<br>Math.abs()来得出绝对值</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/JavaScript-对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1867,838 +2010,6 @@ margin-left:0
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/22/入门-HTML/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/22/入门-HTML/" itemprop="url">入门-HTML</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T16:13:21+08:00">2018-03-22</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-什么是HTML"><a href="#1-什么是HTML" class="headerlink" title="1.什么是HTML"></a>1.什么是HTML</h2><h3 id="I-HTML"><a href="#I-HTML" class="headerlink" title="I. HTML"></a>I. HTML</h3><p>是超文本标记语言（<strong>H</strong>yper<strong>T</strong>ext<strong>M</strong>arkup <strong>L</strong>anguage，简称：<strong>HTML</strong>）是一种用于创建网页的标准标记语言。</p>
-<h3 id="II-HTML版本-W3C组织制定规范-："><a href="#II-HTML版本-W3C组织制定规范-：" class="headerlink" title="II. HTML版本(W3C组织制定规范)："></a>II. HTML版本(W3C组织制定规范)：</h3><p>  i. HTML 4.01<br>  ii.XHTML<br>  iii. HTML 5<br>  iv. HTML 5.1</p>
-<h3 id="III-规范文档-Specification"><a href="#III-规范文档-Specification" class="headerlink" title="III. 规范文档(Specification)"></a>III. 规范文档(Specification)</h3><p>  i. 由W3C写文档（Sir Timothy John Berners-Lee）<br>  ii. W3C根据浏览器的实际情况总结文档，并不是凭空想象。</p>
-<h3 id="IV-DOCTYPE"><a href="#IV-DOCTYPE" class="headerlink" title="IV. DOCTYPE"></a>IV. DOCTYPE</h3><p>  i. 用来选择文档类型<br>  ii. DOCTYPE</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">版本</th>
-<th style="text-align:center">DOCTYPE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">HTML 5及以上</td>
-<td style="text-align:center">&lt;!DOCTYPE HTML&gt;</td>
-</tr>
-<tr>
-<td style="text-align:center">HTML 4.01 Strict</td>
-<td style="text-align:center">&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01//EN””<a href="http://www.w3.org/TR/html4/strict.dtd&quot;" target="_blank" rel="noopener">http://www.w3.org/TR/html4/strict.dtd&quot;</a></td>
-</tr>
-<tr>
-<td style="text-align:center">HTML 4.01 Transitional</td>
-<td style="text-align:center">&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN””<a href="http://www.w3.org/TR/html4/loose.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</a></td>
-</tr>
-<tr>
-<td style="text-align:center">HTML 4.01 Frameset</td>
-<td style="text-align:center">&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Frameset//EN””<a href="http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;</a></td>
-</tr>
-<tr>
-<td style="text-align:center">XHTML 1.0 Strict</td>
-<td style="text-align:center">&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN””<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</a></td>
-</tr>
-<tr>
-<td style="text-align:center">XHTML 1.0 Transitional</td>
-<td style="text-align:center">&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN””<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</a></td>
-</tr>
-<tr>
-<td style="text-align:center">XHTML 1.0 Frameset</td>
-<td style="text-align:center">&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Frameset//EN””<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd&quot;&gt;</a></td>
-</tr>
-<tr>
-<td style="text-align:center">XHTML 1.1 DTD</td>
-<td style="text-align:center">&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.1//EN” “<a href="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;</a></td>
-</tr>
-<tr>
-<td style="text-align:center">XHTML Basic 1.1 (quick reference)</td>
-<td style="text-align:center">&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML Basic 1.1//EN””<a href="http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd&quot;&gt;</a></td>
-</tr>
-</tbody>
-</table>
-<p>   如果不写，就是个GG</p>
-<h2 id="2-W3C"><a href="#2-W3C" class="headerlink" title="2.W3C"></a>2.W3C</h2><p>I. 万维网联盟（World Wide Web Consortium，W3C），又称W3C理事会，是万维网的主要国际标准组织。李爵士创立。<br>II. 该组织试图通过W3C制定的新标准来促进业界成员间的兼容性和协议。不兼容的HTML版本由不同的供应商提供，导致网页显示方式不一致。联盟试图让所有的供应商实施一套由联盟选择的核心原则和组件。<br>III. 总结一下，制定规范的组织。</p>
-<h2 id="3-MDN"><a href="#3-MDN" class="headerlink" title="3.MDN"></a>3.MDN</h2><p>I. MDN Web Docs（旧称Mozilla Developer Network、Mozilla Developer Center，简称MDN）是一个汇集众多Mozilla基金会产品和网路技术开发文档的免费网站。<br>II. 就是查文档的。</p>
-<h2 id="4-HTML标签"><a href="#4-HTML标签" class="headerlink" title="4.HTML标签"></a>4.HTML标签</h2><h3 id="I-标签"><a href="#I-标签" class="headerlink" title="I.标签"></a>I.标签</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">类型</th>
-<th style="text-align:center">元素</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">根元素</td>
-<td style="text-align:center"><code>&lt;html&gt;</code></td>
-<td style="text-align:center">代表 HTML 或 XHTML 文档的根。其他所有元素必须是这个元素的子节点。</td>
-<td style="text-align:center">包含全局属性</td>
-</tr>
-<tr>
-<td style="text-align:center">文档元数据</td>
-<td style="text-align:center"><code>&lt;head&gt;</code></td>
-<td style="text-align:center">代表关于文档元数据的一个集合，包括脚本或样式表的链接或内容。</td>
-<td style="text-align:center">该元素包含全局属性。可用于<code>&lt;head&gt;</code>元素内的元素有: <code>&lt;title&gt;, &lt;base&gt;, &lt;link&gt;, &lt;style&gt;, &lt;meta&gt;, &lt;script&gt;, &lt;noscript&gt;, &lt;command&gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;title&gt;</code></td>
-<td style="text-align:center">定义文档的标题，将显示在浏览器的标题栏或标签页上。该元素只能包含文本，包含的标签不会被解释。</td>
-<td style="text-align:center">仅拥有全局属性，允许内容为非空字符或特殊字符（inter-element whitespace）的文本。    一个 <code>&lt;head&gt;</code> 元素只能包含一个 <code>&lt;title&gt;</code>元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;base&gt;</code></td>
-<td style="text-align:center">定义页面上相对 URL 的基准 URL。</td>
-<td style="text-align:center">允许空标签，不可以有结束标签。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;link&gt;</code></td>
-<td style="text-align:center">用于链接外部的 CSS 到该文档。</td>
-<td style="text-align:center">这是一个空标签，鉴于他也是空元素，所以也不可有结束标签</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;meta&gt;</code></td>
-<td style="text-align:center">定义其他 HTML 元素无法描述的元数据。</td>
-<td style="text-align:center">也是个空标签，所以有始不能有终</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;style&gt;</code></td>
-<td style="text-align:center">用于内联 CSS。</td>
-<td style="text-align:center">内容为匹配type属性指定的语言的样式信息。标签始终都不能省略</td>
-</tr>
-<tr>
-<td style="text-align:center">脚本</td>
-<td style="text-align:center"><code>&lt;script&gt;</code></td>
-<td style="text-align:center">定义一个内联脚本或链接到外部脚本。脚本语言是 JavaScript。</td>
-<td style="text-align:center">内容为动态脚本。包含全局属性而且拥有以下类别：<code>&lt;async&gt;&lt;defer&gt; &lt;integrity&gt;&lt;src&gt;&lt;type&gt;&lt;text&gt;&lt;crossorigin&gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;noscript&gt;</code></td>
-<td style="text-align:center">定义当浏览器不支持脚本时显示的替代文字。</td>
-<td style="text-align:center">仅拥有全局元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;template&gt;</code></td>
-<td style="text-align:center">通过 JavaScript 在运行时实例化内容的容器。</td>
-<td style="text-align:center">是一种用于保存客户端内容的机制，该内容在页面加载时不被渲染，但可以在运行时使用JavaScript进行实例化。，加载页面的同时,解析器确实处理 <code>&lt;template&gt;</code>元素的内容，这样做只是确保这些内容是有效的; 然而,元素的内容不会被渲染</td>
-</tr>
-<tr>
-<td style="text-align:center">章节</td>
-<td style="text-align:center"><code>&lt;body&gt;</code></td>
-<td style="text-align:center">代表 HTML 文档的内容。在文档中只能有一个 <body> 元素。</body></td>
-<td style="text-align:center">它必须是 <code>&lt;html&gt;</code> 元素的直接子元素。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;section&gt;</code></td>
-<td style="text-align:center">定义文档中的一个章节。</td>
-<td style="text-align:center">内容中的一个专题组，一般来说会有包含一个标题（heading）。一般通过是否包含一个标题<code>(&lt;h1&gt;-&lt;h6&gt; element)</code> 作为子节点 来 辨识每一个<code>&lt;section&gt;</code>。允许内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;nav&gt;</code></td>
-<td style="text-align:center">定义只包含导航链接的章节。</td>
-<td style="text-align:center">用于描述一个含有多个超链接的区域，这个区域包含转到其他页面，或者页面内部其他部分的链接列表。允许内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><article></article></td>
-<td style="text-align:center">定义可以独立于内容其余部分的完整独立内容块。</td>
-<td style="text-align:center">表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，如在发布中，它可能是论坛帖子、杂志或新闻文章、博客、用户提交的评论、交互式组件，或者其他独立的内容项目。允许元素：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;,&lt;h6&gt;</code></td>
-<td style="text-align:center">标题元素实现了六层文档标题，<code>&lt;h1&gt;</code> 是最大的标题，<code>&lt;h6&gt;</code> 是最小的标题。标题元素简要地描述章节的主题。</td>
-<td style="text-align:center">标题顺序从1到6顺序排列，不要为了改变字体大小跳过顺序使用标题，应该用CSS样式改变字体。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;header&gt;</code></td>
-<td style="text-align:center">定义页面或章节的头部。它经常包含 logo、页面标题、搜索表单和导航性的目录。</td>
-<td style="text-align:center">允许内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;footer&gt;</code></td>
-<td style="text-align:center">定义页面或章节的尾部。它经常包含版权信息、法律信息链接和反馈建议用的地址。</td>
-<td style="text-align:center">允许内容：流式元素，但是不能包含<code>&lt;footer&gt;</code>或者<code>&lt;header&gt;</code>。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;address&gt;</code></td>
-<td style="text-align:center">定义包含联系信息的一个章节。</td>
-<td style="text-align:center">允许内容：流式元素但是不能是内嵌的<code>&lt;address&gt;</code>元素、标题元素、章节元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;main&gt;</code></td>
-<td style="text-align:center">定义文档中主要或重要的内容。</td>
-<td style="text-align:center">允许内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center">组织内容</td>
-<td style="text-align:center"><code>&lt;p&gt;</code></td>
-<td style="text-align:center">定义一个段落。</td>
-<td style="text-align:center">表示文本的一个段落。该元素通常表现为一整块与相邻文本分离的文本，或以垂直的空白隔离或以首行缩进。另外，<code>&lt;p&gt;</code>是块级元素。允许元素：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;hr&gt;</code></td>
-<td style="text-align:center">代表章节、文章或其他长内容中段落之间的分隔符。</td>
-<td style="text-align:center">允许内容：无，这是一个空元素。所以有始无终。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;pre&gt;</code></td>
-<td style="text-align:center">代表其内容已经预先排版过，格式应当保留 。</td>
-<td style="text-align:center">允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;blockquote&gt;</code></td>
-<td style="text-align:center">代表引用自其他来源的内容。（块级引用）</td>
-<td style="text-align:center">代表其中的文字是引用内容。通常在渲染时，这部分的内容会有一定的缩进（注 中说明了如何更改）。若引文来源于网络，则可以将原内容的出处 URL 地址设置到 cite 特性上，若要以文本的形式告知读者引文的出处时，可以通过 <code>&lt;cite&gt;</code> 元素。允许内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;ol&gt;</code></td>
-<td style="text-align:center">定义一个有序列表。</td>
-<td style="text-align:center">表示多个有序列表项，通常渲染为有带编号的列表。允许内容：一个或多个<code>&lt;li&gt;</code>元素。这些<code>&lt;li&gt;</code>元素可以再包含嵌套的<code>&lt;ol&gt;</code>或<code>&lt;ul&gt;</code>元素。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;ul&gt;</code></td>
-<td style="text-align:center">定义一个无序列表。</td>
-<td style="text-align:center">代表多项的无序列表，即无数值排序项的集合，且它们在列表中的顺序是没有意义的。通常情况下，无序列表项的头部可以是几种形式，如一个点，一个圆形或方形。头部的风格并不是在页面的HTML描述定义, 但在其相关的CSS 可以用 list-style-type 属性。允许内容：一个或多个<code>&lt;li&gt;</code>元素。这些<code>&lt;li&gt;</code>元素可以再包含嵌套的<code>&lt;ol&gt;</code>或<code>&lt;ul&gt;</code>元素。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;li&gt;</code></td>
-<td style="text-align:center">定义列表中的一个列表项。</td>
-<td style="text-align:center">用于表示列表里的条目。它必须被包含在一个父元素里：一个有顺序的列表(<code>&lt;ol&gt;</code>)，一个无顺序的列表(<code>&lt;ul&gt;</code>)，或者一个菜单 (<code>&lt;menu&gt;</code>)。在菜单或者无顺序的列表里，列表条目通常用点排列显示。在有顺序的列表里，列表条目通常是在左边有按升序排列计数的显示，例如数字或者字母。元素类型：块级 允许内容：流式内容</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;dl&gt;</code></td>
-<td style="text-align:center">HTML <code>&lt;dl&gt;</code>元素 （或 HTML 描述列表元素）是一个包含术语定义以及描述的列表，通常用于展示词汇表或者元数据 。</td>
-<td style="text-align:center">允许内容：一个或者多个<code>&lt;dt&gt;</code>元素。这些<code>&lt;dt&gt;</code>元素可以再包含嵌套的<code>&lt;dd&gt;</code>元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;dt&gt;</code></td>
-<td style="text-align:center">HTML <code>&lt;dt&gt;</code> 元素 （或 HTML 术语定义元素）用于在一个定义列表中声明一个术语。该元素仅能作为 <code>&lt;dl&gt;</code> 的子元素出现。通常在该元素后面会跟着 <code>&lt;dd&gt;</code> 元素， 然而，多个连续出现的 <code>&lt;dt&gt;</code> 元素都将由出现在它们后面的第一个 <code>&lt;dd&gt;</code> 元素定义。</td>
-<td style="text-align:center">允许的内容：流式内容 但是不能包含 <code>&lt;header&gt;</code> 元素、<code>&lt;footer&gt;</code> 元素或者其他章节、标题内容。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;dd&gt;</code></td>
-<td style="text-align:center">HTML <code>&lt;dd&gt;</code> 元素（HTML 描述元素）用来指明一个描述列表  (<code>&lt;dl&gt;</code>) 元素中一个术语的描述。这个元素只能作为描述列表元素的子元素出现，并且必须跟着一个 <code>&lt;dt&gt;</code> 元素。</td>
-<td style="text-align:center">允许的内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;figure&gt;</code></td>
-<td style="text-align:center">代表一个和文档有关的图例。</td>
-<td style="text-align:center"><code>&lt;figure&gt;</code> 元素代表一段独立的内容, 经常与说明(caption) <code>&lt;figcaption&gt;</code> 配合使用, 并且作为一个独立的引用单元。当它属于主体(main flow)时，它的位置独立于主体。这个标签经常是在主文中引用的图片，插图，表格，代码段等等，当这部分转移到附录中或者其他页面时不会影响到主体。允许的内容：flow content中的<code>&lt;figcaption&gt;</code> 元素; 或者<code>&lt;figcaption&gt;</code> 元素中的flow content ; 或者 flow content.</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;figcaption&gt;</code></td>
-<td style="text-align:center">代表一个图例的说明。</td>
-<td style="text-align:center"><code>&lt;figcaption&gt;</code> 元素 是与其相关联的图片的说明/标题，用?于描述其父节点 <code>&lt;figure&gt;</code> 元素里的其他数据。这意味着 <figcaption> 在<figure> 块里是第一个或最后一个。同时 HTML Figcaption 元素是可选的；如果没有该元素，这个父节点的图片只是会没有说明/标题。允许的内容：流式元素</figure></figcaption></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;div&gt;</code></td>
-<td style="text-align:center">代表一个通用的容器，没有特殊含义。</td>
-<td style="text-align:center"><code>&lt;div&gt;</code>元素 (或 HTML 文档分区元素) 是一个通用型的流内容容器，它在语义上不代表任何特定类型的内容，它可以被用来对其它元素进行分组，一般用于样式化相关的需求（使用 class 或 id 特性) 或者对具有相同特性的一组元素进行分组 (比如 lang)，它应该在没有任何其它语义元素可用时才使用 (比如 <code>&lt;article&gt;</code> 或 <code>&lt;nav&gt;</code>) 。<strong>没有默认样式!!!</strong>允许的内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center">文字形式</td>
-<td style="text-align:center"><code>&lt;a&gt;</code></td>
-<td style="text-align:center">代表一个链接到其他资源的超链接 。</td>
-<td style="text-align:center"><code>&lt;a&gt;</code> 元素  (或锚元素) 可以创建一个到其他网页、文件、同一页面内的位置、电子邮件地址或任何其他URL的超链接。允许内容：透明内容模型、流式元素、短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;em&gt;</code></td>
-<td style="text-align:center">代表强调的文字。</td>
-<td style="text-align:center">着重元素 (<code>&lt;em&gt;</code>) 标记出需要用户着重阅读的内容， <em> 元素是可以嵌套的，嵌套层次越深，则其包含的内容被认定为越需要着重阅读。通常展现为斜体。允许内容：短语元素</em></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;strong&gt;</code></td>
-<td style="text-align:center">代表特别重要的文字。</td>
-<td style="text-align:center">Strong 元素 (<code>&lt;strong&gt;</code>)表示文本十分重要，一般用粗体显示。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;small&gt;</code></td>
-<td style="text-align:center">代表注释 ，如免责声明、版权声明等，对理解文档不重要。</td>
-<td style="text-align:center"><code>&lt;small&gt;</code>元素將使文本的字体变小一号。(例如从大变成中等，从中等变成小，从小变成超小)。在HTML5中，除了它的样式含义，这个元素被重新定义为表示边注释和附属细则，包括版权和法律文本。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;s&gt;</code></td>
-<td style="text-align:center">代表不准确或不相关 的内容。</td>
-<td style="text-align:center"><code>&lt;s&gt;</code> 元素 使用删除线来渲染文本。使用 <s> 元素来表示不再相关，或者不再准确的事情。但是当表示文档编辑时，不提倡使用 <s> ；为此，提倡使用 <code>&lt;del&gt;</code> 和 <code>&lt;ins&gt;</code> 元素。允许的内容：短语元素</s></s></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;cite&gt;</code></td>
-<td style="text-align:center">代表作品标题。</td>
-<td style="text-align:center">HTML引用（Citation）标签 (<cite>) 表示一个作品的引用。它必须包含引用作品的符合简写格式的标题或者URL，它可能是一个根据添加引用元数据的约定的简写形式。允许内容：流式元素、短语元素</cite></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;q&gt;</code></td>
-<td style="text-align:center">代表内联的引用 。</td>
-<td style="text-align:center">引用标签 (<code>&lt;q&gt;</code>)表示一个封闭的并且是短的行内引用的文本. 这个标签是用来引用短的文本，所以请不要引入换行符; 对于长的文本的引用请使用 <code>&lt;blockquote&gt;</code> 替代。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;dfn&gt;</code></td>
-<td style="text-align:center">代表一个术语包含在其最近祖先内容中的定义 。</td>
-<td style="text-align:center">定义元素 (<code>&lt;dfn&gt;</code>) 表示术语的一个定义。<code>&lt;dfn&gt;</code> 元素标记了被定义的术语；术语定义应当在 <code>&lt;p&gt;</code>, <code>&lt;section&gt;</code>或定义列表 (通常是<code>&lt;dt&gt;</code>, <code>&lt;dd&gt;</code> 对)中给出。被定义术语的值由下列规则确定：如果 <code>&lt;dfn&gt;</code> 元素有一个 title 属性，那么该术语的值就是该属性的值。否则，如果它仅包含一个 <code>&lt;abbr&gt;</code> 元素，该元素拥有 title 属性，那么该术语的值就是该属性的值。否则，<code>&lt;dfn&gt;</code> 元素的文本内容就是该术语的值。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;abbr&gt;</code></td>
-<td style="text-align:center">代表省略或缩写，其完整内容在 title 属性中。</td>
-<td style="text-align:center">允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;data&gt;</code></td>
-<td style="text-align:center">关联一个内容的机器可读的等价形式 （该元素只在 WHATWG 版本的 HTML 标准中，不在 W3C 版本的 HTML5 标准中）。</td>
-<td style="text-align:center"><data> 元素 将一个指定内容和机器可读的翻译联系在一起。但如果内容是与 time 或者 date 相关的，一定要使用 <code>&lt;time&gt;</code>。允许内容：短语元素</data></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;time&gt;</code></td>
-<td style="text-align:center">代表日期 和时间 值；机器可读的等价形式通过 datetime 属性指定。</td>
-<td style="text-align:center">time 标签(<code>&lt;time&gt;</code>) 用来表示24小时制时间或者公历日期，若表示日期则也可包含时间和时区。此元素意在以机器可读的格式表示日期和时间。 有安排日程表功能的应用可以利用这一点。允许内容：短语元素，但不能包含time元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;code&gt;</code></td>
-<td style="text-align:center">代表计算机代码 。</td>
-<td style="text-align:center"><code> 元素呈现一段计算机代码. 默认情况下, 它以浏览器的默认等宽字体显示。允许元素：短语元素</code></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;var&gt;</code></td>
-<td style="text-align:center">代表代码中的变量 。</td>
-<td style="text-align:center"><var> 标签表示变量的名称，或者由用户提供的值。允许元素：短语元素</var></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;samp&gt;</code></td>
-<td style="text-align:center">代表程序或电脑的输出 。</td>
-<td style="text-align:center"><code>&lt;samp&gt;</code> 元素用于标识计算机程序输出，通常使用浏览器默认的 monotype 字体。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;kbd&gt;</code></td>
-<td style="text-align:center">代表用户输入 ，一般从键盘输出，但也可以代表其他输入，如语音输入。</td>
-<td style="text-align:center">键盘输入元素(<code>&lt;kbd&gt;</code>) 用于表示用户输入，它将产生一个行内元素，以浏览器的默认monospace字体显示。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;sub&gt;,&lt;sup&gt;</code></td>
-<td style="text-align:center">分别代表下标 和上标 。</td>
-<td style="text-align:center"><code>&lt;sub&gt;</code> 元素定义了一个文本区域，出于排版的原因，与主要的文本相比，应该展示得更低并且更小。<code>&lt;sup&gt;</code> 元素定义了一个文本区域，出于排版的原因，与主要的文本相比，应该展示得更高并且更小。允许内容：短语元素。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;i&gt;</code></td>
-<td style="text-align:center">代表一段不同性质 的文字，如技术术语、外文短语等。</td>
-<td style="text-align:center"><i> 用于表现因某些原因需要区分普通文本的一系列文本。例如技术术语、外文短语或是小说中人物的思想活动等，它的内容通常以斜体显示。允许内容：短语元素</i></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;b&gt;</code></td>
-<td style="text-align:center">代表一段需要被关注 的文字。</td>
-<td style="text-align:center">提醒注意（Bring Attention To）元素（<code>&lt;b&gt;</code>）用于吸引读者的注意到该元素的内容上（如果没有另加特别强调）。这个元素过去被认为是粗体（Boldface）元素，并且大多数浏览器仍然将文字显示为粗体。尽管如此，你不应将 <code>&lt;b&gt;</code> 元素用于显示粗体文字；替代方案是使用 CSS font-weight 属性来创建粗体文字。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;u&gt;</code></td>
-<td style="text-align:center">代表一段需要下划线呈现的文本注释，如标记出拼写错误的文字等。</td>
-<td style="text-align:center"><code>&lt;u&gt;</code> 元素使文本在其内容的基线下的一行呈现下划线。在HTML5中, 此元素表示具有未标注的文本跨度，显示渲染，非文本注释，例如将文本标记为中文文本中的专有名称(一个正确的中文标记), 或 将文本标记为拼写错误。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;mark&gt;</code></td>
-<td style="text-align:center">代表一段需要被高亮的引用的文字。</td>
-<td style="text-align:center">可以用来显示搜索引擎的关键词，允许的内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;ruby&gt;</code></td>
-<td style="text-align:center">代表被ruby 注释 标记的文本，如中文汉字和它的拼音。</td>
-<td style="text-align:center"><ruby> 元素 被用来展示东亚文字注音或字符注释。允许内容：短语元素</ruby></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;rt&gt;</code></td>
-<td style="text-align:center">代表ruby 注释 ，如中文拼音。</td>
-<td style="text-align:center">Ruby 文本 (<rt>) 元素包含字符的发音，字符在 ruby 注解中出现，它用于描述东亚字符的发音。这个元素始终在 <ruby> 元素中使用。允许内容：短语元素</ruby></rt></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;rp&gt;</code></td>
-<td style="text-align:center">代表 ruby 注释两边的额外插入文本 ，用于在不支持 ruby 注释显示的浏览器中提供友好的注释显示。</td>
-<td style="text-align:center"><rp> 元素用于为那些不能使用 <ruby> 元素展示 ruby 注解的浏览器，提供随后的圆括号。允许的内容：短语元素</ruby></rp></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;bdi&gt;</code></td>
-<td style="text-align:center">代表需要脱离 父元素文本方向的一段文本。它允许嵌入一段不同或未知文本方向格式的文本。</td>
-<td style="text-align:center"><code>&lt;bdi&gt;</code> 元素 (双向隔离元素) 会隔离可能以不同方向进行格式化的外部文本。当不知道是从什么方向嵌入文本，如来自于数据库的文本（有起数据库的文本方向）的时候，该元素是十分有用的。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;span&gt;</code></td>
-<td style="text-align:center">代表一段没有特殊含义的文本，当其他语义元素都不适合文本时候可以使用该元素。</td>
-<td style="text-align:center"><code>&lt;span&gt;</code> 元素是短语内容的通用行内容器，并没有任何特殊语义。可以使用它来编组元素以达到某种样式意图（通过使用类或者Id属性），或者这些元素有着共同的属性，比如lang。应该在没有其他合适的语义元素时才使用它。<code>&lt;span&gt;</code> 与 <code>&lt;div&gt;</code> 元素很相似，但 <code>&lt;div&gt;</code> 是一个 块元素 而 <code>&lt;span&gt;</code> 则是 行内元素。<strong>没有默认样式没有默认样式！！！</strong>允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;br&gt;</code></td>
-<td style="text-align:center">代表换行。</td>
-<td style="text-align:center"><code>&lt;br&gt;</code> 元素在文本中生成一个换行（回车）符号。此元素在写诗和地址时很有用，这些地方的换行都非常重要。允许内容：无，这是一个空元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;wbr&gt;</code></td>
-<td style="text-align:center">代表建议换行 (Word Break Opportunity) ，当文本太长需要换行时将会在此处添加换行符。</td>
-<td style="text-align:center"><wbr> 元素  — 一个文本中的位置，其中浏览器可以选择来换行，虽然它的换行规则可能不会在这里换行。允许内容：无，这是一个空元素</td>
-</tr>
-<tr>
-<td style="text-align:center">编辑</td>
-<td style="text-align:center"><code>&lt;ins&gt;</code></td>
-<td style="text-align:center">定义增加到文档的内容。</td>
-<td style="text-align:center"><code>&lt;ins&gt;</code> 元素定义已经被插入文档中的文本。允许内容：透明内容模型</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;del&gt;</code></td>
-<td style="text-align:center">定义从文档移除 的内容。</td>
-<td style="text-align:center"><code>&lt;del&gt;</code>标签表示一些被从文档中删除的文字内容。比如可以在需要显示修改记录或者源代码差异的情况使用这个标签。<code>&lt;ins&gt;</code>标签的作用恰恰于此相反：表示文档中添加的内容。这个标签通常（但不一定要）在文字上显示删除线。允许内容：透明内容模型</td>
-</tr>
-<tr>
-<td style="text-align:center">嵌入内容</td>
-<td style="text-align:center"><code>&lt;img&gt;</code></td>
-<td style="text-align:center">代表一张图片 。</td>
-<td style="text-align:center">允许内容：无 这是一个空元素 有始无终 父元素：接受嵌入式内容的任意元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;iframe&gt;</code></td>
-<td style="text-align:center">代表一个内联的框架 。</td>
-<td style="text-align:center">内联框架元素 <code>&lt;iframe&gt;</code> 表示嵌套的浏览上下文，有效地将另一个HTML页面嵌入到当前页面中。在HTML 4.01中，文档可能包含头部和正文，或头部和框架集，但不能包含正文和框架集。但是，<code>&lt;iframe&gt;</code>可以在正常的文档主体中使用。每个浏览上下文都有自己的会话历史记录和活动文档。包含嵌入内容的浏览上下文称为父浏览上下文。顶级浏览上下文（没有父级）通常是浏览器窗口。允许元素：流式元素、短语元素、嵌入元素、。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;embed&gt;</code></td>
-<td style="text-align:center">代表一个嵌入 的外部资源，如应用程序或交互内容。</td>
-<td style="text-align:center"><code>&lt;embed&gt;</code>元素将外部内容嵌入文档中的指定位置。此内容由外部应用程序或其他交互式内容源（如浏览器插件）提供。允许内容：流式元素、短语元素、嵌入元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;object&gt;</code></td>
-<td style="text-align:center">代表一个外部资源 ，如图片、HTML 子文档、插件等。</td>
-<td style="text-align:center"><code>&lt;object&gt;</code> 元素（或者称作 HTML 嵌入对象元素）表示引入一个外部资源，这个资源可能是一张图片，一个嵌入的浏览上下文，亦或是一个插件所使用的资源。允许内容：流式元素、短语元素、嵌入元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;param&gt;</code></td>
-<td style="text-align:center"><code>&lt;param&gt;</code>元素(或 HTML Parameter 元素) 定义了 <code>&lt;object&gt;</code>的参数</td>
-<td style="text-align:center">允许内容：空元素 有始无终</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;video&gt;</code></td>
-<td style="text-align:center">代表一段视频 及其视频文件和字幕，并提供了播放视频的用户界面。</td>
-<td style="text-align:center"><code>&lt;video&gt;</code> 元素 用于在HTML或者XHTML文档中嵌入视频内容。允许内容：流式元素，包含任一 src 属性或是一个或多个 <code>&lt;source&gt;</code> 元素，其后紧跟流式元素 或 短语元素 ， 不包括<code>&lt;video&gt;</code> 或者 <code>&lt;audio&gt;</code> 元素。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;audio&gt;</code></td>
-<td style="text-align:center">代表一段声音 ，或音频流 。</td>
-<td style="text-align:center"><code>&lt;audio&gt;</code> 元素用于在文档中表示音频内容。 <code>&lt;audio&gt;</code> 元素可以包含多个音频资源， 这些音频资源可以使用 src 属性或者<code>&lt;source&gt;</code> 元素来进行描述； 浏览器将会选择最合适的一个来使用。对于不支持<code>&lt;audio&gt;</code>元素的浏览器，<code>&lt;audio&gt;</code>元素也可以作为浏览器不识别的内容加入到文档中。允许内容：如果元素包含 src 属性：零个或多个 <code>&lt;track&gt;</code> 元素，其后紧跟不包含 <code>&lt;audio&gt;</code> 或者 <code>&lt;video&gt;</code>媒体元素的透明内容。或者：零个或多个 <code>&lt;source&gt;</code> 元素，其后紧跟零个或多个 <code>&lt;track&gt;</code> 元素，其后紧跟不包含 <code>&lt;audio&gt;</code> 或者 <code>&lt;video&gt;</code>媒体元素的透明内容。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;source&gt;</code></td>
-<td style="text-align:center">为 <code>&lt;video&gt;</code> 或 <code>&lt;audio&gt;</code> 这类媒体元素指定媒体源 。</td>
-<td style="text-align:center">允许内容：一个 <code>&lt;picture&gt;</code> 元素, 且在<code>&lt;img&gt;</code>元素之前</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;track&gt;</code></td>
-<td style="text-align:center">为 <code>&lt;video&gt;</code> 或 <code>&lt;audio&gt;</code> 这类媒体元素指定文本轨道（字幕） 。</td>
-<td style="text-align:center"><code>&lt;track&gt;</code> 元素 被当作媒体元素—<code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code>的子元素来使用。它允许指定计时字幕（或者基于事件的数据），例如自动处理字幕。track 给媒体元素添加的数据的类型在 kind 属性中设置，属性值可以是<code>subtitles</code>, <code>captions</code>, <code>descriptions</code>, <code>chapters</code> 或 <code>metadata</code>。该元素指向当用户请求额外的数据时浏览器公开的包含定时文本的源文件。一个<code>media</code> 元素的任意两个 <code>track</code> 子元素不能有相同的 <code>kind</code>, <code>srclang</code>, 和 <code>label</code>属性。允许内容：空，这是一个空元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;canvas&gt;</code></td>
-<td style="text-align:center">代表位图区域 ，可以通过脚本在它上面实时呈现图形，如图表、游戏绘图等。</td>
-<td style="text-align:center"><code>&lt;canvas&gt;</code>元素可被用来通过脚本（通常是JavaScript）绘制图形。比如,它可以被用来绘制图形,制作图片集合,甚至用来实现动画效果。你可以(也应该)在元素标签内写入可提供替代的的代码内容，这些内容将会在在旧的、不支持<code>&lt;canvas&gt;</code>元素的浏览器或是禁用了JavaScript的浏览器内渲染并展现。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;map&gt;</code></td>
-<td style="text-align:center">与 <code>&lt;area&gt;</code> 元素共同定义图像映射 区域。</td>
-<td style="text-align:center"><map> 属性 与 <area> 属性一起使用来定义一个图像映射(一个可点击的链接区域).允许内容：任何透明元素模型</map></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;area&gt;</code></td>
-<td style="text-align:center">与 <map> 元素共同定义图像映射 区域。</map></td>
-<td style="text-align:center"><area> 元素 在图片上定义一个热点区域，可以关联一个超链接。<area>元素仅在<map>元素内部使用。允许内容：空，这是一个空元素 有始无终</map></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;svg&gt;</code></td>
-<td style="text-align:center">定义一个嵌入式矢量图 。</td>
-<td style="text-align:center">如果svg不是根元素，svg 元素可以用于在当前文档（比如说，一个HTML文档）内嵌套一个独立的svg片段。这个独立片段拥有独立的视口和坐标系统。允许内容：任意数量、任意排序的下列元素：动画元素；描述性元素；形状元素；结构化元素；渐变元素；<code>&lt;a&gt;, &lt;altGlyphDef&gt;, &lt;clipPath&gt;, &lt;color-profile&gt;, &lt;cursor&gt;, &lt;filter&gt;, &lt;font&gt;, &lt;font-face&gt;, &lt;foreignObject&gt;, &lt;image&gt;, &lt;marker&gt;, &lt;mask&gt;, &lt;pattern&gt;, &lt;script&gt;, &lt;style&gt;, &lt;switch&gt;, &lt;text&gt;, &lt;view&gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;math&gt;</code></td>
-<td style="text-align:center">定义一段数学公式 。</td>
-<td style="text-align:center">MathML的顶级元素是<code>&lt;math&gt;</code>。所有有效的MathML实例必须被包括在 <code>&lt;math&gt;</code> 标记中。另外不可以在一个 <code>&lt;math&gt;</code> 元素中嵌套第二个<code>&lt;math&gt;</code> 元素，但是 <code>&lt;math&gt;</code> 元素中可以有任意多的子元素 。</td>
-</tr>
-<tr>
-<td style="text-align:center">表格</td>
-<td style="text-align:center"><code>&lt;table&gt;</code></td>
-<td style="text-align:center">定义多维数据 。</td>
-<td style="text-align:center">在 CSS 创建之前， HTML <code>&lt;table&gt;</code> 元素常常被用于布局页面。 这种用法在 HTML 4之后不被推荐使用，并且 <code>&lt;table&gt;</code>元素 不应该 被用于此目的。允许内容：按照这个顺序：一个可选的 <code>&lt;caption&gt;</code> 元素；零个或多个的 <code>&lt;colgroup&gt;</code> 元素；一个可选的 <code>&lt;thead&gt;</code> 元素；一个可选的 <code>&lt;tfoot&gt;</code> 元素（tfoot元素出现在tbody或tr元素前后都可以。在HTML4中，它只能出现在这些元素之前）；零个或多个 <code>&lt;tbody&gt;</code> 元素；一个或多个 <code>&lt;tr&gt;</code> 元素；</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;caption&gt;</code></td>
-<td style="text-align:center">代表表格的标题。</td>
-<td style="text-align:center"><code>&lt;caption&gt;</code> 元素 (or HTML 表格标题元素) 展示一个表格的标题， 它常常作为 <code>&lt;table&gt;</code> 的第一个子元素出现，同时显示在表格内容的最前面，但是，它同样可以被CSS样式化，所以，它同样可以出现在任何一个一个相对于表格的做任意位置。允许内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;colgroup&gt;</code></td>
-<td style="text-align:center">代表表格中一组单列或多列。</td>
-<td style="text-align:center">表格列组（Column Group <code>&lt;colgroup&gt;</code>） 标签用来定义表中的一组列表。若<code>span</code>属性为<code>present</code>: 那它就是一个空属性。如果属性不是<code>present</code>内容为：零或多个<code>&lt;col&gt;</code>属性</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;col&gt;</code></td>
-<td style="text-align:center">代表表格中的列。</td>
-<td style="text-align:center"><code>&lt;col&gt;</code> 元素 定义表格中的列，并用于定义所有公共单元格上的公共语义。它通常位于<colgroup>元素内。允许内容：这是一个空元素有始无终</colgroup></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;tbody&gt;</code></td>
-<td style="text-align:center">代表表格中一块具体数据 （表格主体）。</td>
-<td style="text-align:center">允许内容：零或多个<code>&lt;tr&gt;</code>元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;thead&gt;</code></td>
-<td style="text-align:center">代表表格中一块列标签（表头）。</td>
-<td style="text-align:center">允许内容：零或多个<code>&lt;tr&gt;</code>元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;tfoot&gt;</code></td>
-<td style="text-align:center">代表表格中一块列摘要（表尾）</td>
-<td style="text-align:center">允许内容：零或多个<code>&lt;tr&gt;</code>元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;tr&gt;</code></td>
-<td style="text-align:center">代表表格中的行 。</td>
-<td style="text-align:center">允许内容：零或多个<code>&lt;td&gt;</code>或<code>&lt;th&gt;</code>元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;td&gt;</code></td>
-<td style="text-align:center">代表表格中的单元格 。</td>
-<td style="text-align:center">允许内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;th&gt;</code></td>
-<td style="text-align:center">代表表格中的头部单元格 。</td>
-<td style="text-align:center">允许内容：流内容（除header、footer、sectioning content或heading content的继承。）</td>
-</tr>
-<tr>
-<td style="text-align:center">表单</td>
-<td style="text-align:center"><code>&lt;form&gt;</code></td>
-<td style="text-align:center">代表一个表单 ，由控件组成。</td>
-<td style="text-align:center"><form> 元素 表示了文档中的一个区域，这个区域包含有交互控制元件，用来向web服务器提交信息。可以用 <code>:valid</code>和<code>:invalid</code> CSS 伪类 来给一个元素指定样式。允许内容：流式元素</form></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;fieldset&gt;</code></td>
-<td style="text-align:center">代表控件组 。</td>
-<td style="text-align:center"><code>fieldset</code>元素通常用来对表单中的控制元素进行分组(也包括 label 元素)允许内容：一个可选的<code>&lt;legend&gt;</code>元素，后面跟流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;legend&gt;</code></td>
-<td style="text-align:center">代表 <code>&lt;fieldset&gt;</code> 控件组的标题。</td>
-<td style="text-align:center"><code>&lt;legend&gt;</code>元素（也称为HTML的域说明元素（or HMTL Legend Field Element））代表一个用于表示它的父元素<code>&lt;fieldset&gt;</code>的内容的标题。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;label&gt;</code></td>
-<td style="text-align:center">代表表单控件的标题。## II.元素</td>
-<td style="text-align:center">它通常关联一个控件，或者是将控件放置在label元素内，或者是用作其属性。这样的控制称作label元素的labeled control。允许内容：没有后代<code>label</code>元素的短语元素。除了标记控制之外，不允许使用其他可标记的元素。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;button&gt;</code></td>
-<td style="text-align:center">代表按钮。</td>
-<td style="text-align:center"><code>&lt;button&gt;</code> 元素表示一个可点击的按钮，可以用在表单或文档其它需要使用简单标准按钮的地方。 默认情况下，HTML按钮的显示样式接近于 user agent 所在的宿主系统平台（用户操作系统）的按钮， 但你可以使用 CSS 来改变按钮的样貌。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;select&gt;</code></td>
-<td style="text-align:center">代表下拉框。</td>
-<td style="text-align:center"><code>&lt;select&gt;</code> 元素是一种表单控件，可创建选项菜单。菜单内的选项为<code>&lt;option&gt;</code> , 可以由 <code>&lt;optgroup&gt;</code> 元素分组。选项可以被用户预先选择。允许内容：0个或多个 <code>&lt;option&gt;</code> 或者 <code>&lt;optgroup&gt;</code> 元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;datalist&gt;</code></td>
-<td style="text-align:center">代表提供给其他控件的一组预定义选项 。</td>
-<td style="text-align:center">Datalist 元素 (<code>&lt;datalist&gt;</code>) 包含了一组<option>元素,这些元素表示其它表单控件可选值。允许内容：要么短语元素 要么 0个或多个 <code>&lt;option&gt;</code>元素.</option></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;optgroup&gt;</code></td>
-<td style="text-align:center">代表一个选项分组。</td>
-<td style="text-align:center">在一个web表单中, HTML元素<code>&lt;optgroup&gt;</code>会创建包含在一个 <code>&lt;select&gt;</code> 元素中的一组选项。允许内容：0或多个 <code>&lt;option&gt;</code> 元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;option&gt;</code></td>
-<td style="text-align:center">代表一个 <code>&lt;select&gt;</code> 元素或 <code>&lt;datalist&gt;</code> 元素中的一个选项</td>
-<td style="text-align:center">HTML元素 <code>&lt;option&gt;</code>  用于定义在<code>&lt;select&gt;</code>,  <code>&lt;optgroup&gt;</code> 或<code>&lt;datalist&gt;</code> 元素中包含的项。<code>&lt;option&gt;</code> 可以在弹出窗口和 html 文档中的其他项目列表中表示菜单项。允许内容：带有最终转义字符（例如 <code>&amp;eacute;</code>）的文本</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;textarea&gt;</code></td>
-<td style="text-align:center">代表多行文本框 。</td>
-<td style="text-align:center"><code>&lt;textarea&gt;</code> 元素表示一个多行纯文本编辑控件。 允许内容：文字</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;keygen&gt;</code></td>
-<td style="text-align:center">代表一个密钥对生成器。</td>
-<td style="text-align:center">尽量不要使用了，该特性已从Web标准中删除。</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;output&gt;</code></td>
-<td style="text-align:center">代表计算值。</td>
-<td style="text-align:center"><code>&lt;output&gt;</code> 标签表示计算或用户操作的结果。允许内容：短语元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;progress&gt;</code></td>
-<td style="text-align:center">代表进度条 。</td>
-<td style="text-align:center">progress (<code>&lt;progress&gt;</code>) 元素用来显示一项任务的完成进度.虽然规范中没有规定该元素具体如何显示,浏览器开发商可以自己决定,但通常情况下,该元素都显示为一个进度条形式。允许内容：流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;meter&gt;</code></td>
-<td style="text-align:center">代表滑动条。</td>
-<td style="text-align:center"><code>&lt;meter&gt;</code>元素用来显示已知范围的标量值或者分数值。允许内容：短语元素，但不允许有<meter>元素作为其子元素。</meter></td>
-</tr>
-<tr>
-<td style="text-align:center">交互元素</td>
-<td style="text-align:center"><code>&lt;details&gt;</code></td>
-<td style="text-align:center">代表一个用户可以(点击)获取额外信息或控件的小部件。</td>
-<td style="text-align:center"><code>&lt;details&gt;</code> 元素被用作发现小部件，用户可以从其中检索附加信息。允许内容：<code>&lt;summary&gt;</code>后紧跟流式元素</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;summary&gt;</code></td>
-<td style="text-align:center">代表 <code>&lt;details&gt;</code> 元素的综述或标题。</td>
-<td style="text-align:center"><summary> 元素 用作 一个<code>&lt;details&gt;</code>元素的一个内容的摘要，标题或图例。如果 <code>&lt;summary&gt;</code> 元素在浏览器内不能被正确解析和渲染,，则会展示<code>&lt;details&gt;</code>标签内的其他内容。</summary></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;menuitem&gt;</code></td>
-<td style="text-align:center">代表一个用户可以点击的菜单项。</td>
-<td style="text-align:center">用户可以通过HTML的 <code>&lt;menuitem&gt;</code> 标签生成一个弹出式菜单。这包括上下文菜单，以及按钮可能附带的菜单。这个标签可以被显式定义，带有文本标签和可选图标来描述其外观，或者作为一个间接命令，其行为由一个单独的元素定义。命令还可以选择包含复选框或分组共享单选按钮。（<code>&lt;input type=&quot;checkbox&quot;&gt;</code> 和 <code>&lt;input type=&quot;radio&quot;&gt;</code>.)</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;menu&gt;</code></td>
-<td style="text-align:center">代表菜单。</td>
-<td style="text-align:center">HTML <menu> 元素 呈现了一组用户可执行或激活的命令。这既包含了可能出现在屏幕顶端的列表菜单，也包含了那些隐藏在按钮之下、当点击按钮后显示出来的文本菜单。使用说明:  <code>&lt;menu&gt;</code> 和 <code>&lt;ul&gt;</code> 元素都呈现了无序列表元素。最主要的区别是 <code>&lt;ul&gt;</code> 主要是为了展示选项，而 <code>&lt;menu&gt;</code> 则是为了交互。允许内容：如果元素位于列表菜单内：流式元素；或者零个或多个活动的 <code>&lt;li&gt;</code>, <code>&lt;script&gt;</code>和<code>&lt;template&gt;</code>二选一。如果元素位于右键菜单（上下文菜单）：零个或多个事件，任何顺序中，<code>&lt;menu&gt;</code>(仅上下文菜单) <code>&lt;menuitem&gt;</code>、<code>&lt;hr&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;template&gt;</code>。</menu></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="II-元素内容类型"><a href="#II-元素内容类型" class="headerlink" title="II.元素内容类型"></a>II.元素内容类型</h3><p>每一个HTML元素都必须遵循定义了它可以包含哪一类内容的规则。 这些规则被归类为几个常见的元素内容模型（content model）。每个HTML元素都属于0个、1 个或多个内容模型，每个模型都有一些规则使得元素中的内容必须遵循一个HTML规范文档( HTML-conformant document)。</p>
-<p>以下是三种类型的内容分类：</p>
-<p>主内容类，描述了很多元素共享的内容规范；<br>表单相关的内容类，描述了表单相关元素共有的内容规范；<br>特殊内容类，描述了仅仅在某些特殊元素上才需要遵守的内容规范，通常这些元素都有特殊的上下文关系。</p>
-<h4 id="i-元数据内容（Metadata-content）"><a href="#i-元数据内容（Metadata-content）" class="headerlink" title="i.元数据内容（Metadata content）"></a>i.元数据内容（Metadata content）</h4><p>此类元素 修改文档其余部分的陈述或者行为，建立与其他文档的链接，或者传达其他外带信息。<br>属于这一类的元素有：<code>&lt;base&gt;, &lt;command&gt;, &lt;link&gt;, &lt;meta&gt;, &lt;noscript&gt;, &lt;script&gt;, &lt;style&gt; and &lt;title&gt;.</code></p>
-<h4 id="ii-流式元素（Flow-content）"><a href="#ii-流式元素（Flow-content）" class="headerlink" title="ii.流式元素（Flow content）"></a>ii.流式元素（Flow content）</h4><p>此类元素通常包含 文本或植入的内容。此类元素有：<code>&lt;a&gt;, &lt;abbr&gt;, &lt;address&gt;, &lt;article&gt;, &lt;aside&gt;, &lt;audio&gt;, &lt;b&gt;,&lt;bdo&gt;, &lt;bdi&gt;, &lt;blockquote&gt;, &lt;br&gt;, &lt;button&gt;, &lt;canvas&gt;, &lt;cite&gt;, &lt;code&gt;, &lt;command&gt;, &lt;data&gt;, &lt;datalist&gt;, &lt;del&gt;, &lt;details&gt;, &lt;dfn&gt;, &lt;div&gt;, &lt;dl&gt;, &lt;em&gt;, &lt;embed&gt;, &lt;fieldset&gt;, &lt;figure&gt;, &lt;footer&gt;, &lt;form&gt;, &lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;, &lt;header&gt;, &lt;hgroup&gt;, &lt;hr&gt;, &lt;i&gt;, &lt;iframe&gt;, &lt;img&gt;, &lt;input&gt;, &lt;ins&gt;, &lt;kbd&gt;, &lt;keygen&gt;, &lt;label&gt;, &lt;main&gt;, &lt;map&gt;, &lt;mark&gt;, &lt;math&gt;, &lt;menu&gt;, &lt;meter&gt;, &lt;nav&gt;, &lt;noscript&gt;, &lt;object&gt;, &lt;ol&gt;, &lt;output&gt;, &lt;p&gt;, &lt;pre&gt;, &lt;progress&gt;, &lt;q&gt;, &lt;ruby&gt;, &lt;s&gt;, &lt;samp&gt;, &lt;script&gt;, &lt;section&gt;, &lt;select&gt;, &lt;small&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;sub&gt;, &lt;sup&gt;, &lt;svg&gt;, &lt;table&gt;, &lt;template&gt;, &lt;textarea&gt;, &lt;time&gt;, &lt;ul&gt;, &lt;var&gt;, &lt;video&gt;, &lt;wbr&gt;</code> 以及 Text.</p>
-<p>属于此类的少数其他元素（仅限于某种特殊情形，这些元素才会属于此类）：<br><code>&lt;area&gt;</code>, 仅限于它作为<map>的子节点的情形<br><code>&lt;link&gt;</code>, 仅限于itemprop属性存在的情形<br><code>&lt;meta&gt;</code>, 仅限于itemprop属性存在的情形<br><code>&lt;style&gt;</code>, 仅限于 scoped属性存在的情形</map></p>
-<h4 id="iii-章节元素（Sectioning-content）"><a href="#iii-章节元素（Sectioning-content）" class="headerlink" title="iii.章节元素（Sectioning content）"></a>iii.章节元素（Sectioning content）</h4><p>隶属于分节内容模型的元素 在当前的大纲中创建一个分节，此分节将定义<code>&lt;header&gt;</code>元素、<code>&lt;footer&gt;</code>元素和标题元素（heading content）的范围。<br>属于此类的元素有： <code>&lt;article&gt;, &lt;aside&gt;, &lt;nav&gt; and &lt;section&gt;</code>. </p>
-<h4 id="iv-标题元素（Heading-content）"><a href="#iv-标题元素（Heading-content）" class="headerlink" title="iv.标题元素（Heading content）"></a>iv.标题元素（Heading content）</h4><p>标题内容 定义了分节的标题，而这个分节可能由一个明确的分节内容元素直接标记，也可能由标题本身隐式地定义。<br>属于此分类的元素有： <code>&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;</code> and <code>&lt;hgroup&gt;</code>.</p>
-<h4 id="v-短语元素（Phrasing-content）"><a href="#v-短语元素（Phrasing-content）" class="headerlink" title="v.短语元素（Phrasing content）"></a>v.短语元素（Phrasing content）</h4><p>短语元素（Phrasing content） 规定文本和它包含的标记。 一些Phrasing content就构成了段落.<br>属于此类的元素有： <code>&lt;abbr&gt;, &lt;audio&gt;, &lt;b&gt;, &lt;bdo&gt;, &lt;br&gt;, &lt;button&gt;, &lt;canvas&gt;, &lt;cite&gt;, &lt;code&gt;, &lt;command&gt;, &lt;datalist&gt;, &lt;dfn&gt;, &lt;em&gt;, &lt;embed&gt;, &lt;i&gt;, &lt;iframe&gt;, &lt;img&gt;, &lt;input&gt;, &lt;kbd&gt;, &lt;keygen&gt;, &lt;label&gt;, &lt;mark&gt;, &lt;math&gt;, &lt;meter&gt;, &lt;noscript&gt;, &lt;object&gt;, &lt;output&gt;, &lt;progress&gt;, &lt;q&gt;, &lt;ruby&gt;, &lt;samp&gt;, &lt;script&gt;, &lt;select&gt;, &lt;small&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;sub&gt;, &lt;sup&gt;, &lt;svg&gt;, &lt;textarea&gt;, &lt;time&gt;, &lt;var&gt;, &lt;video&gt;, &lt;wbr&gt;</code> 和 plain text (仅当所包含的内容不完全为空字符的时候).<br>一些其他的元素也属于这个分类，但是只有当如下特殊情况时才会实现:<br><code>&lt;a&gt;</code>, 当它仅包含 phrasing content 时<br><code>&lt;area&gt;</code>, 当它为<code>&lt;map&gt;</code> 元素的子元素时<br><code>&lt;del&gt;</code>, 当它仅包含 phrasing content 时<br><code>&lt;ins&gt;</code>, 当它仅包含 phrasing content 时<br><code>&lt;link&gt;</code>, 如果itemprop属性存在的情形<br><code>&lt;map&gt;</code>, 当它仅包含 phrasing content 时<br><code>&lt;meta&gt;</code>,如果itemprop属性存在的情形</p>
-<h4 id="vi-嵌入元素（Embedded-content）"><a href="#vi-嵌入元素（Embedded-content）" class="headerlink" title="vi.嵌入元素（Embedded content）"></a>vi.嵌入元素（Embedded content）</h4><p>Embedded content输入另一个资源或者将来自另一种标记语言或命名空间的内容插入到文档中。<br>属于此类的元素有：<code>&lt;audio&gt;, &lt;canvas&gt;, &lt;embed&gt;, &lt;iframe&gt;, &lt;img&gt;, &lt;math&gt;, &lt;object&gt;, &lt;svg&gt;, &lt;video&gt;</code>.</p>
-<h4 id="vii-交互元素（Interactive-content）"><a href="#vii-交互元素（Interactive-content）" class="headerlink" title="vii.交互元素（Interactive content）"></a>vii.交互元素（Interactive content）</h4><p>交互式内容包含为用户交互而特别设计的元素。<br>属于此类的元素有：<code>&lt;a&gt;，&lt;button&gt;，&lt;details&gt;，&lt;embed&gt;，&lt;iframe&gt;，&lt;keygen&gt;，&lt;label&gt;，&lt;select&gt;</code> 和 <code>&lt;textarea&gt;</code>。<br>仅在特殊情形下才会属于此类的元素有:<br><code>&lt;audio&gt;</code>, 若controls属性存在<br><code>&lt;img&gt;</code>, 若usemap属性存在<br><code>&lt;input&gt;</code>, 若type属性不处于隐藏（hidden）状态<br><code>&lt;menu&gt;</code>, 若type属性处于工具栏（toolbar）状态<br><code>&lt;object&gt;</code>, 若usemap属性存在<br><code>&lt;video&gt;</code>, 若controls属性存在</p>
-<h4 id="viii-表单相关内容（Form-associated-content）"><a href="#viii-表单相关内容（Form-associated-content）" class="headerlink" title="viii.表单相关内容（Form-associated content）"></a>viii.表单相关内容（Form-associated content）</h4><p>表单相关的内容 包含 拥有表单父节点（exposed by a form attribute）的元素，一个表单父节点可以是<code>&lt;form&gt;</code>元素，也可以是其id在表单属性中被指定了的元素。（Form-associated content comprises elements that have a form owner, exposed by a form attribute. A form owner is either the containing <code>&lt;form&gt;</code> element or the element whose id is specified in the form attribute.）<br><code>&lt;button&gt;</code><br><code>&lt;fieldset&gt;</code><br><code>&lt;input&gt;</code><br><code>&lt;keygen&gt;</code><br><code>&lt;label&gt;</code><br><code>&lt;meter&gt;</code><br><code>&lt;object&gt;</code><br><code>&lt;output&gt;</code><br><code>&lt;progress&gt;</code><br><code>&lt;select&gt;</code><br><code>&lt;textarea&gt;</code><br> 此类包含了几个子类：<br><strong>可列举的元素（listed）</strong><br>在 form.elements 和 fieldset.elements IDL collections中列举出的元素. 包括 <code>&lt;button&gt;，&lt;fieldset&gt;，&lt;input&gt;，&lt;keygen&gt;，&lt;object&gt;，&lt;output&gt;，&lt;select&gt;</code> 和 <code>&lt;textarea&gt;</code>。<br><strong>可标签的元素（labelable）</strong><br>和 <code>&lt;label&gt;</code> 相关联的元素。包括 <code>&lt;button&gt;，&lt;input&gt;，&lt;keygen&gt;，&lt;meter&gt;，&lt;output&gt;，&lt;progress&gt;，&lt;select&gt;</code> 和 <code>&lt;textarea&gt;</code>。<br><strong>可提交的元素（submittable）</strong><br>包括当表单提交时可以用来组成表单数据的元素。 包括 <code>&lt;button&gt;，&lt;input&gt;，&lt;keygen&gt;，&lt;object&gt;，&lt;select&gt;</code> 和 <code>&lt;textarea&gt;</code>.<br><strong>可重置的元素（resettable）</strong><br>当表单重置时会被重置的元素。包括 <code>&lt;input&gt;，&lt;keygen&gt;，&lt;output&gt;，&lt;select&gt;</code> 和 <code>&lt;textarea&gt;</code>.</p>
-<h4 id="ix-透明内容模型（Transparent-content-model）"><a href="#ix-透明内容模型（Transparent-content-model）" class="headerlink" title="ix.透明内容模型（Transparent content model）"></a>ix.透明内容模型（Transparent content model）</h4><p>如果一个元素拥有 transparent content mode， 即使将透明内容更换为子元素，其内容必须由合法的HTML5元素组成。<br>例如，<code>&lt;del&gt;</code> 和 <code>&lt;ins&gt;</code> 是透明的：<br><code>&lt;p&gt;We hold these truths to be &lt;del&gt;&lt;em&gt;sacred &amp;amp; undeniable&lt;/em&gt;&lt;/del&gt; &lt;ins&gt;self-evident&lt;/ins&gt;.&lt;/p&gt;</code><br>如果这两个元素被移除，这个程序段依然是合法的。<br><code>&lt;p&gt;We hold these truths to be &lt;em&gt;sacred &amp;amp; undeniable&lt;/em&gt; self-evident.&lt;/p&gt;</code></p>
-<h3 id="III-空元素"><a href="#III-空元素" class="headerlink" title="III. 空元素"></a>III. 空元素</h3><p><strong>一个空元素（empty element）</strong>可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。<br>HTML，SVG 和 MathML 的规范都详细定义了每个元素能包含的具体内容（define very precisely what each element can contain）。许多组合是没有任何语义含义的，比如一个 <code>&lt;audio&gt;</code> 元素嵌套在一个 <code>&lt;hr&gt;</code> 元素里。<br>在 HTML 中，通常在一个空元素上使用一个闭标签是无效的。例如， <code>&lt;input type=&quot;text&quot;&gt;&lt;/input&gt;</code> 的闭标签是无效的 HTML。<br>在 HTML 中有以下这些空元素：<br><code>&lt;area&gt;</code><br><code>&lt;base&gt;</code><br><code>&lt;br&gt;</code><br><code>&lt;col&gt;</code><br><code>&lt;colgroup&gt;</code> when the span is present<br><code>&lt;command&gt;</code><br><code>&lt;embed&gt;</code><br><code>&lt;hr&gt;</code><br><code>&lt;img&gt;</code><br><code>&lt;input&gt;</code><br><code>&lt;keygen&gt;</code><br><code>&lt;link&gt;</code><br><code>&lt;meta&gt;</code><br><code>&lt;param&gt;</code><br><code>&lt;source&gt;</code><br><code>&lt;track&gt;</code><br><code>&lt;wbr&gt;</code><br><strong>在极少数情况下，空元素被错误地称为“无效元素”(void elements)。</strong></p>
-<font color="gray">有始无终的诸位，不加闭标签</font>
-
-<h3 id="IV-可替换元素"><a href="#IV-可替换元素" class="headerlink" title="IV.可替换元素"></a>IV.可替换元素</h3><p>CSS 里，可替换元素（replaced element）的展现不是由CSS来控制的。这些元素是一类 外观渲染独立于CSS的 外部对象。 典型的可替换元素有 <code>&lt;img&gt;</code>、 <code>&lt;object&gt;</code>、 <code>&lt;video&gt;</code> 和 表单元素，如<code>&lt;textarea&gt;</code>、 <code>&lt;input&gt;</code> 。 某些元素只在一些特殊情况下表现为可替换元素，例如 <code>&lt;audio&gt;</code> 和 <code>&lt;canvas&gt;</code> 。 通过 CSS content 属性来插入的对象 被称作 匿名可替换元素（anonymous replaced elements）。</p>
-<p><strong>自己决定自己宽高的元素</strong></p>
-<p>CSS在某些情况下会对可替换元素做特殊处理，比如计算外边距和一些auto值。</p>
-<p>需要注意的是，一部分（并非全部）可替换元素，本身具有尺寸和基线（baseline），会被像vertical-align之类的一些 CSS 属性用到。</p>
-<h3 id="V-标签的属性"><a href="#V-标签的属性" class="headerlink" title="V.标签的属性"></a>V.标签的属性</h3><p><strong>HTML标签没有块级元素和内联元素的区别，仅仅仅仅仅仅在CSS里有这种区别</strong><br><code>&lt;div&gt;</code>是块级元素？？？naive！<br><code>&lt;style&gt;
-  div{
-    display: inline;
- }
-&lt;/style&gt;</code><br>你曾经是个块级元素(默认)，但看看你现在的样子。<br><br><br><strong>HTML只做一件事情：定义他是什么，而他长什么样子和HTML没关系。</strong><del>这种问题请交给CSS</del></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2746,7 +2057,7 @@ margin-left:0
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

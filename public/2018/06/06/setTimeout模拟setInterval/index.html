@@ -99,24 +99,24 @@
 
 
 
-  <meta name="description" content="1.内容样式行为分离内容：HTML样式：CSS行为：JS 为什么？ I.这时候需要一点点逆向思考：如果不这么做，会怎么样？ i.HTML写样式？123&amp;lt;body background=green&amp;gt;    &amp;lt;center&amp;gt;&amp;lt;font color=red size=20&amp;gt;你好&amp;lt;/font&amp;gt;&amp;lt;/center&amp;gt;&amp;lt;/body&amp;gt; HTML">
-<meta name="keywords" content="重构">
+  <meta name="description" content="0.一个问题12345var duration = 20setInterval(()=&amp;gt;&amp;#123;    //要执行的代码&amp;#125;,duration)  这段代码中setInterval读了一次变量duration的值 之后setInterval再也不会读这个值了 就算我后面改了duration的值，他也不会再读了 这使得setInterval不能达到控速的目的  1.一个小技巧，模拟">
+<meta name="keywords" content="JS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重构-始">
-<meta property="og:url" content="http://yoursite.com/2018/04/28/重构-始/index.html">
+<meta property="og:title" content="setTimeout模拟setInterval">
+<meta property="og:url" content="http://yoursite.com/2018/06/06/setTimeout模拟setInterval/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
-<meta property="og:description" content="1.内容样式行为分离内容：HTML样式：CSS行为：JS 为什么？ I.这时候需要一点点逆向思考：如果不这么做，会怎么样？ i.HTML写样式？123&amp;lt;body background=green&amp;gt;    &amp;lt;center&amp;gt;&amp;lt;font color=red size=20&amp;gt;你好&amp;lt;/font&amp;gt;&amp;lt;/center&amp;gt;&amp;lt;/body&amp;gt; HTML">
-<meta property="og:updated_time" content="2018-04-28T16:36:11.889Z">
+<meta property="og:description" content="0.一个问题12345var duration = 20setInterval(()=&amp;gt;&amp;#123;    //要执行的代码&amp;#125;,duration)  这段代码中setInterval读了一次变量duration的值 之后setInterval再也不会读这个值了 就算我后面改了duration的值，他也不会再读了 这使得setInterval不能达到控速的目的  1.一个小技巧，模拟">
+<meta property="og:updated_time" content="2018-06-06T12:33:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重构-始">
-<meta name="twitter:description" content="1.内容样式行为分离内容：HTML样式：CSS行为：JS 为什么？ I.这时候需要一点点逆向思考：如果不这么做，会怎么样？ i.HTML写样式？123&amp;lt;body background=green&amp;gt;    &amp;lt;center&amp;gt;&amp;lt;font color=red size=20&amp;gt;你好&amp;lt;/font&amp;gt;&amp;lt;/center&amp;gt;&amp;lt;/body&amp;gt; HTML">
+<meta name="twitter:title" content="setTimeout模拟setInterval">
+<meta name="twitter:description" content="0.一个问题12345var duration = 20setInterval(()=&amp;gt;&amp;#123;    //要执行的代码&amp;#125;,duration)  这段代码中setInterval读了一次变量duration的值 之后setInterval再也不会读这个值了 就算我后面改了duration的值，他也不会再读了 这使得setInterval不能达到控速的目的  1.一个小技巧，模拟">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/28/重构-始/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/06/setTimeout模拟setInterval/"/>
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>重构-始 | Protoss Oracle</title>
+  <title>setTimeout模拟setInterval | Protoss Oracle</title>
   
 
 
@@ -275,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/重构-始/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/06/setTimeout模拟setInterval/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张博涵">
@@ -292,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">重构-始</h1>
+          <h1 class="post-title" itemprop="name headline">setTimeout模拟setInterval</h1>
         
 
         <div class="post-meta">
@@ -304,7 +304,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-28T23:46:19+08:00">2018-04-28</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-06T20:17:00+08:00">2018-06-06</time>
             
 
             
@@ -341,21 +341,24 @@
       
 
       
-        <h1 id="1-内容样式行为分离"><a href="#1-内容样式行为分离" class="headerlink" title="1.内容样式行为分离"></a>1.内容样式行为分离</h1><p>内容：HTML<br>样式：CSS<br>行为：JS</p>
-<p><strong>为什么？</strong></p>
-<h2 id="I-这时候需要一点点逆向思考："><a href="#I-这时候需要一点点逆向思考：" class="headerlink" title="I.这时候需要一点点逆向思考："></a>I.这时候需要一点点逆向思考：</h2><p>如果不这么做，会怎么样？</p>
-<h3 id="i-HTML写样式？"><a href="#i-HTML写样式？" class="headerlink" title="i.HTML写样式？"></a>i.HTML写样式？</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">background</span>=<span class="string">green</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">center</span>&gt;</span><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">red</span> <span class="attr">size</span>=<span class="string">20</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>HTML写样式，那是不是会多出来很多无意义的标签来负责样式。<br>可能会混淆网页的逻辑结构。</p>
-<h3 id="ii-CSS来写内容？"><a href="#ii-CSS来写内容？" class="headerlink" title="ii.CSS来写内容？"></a>ii.CSS来写内容？</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&lt;div&gt;</span>&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">di</span><span class="variable">v:</span>:after&#123;</span><br><span class="line">    conten<span class="variable">t:</span><span class="string">'你好'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>麻烦了，第一个：选不中<br>第二个：JS选不到</p>
-<h3 id="iii-CSS负责行为？"><a href="#iii-CSS负责行为？" class="headerlink" title="iii.CSS负责行为？"></a>iii.CSS负责行为？</h3><p>加载半年</p>
-<h3 id="iv-JS控制样式？"><a href="#iv-JS控制样式？" class="headerlink" title="iv.JS控制样式？"></a>iv.JS控制样式？</h3><p>这时候可能有点争议<br><code>jQuery</code>有两个很著名的<code>api</code><br><code>$div.show()</code>和<code>$div.hide()</code><br>原则上是不推荐用的</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;<span class="built-in">div</span> id=x&gt;你好&lt;/<span class="built-in">div</span>&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">var <span class="symbol">$</span><span class="built-in">div</span> = <span class="symbol">$</span>(<span class="string">'#x'</span>)</span><br><span class="line"><span class="meta"><span class="meta-keyword">$div</span>.hide()</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$div</span>.show()   //这时候div.style.display 应该是 'block'</span></span><br></pre></td></tr></table></figure>
-<p>那么问题来了：<code>hide</code>肯定是<code>display:none;</code><br>那么<code>show</code>了以后呢？<br>如果一开始在CSS里写好<code>display: none;</code><br>那么<code>show</code>了以后<code>display: block;</code></p>
-<p>变成<code>div</code>默认的了，<code>jQuery</code>在猜，改变后再还原改变之前的属性<br>不是很可靠</p>
-<p>所以上策是改变标签的class</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="variable">$div</span> = $(<span class="string">'#x'</span>)</span><br><span class="line"><span class="variable">$div</span>.addClass(<span class="string">'active'</span>)  <span class="regexp">//</span>或者<span class="string">'enable'</span> <span class="string">'disable'</span> </span><br><span class="line"><span class="regexp">//</span>之后在css表达他在某种状态的时候的属性</span><br></pre></td></tr></table></figure>
-<h3 id="v-各司其职，其乐融融。"><a href="#v-各司其职，其乐融融。" class="headerlink" title="v.各司其职，其乐融融。"></a>v.各司其职，其乐融融。</h3>
+        <h1 id="0-一个问题"><a href="#0-一个问题" class="headerlink" title="0.一个问题"></a>0.一个问题</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> duration = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">setInterval</span><span class="params">(()</span></span>=&gt;&#123;</span><br><span class="line">    <span class="comment">//要执行的代码</span></span><br><span class="line">&#125;,duration)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这段代码中<code>setInterval</code>读了一次变量<code>duration</code>的值</li>
+<li>之后<code>setInterval</code>再也不会读这个值了</li>
+<li>就算我后面改了<code>duration</code>的值，他也不会再读了</li>
+<li>这使得<code>setInterval</code>不能达到控速的目的</li>
+</ul>
+<h1 id="1-一个小技巧，模拟setInterval"><a href="#1-一个小技巧，模拟setInterval" class="headerlink" title="1.一个小技巧，模拟setInterval()"></a>1.一个小技巧，模拟setInterval()</h1><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">* body里有个div。</span></span><br><span class="line"><span class="comment">* id="output"</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">n</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">n</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">id</span> = setInterval(()=&gt;&#123;</span><br><span class="line">    n+=<span class="number">1</span></span><br><span class="line">    output.<span class="attr">innerText</span> = n</span><br><span class="line">    <span class="keyword">if</span>(n&gt;=<span class="number">10</span>)&#123;</span><br><span class="line">        window.clearInterval(id)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">500</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> n = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> id = setTimeout(function <span class="function"><span class="keyword">fn</span><span class="params">()</span>&#123;</span></span><br><span class="line"><span class="function">    n += <span class="number">1</span></span></span><br><span class="line"><span class="function">    <span class="keyword">output</span>.<span class="title">innerText</span> = n</span></span><br><span class="line"><span class="function">    setTimeout<span class="params">(<span class="keyword">fn</span>, <span class="number">500</span>)</span>     <span class="comment">//这句话是精髓:打出来一次以后，延时500,再次调用fn</span></span></span><br><span class="line"><span class="function">&#125;,<span class="number">500</span>)</span></span><br></pre></td></tr></table></figure>
+<p><strong>他们俩可以达到一样的效果</strong></p>
+<h2 id="I-加个中断吧"><a href="#I-加个中断吧" class="headerlink" title="I.加个中断吧"></a>I.加个中断吧</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> n = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> id = setTimeout(function <span class="function"><span class="keyword">fn</span></span>()&#123;</span><br><span class="line">    n += <span class="number">1</span></span><br><span class="line">    output.innerText = n</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">10</span>)&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">fn</span>, 500)   //如果<span class="title">n</span></span>&lt;<span class="number">10</span>，就调用<span class="function"><span class="keyword">fn</span>，否则，什么也不做</span></span><br><span class="line"><span class="function">    &#125;</span></span><br><span class="line"><span class="function">&#125;,500)</span></span><br></pre></td></tr></table></figure>
+<p>加个判断条件砸掉定时器，是不是很灵活<br>并不需要<code>window.clearInterval(id)</code></p>
+<h1 id="2-总结"><a href="#2-总结" class="headerlink" title="2.总结"></a>2.总结</h1><ul>
+<li>所有<code>setInterval</code>都可以改写成<code>setTimeout</code></li>
+<li>通过在<code>setTimeout</code>内部增加<code>setTimeout(fn,500)</code>达到重复调用的作用</li>
+<li>以此达到模拟<code>setInterval</code>的作用</li>
+</ul>
+
       
     </div>
 
@@ -375,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/重构/" rel="tag"># 重构</a>
+            <a href="/tags/JS/" rel="tag"># JS</a>
           
         </div>
       
@@ -388,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/26/jQuery-始/" rel="next" title="jQuery-始">
-                <i class="fa fa-chevron-left"></i> jQuery-始
+              <a href="/2018/06/04/异步＆回调/" rel="next" title="异步＆回调">
+                <i class="fa fa-chevron-left"></i> 异步＆回调
               </a>
             
           </div>
@@ -397,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/07/JSONP/" rel="prev" title="JSONP">
-                JSONP <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -547,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-内容样式行为分离"><span class="nav-number">1.</span> <span class="nav-text">1.内容样式行为分离</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-这时候需要一点点逆向思考："><span class="nav-number">1.1.</span> <span class="nav-text">I.这时候需要一点点逆向思考：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-HTML写样式？"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.HTML写样式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-CSS来写内容？"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.CSS来写内容？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-CSS负责行为？"><span class="nav-number">1.1.3.</span> <span class="nav-text">iii.CSS负责行为？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-JS控制样式？"><span class="nav-number">1.1.4.</span> <span class="nav-text">iv.JS控制样式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-各司其职，其乐融融。"><span class="nav-number">1.1.5.</span> <span class="nav-text">v.各司其职，其乐融融。</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-一个问题"><span class="nav-number">1.</span> <span class="nav-text">0.一个问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-一个小技巧，模拟setInterval"><span class="nav-number">2.</span> <span class="nav-text">1.一个小技巧，模拟setInterval()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-加个中断吧"><span class="nav-number">2.1.</span> <span class="nav-text">I.加个中断吧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-总结"><span class="nav-number">3.</span> <span class="nav-text">2.总结</span></a></li></ol></div>
             
 
           </div>
