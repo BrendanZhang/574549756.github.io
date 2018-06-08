@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="0.前置 Cookie Session Cache-Control 这三个是响应头，响应头，响应头。  1.cookieI.定义i.维基说的 Cookie（复数形态Cookies），中文名称为“小型文本文件”或“小甜饼”，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。 由网景公司的前雇员卢·蒙特利在1993年3月发明。最初定义于RFC 2109。">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Cookie">
+<meta property="og:url" content="http://yoursite.com/2018/06/07/关于Cookie/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="0.前置 Cookie Session Cache-Control 这三个是响应头，响应头，响应头。  1.cookieI.定义i.维基说的 Cookie（复数形态Cookies），中文名称为“小型文本文件”或“小甜饼”，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。 由网景公司的前雇员卢·蒙特利在1993年3月发明。最初定义于RFC 2109。">
+<meta property="og:updated_time" content="2018-06-08T15:16:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Cookie">
+<meta name="twitter:description" content="0.前置 Cookie Session Cache-Control 这三个是响应头，响应头，响应头。  1.cookieI.定义i.维基说的 Cookie（复数形态Cookies），中文名称为“小型文本文件”或“小甜饼”，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。 由网景公司的前雇员卢·蒙特利在1993年3月发明。最初定义于RFC 2109。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/07/关于Cookie/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>关于Cookie | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/关于Cookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于Cookie</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-07T18:38:15+08:00">2018-06-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0-前置"><a href="#0-前置" class="headerlink" title="0.前置"></a>0.前置</h1><ul>
+<li>Cookie Session Cache-Control 这三个是响应头，响应头，响应头。</li>
+</ul>
+<h1 id="1-cookie"><a href="#1-cookie" class="headerlink" title="1.cookie"></a>1.cookie</h1><h2 id="I-定义"><a href="#I-定义" class="headerlink" title="I.定义"></a>I.定义</h2><h3 id="i-维基说的"><a href="#i-维基说的" class="headerlink" title="i.维基说的"></a>i.维基说的</h3><ul>
+<li>Cookie（复数形态Cookies），中文名称为“小型文本文件”或“小甜饼”，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。</li>
+<li>由网景公司的前雇员卢·蒙特利在1993年3月发明。最初定义于RFC 2109。</li>
+<li>目前使用最广泛的 Cookie标准却不是RFC中定义的任何一个，而是在网景公司制定的标准上进行扩展后的产物。</li>
+</ul>
+<h3 id="ii-简化一点"><a href="#ii-简化一点" class="headerlink" title="ii.简化一点"></a>ii.简化一点</h3><ol>
+<li>Cookie 是浏览器访问服务器后，服务器传给浏览器的一段数据。</li>
+<li>浏览器需要保存这段数据，不得轻易删除。</li>
+<li>此后每次浏览器访问该服务器，都必须带上这段数据。</li>
+</ol>
+<h2 id="II-作用"><a href="#II-作用" class="headerlink" title="II.作用"></a>II.作用</h2><h3 id="i-识别用户身份"><a href="#i-识别用户身份" class="headerlink" title="i.识别用户身份"></a>i.识别用户身份</h3><ul>
+<li>A用户 注册登陆了 <code>a.com</code>， <code>a.com</code> 的服务器返回给 A用户 一段数据，包含用户名密码各种东西</li>
+<li>B用户 打开 <code>a.com</code> ， <code>a.com</code> 的服务器看了一眼数据库发现没有 B用户 的数据，就让 B用户 去注册登录，然后返回给 B用户 它的账户信息</li>
+<li>这样，<code>a.com</code> 就可以清楚的区分 A用户 和 B用户 了。<h3 id="ii-记录历史"><a href="#ii-记录历史" class="headerlink" title="ii.记录历史"></a>ii.记录历史</h3></li>
+<li>假设一个用户进入一个购物网站，加了两件商品到购物车</li>
+<li>这时 JS 改写cookie，将这两件商品记录在下来(假设<code>[{&quot;userId&quot;:&quot;Oracle&quot;,&quot;stuff&quot;:&quot;2&quot;}]</code>)</li>
+<li>假设用户摇摆不定，过了两三天</li>
+<li>依然可以看见这两件商品躺在购物车里，因此浏览器不会无缘无故删除这个 Cookie</li>
+</ul>
+<h2 id="III-特点"><a href="#III-特点" class="headerlink" title="III.特点"></a>III.特点</h2><ol>
+<li>服务器通过 Set-Cookie 响应头设置 Cookie</li>
+<li>浏览器得到 Cookie 之后，每次请求都要带上 Cookie</li>
+<li>服务器读取 Cookie 就知道登录用户的信息(email)</li>
+</ol>
+<h2 id="IV-问题"><a href="#IV-问题" class="headerlink" title="IV.问题"></a>IV.问题</h2><ol>
+<li><p>我在 Chrome 登录了，用 Safari 访问， Safari 会带上 Cookie 吗<br> // No</p>
+</li>
+<li><p>Cookie 存在哪<br> // Windows 存在 C 盘的文件里</p>
+</li>
+<li><p>Cookie 这张票能作假吗<br> // 用户在 Application 里随便改<br> // document.cookie 乱改(HttpOnly下不可以)</p>
+</li>
+<li><p>Cookie 存在有效期吗<br> // 默认有效期20分钟左右<br> // 后端可以强制设置有效期<br> <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie" target="_blank" rel="noopener">具体要看这个</a></p>
+</li>
+<li><p>Cookie 会随着域名分组吗<br> // 会，Cookie按域名分组，一个域名只能带上自己域名的Cookie</p>
+</li>
+</ol>
+<h2 id="V-cookie登录的相关流程"><a href="#V-cookie登录的相关流程" class="headerlink" title="V.cookie登录的相关流程"></a>V.cookie登录的相关流程</h2><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">                     Server                   users</span><br><span class="line">                       |<span class="string">                        </span>|<span class="string"> </span></span><br><span class="line"><span class="string">                       </span>|<span class="string">         post           </span>|<span class="string"> 打开 sign-up 注册</span></span><br><span class="line"><span class="string">                       </span>|<span class="string">      &lt;===========      </span>|</span><br><span class="line">              写数据库  ||<span class="string">     email pw1 pw2     </span>||<span class="string"> </span></span><br><span class="line"><span class="string">           &lt;===========</span>|<span class="string">                        </span>|<span class="string"> </span></span><br><span class="line"><span class="string">             email pw  </span>|<span class="string">         注册成功        </span>||</span><br><span class="line">                       |<span class="string">      ===========&gt;      </span>|</span><br><span class="line">                       |<span class="string">                        </span>|</span><br><span class="line">                       |<span class="string">          post          </span>|<span class="string">  打开 sign-in 登入</span></span><br><span class="line"><span class="string">                       </span>|<span class="string">      &lt;===========      </span>|</span><br><span class="line">                       |<span class="string">        email pw        </span>|</span><br><span class="line">                       |<span class="string">                        </span>|</span><br><span class="line">                       |<span class="string">                        </span>|</span><br><span class="line">                       |<span class="string">      ===========&gt;      </span>|</span><br><span class="line">                       |<span class="string">     SetCookie,email    </span>|</span><br><span class="line">                       |<span class="string">                        </span>|</span><br><span class="line">                       |<span class="string">       带上cookie       </span>||<span class="string"> 打开首页</span></span><br><span class="line"><span class="string">                       </span>|<span class="string">      &lt;===========      </span>|</span><br><span class="line">                       |<span class="string">          GET           </span>|</span><br><span class="line">             读cookie  ||<span class="string">                       </span>||</span><br><span class="line">     email: 1<span class="meta">@xxx.com</span>  |<span class="string">                        </span>|</span><br><span class="line">   user=find-by email  |<span class="string">                        </span>|</span><br><span class="line">user&#123;email,pw,birthD&#125;  |<span class="string">                        </span>|</span><br><span class="line">index.html(填入对应pw)  ||<span class="string">                       </span>||</span><br><span class="line">                       ↓          响应          ↓↓</span><br><span class="line">                       ↓      -----------→      ↓</span><br></pre></td></tr></table></figure>
+<p><strong>这就是cookie的工作流程</strong></p>
+<h1 id="Cookie-的那些小故事"><a href="#Cookie-的那些小故事" class="headerlink" title="Cookie 的那些小故事"></a>Cookie 的那些小故事</h1><h2 id="Cookie-的分类"><a href="#Cookie-的分类" class="headerlink" title="Cookie 的分类"></a>Cookie 的分类</h2><h3 id="默认级别"><a href="#默认级别" class="headerlink" title="默认级别"></a>默认级别</h3><ul>
+<li>指的是没有设置有效时间的Cookie</li>
+<li>默认的情况下只要关闭了浏览器，Cookie也会被销毁</li>
+<li>Cookie存在于浏览器的内存中，当关闭了浏览器Cookie就销毁了<h3 id="持久级别"><a href="#持久级别" class="headerlink" title="持久级别"></a>持久级别</h3></li>
+<li>指的是有有效时间的Cookie</li>
+<li>这种Cookie的内容不是保存在浏览器的内存中，将Cookie的内容保存（持久化）到硬盘上。</li>
+<li>这个时候，关闭浏览器，再次打开浏览器会加载硬盘上的文件，从而Cookie中的数据就不会丢失。</li>
+</ul>
+<h2 id="Cookie-的数据大小"><a href="#Cookie-的数据大小" class="headerlink" title="Cookie 的数据大小"></a>Cookie 的数据大小</h2><p>浏览器存放的Cookie的大小和个数是有限制的。</p>
+<ul>
+<li>浏览器一般只允许存放300个Cookie</li>
+<li>每个站点最多可以存放20个Cookie</li>
+<li>老版本浏览器中，每个Cookie的大小限制为4KB</li>
+</ul>
+<h2 id="其他的小Tip"><a href="#其他的小Tip" class="headerlink" title="其他的小Tip"></a>其他的小Tip</h2><ul>
+<li>一个Cookie只用标识一种信息，至少含有一个标识该信息的名称和值。</li>
+<li>一个web站点可以给一个浏览器发送多个Cookie。一个web浏览器可以存储多个web站点的Cookie</li>
+<li>需要手动删除持久性Cookie，可以将Cookie的有效时长设置为0.必须注意：删除Cookie时候，path必须一致，否则无法删除</li>
+</ul>
+<p><strong>常用API</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">API</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">cookie.setMaxAge(30)</td>
+<td style="text-align:center">设置最大生命周期。秒为单位，为0时表示立即删除该cookie，负数表示不存储该cookie</td>
+</tr>
+<tr>
+<td style="text-align:center">response.addCookie()</td>
+<td style="text-align:center">增加cookie(写回到浏览器),参数为cookie的名字</td>
+</tr>
+<tr>
+<td style="text-align:center">encodeURIComponent()</td>
+<td style="text-align:center">用它可以使cookie的值不包含任何逗号分号和空格</td>
+</tr>
+<tr>
+<td style="text-align:center">decodeURIComponent()</td>
+<td style="text-align:center">可以用来识别邮箱里的@符号</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/06/setTimeout模拟setInterval/" rel="next" title="setTimeout模拟setInterval">
+                <i class="fa fa-chevron-left"></i> setTimeout模拟setInterval
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-前置"><span class="nav-number">1.</span> <span class="nav-text">0.前置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-cookie"><span class="nav-number">2.</span> <span class="nav-text">1.cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-定义"><span class="nav-number">2.1.</span> <span class="nav-text">I.定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-维基说的"><span class="nav-number">2.1.1.</span> <span class="nav-text">i.维基说的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-简化一点"><span class="nav-number">2.1.2.</span> <span class="nav-text">ii.简化一点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-作用"><span class="nav-number">2.2.</span> <span class="nav-text">II.作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-识别用户身份"><span class="nav-number">2.2.1.</span> <span class="nav-text">i.识别用户身份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-记录历史"><span class="nav-number">2.2.2.</span> <span class="nav-text">ii.记录历史</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-特点"><span class="nav-number">2.3.</span> <span class="nav-text">III.特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV-问题"><span class="nav-number">2.4.</span> <span class="nav-text">IV.问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V-cookie登录的相关流程"><span class="nav-number">2.5.</span> <span class="nav-text">V.cookie登录的相关流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie-的那些小故事"><span class="nav-number">3.</span> <span class="nav-text">Cookie 的那些小故事</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-的分类"><span class="nav-number">3.1.</span> <span class="nav-text">Cookie 的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认级别"><span class="nav-number">3.1.1.</span> <span class="nav-text">默认级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久级别"><span class="nav-number">3.1.2.</span> <span class="nav-text">持久级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-的数据大小"><span class="nav-number">3.2.</span> <span class="nav-text">Cookie 的数据大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的小Tip"><span class="nav-number">3.3.</span> <span class="nav-text">其他的小Tip</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.6</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

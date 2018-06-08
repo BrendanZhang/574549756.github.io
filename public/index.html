@@ -271,6 +271,216 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/关于Cookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/07/关于Cookie/" itemprop="url">关于Cookie</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-07T18:38:15+08:00">2018-06-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-前置"><a href="#0-前置" class="headerlink" title="0.前置"></a>0.前置</h1><ul>
+<li>Cookie Session Cache-Control 这三个是响应头，响应头，响应头。</li>
+</ul>
+<h1 id="1-cookie"><a href="#1-cookie" class="headerlink" title="1.cookie"></a>1.cookie</h1><h2 id="I-定义"><a href="#I-定义" class="headerlink" title="I.定义"></a>I.定义</h2><h3 id="i-维基说的"><a href="#i-维基说的" class="headerlink" title="i.维基说的"></a>i.维基说的</h3><ul>
+<li>Cookie（复数形态Cookies），中文名称为“小型文本文件”或“小甜饼”，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。</li>
+<li>由网景公司的前雇员卢·蒙特利在1993年3月发明。最初定义于RFC 2109。</li>
+<li>目前使用最广泛的 Cookie标准却不是RFC中定义的任何一个，而是在网景公司制定的标准上进行扩展后的产物。</li>
+</ul>
+<h3 id="ii-简化一点"><a href="#ii-简化一点" class="headerlink" title="ii.简化一点"></a>ii.简化一点</h3><ol>
+<li>Cookie 是浏览器访问服务器后，服务器传给浏览器的一段数据。</li>
+<li>浏览器需要保存这段数据，不得轻易删除。</li>
+<li>此后每次浏览器访问该服务器，都必须带上这段数据。</li>
+</ol>
+<h2 id="II-作用"><a href="#II-作用" class="headerlink" title="II.作用"></a>II.作用</h2><h3 id="i-识别用户身份"><a href="#i-识别用户身份" class="headerlink" title="i.识别用户身份"></a>i.识别用户身份</h3><ul>
+<li>A用户 注册登陆了 <code>a.com</code>， <code>a.com</code> 的服务器返回给 A用户 一段数据，包含用户名密码各种东西</li>
+<li>B用户 打开 <code>a.com</code> ， <code>a.com</code> 的服务器看了一眼数据库发现没有 B用户 的数据，就让 B用户 去注册登录，然后返回给 B用户 它的账户信息</li>
+<li>这样，<code>a.com</code> 就可以清楚的区分 A用户 和 B用户 了。<h3 id="ii-记录历史"><a href="#ii-记录历史" class="headerlink" title="ii.记录历史"></a>ii.记录历史</h3></li>
+<li>假设一个用户进入一个购物网站，加了两件商品到购物车</li>
+<li>这时 JS 改写cookie，将这两件商品记录在下来(假设<code>[{&quot;userId&quot;:&quot;Oracle&quot;,&quot;stuff&quot;:&quot;2&quot;}]</code>)</li>
+<li>假设用户摇摆不定，过了两三天</li>
+<li>依然可以看见这两件商品躺在购物车里，因此浏览器不会无缘无故删除这个 Cookie</li>
+</ul>
+<h2 id="III-特点"><a href="#III-特点" class="headerlink" title="III.特点"></a>III.特点</h2><ol>
+<li>服务器通过 Set-Cookie 响应头设置 Cookie</li>
+<li>浏览器得到 Cookie 之后，每次请求都要带上 Cookie</li>
+<li>服务器读取 Cookie 就知道登录用户的信息(email)</li>
+</ol>
+<h2 id="IV-问题"><a href="#IV-问题" class="headerlink" title="IV.问题"></a>IV.问题</h2><ol>
+<li><p>我在 Chrome 登录了，用 Safari 访问， Safari 会带上 Cookie 吗<br> // No</p>
+</li>
+<li><p>Cookie 存在哪<br> // Windows 存在 C 盘的文件里</p>
+</li>
+<li><p>Cookie 这张票能作假吗<br> // 用户在 Application 里随便改<br> // document.cookie 乱改(HttpOnly下不可以)</p>
+</li>
+<li><p>Cookie 存在有效期吗<br> // 默认有效期20分钟左右<br> // 后端可以强制设置有效期<br> <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie" target="_blank" rel="noopener">具体要看这个</a></p>
+</li>
+<li><p>Cookie 会随着域名分组吗<br> // 会，Cookie按域名分组，一个域名只能带上自己域名的Cookie</p>
+</li>
+</ol>
+<h2 id="V-cookie登录的相关流程"><a href="#V-cookie登录的相关流程" class="headerlink" title="V.cookie登录的相关流程"></a>V.cookie登录的相关流程</h2><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">                     Server                   users</span><br><span class="line">                       |<span class="string">                        </span>|<span class="string"> </span></span><br><span class="line"><span class="string">                       </span>|<span class="string">         post           </span>|<span class="string"> 打开 sign-up 注册</span></span><br><span class="line"><span class="string">                       </span>|<span class="string">      &lt;===========      </span>|</span><br><span class="line">              写数据库  ||<span class="string">     email pw1 pw2     </span>||<span class="string"> </span></span><br><span class="line"><span class="string">           &lt;===========</span>|<span class="string">                        </span>|<span class="string"> </span></span><br><span class="line"><span class="string">             email pw  </span>|<span class="string">         注册成功        </span>||</span><br><span class="line">                       |<span class="string">      ===========&gt;      </span>|</span><br><span class="line">                       |<span class="string">                        </span>|</span><br><span class="line">                       |<span class="string">          post          </span>|<span class="string">  打开 sign-in 登入</span></span><br><span class="line"><span class="string">                       </span>|<span class="string">      &lt;===========      </span>|</span><br><span class="line">                       |<span class="string">        email pw        </span>|</span><br><span class="line">                       |<span class="string">                        </span>|</span><br><span class="line">                       |<span class="string">                        </span>|</span><br><span class="line">                       |<span class="string">      ===========&gt;      </span>|</span><br><span class="line">                       |<span class="string">     SetCookie,email    </span>|</span><br><span class="line">                       |<span class="string">                        </span>|</span><br><span class="line">                       |<span class="string">       带上cookie       </span>||<span class="string"> 打开首页</span></span><br><span class="line"><span class="string">                       </span>|<span class="string">      &lt;===========      </span>|</span><br><span class="line">                       |<span class="string">          GET           </span>|</span><br><span class="line">             读cookie  ||<span class="string">                       </span>||</span><br><span class="line">     email: 1<span class="meta">@xxx.com</span>  |<span class="string">                        </span>|</span><br><span class="line">   user=find-by email  |<span class="string">                        </span>|</span><br><span class="line">user&#123;email,pw,birthD&#125;  |<span class="string">                        </span>|</span><br><span class="line">index.html(填入对应pw)  ||<span class="string">                       </span>||</span><br><span class="line">                       ↓          响应          ↓↓</span><br><span class="line">                       ↓      -----------→      ↓</span><br></pre></td></tr></table></figure>
+<p><strong>这就是cookie的工作流程</strong></p>
+<h1 id="Cookie-的那些小故事"><a href="#Cookie-的那些小故事" class="headerlink" title="Cookie 的那些小故事"></a>Cookie 的那些小故事</h1><h2 id="Cookie-的分类"><a href="#Cookie-的分类" class="headerlink" title="Cookie 的分类"></a>Cookie 的分类</h2><h3 id="默认级别"><a href="#默认级别" class="headerlink" title="默认级别"></a>默认级别</h3><ul>
+<li>指的是没有设置有效时间的Cookie</li>
+<li>默认的情况下只要关闭了浏览器，Cookie也会被销毁</li>
+<li>Cookie存在于浏览器的内存中，当关闭了浏览器Cookie就销毁了<h3 id="持久级别"><a href="#持久级别" class="headerlink" title="持久级别"></a>持久级别</h3></li>
+<li>指的是有有效时间的Cookie</li>
+<li>这种Cookie的内容不是保存在浏览器的内存中，将Cookie的内容保存（持久化）到硬盘上。</li>
+<li>这个时候，关闭浏览器，再次打开浏览器会加载硬盘上的文件，从而Cookie中的数据就不会丢失。</li>
+</ul>
+<h2 id="Cookie-的数据大小"><a href="#Cookie-的数据大小" class="headerlink" title="Cookie 的数据大小"></a>Cookie 的数据大小</h2><p>浏览器存放的Cookie的大小和个数是有限制的。</p>
+<ul>
+<li>浏览器一般只允许存放300个Cookie</li>
+<li>每个站点最多可以存放20个Cookie</li>
+<li>老版本浏览器中，每个Cookie的大小限制为4KB</li>
+</ul>
+<h2 id="其他的小Tip"><a href="#其他的小Tip" class="headerlink" title="其他的小Tip"></a>其他的小Tip</h2><ul>
+<li>一个Cookie只用标识一种信息，至少含有一个标识该信息的名称和值。</li>
+<li>一个web站点可以给一个浏览器发送多个Cookie。一个web浏览器可以存储多个web站点的Cookie</li>
+<li>需要手动删除持久性Cookie，可以将Cookie的有效时长设置为0.必须注意：删除Cookie时候，path必须一致，否则无法删除</li>
+</ul>
+<p><strong>常用API</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">API</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">cookie.setMaxAge(30)</td>
+<td style="text-align:center">设置最大生命周期。秒为单位，为0时表示立即删除该cookie，负数表示不存储该cookie</td>
+</tr>
+<tr>
+<td style="text-align:center">response.addCookie()</td>
+<td style="text-align:center">增加cookie(写回到浏览器),参数为cookie的名字</td>
+</tr>
+<tr>
+<td style="text-align:center">encodeURIComponent()</td>
+<td style="text-align:center">用它可以使cookie的值不包含任何逗号分号和空格</td>
+</tr>
+<tr>
+<td style="text-align:center">decodeURIComponent()</td>
+<td style="text-align:center">可以用来识别邮箱里的@符号</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/06/setTimeout模拟setInterval/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2179,165 +2389,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/JavaScript-数组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/23/JavaScript-数组/" itemprop="url">JavaScript-数组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T03:44:38+08:00">2018-04-23</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-标准库"><a href="#1-标准库" class="headerlink" title="1.标准库"></a>1.标准库</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Object</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">String</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Number</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Array</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Boolean</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Function</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-<p>这些东西。</p>
-<h1 id="2-new"><a href="#2-new" class="headerlink" title="2.new"></a>2.new</h1><p>除了<code>Object</code><br>其他类型加上<code>new</code><br>都会变成对应的对象（<code>复杂类型</code>）。</p>
-<p>不加new返回的是<code>基本类型</code></p>
-<h1 id="3-Array"><a href="#3-Array" class="headerlink" title="3.Array"></a>3.Array</h1><p><code>人类</code>：数组就是数据的有序集合<br><code>JS</code>：数据就是原型链中有 Array.prototype 的对象(用Array构造出来的对象)</p>
-<h2 id="I-他的一些属性"><a href="#I-他的一些属性" class="headerlink" title="I.他的一些属性"></a>I.他的一些属性</h2><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>因为它是对象，所以加不加<code>new</code>都一样。</p>
-<h3 id="它存在不一致性"><a href="#它存在不一致性" class="headerlink" title="它存在不一致性"></a>它存在不一致性</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = Array(<span class="number">3</span>)    <span class="comment">//length = 3</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = Array(<span class="number">3</span>,<span class="number">3</span>)      <span class="comment">//0:3,1:3,length: 2</span></span><br></pre></td></tr></table></figure>
-<p>是不是很坑，它传一个参数和传两个参数的功能是不一样的<br>传一个参数的时候仅代表它的长度。</p>
-<h2 id="II-伪数组"><a href="#II-伪数组" class="headerlink" title="II.伪数组"></a>II.伪数组</h2><p>原型链中没有Array.prototype</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"><span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.dir(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//argument就是一个伪数组    长得像数组，但是__proto__直接指向Object.Prototype</span></span><br></pre></td></tr></table></figure>
-<h2 id="III-API"><a href="#III-API" class="headerlink" title="III.API"></a>III.API</h2><h3 id="i-forEach"><a href="#i-forEach" class="headerlink" title="i..forEach()"></a>i..forEach()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">a.forEach( <span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;        <span class="comment">//接受参数是一个函数</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'value'</span>, x)     <span class="comment">//函数必定有两个参数</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'key'</span>, y)        </span><br><span class="line">&#125; )</span><br></pre></td></tr></table></figure>
-<p>在写出<code>a.forEach</code>的时候，<code>a</code>这个数组已经被当做参数传进去了（想象成<code>this</code>）</p>
-<h3 id="ii-sort"><a href="#ii-sort" class="headerlink" title="ii..sort"></a>ii..sort</h3><p>排序用的，一般内置的排序是快排<br>但是如何让JS知道你要<code>顺序</code>还是<code>倒序</code>呢？</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">43</span>,<span class="number">5</span>]</span><br><span class="line">a.sort(function(x,y)&#123;       <span class="comment">//传入一个函数，函数必须有两个参数</span></span><br><span class="line">    return x-y            <span class="comment">//返回值必须是0 正数 负数</span></span><br><span class="line">&#125; )                         <span class="comment">//0表示相等，位置相同 正数表示前一个大，放后面 负数表示前一个放前面。</span></span><br></pre></td></tr></table></figure>
-<p>这里可以得出，改变顺序和倒序只需要改变<code>return</code>后面的<code>x-y</code>或<code>y-x</code>就可以了<br>所以排完以后不是你想要的时候<strong>换一下就行了</strong></p>
-<h3 id="iii-join"><a href="#iii-join" class="headerlink" title="iii..join"></a>iii..join</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="selector-tag">a</span>.join(<span class="string">'逗号'</span>)   <span class="comment">//"1逗号2逗号3"</span></span><br><span class="line"><span class="selector-tag">a</span>.join(<span class="string">','</span>)         <span class="comment">//"1,2,3"</span></span><br></pre></td></tr></table></figure>
-<p>干吗用的，加我一个用的。</p>
-<h3 id="iv-concat"><a href="#iv-concat" class="headerlink" title="iv..concat"></a>iv..concat</h3><p>干嘛用的？<br>连起来用的</p>
-<p><strong>一般用法：</strong></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="selector-tag">var</span> c = <span class="selector-tag">a</span>.concat(b)      <span class="comment">//c = [1,2,3,4,5,6]</span></span><br></pre></td></tr></table></figure>
-<p>用来连接数组</p>
-<p><strong>特殊用法：</strong></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = <span class="selector-tag">a</span>.concat([])    <span class="comment">//b = [1,2,3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这时候 a === b   //false</span></span><br><span class="line">    <span class="comment">//所以这是一种复制数组的方法</span></span><br><span class="line"><span class="comment">//b是一个和a数组内容相同的不同数组（ADDR不一样）</span></span><br></pre></td></tr></table></figure>
-<p>用来复制数组。</p>
-<h3 id="v-map"><a href="#v-map" class="headerlink" title="v..map"></a>v..map</h3><p>和<code>forEach</code>几乎一样<br>区别在于<code>.map</code>有返回值<br><code>forEach</code>返回<code>undefined</code></p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">a</span>.map(<span class="function"><span class="keyword">function</span>(<span class="title">value</span>,<span class="title">key</span>)&#123;</span></span><br><span class="line">    <span class="literal">return</span> <span class="built_in">value</span> * <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]</span><br><span class="line">   <span class="comment"> //也可以这么写，好看一点：</span></span><br><span class="line"><span class="keyword">a</span>.map(<span class="built_in">value</span> =&gt; <span class="built_in">value</span> * <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p><strong>映射</strong><br>一波操作以后，<code>a</code>还是没有变化<br><strong>return</strong><br>想return什么就return什么<br>对象什么的都可以。</p>
-<h3 id="vi-filter"><a href="#vi-filter" class="headerlink" title="vi..filter"></a>vi..filter</h3><p><strong>过滤</strong></p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line">a.filter(function(value, <span class="type">key</span>)&#123;</span><br><span class="line">    return value &gt;= <span class="number">5</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//[5, 6, 7, 8, 9, 10]</span></span><br></pre></td></tr></table></figure>
-<p><strong>拿来判断奇偶也可以</strong></p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line">a.filter(function(value, <span class="type">key</span>)&#123;      </span><br><span class="line">    return value % <span class="number">2</span> === <span class="number">0</span>      <span class="comment">//能被2整除的数</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//[2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
-<h3 id="vii-reduce"><a href="#vii-reduce" class="headerlink" title="vii..reduce"></a>vii..reduce</h3><p><strong>减少</strong></p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求和用</span></span><br><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">a.reduce(function(sum,n)&#123;   <span class="comment">//参数是个函数(必须两个参数)和一个初始项</span></span><br><span class="line">    return sum + n              <span class="comment">//把之前的项和当前项相加，返回下一次遍历的结果</span></span><br><span class="line">&#125;,<span class="number">0</span>)                        <span class="comment">//遍历一遍以后得到总和</span></span><br><span class="line"><span class="comment">// 45</span></span><br><span class="line">a.reduce((sum,n)=&gt; sum + n , <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="map可以用reduce表示"><a href="#map可以用reduce表示" class="headerlink" title="map可以用reduce表示"></a>map可以用reduce表示</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a.reduce(<span class="function"><span class="keyword">function</span><span class="params">(arr,n)</span></span>&#123;   <span class="comment">//之前项是arr，当前项是n</span></span><br><span class="line">    arr.push(n*<span class="number">2</span>)               <span class="comment">//把当前项的两倍push进数组</span></span><br><span class="line">    <span class="keyword">return</span> arr              <span class="comment">//返回到初始项(空数组)</span></span><br><span class="line">&#125;[])                            <span class="comment">//遍历一遍以后填满空数组</span></span><br><span class="line"><span class="comment">// [2,4,6]</span></span><br></pre></td></tr></table></figure>
-<h4 id="filter可以用reduce表示"><a href="#filter可以用reduce表示" class="headerlink" title="filter可以用reduce表示"></a>filter可以用reduce表示</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line">a.reduce(function(arr,n)&#123;   <span class="comment">//之前项是arr，当前项是n</span></span><br><span class="line">    if(n % <span class="number">2</span> === <span class="number">0</span>)&#123;            <span class="comment">//是不是偶数？是偶数就到碗里来</span></span><br><span class="line">        arr.push(n)         <span class="comment">//偶数推进去</span></span><br><span class="line">    &#125;</span><br><span class="line">    return arr                  <span class="comment">//返回到数组</span></span><br><span class="line">&#125;[])                        <span class="comment">//遍历一遍后填满空数组</span></span><br></pre></td></tr></table></figure>
-<h1 id="4-Function"><a href="#4-Function" class="headerlink" title="4.Function"></a>4.Function</h1><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="keyword">function</span>(a,b)&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">/用构造函数构造出来/</span><span class="regexp">////</span>/</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Function(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a+b'</span>)        <span class="regexp">//把所有参数一字排开</span></span><br><span class="line"><span class="regexp">//</span><span class="keyword">var</span> f = <span class="keyword">new</span> Function(<span class="string">'参数'</span>, <span class="string">'参数'</span>, <span class="string">'构造体'</span>) </span><br><span class="line"></span><br><span class="line"><span class="regexp">//加不加new都一样</span></span><br></pre></td></tr></table></figure>
-<h2 id="I-函数"><a href="#I-函数" class="headerlink" title="I.函数"></a>I.函数</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2385,7 +2436,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2422,7 +2473,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
