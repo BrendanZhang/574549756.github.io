@@ -14,7 +14,7 @@ Cookie 是 session 的依赖
 - 服务器通过`Set-Cookie`给客户端一串字符串
 - 客户端每次访问相同域名的网页时，必须带上这段字符串
 - 客户端要在一段时间内保存这个`Cookie`
-- Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 Cookie 的过期时间
+- Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 `Cookie` 的过期时间
 这家伙不占内存
 
 ### Session
@@ -160,7 +160,7 @@ response.end()
 ETag:
 - 正常发请求
 - 匹配 MD5
-- 如果匹配，则不下载(响应体为空)
+- 如果匹配，则不下载(响应体为空)response.setHeader('Cache-Control','max-age=30')
 
 ### i.缓存和ETag哪个更优？
 理论上，缓存更好

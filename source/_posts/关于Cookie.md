@@ -107,6 +107,8 @@ tags: HTTP
 - 浏览器一般只允许存放300个Cookie
 - 每个站点最多可以存放20个Cookie
 - 老版本浏览器中，每个Cookie的大小限制为4KB
+## Cookie操作
+- ``
 
 ## 其他的小Tip
 
