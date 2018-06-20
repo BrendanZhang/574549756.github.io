@@ -153,8 +153,8 @@ module.exports={
 
 
 # 3.Can I use？
-[这个网站可以查询兼容性问题](caniuse.com)
-[这个网站可以自动转换CSS](autoprefixer.github.io)
+[这个网站可以查询兼容性问题](http://caniuse.com)
+[这个网站可以自动转换CSS](http://autoprefixer.github.io)
 ## I.如何让 webpack 解决 flex 布局的兼容性问题
 [postcss-loader](https://github.com/postcss/postcss-loader)
 
