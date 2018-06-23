@@ -271,6 +271,143 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/重构-始/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/28/重构-始/" itemprop="url">重构-始</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-28T23:46:19+08:00">2018-04-28</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-内容样式行为分离"><a href="#1-内容样式行为分离" class="headerlink" title="1.内容样式行为分离"></a>1.内容样式行为分离</h1><p>内容：HTML<br>样式：CSS<br>行为：JS</p>
+<p><strong>为什么？</strong></p>
+<h2 id="I-这时候需要一点点逆向思考："><a href="#I-这时候需要一点点逆向思考：" class="headerlink" title="I.这时候需要一点点逆向思考："></a>I.这时候需要一点点逆向思考：</h2><p>如果不这么做，会怎么样？</p>
+<h3 id="i-HTML写样式？"><a href="#i-HTML写样式？" class="headerlink" title="i.HTML写样式？"></a>i.HTML写样式？</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">background</span>=<span class="string">green</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">center</span>&gt;</span><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">red</span> <span class="attr">size</span>=<span class="string">20</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>HTML写样式，那是不是会多出来很多无意义的标签来负责样式。<br>可能会混淆网页的逻辑结构。</p>
+<h3 id="ii-CSS来写内容？"><a href="#ii-CSS来写内容？" class="headerlink" title="ii.CSS来写内容？"></a>ii.CSS来写内容？</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&lt;div&gt;</span>&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">di</span><span class="variable">v:</span>:after&#123;</span><br><span class="line">    conten<span class="variable">t:</span><span class="string">'你好'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>麻烦了，第一个：选不中<br>第二个：JS选不到</p>
+<h3 id="iii-CSS负责行为？"><a href="#iii-CSS负责行为？" class="headerlink" title="iii.CSS负责行为？"></a>iii.CSS负责行为？</h3><p>加载半年</p>
+<h3 id="iv-JS控制样式？"><a href="#iv-JS控制样式？" class="headerlink" title="iv.JS控制样式？"></a>iv.JS控制样式？</h3><p>这时候可能有点争议<br><code>jQuery</code>有两个很著名的<code>api</code><br><code>$div.show()</code>和<code>$div.hide()</code><br>原则上是不推荐用的</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;<span class="built-in">div</span> id=x&gt;你好&lt;/<span class="built-in">div</span>&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">var <span class="symbol">$</span><span class="built-in">div</span> = <span class="symbol">$</span>(<span class="string">'#x'</span>)</span><br><span class="line"><span class="meta"><span class="meta-keyword">$div</span>.hide()</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$div</span>.show()   //这时候div.style.display 应该是 'block'</span></span><br></pre></td></tr></table></figure>
+<p>那么问题来了：<code>hide</code>肯定是<code>display:none;</code><br>那么<code>show</code>了以后呢？<br>如果一开始在CSS里写好<code>display: none;</code><br>那么<code>show</code>了以后<code>display: block;</code></p>
+<p>变成<code>div</code>默认的了，<code>jQuery</code>在猜，改变后再还原改变之前的属性<br>不是很可靠</p>
+<p>所以上策是改变标签的class</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="variable">$div</span> = $(<span class="string">'#x'</span>)</span><br><span class="line"><span class="variable">$div</span>.addClass(<span class="string">'active'</span>)  <span class="regexp">//</span>或者<span class="string">'enable'</span> <span class="string">'disable'</span> </span><br><span class="line"><span class="regexp">//</span>之后在css表达他在某种状态的时候的属性</span><br></pre></td></tr></table></figure>
+<h3 id="v-各司其职，其乐融融。"><a href="#v-各司其职，其乐融融。" class="headerlink" title="v.各司其职，其乐融融。"></a>v.各司其职，其乐融融。</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/jQuery-始/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2279,139 +2416,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/入门-JavaScript/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/入门-JavaScript/" itemprop="url">入门-JavaScript</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T22:50:06+08:00">2018-04-02</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Uncaught SyntextError: Unexpected tokken ]<br>没有被处理的语法错误： 不可预知的字符串 ]<br>which means：浏览器觉得这里不应该有一个中括号。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mainXXX.onkeypress = <span class="function"><span class="keyword">function</span>(<span class="params">random</span>)</span>&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'我发现你输入了一个键'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>localStorage</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'uuu'</span>, <span class="built_in">JSON</span>.stringify(hash))<span class="comment">//每次变化就存下来</span></span><br></pre></td></tr></table></figure>
-<p>存在浏览器的storage里面<br><code>var hashInLocalStorage = JSON.parse(localStorage.getItem(&#39;uuu&#39;) || &#39;&#39;)</code><br>取出localStorage中uuu对应的hash</p>
-<p>inline元素中间有回车本应该有个空隙<br>JavaScript生成的inline元素是没有空隙的<br>就会紧紧贴在一起</p>
-<p>vh是指的视口高度（屏幕大小）<code>viewport height</code><br>盖住当前元素（做到自适应）<code>background-size: cover;</code></p>
-<p>网站根目录<code>/favicon.ico</code><br>访问网站的<code>logo</code><br>有时候网站没在这里放icon，那只能用到<code>http://favicon.byi.pw/?url=相应网址</code></p>
-<p><code>元素名.previousSibling</code><br>获取元素名上一个元素</p>
-<p><code>.onerror</code><br>发生错误以后执行</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2459,7 +2463,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2502,7 +2506,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

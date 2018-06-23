@@ -271,6 +271,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/入门-JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/入门-JavaScript/" itemprop="url">入门-JavaScript</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T22:50:06+08:00">2018-04-02</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Uncaught SyntextError: Unexpected tokken ]<br>没有被处理的语法错误： 不可预知的字符串 ]<br>which means：浏览器觉得这里不应该有一个中括号。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mainXXX.onkeypress = <span class="function"><span class="keyword">function</span>(<span class="params">random</span>)</span>&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'我发现你输入了一个键'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>localStorage</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'uuu'</span>, <span class="built_in">JSON</span>.stringify(hash))<span class="comment">//每次变化就存下来</span></span><br></pre></td></tr></table></figure>
+<p>存在浏览器的storage里面<br><code>var hashInLocalStorage = JSON.parse(localStorage.getItem(&#39;uuu&#39;) || &#39;&#39;)</code><br>取出localStorage中uuu对应的hash</p>
+<p>inline元素中间有回车本应该有个空隙<br>JavaScript生成的inline元素是没有空隙的<br>就会紧紧贴在一起</p>
+<p>vh是指的视口高度（屏幕大小）<code>viewport height</code><br>盖住当前元素（做到自适应）<code>background-size: cover;</code></p>
+<p>网站根目录<code>/favicon.ico</code><br>访问网站的<code>logo</code><br>有时候网站没在这里放icon，那只能用到<code>http://favicon.byi.pw/?url=相应网址</code></p>
+<p><code>元素名.previousSibling</code><br>获取元素名上一个元素</p>
+<p><code>.onerror</code><br>发生错误以后执行</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/入门-算法初级/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2531,7 +2664,7 @@ margin-left:0
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2574,7 +2707,9 @@ margin-left:0
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
