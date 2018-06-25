@@ -24,3 +24,45 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 // 注册很多全局组件，不用声明就可以使用
 ```
+
+# 添加事件
+`v-on:click="你要干嘛"`
+
+## 移除
+```
+<i class="el-icon-remove" v-on:click="removeJobExperience(index)"></i>
+
+////////////////////////////////////////////////////////
+
+remoteJobExperience(index) {
+    this.jobExperience.splice(index, 1)
+}
+```
+
+用`splice`从数组里删除一个
+
+# 从外部传变量
+比如需要用一个`profile`
+
+```
+// 下面是组件里（被分出来封装的），假设文件名为 whoAmI.vue
+export default {
+  props: ['profile']
+}
+
+////////////////封装的时候/////////////////
+
+// 下面是主文件里
+
+<whoAmI v-bind:profile="profile"/>
+import whoAmI from './whoAmI'
+export default{
+    components: { whoAmI }
+}
+
+// 绑定这个叫做 profile 的 data
+```
+
+注意： 
+- 组件的模板必须包含**一个**根元素
+- 翻译一下： 最外面包着的，必须只有一个(除了template)
