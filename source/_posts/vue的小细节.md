@@ -70,7 +70,15 @@ export default{
 # 想要在 git 上预览 vue 项目
 我们需要在 `gitignore` 目录里把 `dist` 取消忽略
 
-# 解决 404 问题的终极方法
+1. 进入 `config/index.js`
+2. 在 `build` 下的 `assetsPublicPath`
+3. 把它的值改成 `'/vue-demo(项目名是什么就改成什么)/dist/'`
+4. 这个字符串会被加在编译后的`index`里每一个脚本的前面
+5. `npm run build`
+6. 去 `.gitignore` 里面把 `dist` 目录删掉
+7. `add commit push` 三连
+
+## 解决 404 问题的终极方法
 - 加一个目录
 - 如果不行
 - 再加一个目录
