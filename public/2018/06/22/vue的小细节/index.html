@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/06/22/vue的小细节/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="npm run dev vue 引入第三方 CSS reset css 和 normalize css 哪个好？ normalize css 让页面默认样式在每一个浏览器上是一样的（统一默认样式） reset css 篡改默认样式（特别不喜欢的样式给它改了） 他们是不冲突的 我们可以先统一样式，然后再改些特别不喜欢的。    element饿了么做的 vue 2.0 组件库element main">
-<meta property="og:updated_time" content="2018-06-22T07:43:28.820Z">
+<meta property="og:updated_time" content="2018-06-25T17:23:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue的小细节">
 <meta name="twitter:description" content="npm run dev vue 引入第三方 CSS reset css 和 normalize css 哪个好？ normalize css 让页面默认样式在每一个浏览器上是一样的（统一默认样式） reset css 篡改默认样式（特别不喜欢的样式给它改了） 他们是不冲突的 我们可以先统一样式，然后再改些特别不喜欢的。    element饿了么做的 vue 2.0 组件库element main">
@@ -354,6 +354,16 @@
 <h1 id="element"><a href="#element" class="headerlink" title="element"></a>element</h1><p>饿了么做的 vue 2.0 组件库<br><a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">element</a></p>
 <p>main.js 里加入这点东西</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">'element-ui'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'element-ui/lib/theme-chalk/index.css'</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line"><span class="comment">// 注册很多全局组件，不用声明就可以使用</span></span><br></pre></td></tr></table></figure>
+<h1 id="添加事件"><a href="#添加事件" class="headerlink" title="添加事件"></a>添加事件</h1><p><code>v-on:click=&quot;你要干嘛&quot;</code></p>
+<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">i</span> class=<span class="string">"el-icon-remove"</span> v-on:click=<span class="string">"removeJobExperience(index)"</span>&gt;&lt;/i&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">////////////////////////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">remoteJobExperience</span><span class="params">(index)</span></span> &#123;</span><br><span class="line">    this<span class="selector-class">.jobExperience</span><span class="selector-class">.splice</span>(index, <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<code>splice</code>从数组里删除一个</p>
+<h1 id="从外部传变量"><a href="#从外部传变量" class="headerlink" title="从外部传变量"></a>从外部传变量</h1><p>比如需要用一个<code>profile</code></p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">// 下面是组件里（被分出来封装的），假设文件名为 whoAmI.vue</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  props: ['profile']</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">//</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">//封装的时候//</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">///</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">//</span> 下面是主文件里</span><br><span class="line"></span><br><span class="line">&lt;whoAmI v-bind:profile=<span class="string">"profile"</span>/&gt;</span><br><span class="line"><span class="keyword">import</span> whoAmI <span class="keyword">from</span> <span class="string">'./whoAmI'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    components: &#123; whoAmI &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="regexp">// 绑定这个叫做 profile 的 data</span></span><br></pre></td></tr></table></figure>
+<p>注意： </p>
+<ul>
+<li>组件的模板必须包含<strong>一个</strong>根元素</li>
+<li>翻译一下： 最外面包着的，必须只有一个(除了template)</li>
+</ul>
 
       
     </div>
@@ -554,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-引入第三方-CSS"><span class="nav-number">1.</span> <span class="nav-text">vue 引入第三方 CSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#element"><span class="nav-number">2.</span> <span class="nav-text">element</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-引入第三方-CSS"><span class="nav-number">1.</span> <span class="nav-text">vue 引入第三方 CSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#element"><span class="nav-number">2.</span> <span class="nav-text">element</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加事件"><span class="nav-number">3.</span> <span class="nav-text">添加事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#移除"><span class="nav-number">3.1.</span> <span class="nav-text">移除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从外部传变量"><span class="nav-number">4.</span> <span class="nav-text">从外部传变量</span></a></li></ol></div>
             
 
           </div>

@@ -66,3 +66,22 @@ export default{
 注意： 
 - 组件的模板必须包含**一个**根元素
 - 翻译一下： 最外面包着的，必须只有一个(除了template)
+
+# 想要在 git 上预览 vue 项目
+我们需要在 `gitignore` 目录里把 `dist` 取消忽略
+
+# 解决 404 问题的终极方法
+- 加一个目录
+- 如果不行
+- 再加一个目录
+- 如果不行
+- 再加一个目录
+- 如果还不行
+- 减一个目录
+- 如果还不行
+- 减两个目录
+
+总结一下： **加目录和减目录**
+
+## vue 如何增减目录
+在 `config/index.js` 的 `module.exports.build.assetsPublicPath`
