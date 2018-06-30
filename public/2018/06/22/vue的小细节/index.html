@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/06/22/vue的小细节/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="npm run dev vue 引入第三方 CSS reset css 和 normalize css 哪个好？ normalize css 让页面默认样式在每一个浏览器上是一样的（统一默认样式） reset css 篡改默认样式（特别不喜欢的样式给它改了） 他们是不冲突的 我们可以先统一样式，然后再改些特别不喜欢的。    element饿了么做的 vue 2.0 组件库element main">
-<meta property="og:updated_time" content="2018-06-25T17:23:53.000Z">
+<meta property="og:updated_time" content="2018-06-28T14:29:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue的小细节">
 <meta name="twitter:description" content="npm run dev vue 引入第三方 CSS reset css 和 normalize css 哪个好？ normalize css 让页面默认样式在每一个浏览器上是一样的（统一默认样式） reset css 篡改默认样式（特别不喜欢的样式给它改了） 他们是不冲突的 我们可以先统一样式，然后再改些特别不喜欢的。    element饿了么做的 vue 2.0 组件库element main">
@@ -364,6 +364,29 @@
 <li>组件的模板必须包含<strong>一个</strong>根元素</li>
 <li>翻译一下： 最外面包着的，必须只有一个(除了template)</li>
 </ul>
+<h1 id="想要在-git-上预览-vue-项目"><a href="#想要在-git-上预览-vue-项目" class="headerlink" title="想要在 git 上预览 vue 项目"></a>想要在 git 上预览 vue 项目</h1><p>我们需要在 <code>gitignore</code> 目录里把 <code>dist</code> 取消忽略</p>
+<ol>
+<li>进入 <code>config/index.js</code></li>
+<li>在 <code>build</code> 下的 <code>assetsPublicPath</code></li>
+<li>把它的值改成 <code>&#39;/vue-demo(项目名是什么就改成什么)/dist/&#39;</code></li>
+<li>这个字符串会被加在编译后的<code>index</code>里每一个脚本的前面</li>
+<li><code>npm run build</code></li>
+<li>去 <code>.gitignore</code> 里面把 <code>dist</code> 目录删掉</li>
+<li><code>add commit push</code> 三连</li>
+</ol>
+<h2 id="解决-404-问题的终极方法"><a href="#解决-404-问题的终极方法" class="headerlink" title="解决 404 问题的终极方法"></a>解决 404 问题的终极方法</h2><ul>
+<li>加一个目录</li>
+<li>如果不行</li>
+<li>再加一个目录</li>
+<li>如果不行</li>
+<li>再加一个目录</li>
+<li>如果还不行</li>
+<li>减一个目录</li>
+<li>如果还不行</li>
+<li>减两个目录</li>
+</ul>
+<p>总结一下： <strong>加目录和减目录</strong></p>
+<h2 id="vue-如何增减目录"><a href="#vue-如何增减目录" class="headerlink" title="vue 如何增减目录"></a>vue 如何增减目录</h2><p>在 <code>config/index.js</code> 的 <code>module.exports.build.assetsPublicPath</code></p>
 
       
     </div>
@@ -483,7 +506,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -564,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-引入第三方-CSS"><span class="nav-number">1.</span> <span class="nav-text">vue 引入第三方 CSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#element"><span class="nav-number">2.</span> <span class="nav-text">element</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加事件"><span class="nav-number">3.</span> <span class="nav-text">添加事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#移除"><span class="nav-number">3.1.</span> <span class="nav-text">移除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从外部传变量"><span class="nav-number">4.</span> <span class="nav-text">从外部传变量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-引入第三方-CSS"><span class="nav-number">1.</span> <span class="nav-text">vue 引入第三方 CSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#element"><span class="nav-number">2.</span> <span class="nav-text">element</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加事件"><span class="nav-number">3.</span> <span class="nav-text">添加事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#移除"><span class="nav-number">3.1.</span> <span class="nav-text">移除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从外部传变量"><span class="nav-number">4.</span> <span class="nav-text">从外部传变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#想要在-git-上预览-vue-项目"><span class="nav-number">5.</span> <span class="nav-text">想要在 git 上预览 vue 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决-404-问题的终极方法"><span class="nav-number">5.1.</span> <span class="nav-text">解决 404 问题的终极方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-如何增减目录"><span class="nav-number">5.2.</span> <span class="nav-text">vue 如何增减目录</span></a></li></ol></li></ol></div>
             
 
           </div>

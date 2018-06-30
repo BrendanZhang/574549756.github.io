@@ -271,6 +271,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/MVC-MVVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/30/MVC-MVVM/" itemprop="url">MVC?MVVM!</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T22:40:50+08:00">2018-06-30</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-猜猜看-Vue-为什么叫-Vue"><a href="#0-猜猜看-Vue-为什么叫-Vue" class="headerlink" title="0.猜猜看 Vue 为什么叫 Vue"></a>0.猜猜看 Vue 为什么叫 Vue</h1><ul>
+<li>Vue 代替了 MVC 里的 View</li>
+<li>Vue 这单词是法语</li>
+</ul>
+<h1 id="1-axios-是什么"><a href="#1-axios-是什么" class="headerlink" title="1.axios 是什么"></a>1.axios 是什么</h1><ul>
+<li>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</li>
+<li>就是个 AJAX 库</li>
+</ul>
+<h2 id="1-我们用-jQuery-的时候这么用-AJAX"><a href="#1-我们用-jQuery-的时候这么用-AJAX" class="headerlink" title="1.我们用 jQuery 的时候这么用 AJAX"></a>1.我们用 jQuery 的时候这么用 AJAX</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">.ajax(&#123;</span></span><br><span class="line">    url: './xxx',</span><br><span class="line">    method: 'post'</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">.post(<span class="string">'/xxx'</span>,data)</span></span><br><span class="line"><span class="meta">$</span><span class="bash">.get(<span class="string">'/xxx'</span>)</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-axios-怎么用-AJAX-的？"><a href="#2-axios-怎么用-AJAX-的？" class="headerlink" title="2.axios 怎么用 AJAX 的？"></a>2.axios 怎么用 AJAX 的？</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'/user?ID=xxx'</span>)</span><br><span class="line">    .then(<span class="keyword">function</span>(response)&#123;</span><br><span class="line">        console.log(response)</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="keyword">function</span>(error)&#123;</span><br><span class="line">        console.log(error)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">axios.post()</span><br><span class="line">axios.put()</span><br><span class="line">axios.patch()</span><br><span class="line">axios.<span class="keyword">delete</span>()</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span> 真的是基于 Promise <span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>比 jQuery.ajax 功能更多</li>
+<li>除了 ajax 功能之外，就没有其他功能了（更专注）</li>
+</ul>
+<h2 id="3-还用-jQuery-吗？"><a href="#3-还用-jQuery-吗？" class="headerlink" title="3.还用 jQuery 吗？"></a>3.还用 jQuery 吗？</h2><ul>
+<li>AJAX 可以用 axios</li>
+<li>DOM 操作可以用 Vue</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/复习一下移动端自适应/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -539,6 +680,29 @@
 <li>组件的模板必须包含<strong>一个</strong>根元素</li>
 <li>翻译一下： 最外面包着的，必须只有一个(除了template)</li>
 </ul>
+<h1 id="想要在-git-上预览-vue-项目"><a href="#想要在-git-上预览-vue-项目" class="headerlink" title="想要在 git 上预览 vue 项目"></a>想要在 git 上预览 vue 项目</h1><p>我们需要在 <code>gitignore</code> 目录里把 <code>dist</code> 取消忽略</p>
+<ol>
+<li>进入 <code>config/index.js</code></li>
+<li>在 <code>build</code> 下的 <code>assetsPublicPath</code></li>
+<li>把它的值改成 <code>&#39;/vue-demo(项目名是什么就改成什么)/dist/&#39;</code></li>
+<li>这个字符串会被加在编译后的<code>index</code>里每一个脚本的前面</li>
+<li><code>npm run build</code></li>
+<li>去 <code>.gitignore</code> 里面把 <code>dist</code> 目录删掉</li>
+<li><code>add commit push</code> 三连</li>
+</ol>
+<h2 id="解决-404-问题的终极方法"><a href="#解决-404-问题的终极方法" class="headerlink" title="解决 404 问题的终极方法"></a>解决 404 问题的终极方法</h2><ul>
+<li>加一个目录</li>
+<li>如果不行</li>
+<li>再加一个目录</li>
+<li>如果不行</li>
+<li>再加一个目录</li>
+<li>如果还不行</li>
+<li>减一个目录</li>
+<li>如果还不行</li>
+<li>减两个目录</li>
+</ul>
+<p>总结一下： <strong>加目录和减目录</strong></p>
+<h2 id="vue-如何增减目录"><a href="#vue-如何增减目录" class="headerlink" title="vue 如何增减目录"></a>vue 如何增减目录</h2><p>在 <code>config/index.js</code> 的 <code>module.exports.build.assetsPublicPath</code></p>
 
           
         
@@ -2072,158 +2236,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/JSONP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/07/JSONP/" itemprop="url">JSONP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-07T20:09:31+08:00">2018-05-07</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="0-有些个名词"><a href="#0-有些个名词" class="headerlink" title="0.有些个名词"></a>0.有些个名词</h1><h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><p>跨域指在受到浏览器同源策略限制时（即不在同一个域下）跨域访问资源的一系列相关操作。<br>所谓跨域，或者异源，是指主机名（域名）、协议、端口号只要有其一不同，就为不同的域（或源）。浏览器中有一个基本的策略，叫同源策略，即限制“源”自己的脚本只能操作“同源”页面的DOM。（不然不乱套了，你的脚本改我的网站怎么办）</p>
-<h3 id="js中的跨域"><a href="#js中的跨域" class="headerlink" title="js中的跨域"></a>js中的跨域</h3><p>对于一段<code>JavaScript</code>脚本来说，其“源”与它存储的地址无关，而取决于脚本被加载的页面（我这里调用jQuery的库就可以用呀）<br>除了<code>&lt;script&gt;</code>，还有<code>&lt;img&gt;</code>、<code>&lt;iframe&gt;</code>、<code>&lt;link&gt;</code>等都具有跨域加载资源的能力。</p>
-<h2 id="SRJ"><a href="#SRJ" class="headerlink" title="SRJ"></a>SRJ</h2><p>Server Rendered Javascript<br>服务器返回的JS<br>在AJAX出现之前想出的不刷新页面但更新局部页面的方案<br>发送一个<code>script</code>之后<code>remove</code>这个<code>script</code></p>
-<h1 id="1-什么是JSONP"><a href="#1-什么是JSONP" class="headerlink" title="1.什么是JSONP"></a>1.什么是JSONP</h1><p>JSON + padding = JSONP</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$&#123;query.callback&#125;.call(<span class="literal">undefined</span>,<span class="comment">/*从这里开始*/</span>&#123;</span><br><span class="line">    <span class="string">"success"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"left"</span>: $&#123;newAmount&#125;</span><br><span class="line">&#125;<span class="comment">/*到这里结束是JSON*/</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//头和尾分别是左右padding</span></span><br></pre></td></tr></table></figure>
-<p>同理String + padding = StringP</p>
-<p>如果按照他的作用命名的话应该叫做：动态标签跨域请求</p>
-<h2 id="I-用文字描述一下它是什么"><a href="#I-用文字描述一下它是什么" class="headerlink" title="I.用文字描述一下它是什么"></a>I.用文字描述一下它是什么</h2><p>请求方： frank.com 的前端程序员（浏览器）<br>响应方： jack.com 的后端程序员</p>
-<p><del>以下functionName均表示要执行的函数名</del></p>
-<h3 id="i-请求方创建script-src指向响应方，同时传一个查询参数-callbackName-functionName"><a href="#i-请求方创建script-src指向响应方，同时传一个查询参数-callbackName-functionName" class="headerlink" title="i.请求方创建script.src指向响应方，同时传一个查询参数 ?callbackName = functionName"></a>i.请求方创建script.src指向响应方，同时传一个查询参数 ?callbackName = functionName</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">script<span class="selector-class">.src</span> = <span class="string">'http://jack.com:8002/pay?callback='</span> + functionName</span><br></pre></td></tr></table></figure>
-<h3 id="ii-响应方根据查询参数callbackName，构造形如："><a href="#ii-响应方根据查询参数callbackName，构造形如：" class="headerlink" title="ii.响应方根据查询参数callbackName，构造形如："></a>ii.响应方根据查询参数callbackName，构造形如：</h3><pre><code>1.functionName.call(undefined,&apos;你要的数据&apos;)
-2.functionName(&apos;你要的数据&apos;)
-这种响应
-</code></pre><h3 id="iii-浏览器接收到响应"><a href="#iii-浏览器接收到响应" class="headerlink" title="iii.浏览器接收到响应"></a>iii.浏览器接收到响应</h3><p>就会执行<code>functionName.call(undefined,&#39;你要的数据&#39;)</code></p>
-<h3 id="iv-请求方得到了他要的数据"><a href="#iv-请求方得到了他要的数据" class="headerlink" title="iv.请求方得到了他要的数据"></a>iv.请求方得到了他要的数据</h3><p><strong>这就是JSONP的过程</strong></p>
-<h2 id="II-约定"><a href="#II-约定" class="headerlink" title="II.约定"></a>II.约定</h2><h3 id="i-callbackName"><a href="#i-callbackName" class="headerlink" title="i.callbackName"></a>i.callbackName</h3><p>统一叫做<code>callback</code></p>
-<h3 id="ii-functionName会用随机数"><a href="#ii-functionName会用随机数" class="headerlink" title="ii.functionName会用随机数"></a>ii.functionName会用随机数</h3><p>每个网站都得想个名字是不是很麻烦<br>所以用随机数：<br>避免函数名重复</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> functionName = <span class="string">'frank'</span> + <span class="built_in">parseInt</span>(<span class="built_in">Math</span>.random()*<span class="number">100000</span>)</span><br><span class="line"><span class="built_in">window</span>[functionName] = <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//里面改你的dom内容</span></span><br><span class="line">&#125;</span><br><span class="line">script.src = <span class="string">'http://jack.com:8002/pay?callback='</span> + functionName</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">script.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    e.currentTarget.remove()</span><br><span class="line">    <span class="keyword">delete</span> <span class="built_in">window</span>[functionName]     <span class="comment">//反正这个函数只用一次，用完再用就再创建呗</span></span><br><span class="line">&#125;</span><br><span class="line">script.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">'fail'</span>)</span><br><span class="line">    e.currentTarget.remove()</span><br><span class="line">    <span class="keyword">delete</span> <span class="built_in">window</span>[functionName]         <span class="comment">//用完干掉，成功失败都要干掉哟。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>用随机数然后用完干掉是为了不污染全局变量</strong></p>
-<h1 id="2-jQuery怎么说的？"><a href="#2-jQuery怎么说的？" class="headerlink" title="2.jQuery怎么说的？"></a>2.jQuery怎么说的？</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://jack.com:8002/pay"</span>,</span><br><span class="line">    dataType: <span class="string">"jsonp"</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params"> response </span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(response === <span class="string">'success'</span>)&#123;</span><br><span class="line">            amount.innerText = amount.innerText - <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><code>callback</code>呢？<br>jQuery帮你传了<br>函数呢？<br>jQuery帮你造了</p>
-<p>要管的只有：成功以后执行什么。</p>
-<h2 id="然而这个不是ajax"><a href="#然而这个不是ajax" class="headerlink" title="然而这个不是ajax"></a>然而这个不是ajax</h2><p><code>.ajax</code>这个方法是个动态script</p>
-<h1 id="3-JSONP为什么不支持POST请求"><a href="#3-JSONP为什么不支持POST请求" class="headerlink" title="3.JSONP为什么不支持POST请求"></a>3.JSONP为什么不支持POST请求</h1><p>因为JSONP是通过<strong>动态创建script</strong>的方法进行的，<br>而script<strong>只能</strong>发送GET请求不能发送POST请求。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2266,7 +2283,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

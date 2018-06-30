@@ -99,24 +99,24 @@
 
 
 
-  <meta name="description" content="0.一个问题12345var duration = 20setInterval(()=&amp;gt;&amp;#123;    //要执行的代码&amp;#125;,duration)  这段代码中setInterval读了一次变量duration的值 之后setInterval再也不会读这个值了 就算我后面改了duration的值，他也不会再读了 这使得setInterval不能达到控速的目的  1.一个小技巧，模拟">
+  <meta name="description" content="0.猜猜看 Vue 为什么叫 Vue Vue 代替了 MVC 里的 View Vue 这单词是法语  1.axios 是什么 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 就是个 AJAX 库  1.我们用 jQuery 的时候这么用 AJAX1234567$.ajax(&amp;#123;    url: &apos;./xxx&apos;,    method: &apos;po">
 <meta name="keywords" content="JS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="setTimeout模拟setInterval">
-<meta property="og:url" content="http://yoursite.com/2018/06/06/setTimeout模拟setInterval/index.html">
+<meta property="og:title" content="MVC?MVVM!">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/MVC-MVVM/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
-<meta property="og:description" content="0.一个问题12345var duration = 20setInterval(()=&amp;gt;&amp;#123;    //要执行的代码&amp;#125;,duration)  这段代码中setInterval读了一次变量duration的值 之后setInterval再也不会读这个值了 就算我后面改了duration的值，他也不会再读了 这使得setInterval不能达到控速的目的  1.一个小技巧，模拟">
-<meta property="og:updated_time" content="2018-06-06T12:33:10.000Z">
+<meta property="og:description" content="0.猜猜看 Vue 为什么叫 Vue Vue 代替了 MVC 里的 View Vue 这单词是法语  1.axios 是什么 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 就是个 AJAX 库  1.我们用 jQuery 的时候这么用 AJAX1234567$.ajax(&amp;#123;    url: &apos;./xxx&apos;,    method: &apos;po">
+<meta property="og:updated_time" content="2018-06-30T15:47:41.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="setTimeout模拟setInterval">
-<meta name="twitter:description" content="0.一个问题12345var duration = 20setInterval(()=&amp;gt;&amp;#123;    //要执行的代码&amp;#125;,duration)  这段代码中setInterval读了一次变量duration的值 之后setInterval再也不会读这个值了 就算我后面改了duration的值，他也不会再读了 这使得setInterval不能达到控速的目的  1.一个小技巧，模拟">
+<meta name="twitter:title" content="MVC?MVVM!">
+<meta name="twitter:description" content="0.猜猜看 Vue 为什么叫 Vue Vue 代替了 MVC 里的 View Vue 这单词是法语  1.axios 是什么 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 就是个 AJAX 库  1.我们用 jQuery 的时候这么用 AJAX1234567$.ajax(&amp;#123;    url: &apos;./xxx&apos;,    method: &apos;po">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/06/setTimeout模拟setInterval/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/30/MVC-MVVM/"/>
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>setTimeout模拟setInterval | Protoss Oracle</title>
+  <title>MVC?MVVM! | Protoss Oracle</title>
   
 
 
@@ -275,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/06/setTimeout模拟setInterval/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/MVC-MVVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张博涵">
@@ -292,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">setTimeout模拟setInterval</h1>
+          <h1 class="post-title" itemprop="name headline">MVC?MVVM!</h1>
         
 
         <div class="post-meta">
@@ -304,7 +304,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-06T20:17:00+08:00">2018-06-06</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T22:40:50+08:00">2018-06-30</time>
             
 
             
@@ -341,22 +341,23 @@
       
 
       
-        <h1 id="0-一个问题"><a href="#0-一个问题" class="headerlink" title="0.一个问题"></a>0.一个问题</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> duration = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">setInterval</span><span class="params">(()</span></span>=&gt;&#123;</span><br><span class="line">    <span class="comment">//要执行的代码</span></span><br><span class="line">&#125;,duration)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这段代码中<code>setInterval</code>读了一次变量<code>duration</code>的值</li>
-<li>之后<code>setInterval</code>再也不会读这个值了</li>
-<li>就算我后面改了<code>duration</code>的值，他也不会再读了</li>
-<li>这使得<code>setInterval</code>不能达到控速的目的</li>
+        <h1 id="0-猜猜看-Vue-为什么叫-Vue"><a href="#0-猜猜看-Vue-为什么叫-Vue" class="headerlink" title="0.猜猜看 Vue 为什么叫 Vue"></a>0.猜猜看 Vue 为什么叫 Vue</h1><ul>
+<li>Vue 代替了 MVC 里的 View</li>
+<li>Vue 这单词是法语</li>
 </ul>
-<h1 id="1-一个小技巧，模拟setInterval"><a href="#1-一个小技巧，模拟setInterval" class="headerlink" title="1.一个小技巧，模拟setInterval()"></a>1.一个小技巧，模拟setInterval()</h1><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">* body里有个div。</span></span><br><span class="line"><span class="comment">* id="output"</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">n</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">n</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">id</span> = setInterval(()=&gt;&#123;</span><br><span class="line">    n+=<span class="number">1</span></span><br><span class="line">    output.<span class="attr">innerText</span> = n</span><br><span class="line">    <span class="keyword">if</span>(n&gt;=<span class="number">10</span>)&#123;</span><br><span class="line">        window.clearInterval(id)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">500</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> n = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> id = setTimeout(function <span class="function"><span class="keyword">fn</span><span class="params">()</span>&#123;</span></span><br><span class="line"><span class="function">    n += <span class="number">1</span></span></span><br><span class="line"><span class="function">    <span class="keyword">output</span>.<span class="title">innerText</span> = n</span></span><br><span class="line"><span class="function">    setTimeout<span class="params">(<span class="keyword">fn</span>, <span class="number">500</span>)</span>     <span class="comment">//这句话是精髓:打出来一次以后，延时500,再次调用fn</span></span></span><br><span class="line"><span class="function">&#125;,<span class="number">500</span>)</span></span><br></pre></td></tr></table></figure>
-<p><strong>他们俩可以达到一样的效果</strong></p>
-<h2 id="I-加个中断吧"><a href="#I-加个中断吧" class="headerlink" title="I.加个中断吧"></a>I.加个中断吧</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> n = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> id = setTimeout(function <span class="function"><span class="keyword">fn</span></span>()&#123;</span><br><span class="line">    n += <span class="number">1</span></span><br><span class="line">    output.innerText = n</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">10</span>)&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">fn</span>, 500)   //如果<span class="title">n</span></span>&lt;<span class="number">10</span>，就调用<span class="function"><span class="keyword">fn</span>，否则，什么也不做</span></span><br><span class="line"><span class="function">    &#125;</span></span><br><span class="line"><span class="function">&#125;,500)</span></span><br></pre></td></tr></table></figure>
-<p>加个判断条件砸掉定时器，是不是很灵活<br>并不需要<code>window.clearInterval(id)</code></p>
-<h1 id="2-总结"><a href="#2-总结" class="headerlink" title="2.总结"></a>2.总结</h1><ul>
-<li>所有<code>setInterval</code>都可以改写成<code>setTimeout</code></li>
-<li>通过在<code>setTimeout</code>内部增加<code>setTimeout(fn,500)</code>达到重复调用的作用</li>
-<li>以此达到模拟<code>setInterval</code>的作用</li>
+<h1 id="1-axios-是什么"><a href="#1-axios-是什么" class="headerlink" title="1.axios 是什么"></a>1.axios 是什么</h1><ul>
+<li>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</li>
+<li>就是个 AJAX 库</li>
+</ul>
+<h2 id="1-我们用-jQuery-的时候这么用-AJAX"><a href="#1-我们用-jQuery-的时候这么用-AJAX" class="headerlink" title="1.我们用 jQuery 的时候这么用 AJAX"></a>1.我们用 jQuery 的时候这么用 AJAX</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">.ajax(&#123;</span></span><br><span class="line">    url: './xxx',</span><br><span class="line">    method: 'post'</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">.post(<span class="string">'/xxx'</span>,data)</span></span><br><span class="line"><span class="meta">$</span><span class="bash">.get(<span class="string">'/xxx'</span>)</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-axios-怎么用-AJAX-的？"><a href="#2-axios-怎么用-AJAX-的？" class="headerlink" title="2.axios 怎么用 AJAX 的？"></a>2.axios 怎么用 AJAX 的？</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'/user?ID=xxx'</span>)</span><br><span class="line">    .then(<span class="keyword">function</span>(response)&#123;</span><br><span class="line">        console.log(response)</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="keyword">function</span>(error)&#123;</span><br><span class="line">        console.log(error)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">axios.post()</span><br><span class="line">axios.put()</span><br><span class="line">axios.patch()</span><br><span class="line">axios.<span class="keyword">delete</span>()</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span> 真的是基于 Promise <span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>比 jQuery.ajax 功能更多</li>
+<li>除了 ajax 功能之外，就没有其他功能了（更专注）</li>
+</ul>
+<h2 id="3-还用-jQuery-吗？"><a href="#3-还用-jQuery-吗？" class="headerlink" title="3.还用 jQuery 吗？"></a>3.还用 jQuery 吗？</h2><ul>
+<li>AJAX 可以用 axios</li>
+<li>DOM 操作可以用 Vue</li>
 </ul>
 
       
@@ -391,8 +392,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/04/异步＆回调/" rel="next" title="异步＆回调">
-                <i class="fa fa-chevron-left"></i> 异步＆回调
+              <a href="/2018/06/23/复习一下移动端自适应/" rel="next" title="复习一下移动端自适应">
+                <i class="fa fa-chevron-left"></i> 复习一下移动端自适应
               </a>
             
           </div>
@@ -400,10 +401,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/07/关于Cookie/" rel="prev" title="关于Cookie">
-                关于Cookie <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-一个问题"><span class="nav-number">1.</span> <span class="nav-text">0.一个问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-一个小技巧，模拟setInterval"><span class="nav-number">2.</span> <span class="nav-text">1.一个小技巧，模拟setInterval()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-加个中断吧"><span class="nav-number">2.1.</span> <span class="nav-text">I.加个中断吧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-总结"><span class="nav-number">3.</span> <span class="nav-text">2.总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-猜猜看-Vue-为什么叫-Vue"><span class="nav-number">1.</span> <span class="nav-text">0.猜猜看 Vue 为什么叫 Vue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-axios-是什么"><span class="nav-number">2.</span> <span class="nav-text">1.axios 是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-我们用-jQuery-的时候这么用-AJAX"><span class="nav-number">2.1.</span> <span class="nav-text">1.我们用 jQuery 的时候这么用 AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-axios-怎么用-AJAX-的？"><span class="nav-number">2.2.</span> <span class="nav-text">2.axios 怎么用 AJAX 的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-还用-jQuery-吗？"><span class="nav-number">2.3.</span> <span class="nav-text">3.还用 jQuery 吗？</span></a></li></ol></li></ol></div>
             
 
           </div>
