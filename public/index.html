@@ -345,19 +345,60 @@
 <li>Vue 代替了 MVC 里的 View</li>
 <li>Vue 这单词是法语</li>
 </ul>
-<h1 id="1-axios-是什么"><a href="#1-axios-是什么" class="headerlink" title="1.axios 是什么"></a>1.axios 是什么</h1><ul>
+<h1 id="1-axios"><a href="#1-axios" class="headerlink" title="1.axios"></a>1.axios</h1><ul>
 <li>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</li>
 <li>就是个 AJAX 库</li>
 </ul>
-<h2 id="1-我们用-jQuery-的时候这么用-AJAX"><a href="#1-我们用-jQuery-的时候这么用-AJAX" class="headerlink" title="1.我们用 jQuery 的时候这么用 AJAX"></a>1.我们用 jQuery 的时候这么用 AJAX</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">.ajax(&#123;</span></span><br><span class="line">    url: './xxx',</span><br><span class="line">    method: 'post'</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">.post(<span class="string">'/xxx'</span>,data)</span></span><br><span class="line"><span class="meta">$</span><span class="bash">.get(<span class="string">'/xxx'</span>)</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-axios-怎么用-AJAX-的？"><a href="#2-axios-怎么用-AJAX-的？" class="headerlink" title="2.axios 怎么用 AJAX 的？"></a>2.axios 怎么用 AJAX 的？</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'/user?ID=xxx'</span>)</span><br><span class="line">    .then(<span class="keyword">function</span>(response)&#123;</span><br><span class="line">        console.log(response)</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="keyword">function</span>(error)&#123;</span><br><span class="line">        console.log(error)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">axios.post()</span><br><span class="line">axios.put()</span><br><span class="line">axios.patch()</span><br><span class="line">axios.<span class="keyword">delete</span>()</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span> 真的是基于 Promise <span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span></span><br></pre></td></tr></table></figure>
+<h2 id="I-axios-是什么"><a href="#I-axios-是什么" class="headerlink" title="I.axios 是什么"></a>I.axios 是什么</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">.ajax(&#123;</span></span><br><span class="line">    url: './xxx',</span><br><span class="line">    method: 'post'</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">.post(<span class="string">'/xxx'</span>,data)</span></span><br><span class="line"><span class="meta">$</span><span class="bash">.get(<span class="string">'/xxx'</span>)</span></span><br></pre></td></tr></table></figure>
+<h3 id="i-axios-怎么用-AJAX-的？"><a href="#i-axios-怎么用-AJAX-的？" class="headerlink" title="i.axios 怎么用 AJAX 的？"></a>i.axios 怎么用 AJAX 的？</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'/user?ID=xxx'</span>)</span><br><span class="line">    .then(<span class="keyword">function</span>(response)&#123;</span><br><span class="line">        console.log(response)</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="keyword">function</span>(error)&#123;</span><br><span class="line">        console.log(error)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">axios.post()</span><br><span class="line">axios.put()</span><br><span class="line">axios.patch()</span><br><span class="line">axios.<span class="keyword">delete</span>()</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span> 真的是基于 Promise <span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>比 jQuery.ajax 功能更多</li>
 <li>除了 ajax 功能之外，就没有其他功能了（更专注）</li>
 </ul>
-<h2 id="3-还用-jQuery-吗？"><a href="#3-还用-jQuery-吗？" class="headerlink" title="3.还用 jQuery 吗？"></a>3.还用 jQuery 吗？</h2><ul>
+<h3 id="ii-还用-jQuery-吗？"><a href="#ii-还用-jQuery-吗？" class="headerlink" title="ii.还用 jQuery 吗？"></a>ii.还用 jQuery 吗？</h3><ul>
 <li>AJAX 可以用 axios</li>
 <li>DOM 操作可以用 Vue</li>
+</ul>
+<h2 id="II-axios-怎么用"><a href="#II-axios-怎么用" class="headerlink" title="II.axios 怎么用"></a>II.axios 怎么用</h2><h3 id="i-interceptors"><a href="#i-interceptors" class="headerlink" title="i.interceptors"></a>i.interceptors</h3><p><code>interceptor n.拦截机;</code><br>但是它可能不像它的名字那样直截了当。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">axios<span class="variable">.interceptors</span><span class="variable">.response</span><span class="variable">.use</span>(<span class="keyword">function</span>(response)&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">config</span> = response<span class="variable">.config</span></span><br><span class="line">    <span class="keyword">let</span> &#123;method, url, data&#125; = <span class="keyword">config</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> &#123;<span class="keyword">config</span>: &#123;url,method,data&#125;&#125; = response</span><br><span class="line">    <span class="comment">// 这一行等于上面两行 (es6的技巧)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>axios.interceptors.response.use</code><ul>
+<li>在真正返回<code>response</code>之前拦截一下</li>
+</ul>
+</li>
+<li>执行一个函数，处理一下<code>response</code><ul>
+<li>再返回<code>response</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ii-Object-assign-target-data"><a href="#ii-Object-assign-target-data" class="headerlink" title="ii.Object.assign(target,data)"></a>ii.Object.assign(target,data)</h3><ul>
+<li><code>target</code>是修改目标</li>
+<li><code>data</code>是修改内容</li>
+<li>可以执行链式操作<ul>
+<li><code>Object.assign(target,data1,data2)</code></li>
+<li>如果有重复则<code>data2</code>会覆盖<code>data1</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="2-Vue-的双向绑定"><a href="#2-Vue-的双向绑定" class="headerlink" title="2.Vue 的双向绑定"></a>2.Vue 的双向绑定</h1><p><code>&lt;input v-model=&quot;text&quot;/&gt;</code></p>
+<ul>
+<li><code>text</code>就会因用户输入的内容而映射到内存</li>
+<li>且<code>text</code>也会因为内存中的<code>text</code>值而渲染到页面中</li>
+</ul>
+<h2 id="I-那么-Vue-就是自动化的-MVC"><a href="#I-那么-Vue-就是自动化的-MVC" class="headerlink" title="I.那么 Vue 就是自动化的 MVC"></a>I.那么 Vue 就是自动化的 MVC</h2><ul>
+<li><code>Vue</code>省去了渲染操作</li>
+<li><code>Vue</code>省去了<code>Control</code>的大量操作，通过操作数据来操作页面</li>
+</ul>
+<h2 id="II-jQuery-是不是可以退休了"><a href="#II-jQuery-是不是可以退休了" class="headerlink" title="II.jQuery 是不是可以退休了"></a>II.jQuery 是不是可以退休了</h2><ul>
+<li>AJAX 操作可以用<code>axios</code>完成</li>
+<li>DOM 操作在<code>Vue</code>下仅需要进行数据操作</li>
+</ul>
+<h1 id="3-MVVM"><a href="#3-MVVM" class="headerlink" title="3.MVVM"></a>3.MVVM</h1><p><strong>Model-View-ViewMode</strong></p>
+<p>要编写可维护的前端代码绝非易事。我们已经用 MVC 模式通过 koa 实现了后端数据、模板页面和控制器的分离，但是，对于前端来说，还不够。</p>
+<ul>
+<li>Model: 数据模型层——数据</li>
+<li>View: 视图模板层——用户界面</li>
+<li>ViewMode： 视图模块层——取代了 MVC 的 Controller，传达视图和数据绑定通信；Model 中的数据状态</li>
 </ul>
 
           
