@@ -1,6 +1,6 @@
 ---
-title: 关于URL/URI的小tip
-date: 2018-09-18 23:19:12
+title: 关于URL-URI的一点tip
+date: 2018-10-02 00:28:23
 tags: HTTP
 ---
 
