@@ -271,6 +271,651 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/异步＆回调/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/04/异步＆回调/" itemprop="url">异步＆回调</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T21:41:23+08:00">2018-06-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-概念"><a href="#0-概念" class="headerlink" title="0.概念"></a>0.概念</h1><h2 id="I-异步"><a href="#I-异步" class="headerlink" title="I.异步"></a>I.异步</h2><p>异步加载也叫非阻塞模式加载，在浏览器下载JS的同事，还会执行后续的页面处理。</p>
+<p><strong>不等自己这行代码运行完，直接运行下一行代码，就是异步</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    console.<span class="built_in">log</span>(<span class="string">'这里这里看这里'</span>)</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br><span class="line">console.<span class="built_in">log</span>(<span class="string">'不看不看不看'</span>)</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">setTimeout还沉浸在它的delay时间里的时候</span><br><span class="line">已经打印出了<span class="string">'不看不看不看'</span></span><br><span class="line">一秒后才打印出<span class="string">'这里这里看这里'</span></span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h3 id="i-什么时候需要异步"><a href="#i-什么时候需要异步" class="headerlink" title="i.什么时候需要异步"></a>i.什么时候需要异步</h3><h4 id="在等待过程中不能像alert一样阻塞程序运行"><a href="#在等待过程中不能像alert一样阻塞程序运行" class="headerlink" title="在等待过程中不能像alert一样阻塞程序运行"></a>在等待过程中不能像alert一样阻塞程序运行</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">for</span><span class="params">(var i=<span class="number">0</span>; i&lt;<span class="number">100000</span>;i++)</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">alert</span><span class="params">(<span class="string">'遍历完成'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>JS是单线程的</li>
+<li>他会老老实实等待遍历完成以后再alert</li>
+<li>严重堵塞了后面的代码执行。</li>
+</ul>
+<h4 id="需要等待的情况"><a href="#需要等待的情况" class="headerlink" title="需要等待的情况"></a>需要等待的情况</h4><ul>
+<li>我们知道有一个叫做 <code>window.onload</code> 的api</li>
+<li>在我们需要在<code>head</code>里面加入<code>script</code>代码的时候，会将代码写在<code>windowl.onload</code>里面</li>
+<li>因为在我们操作<code>dom</code>的时候<code>script</code>后面的<code>html</code>代码还没开始加载</li>
+<li>人家还没存在就想操作人家，臣妾做不到呀。</li>
+<li><code>window.onload</code>里面的代码是在文档全部加载完毕后执行的，相当于异步</li>
+</ul>
+<h4 id="等待的情况需要异步"><a href="#等待的情况需要异步" class="headerlink" title="等待的情况需要异步"></a>等待的情况需要异步</h4><p>有时候页面不需要一次性把所有代码都加载，更多的时候我们是按照某个需求采取加载某段代码的。</p>
+<h3 id="ii-我们经常用到异步"><a href="#ii-我们经常用到异步" class="headerlink" title="ii.我们经常用到异步"></a>ii.我们经常用到异步</h3><ul>
+<li><code>setTimeout</code>和<code>setInterval</code>定时器</li>
+<li><code>ajax</code>网络请求</li>
+<li>事件绑定</li>
+</ul>
+<h2 id="II-同步"><a href="#II-同步" class="headerlink" title="II.同步"></a>II.同步</h2><p>和人类的思维顺序最匹配的运行方式</p>
+<ul>
+<li>谁先写，谁先运行。</li>
+<li>当前行代码任务执行完了得到结果后，再执行下一行</li>
+</ul>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built-in">log</span>(<span class="string">'first'</span>)</span><br><span class="line">console.<span class="built-in">log</span>(<span class="string">'second'</span>)</span><br><span class="line">console.<span class="built-in">log</span>(<span class="string">'third'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">天天都能看到的顺序执行</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="III-区别"><a href="#III-区别" class="headerlink" title="III.区别"></a>III.区别</h2><p>同步或非同步，标明是否将整个流程按顺序完成<br>阻塞或非阻塞，意味着调用函数会不会立即告诉你结果</p>
+<h2 id="IV-回调"><a href="#IV-回调" class="headerlink" title="IV.回调"></a>IV.回调</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In computer programming, <span class="selector-tag">a</span> callback is <span class="selector-tag">a</span> reference to <span class="selector-tag">a</span> piece of </span><br><span class="line">executable <span class="selector-tag">code</span> that is passed as an argument to other <span class="selector-tag">code</span>.</span><br><span class="line">                                                    ——维基说的</span><br></pre></td></tr></table></figure>
+<ul>
+<li>JS 中的回调函数定义为：</li>
+<li>函数 A 作为参数(函数引用)传递到另一个函数 B 中</li>
+<li>并且这个函数 B 执行函数 A </li>
+<li>我们就说函数 A 叫做回调函数</li>
+<li>如果没有名称(函数表达式)，就叫做匿名回调函数。</li>
+<li>函数 B 调用函数 A 叫做调用回调函数</li>
+</ul>
+<h3 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h3><ul>
+<li>资源加载：动态加载 JS 文件后执行回调，加载 iframe 后执行回调， ajax 操作回调，图片加载完成执行回调。</li>
+<li>DOM 事件以及 Node.js 事件基于回调机制</li>
+<li>setTimeout的延迟为0，我们喜闻乐见的立即执行函数</li>
+<li>链式调用 </li>
+<li>setTimeout setInterval的函数调用得到返回值。</li>
+</ul>
+<h1 id="1-执行顺序"><a href="#1-执行顺序" class="headerlink" title="1.执行顺序"></a>1.执行顺序</h1><p>同步优先、异步靠边、回调垫底<br>           ↓<br>   同步 =&gt; 异步 =&gt; 回调</p>
+<h1 id="2-举个栗子"><a href="#2-举个栗子" class="headerlink" title="2.举个栗子"></a>2.举个栗子</h1><h2 id="I-关于伟大的setTimeout"><a href="#I-关于伟大的setTimeout" class="headerlink" title="I.关于伟大的setTimeout"></a>I.关于伟大的setTimeout</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for(<span class="name">var</span> i=0<span class="comment">; i&lt;5; i++)&#123;</span></span><br><span class="line">    setTimeout(<span class="name">function</span>()&#123;</span><br><span class="line">        console.log(<span class="name">i</span>)</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(<span class="name">i</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这是个非常经典的题</li>
+<li>如果靠猜可能有两种答案</li>
+<li>0 1 2 3 4 5 5</li>
+<li>5 5 5 5 5 5 5</li>
+</ul>
+<h3 id="i-分析一下"><a href="#i-分析一下" class="headerlink" title="i.分析一下"></a>i.分析一下</h3><ol>
+<li><code>for</code>循环和循环体外部的<code>console.log</code>是同步的，所以先执行<code>for</code>循环，再执行外部的<code>console.log</code>(同步优先)</li>
+<li><code>for</code>循环里有一个<code>setTimeout</code>回调<code>function()</code>，它是垫底的，所以只能最后执行(回调垫底)</li>
+<li>为什么最先输出5？<ul>
+<li><code>for</code> 循环先执行，但是不会给setTimeout传参(回调垫底)</li>
+<li>等<code>for</code>循环执行完，就会给<code>setTimeout</code>传参</li>
+<li>而外部的<code>console.log</code>打印出5是因为<code>for</code>循环执行完成了</li>
+</ul>
+</li>
+</ol>
+<h4 id="概括一下"><a href="#概括一下" class="headerlink" title="概括一下"></a>概括一下</h4><ul>
+<li>里面的兄弟<code>setTimeout</code>想等一秒</li>
+<li><code>for</code>这位老大哥已经遍历完了</li>
+<li>等里面的<code>setTimeout</code>准备好了的时候</li>
+<li><code>for</code>给它丢过去一个<code>5</code></li>
+</ul>
+<h2 id="II-关于Promise的例子"><a href="#II-关于Promise的例子" class="headerlink" title="II.关于Promise的例子"></a>II.关于Promise的例子</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">2</span>), <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">    resolve(<span class="literal">true</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">a.then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">8</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">6</span>), <span class="number">0</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="i-分析一下-1"><a href="#i-分析一下-1" class="headerlink" title="i.分析一下"></a>i.分析一下</h3><ol>
+<li><p><code>a</code>是一个<code>Promise</code>，本身<code>Promise</code>对象是同步的，但是<code>then()</code>和<code>catch()</code>方法是异步的</p>
+<ul>
+<li>先执行<code>a</code>里面的<code>Promise</code>同步代码(同步优先)</li>
+<li><code>console.log(1)</code></li>
+<li><code>setTimeout(() =&gt; console.log(2), 0)</code> 好家伙你是回调，先等着(回调垫底)</li>
+<li><code>console.log(3)</code></li>
+<li><code>console.log(4)</code></li>
+</ul>
+</li>
+<li><p>接着执行 <code>resolve(true)</code> 进入<code>then()</code></p>
+<ul>
+<li><code>then</code>是异步的，他下面还有同步任务没有执行完</li>
+<li>所以<code>then</code>里的内容也放进消息队列里等候(异步靠边)</li>
+</ul>
+</li>
+<li><p><code>b</code>也是一个<code>Promise</code>对象，同步，执行内部同步代码。</p>
+<ul>
+<li><code>console.log(5)</code></li>
+<li><code>setTimeout(() =&gt; console.log(6), 0)</code> 回调去排队(回调垫底)</li>
+</ul>
+</li>
+<li><p>最后同步<code>console.log(7)</code>输出7</p>
+</li>
+<li>JS回头看到了消息队列<ul>
+<li>只有一个是异步，<code>then()</code>出来输出8</li>
+<li>异步over</li>
+<li>回调函数，这时候有两个<code>setTimeout</code>在等待</li>
+<li>由于他们俩时间是一样的，都是0</li>
+<li>所以不受时间影响，只和排队的先后顺序有关</li>
+<li>所以先输出<code>a</code>里的2</li>
+<li>再输出<code>b</code>里的6</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/用JS做一个AJAX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/11/用JS做一个AJAX/" itemprop="url">用JS做一个AJAX</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-11T02:26:47+08:00">2018-05-11</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-AJAX-的所有功能"><a href="#0-AJAX-的所有功能" class="headerlink" title="0.AJAX 的所有功能"></a>0.AJAX 的所有功能</h1><ul>
+<li>客户端的JS发起请求（浏览器上的）</li>
+<li>服务端的JS发送响应（Node.js上的）</li>
+</ul>
+<h2 id="I-JS-可以设置任意请求-header-吗"><a href="#I-JS-可以设置任意请求-header-吗" class="headerlink" title="I.JS 可以设置任意请求 header 吗?"></a>I.JS 可以设置任意请求 header 吗?</h2><ul>
+<li>第一部分 request.open(‘get’, ‘/xxx’)</li>
+<li>第二部分 request.setHeader(‘content-type’,’x-www-form-urlencoded’)</li>
+<li>第四部分 request.send(‘a=1&amp;b=2’)</li>
+</ul>
+<h2 id="II-JS-可以获取任意响应-header-吗？"><a href="#II-JS-可以获取任意响应-header-吗？" class="headerlink" title="II.JS 可以获取任意响应 header 吗？"></a>II.JS 可以获取任意响应 header 吗？</h2><ul>
+<li>第一部分 request.status / request.statusText</li>
+<li>第二部分 request.getResponseHeader() / request.getAllResponseHeaders()</li>
+<li>第四部分 request.responseText</li>
+</ul>
+<h2 id="所有功能都给了JS"><a href="#所有功能都给了JS" class="headerlink" title="所有功能都给了JS"></a>所有功能都给了JS</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">服务端              request(<span class="number">4</span>)           客户端</span><br><span class="line"><span class="keyword">Node</span>.<span class="title">js</span>        <span class="tag">&lt;=================       chrome</span></span><br><span class="line"><span class="tag">               =================&gt;</span></span><br><span class="line">                   response(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="1-回调"><a href="#1-回调" class="headerlink" title="1.回调"></a>1.回调</h1><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> a <span class="function"><span class="keyword">function</span></span></span><br><span class="line"><span class="keyword">call</span> a <span class="function"><span class="keyword">function</span></span> back</span><br></pre></td></tr></table></figure>
+<h2 id="I-回调的问题"><a href="#I-回调的问题" class="headerlink" title="I.回调的问题"></a>I.回调的问题</h2><p>每个程序员的回调名不一样<br>封装习惯也不一样。<br>不能每个库都去看文档吧。</p>
+<h2 id="II-Promise"><a href="#II-Promise" class="headerlink" title="II.Promise"></a>II.Promise</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">xxx</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">f1, f2</span>) =&gt;</span> &#123;</span><br><span class="line">        doSomething()</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="comment">// 成功就调用 f1，失败就调用 f2</span></span><br><span class="line">        &#125;,<span class="number">3000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xxx().then(success, fail)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 链式操作</span></span><br><span class="line">xxx().then(success, fail).then(success, fail)</span><br></pre></td></tr></table></figure>
+<p>如果需要对结果多次处理，那么就多<code>then</code>几个</p>
+<p>成功就是第一个参数，失败就是第二个参数，还能进行链式操作。<br>是不是统一了标准<br>这就是<code>promise</code>的意义</p>
+<p>其中第一个<code>then</code>的处理结果<code>return</code>出来，交给第二个<code>then</code>处理</p>
+<h3 id="i-注意"><a href="#i-注意" class="headerlink" title="i.注意"></a>i.注意</h3><p>如果<code>Response Headers</code>中的<code>Content-type</code><br>为<code>text/json</code>。<br><code>jQuery</code>就会自动用<code>JSON</code>去<code>parse</code>一下</p>
+<h3 id="ii-promise的模式"><a href="#ii-promise的模式" class="headerlink" title="ii.promise的模式"></a>ii.promise的模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Promise = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// .....</span></span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        then: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/09/AJAX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/09/AJAX/" itemprop="url">AJAX</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-09T08:21:28+08:00">2018-05-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-关于发送请求"><a href="#0-关于发送请求" class="headerlink" title="0.关于发送请求"></a>0.关于发送请求</h1><h2 id="I-如何发送请求"><a href="#I-如何发送请求" class="headerlink" title="I.如何发送请求"></a>I.如何发送请求</h2><ul>
+<li>用<code>form</code>可以发送请求，但是会刷新页面或新开页面</li>
+<li>用<code>a</code>可以发<code>GET</code>请求，但是也会刷新页面或新开页面</li>
+<li>用<code>img</code>可以发<code>GET</code>请求，但是只能以图片的形式展示</li>
+<li>用<code>script</code>可以发<code>GET</code>请求，但是只能以脚本的形式运行</li>
+<li>用<code>link</code>可以发<code>GET</code>请求，但是只能以<code>CSS</code>、<code>favicon</code>的形式展示</li>
+</ul>
+<p><strong>有没有一种方法可以：</strong></p>
+<ul>
+<li><code>GET</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code>请求都可以做到</li>
+<li>想用什么形式展示就以什么形式展示</li>
+</ul>
+<h2 id="II-伟大的巨硬-Microsoft"><a href="#II-伟大的巨硬-Microsoft" class="headerlink" title="II.伟大的巨硬(Microsoft)"></a>II.伟大的巨硬(Microsoft)</h2><ul>
+<li>在IE5率先在<code>JS</code>中引入<code>ActiveX</code>对象（API），使得JS可以直接发起HTTP请求。</li>
+<li>随后<code>Mozilla</code>、<code>Safari</code>、<code>Opera</code>也跟进了，命名<code>XMLHttpRequest</code>，并被纳入<code>W3C</code>规范</li>
+</ul>
+<h3 id="i-结果巨硬飘了"><a href="#i-结果巨硬飘了" class="headerlink" title="i.结果巨硬飘了"></a>i.结果巨硬飘了</h3><ul>
+<li>巨硬认为自己的<code>IE6</code>已经无敌了，所以解散了开发小组</li>
+<li>给了<code>chrome</code>巨大的机会（现在反超IE，占有量达到40%）</li>
+</ul>
+<h3 id="ii-Google-Gmail展示了网页的体验也可以那么好"><a href="#ii-Google-Gmail展示了网页的体验也可以那么好" class="headerlink" title="ii.Google Gmail展示了网页的体验也可以那么好"></a>ii.Google Gmail展示了网页的体验也可以那么好</h3><p>页面不刷新，仅局部更新<br>网页的体验强了，很多事情不需要使用软件来完成了。<br>前端程序员开始专心于JavaScript<br>所以还是要感谢伟大的巨硬的<code>ActiveX</code></p>
+<h1 id="1-AJAX"><a href="#1-AJAX" class="headerlink" title="1.AJAX"></a>1.AJAX</h1><p>Jesse James Garrett<br>将异步的<code>JavaScript</code>和<code>XML</code>这两项技术<br>称为<code>AJAX</code></p>
+<ul>
+<li><code>async</code>异步</li>
+<li><code>JavaScript</code>我们热爱的JS</li>
+<li><code>and</code>和</li>
+<li><code>XML</code>XML</li>
+</ul>
+<h2 id="I-技术要点"><a href="#I-技术要点" class="headerlink" title="I.技术要点"></a>I.技术要点</h2><ul>
+<li>使用<code>XMLHttpRequest</code>发送请求</li>
+<li>服务器返回<code>XML</code>格式的字符串（现在都用<code>JSON</code>）</li>
+<li><code>JS</code>解析<code>XML</code>，并更新局部页面</li>
+</ul>
+<p><strong>需要知道如何使用<code>原生JS</code>来发送<code>AJAX</code>请求</strong></p>
+<h2 id="II-格式"><a href="#II-格式" class="headerlink" title="II.格式"></a>II.格式</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">myButton.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="params">(e)</span>=&gt;</span>&#123;</span><br><span class="line">    let request = <span class="keyword">new</span> XMLHttpRequest()   <span class="regexp">//</span>声明一个XMLHttpRequest对象</span><br><span class="line">    request.onreadystatechange = <span class="function"><span class="params">()</span>=&gt;</span>&#123;      <span class="regexp">//</span>监听状态改变，尽量往上放</span><br><span class="line">        <span class="built_in">console</span>.log(request.readyState)</span><br><span class="line">    &#125;</span><br><span class="line">    request.open(<span class="string">'GET'</span>, <span class="string">'/xxx'</span>)    <span class="regexp">//</span>配置request <span class="string">'Method'</span>, <span class="string">'url'</span>, <span class="string">'是否异步'</span>后三个一般不传默认就行</span><br><span class="line">    request.send()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="i-readystate"><a href="#i-readystate" class="headerlink" title="i.readystate"></a>i.readystate</h3><p>当前请求的状态</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">值</th>
+<th style="text-align:center">状态</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">UNSENT（未打开）</td>
+<td style="text-align:center">代理被创建，但尚未调用 open() 方法。</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">OPENED（未发送）</td>
+<td style="text-align:center">open() 方法已经被调用。send（）方法还未被调用</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">HEADERS_RECEIVED（已获取响应头）</td>
+<td style="text-align:center">send() 方法已经被调用，并且头部和状态已经可获得。</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">LOADING（正在下载响应体）</td>
+<td style="text-align:center">下载中； responseText 属性已经包含部分数据。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">DONE（请求完成）</td>
+<td style="text-align:center">整个请求过程已经完毕（请求，已经把响应 下载完毕）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ii-request-status"><a href="#ii-request-status" class="headerlink" title="ii.request.status"></a>ii.request.status</h3><p>请求得到的响应状态码</p>
+<p><code>&gt;= 200</code>请求成功<br><code>&gt;= 300</code>浏览器会再发一个新的请求<br><code>&gt;= 400</code>请求失败</p>
+<h1 id="2-JSON"><a href="#2-JSON" class="headerlink" title="2.JSON"></a>2.JSON</h1><p>这是一种语言<br>JSON（<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation）<br>是一种由<strong>Douglas Crockford</strong>构想和设计、轻量级的<strong>数据交换语言</strong><br>该语言以易于让人阅读的文字为基础，用来传输由属性值或者序列性的值组成的数据对象。</p>
+<ul>
+<li>Douglas和Brandon互相不爽…</li>
+<li>Douglas抄JS写了个JSON</li>
+<li>Douglas写了本蝴蝶书告诉我们JS哪里哪里很毒瘤。明着diss…</li>
+</ul>
+<h2 id="I-JSON-vs-JS"><a href="#I-JSON-vs-JS" class="headerlink" title="I.JSON vs JS"></a>I.JSON vs JS</h2><ul>
+<li>JSON 没有抄 function 和 undefined</li>
+<li>JSON 的字符串首尾必须是 “”</li>
+<li>JSON 对象：{“name”:”Oracle”} JS 对象： {name: ‘Oracle’}</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">JS</th>
+<th style="text-align:center">JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">undefined</td>
+<td style="text-align:center">没有</td>
+</tr>
+<tr>
+<td style="text-align:center">null</td>
+<td style="text-align:center">null</td>
+</tr>
+<tr>
+<td style="text-align:center">[‘a’,’b’]</td>
+<td style="text-align:center">[“a”,”b”]</td>
+</tr>
+<tr>
+<td style="text-align:center">function fn(){}</td>
+<td style="text-align:center">没有</td>
+</tr>
+<tr>
+<td style="text-align:center">{name: ‘Oracle’}</td>
+<td style="text-align:center">{“name”:”Oracle”}</td>
+</tr>
+<tr>
+<td style="text-align:center">‘Oracle’</td>
+<td style="text-align:center">“Oracle”</td>
+</tr>
+<tr>
+<td style="text-align:center">var a = {};a.self = a</td>
+<td style="text-align:center">搞不定（没有变量这个东西）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{__proto__}</code></td>
+<td style="text-align:center">没有原型链</td>
+</tr>
+</tbody>
+</table>
+<h2 id="II-为什么用JSON"><a href="#II-为什么用JSON" class="headerlink" title="II.为什么用JSON"></a>II.为什么用JSON</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务器</span></span><br><span class="line"><span class="built_in">else</span> <span class="built_in">if</span> (path === <span class="string">'/xxx'</span>)&#123;</span><br><span class="line">        response.statusCode = <span class="number">200</span></span><br><span class="line">        response.setHeader(<span class="string">'Content-type'</span>, <span class="string">'text/xml;charset=utf-8'</span>)</span><br><span class="line">        response.<span class="built_in">write</span>(`</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"note"</span>:&#123;</span><br><span class="line">                <span class="string">"to"</span>: <span class="string">"James Raynor"</span></span><br><span class="line">                <span class="string">"from"</span>: <span class="string">"Sarah Kerrigan"</span></span><br><span class="line">                <span class="string">"heading"</span>: <span class="string">"Message"</span></span><br><span class="line">                <span class="string">"body"</span>: <span class="string">"For Im the queen of blades.Vengeance shall be mine."</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        `)<span class="comment">//返回一个字符串，这个字符串，凑巧刚好符合JSON对象语法</span></span><br><span class="line">        <span class="comment">// 这不是对象这不是对象这不是对象</span></span><br><span class="line">        response.<span class="built_in">end</span>()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>tigongde<br>tigongde<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let string = request<span class="selector-class">.responseText</span>       <span class="comment">//把JSON字符串放进容器</span></span><br><span class="line">let <span class="selector-tag">object</span> = Window<span class="selector-class">.JSON</span><span class="selector-class">.parse</span>(string)      <span class="comment">//这个 JSON.parse 是浏览器提供的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//把符合JSON语法的字符串，转换成JS中对应的值</span></span><br></pre></td></tr></table></figure></p>
+<p>这时候，前端希望用和 JS 比较像的 JSON ，而放弃使用 XML 了</p>
+<h1 id="3-同源策略与CORS跨域"><a href="#3-同源策略与CORS跨域" class="headerlink" title="3.同源策略与CORS跨域"></a>3.同源策略与CORS跨域</h1><h2 id="I-同源策略"><a href="#I-同源策略" class="headerlink" title="I.同源策略"></a>I.同源策略</h2><p>只有 域名+端口+协议 一模一样才允许发 AJAX 请求</p>
+<ol>
+<li><code>http://baidu.com</code> 可以向 <code>http://www.baidu.com</code> 发 AJAX 请求吗？   ——NO</li>
+<li><code>http://baidu.com：80</code> 可以向 <code>http://baidu.com：81</code> 发 AJAX 请求吗？    ——NO</li>
+</ol>
+<p>为什么？<br>你试试<code>http://www.12306.cn</code>和<code>http://12306.cn</code>是不是同一个网站</p>
+<ul>
+<li>浏览器不能冒险呀，不能让你AJAX各种读用户数据呀。</li>
+</ul>
+<p>浏览器必须保证：</p>
+<ul>
+<li>只有 域名+端口+域名 一模一样才允许发 AJAX 请求</li>
+</ul>
+<h2 id="II-CORS跨域"><a href="#II-CORS跨域" class="headerlink" title="II.CORS跨域"></a>II.CORS跨域</h2><p><strong>C</strong>ross-<strong>O</strong>rigin <strong>R</strong>esource <strong>S</strong>haring<br>跨          站         资源          共享</p>
+<p>除了JSONP还有个别的方法<br>CORS可以：告诉浏览器，我们俩是兄弟呀，别阻止他。</p>
+<p>给你要访问的网站的后端打个电话商量一下。让他在相应接口加一条：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">response</span><span class="selector-class">.setHeader</span>(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'你想允许哪个域名+端口+协议'</span>)</span><br></pre></td></tr></table></figure>
+<p>你们就可以愉快的玩耍了</p>
+<h3 id="为什么要用CORS"><a href="#为什么要用CORS" class="headerlink" title="为什么要用CORS"></a>为什么要用CORS</h3><p>因为 <code>JSONP</code> 不能发 <code>POST</code> 呀</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/JSONP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1696,734 +2341,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/JavaScript-对象/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/12/JavaScript-对象/" itemprop="url">JavaScript-对象</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T15:46:37+08:00">2018-04-12</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-全局对象"><a href="#1-全局对象" class="headerlink" title="1.全局对象"></a>1.全局对象</h1><h2 id="I-window（global）"><a href="#I-window（global）" class="headerlink" title="I.window（global）"></a>I.window（global）</h2><p>标准里他叫做global<br>浏览器上他叫做window<br>是一个对象</p>
-<h3 id="i-属性"><a href="#i-属性" class="headerlink" title="i.属性"></a>i.属性</h3><p>例：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">global</span>.parseInt</span><br><span class="line"><span class="keyword">global</span>.parseFloat</span><br></pre></td></tr></table></figure>
-<h3 id="ii-属性分为两类"><a href="#ii-属性分为两类" class="headerlink" title="ii.属性分为两类"></a>ii.属性分为两类</h3><p>如果函数是<code>window.</code>那么这个<code>window.</code>可以省掉，毕竟它是全局函数。</p>
-<h4 id="ECMAScript规定要有的"><a href="#ECMAScript规定要有的" class="headerlink" title="ECMAScript规定要有的"></a>ECMAScript规定要有的</h4><p>比如</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">parseInt</span><br><span class="line">parseFloat</span><br><span class="line"><span class="function"><span class="title">Number</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">String</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Boolean</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Object</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-<p>必须得有</p>
-<h4 id="私有的（浏览器私有的）"><a href="#私有的（浏览器私有的）" class="headerlink" title="私有的（浏览器私有的）"></a>私有的（浏览器私有的）</h4><p>比如</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alert（弹框提示）</span><br><span class="line">prompt（用户填写）</span><br><span class="line">confirm（用户确认）</span><br><span class="line">console（开发者打印）</span><br><span class="line"><span class="function"><span class="title">document</span><span class="params">(能对文档做的所有操作)</span><span class="title">DOM</span><span class="params">(w3c制定)</span></span></span><br><span class="line"><span class="function"><span class="title">history</span><span class="params">(浏览器操作)</span><span class="title">BOM</span></span></span><br></pre></td></tr></table></figure>
-<p>都是浏览器自己实现的</p>
-<h1 id="2-简单类型与对象的区别"><a href="#2-简单类型与对象的区别" class="headerlink" title="2.简单类型与对象的区别"></a>2.简单类型与对象的区别</h1><h2 id="I-Number"><a href="#I-Number" class="headerlink" title="I.Number()"></a>I.Number()</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="var-n-1"><a href="#var-n-1" class="headerlink" title="var n = 1"></a>var n = 1</h4><p>但是它不能.toString</p>
-<h4 id="var-n-new-Number-1"><a href="#var-n-new-Number-1" class="headerlink" title="var n = new Number(1)"></a>var n = new Number(1)</h4><p>这个方法很少人用…</p>
-<figure class="highlight clojure-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">1=&gt;</span><span class="clojure">&#123;valueOf():<span class="number">1</span>,&#125; //把<span class="number">1</span>转变成对象</span></span><br></pre></td></tr></table></figure>
-<p>历史遗留问题</p>
-<h4 id="如何写的简单同时又可以用-toString呢？"><a href="#如何写的简单同时又可以用-toString呢？" class="headerlink" title="如何写的简单同时又可以用.toString呢？"></a>如何写的简单同时又可以用.toString呢？</h4><p>临时转换：</p>
-<figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">temp = <span class="function"><span class="keyword">new</span> <span class="title">Number</span>(n)</span></span><br><span class="line"><span class="function"><span class="title">temp</span>.<span class="title">toString</span>()</span></span><br><span class="line"><span class="function">拿到对象里的值再输出</span></span><br><span class="line"><span class="function">然后去除<span class="title">temp</span>的<span class="title">ADDR</span></span></span><br><span class="line"><span class="function">对象内容被回收</span></span><br><span class="line"><span class="function"><span class="title">END</span></span></span><br></pre></td></tr></table></figure>
-<p>所以在：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">n</span> = 1</span><br><span class="line"><span class="keyword">n</span>.<span class="keyword">toString</span>() <span class="comment">//发生了一次temp的转换</span></span><br></pre></td></tr></table></figure>
-<p><strong>JS之父做的操作</strong></p>
-<h2 id="II-String"><a href="#II-String" class="headerlink" title="II.String()"></a>II.String()</h2><p>操作和Number()一样</p>
-<h3 id="记几个API吧"><a href="#记几个API吧" class="headerlink" title="记几个API吧"></a>记几个API吧</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">API</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.charAt(n)</td>
-<td style="text-align:center">获取第n位的字符</td>
-<td style="text-align:center">n为第几位</td>
-</tr>
-<tr>
-<td style="text-align:center">.charCodeAt(n)</td>
-<td style="text-align:center">获取某一个索引对应的字符的编码</td>
-<td style="text-align:center">n为第几位。</td>
-</tr>
-<tr>
-<td style="text-align:center">(数字).toString(进制数)</td>
-<td style="text-align:center">将数字转换为制定进制数</td>
-<td style="text-align:center">可以和<code>.charCodeAt(n)</code>组合使用</td>
-</tr>
-<tr>
-<td style="text-align:center">concat()</td>
-<td style="text-align:center">连接两个字符串</td>
-<td style="text-align:center"><code>字符串1.concat(字符串2)</code>和命令行的<code>cat</code>是不是兄弟</td>
-</tr>
-<tr>
-<td style="text-align:center">endsWith()</td>
-<td style="text-align:center">一个字符串以什么结尾</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">.trim()</td>
-<td style="text-align:center">去掉两边的空格</td>
-<td style="text-align:center"><code>字符串.trim()</code></td>
-</tr>
-<tr>
-<td style="text-align:center">.slice</td>
-<td style="text-align:center">切片，保留指定位</td>
-<td style="text-align:center"><code>目标字符串.slice(0,2)</code>仅保留前两位（这两个数字包前不包后）</td>
-</tr>
-<tr>
-<td style="text-align:center">.replace</td>
-<td style="text-align:center">替换</td>
-<td style="text-align:center"><code>字符串.replace(&#39;要换谁&#39;,&#39;换成谁&#39;)</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="III-Bullean"><a href="#III-Bullean" class="headerlink" title="III.Bullean()"></a>III.Bullean()</h2><p>里面东西超少</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">toString</span></span><br><span class="line"><span class="attribute">valueOf</span></span><br></pre></td></tr></table></figure>
-<h2 id="IV-null和undefined没有对应的函数"><a href="#IV-null和undefined没有对应的函数" class="headerlink" title="IV.null和undefined没有对应的函数"></a>IV.null和undefined没有对应的函数</h2><h2 id="V-object"><a href="#V-object" class="headerlink" title="V.object"></a>V.object</h2><p>之前都是基本类型<br>现在到了对象</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> o2 = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line"><span class="comment">// 他俩都是空的，但是。</span></span><br><span class="line">o1 === o2 <span class="comment">//false</span></span><br><span class="line"><span class="comment">// 回到前面ADDR和对象的关系，o1和o2的地址不一样，就算内容一样，也不相等。</span></span><br></pre></td></tr></table></figure>
-<p>所以，直接用<code>var o1 = {}</code>吧，他俩没差，还少敲几个字符。你又不是敲java。</p>
-<h2 id="VI-总结一下"><a href="#VI-总结一下" class="headerlink" title="VI.总结一下"></a>VI.总结一下</h2><p>他们都有<code>toString()</code>和<code>valueOf()</code><br>那岂不是很占内存<br>可不可以都用同一个<code>toString()</code>和<code>valueOf()</code></p>
-<p>如何让他们都指向同一个<code>toString()</code>和<code>valueOf()</code>呢？</p>
-<h3 id="JS向你掏出来了一只-proto"><a href="#JS向你掏出来了一只-proto" class="headerlink" title="JS向你掏出来了一只__proto__"></a>JS向你掏出来了一只<code>__proto__</code></h3><h1 id="3-原型"><a href="#3-原型" class="headerlink" title="3.原型"></a>3.原型</h1><h2 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var o1 = new object()</span><br><span class="line">o1.name = <span class="string">'oracle'</span></span><br><span class="line">o1.age = <span class="string">'24'</span></span><br><span class="line"><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span></span><br><span class="line">o1 ADDR <span class="number">200</span>:</span><br><span class="line">name: oracle</span><br><span class="line">age: <span class="number">24</span></span><br><span class="line">...</span><br><span class="line">__proto__:ADDR <span class="number">100</span> <span class="regexp">//</span>用__proto__指向共用属性</span><br><span class="line"><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span><span class="regexp">//</span></span><br><span class="line">ADDR <span class="number">100</span>(共用属性):</span><br><span class="line">...</span><br><span class="line">toString: A10</span><br><span class="line">valueOf: A11</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>他们都指向共用属性，检查一下？</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">o1</span> === o2 //<span class="literal">false</span></span><br><span class="line">//因为他们是不同对象</span><br><span class="line">o1.<span class="attr">toString</span> === o2.<span class="built_in">toString</span> //<span class="literal">true</span></span><br><span class="line">//但他们的.<span class="built_in">toString</span>都指向共用属性</span><br></pre></td></tr></table></figure>
-<h2 id="I-那么简单类型的共用属性呢？"><a href="#I-那么简单类型的共用属性呢？" class="headerlink" title="I.那么简单类型的共用属性呢？"></a>I.那么简单类型的共用属性呢？</h2><p>想象一棵树，根部是<code>object</code>的共有属性。</p>
-<h3 id="i-比如number"><a href="#i-比如number" class="headerlink" title="i.比如number"></a>i.比如number</h3><p><code>var n = nwe Number(1)</code><br>这里面的<code>toString</code>和<code>obj</code>里的不一样耶。他都可以转进制数。<br>而且他还有别的<code>.toFixed</code>什么的</p>
-<p>首先，number会指向一个number才有的共用属性：</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">toFixed</span></span><br><span class="line">toExponential</span><br><span class="line"><span class="built_in">toString</span></span><br><span class="line">...</span><br><span class="line"><span class="variable">__proto__</span>: Object <span class="comment">//这一层再放一个__proto__去找所有对象的共用属性</span></span><br></pre></td></tr></table></figure>
-<p>然后在number的共用属性里面，找对象的共用属性<br><strong>自己用不一样的，再从别处引用一样的</strong></p>
-<h2 id="II-这就是原型链"><a href="#II-这就是原型链" class="headerlink" title="II.这就是原型链"></a>II.这就是原型链</h2><p>从它的类型到它的类型的共用属性在到对象的共用属性，一条链过去，一路都是节点。</p>
-<h3 id="i-prototype"><a href="#i-prototype" class="headerlink" title="i.prototype"></a>i.prototype</h3><p>如果一个哈希没有被引用的话，他会被浏览器垃圾回收（没大哥罩着就要被干掉）<br>那么共用属性在没人引用的时候，就是prototype在引用他。</p>
-<p>从现在起，把共用属性这个词，换成<strong>原型</strong>。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype</span><br><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;</span><br><span class="line">o1.__proto__ === <span class="built_in">Object</span>.prototype  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>这样就清晰了，它们一直以来，引用的是谁。</p>
-<h3 id="ii-Number-prototype"><a href="#ii-Number-prototype" class="headerlink" title="ii.Number.prototype"></a>ii.Number.prototype</h3><p>了解到<code>number</code>属性自己的原型里面还有引用对象的原型，做个测试：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>)</span><br><span class="line">n1.__proto__ === <span class="built_in">Number</span>.prototype <span class="comment">//true</span></span><br><span class="line">n1.__proto__.__proto__  === <span class="built_in">Object</span>.prototype  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>那么我们就可以理解为什么<br><code>n1.hasOwnProperty(&#39;2&#39;)  //false</code><br>n1可以调用他第一层<code>__proto__</code>里没有的<code>.hasOwnProperty</code>了<br>因为会一层一层的找，第一层找不到找第二层。<br><strong>这条链子在JS引擎开启的时候就连上了</strong></p>
-<h2 id="III-proto-和prototype有什么区别"><a href="#III-proto-和prototype有什么区别" class="headerlink" title="III.__proto__和prototype有什么区别"></a>III.<code>__proto__</code>和<code>prototype</code>有什么区别</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String<span class="selector-class">.prototype</span>   <span class="comment">//是 String 的共用属性的引用（不让共用属性被清理）</span></span><br><span class="line">s.__proto__   <span class="comment">//是 String 的共用属性的引用（真的是要用它）</span></span><br></pre></td></tr></table></figure>
-<h3 id="i-形式上呢？"><a href="#i-形式上呢？" class="headerlink" title="i.形式上呢？"></a>i.形式上呢？</h3><p>var 接对象 = new 接函数(也是对象)</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 对象 = <span class="keyword">new</span> <span class="type"></span>函数()</span><br><span class="line">对象.__proto__ === 函数.prototype</span><br></pre></td></tr></table></figure>
-<p>那么我们可以说他们的区别：<br><code>__proto__</code>是对象的属性<br><code>prototype</code>是函数的属性</p>
-<h2 id="IV-特殊的function"><a href="#IV-特殊的function" class="headerlink" title="IV.特殊的function"></a>IV.特殊的function</h2><p>找寻本源：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Object</span>.prototype <span class="comment">//false</span></span><br><span class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>问题来了，我们把<code>__proto__</code>当成链<br>把<code>prototype</code>当成锚</p>
-<p><code>Function</code>本身也是一个<code>Function</code>对象</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="function"><span class="keyword">Function</span></span> = new <span class="function"><span class="keyword">Function</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">Function</span>.<span class="title">__proto__</span></span> === <span class="function"><span class="keyword">Function</span>.<span class="title">prototype</span></span>   //true</span><br><span class="line">//他自己是<span class="function"><span class="keyword">Function</span></span>对象，我要通过<span class="function"><span class="keyword">Function</span></span>对象会指向<span class="function"><span class="keyword">Function</span></span>函数。</span><br></pre></td></tr></table></figure>
-<p>思考一下，是不是先有鸡还是先有蛋的问题。<br>并不是，我有一个<code>Function.prototype</code>才可以调用这个函数构造<code>Function对象</code>。<br>但是它本身已经存在了，为什么要构造自己，所以<code>Function.__proto__</code>会指向自己。</p>
-<p>同理<code>看似Object.prototype</code>是大BOSS，谁都指向他。<br>其实他也是通过<code>Function.prototype</code>构造的，也就是说是<code>Function</code>是<code>Object</code>的<strong>构造函数</strong>。</p>
-<p><strong>有没有一种垂帘听政的感觉</strong></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/11/JavaScript-类型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/11/JavaScript-类型/" itemprop="url">JavaScript-类型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-11T10:10:04+08:00">2018-04-11</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-首先要搞清楚什么是内存"><a href="#1-首先要搞清楚什么是内存" class="headerlink" title="1.首先要搞清楚什么是内存"></a>1.首先要搞清楚什么是内存</h1><p>干吗用的？存东西用的。通电存东西，断电就GG。<br>外存没有内存快<br>最快的外存不就是SSD嘛，因为它能接近内存的速度。<br>机械硬盘，就很容易坏，十年基本就坏了。<br>SSD，不容易坏，但是一坏就全坏了。</p>
-<h2 id="I-它是怎么工作的"><a href="#I-它是怎么工作的" class="headerlink" title="I.它是怎么工作的"></a>I.它是怎么工作的</h2><h3 id="i-举个例子"><a href="#i-举个例子" class="headerlink" title="i.举个例子"></a>i.举个例子</h3><p>假设内存有2G<br>开机<br>操作系统 512M<br>浏览器 1G （浏览器真的很占内存）<br>假设浏览器两个页面</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">页面<span class="number">1</span>（<span class="number">100</span>M）</span><br><span class="line">        HTML+CSS+JS+网络HTTP+其他 </span><br><span class="line">页面<span class="number">2</span>（<span class="number">100</span>M）</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
-<p>假设JS分到了100M<br>我们写了一个<code>var a = 1</code><br>小心翼翼分成两个大区</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">代码区</span><br><span class="line">        a</span><br><span class="line">        </span><br><span class="line">数据区</span><br><span class="line">        <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>如果写复杂点</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = <span class="string">'Oracle'</span></span><br><span class="line"><span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">var</span> o = &#123;</span><br><span class="line">        name:<span class="string">'Oracle'</span>,</span><br><span class="line">        age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">var</span> c = true</span><br><span class="line">o<span class="selector-class">.gender</span> = <span class="string">'male'</span></span><br><span class="line"><span class="selector-tag">var</span> o2 = &#123;</span><br><span class="line">        name: <span class="string">'Protoss'</span></span><br><span class="line">&#125;</span><br><span class="line">o2 = o</span><br><span class="line">第一步：变量提升，把var都放在前面</span><br><span class="line">之后依次执行</span><br></pre></td></tr></table></figure>
-<p>其实数据区也分为两个——<br>Stack（栈）和Heap（堆）</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Stack（栈内存）</span><br><span class="line">        <span class="selector-tag">a</span>:<span class="number">64</span>位浮点数储存a</span><br><span class="line">        <span class="selector-tag">b</span>:<span class="number">64</span>位浮点数储存b</span><br><span class="line">        b=<span class="selector-tag">a</span>:把a存的东西，覆盖到b上</span><br><span class="line">        c:第一位为<span class="number">1</span>后面全是<span class="number">0</span>存一个true</span><br><span class="line">        <span class="selector-tag">var</span> o =&#123;&#125;:存一个地址ADDR <span class="number">100</span> <span class="comment">//去Heap（堆内存）找</span></span><br><span class="line">        o<span class="selector-class">.gender</span> = <span class="string">'male'</span>:找到o的地址（ADDR <span class="number">100</span>）把它加进去。</span><br><span class="line">        <span class="selector-tag">var</span> o2 = &#123;&#125;:和o一样存一个地址ADDR <span class="number">200</span></span><br><span class="line">        o2 = o: 和<span class="selector-tag">b</span> = a的操作一样，不一样的是把o的地址给o2</span><br><span class="line">                o2的ADDR <span class="number">200</span>变成了ADDR <span class="number">100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Heap（堆内存）</span><br><span class="line">        ADDR <span class="number">100</span></span><br><span class="line">                name:<span class="string">'Oracle'</span></span><br><span class="line">                age: <span class="number">24</span></span><br><span class="line">                <span class="comment">/////////////</span></span><br><span class="line">                gender: <span class="string">'male'</span></span><br><span class="line">        ADDR <span class="number">200</span></span><br><span class="line">                name:<span class="string">'protoss'</span></span><br></pre></td></tr></table></figure>
-<p>这一套操作</p>
-<h3 id="ii-数据"><a href="#ii-数据" class="headerlink" title="ii.数据"></a>ii.数据</h3><p>数字：64位<br>字符：16位（ES3）<br>值：<br><strong>简单</strong>:存Stack<br><strong>复杂</strong>(obj):存Heap地址（还是存在Stack里面）</p>
-<h3 id="iii-引用"><a href="#iii-引用" class="headerlink" title="iii.引用"></a>iii.引用</h3><p>object存入ADDR 100<br>就可以称object是对象的<strong>引用</strong><br>所有变量和对象的<strong>关系</strong>，都是<strong>引用关系</strong></p>
-<h3 id="iv-存在对象问题的时候，走一遍i里的流程就清楚了"><a href="#iv-存在对象问题的时候，走一遍i里的流程就清楚了" class="headerlink" title="iv.存在对象问题的时候，走一遍i里的流程就清楚了"></a>iv.存在对象问题的时候，走一遍i里的流程就清楚了</h3><p>PS：连续赋值从右往左顺序拆开写。</p>
-<h1 id="2-垃圾回收-GC"><a href="#2-垃圾回收-GC" class="headerlink" title="2.垃圾回收(GC)"></a>2.垃圾回收(GC)</h1><p><strong>Garbage Collection</strong></p>
-<p>我们热爱的V8引擎就是为了JavaScript在浏览器执行而打造的。<br>可申请的最大内存不是很高：</p>
-<ul>
-<li>64位系统下1.4GB</li>
-<li>32位系统下约700MB</li>
-</ul>
-<p>如果一个<code>对象</code><strong>没有被引用</strong><br>它就是<strong>垃圾</strong><br>将被回收</p>
-<h2 id="i-关于活动对象"><a href="#i-关于活动对象" class="headerlink" title="i.关于活动对象"></a>i.关于活动对象</h2><p>在一个函数对象被调用的时候，会创建一个活动对象<br>首先将该函数的每个形参和实参，都添加为该活动对象的属性和值。<br>将该函数体内显示声明和变量的函数，也添加为该活动的属性（在刚进入该函数执行环境的时候，未赋值，所以值为undefined，这个是JS提前声明机制）<br>然后将这个活动对象作为该函数执行环境的作用于链的最前端，并将这个函数对象的<code>[scope]</code>属性里作用域链接接入到该函数执行环境作用域链的后端。</p>
-<p>这就是我们常说的，大哥罩小弟的模式。</p>
-<p>如果一个对象和其关联对象不再通过引用关系被当前活动对象引用了，这个对象就会被垃圾回收。<br><strong>没人罩着就会被干掉</strong></p>
-<h2 id="ii-如何判断"><a href="#ii-如何判断" class="headerlink" title="ii.如何判断"></a>ii.如何判断</h2><p>变量进入环境（在函数中声明一个变量）的时候，就将这个变量标记为<code>&quot;进入环境&quot;</code>。<br>变量离开环境时，则将其标记为<code>&quot;离开环境&quot;</code></p>
-<p>可以用任何方式来标记变量。例如：</p>
-<ul>
-<li>可以通过翻转某个特殊标记来记录一个变量何时进入环境</li>
-<li>或者使用一个变量列表来计入进入环境的变量，以及另一个变量列表来记录离开环境的变量</li>
-</ul>
-<ol>
-<li>垃圾回收器会在运行的时候给存储在内存中所有变量加上标记（如上所说）</li>
-<li>然后，会去掉运行环境中的变量以及被环境中变量所引用的变量的标记</li>
-<li>在此之后，依然有标记的变量就会被视为准备清除的变量，原因在运行环境中已经无法访问到这些变量了。</li>
-<li>最后，垃圾回收器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间。<h2 id="iii-例"><a href="#iii-例" class="headerlink" title="iii.例"></a>iii.例</h2></li>
-</ol>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;name:<span class="string">'a'</span>&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = &#123;name:<span class="string">'b'</span>&#125;</span><br><span class="line"><span class="selector-tag">a</span> = b</span><br></pre></td></tr></table></figure>
-<p>这时候，b和a指向了同一个ADDR<br>那么a原来的ADDR就变成了垃圾<br><strong>没人罩着，就要被干掉…</strong></p>
-<h2 id="vi-V8引擎的垃圾回收策略"><a href="#vi-V8引擎的垃圾回收策略" class="headerlink" title="vi.V8引擎的垃圾回收策略"></a>vi.V8引擎的垃圾回收策略</h2><p>但是由于不同对象的生存周期不同，所以无法只用一种回收策略解决问题，这样效率也不高<br>V8采用了一种<code>&#39;代&#39;</code>回收的策略，将内存分为两个<code>&#39;代&#39;</code>。没错，就是代沟的那个代<br>新生代(new generation)和老生代(old generation)</p>
-<p>新生代中的对象为存活时间较短的对象。<br>老生代中的对象为存活时间较长或者常驻内存的对象，分别对新老声带采用不同的垃圾回收算法以提高效率。<br>对象最开始都会先被分到新生代(如果新生代占用的内存满了，那就直接分到老生代)<br>新生代对象会在满足某些条件后，晋升到老生代。</p>
-<h3 id="两代的内存分配"><a href="#两代的内存分配" class="headerlink" title="两代的内存分配"></a>两代的内存分配</h3><p>默认情况下：<br>32位：</p>
-<ul>
-<li>新生代16MB</li>
-<li>老生代700MB</li>
-</ul>
-<p>64位：</p>
-<ul>
-<li>新生代32MB</li>
-<li>老生代1.4GB</li>
-</ul>
-<h3 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h3><p>新生代存的都是生存周期短的对象<br>垃圾回收机制——在储存空间快满的时候，就进行一次垃圾回收</p>
-<ol>
-<li>将新生代内存分为两部分：From(使用状态)和To(闲置状态)</li>
-<li>GC进入From空间搜查一遍，看看谁没有被其他活动对象引用，没有被罩着的被无情拖走。</li>
-<li>From空间里依旧被活动对象罩着的家伙被复制一遍以后放进To空间</li>
-<li>清空From空间里所有内存(上一步中被罩着的家伙在To里面幸存了下来)</li>
-<li>交换From空间和To空间(让这两个房间名交换一下)</li>
-<li>在From空间里新增新对象</li>
-<li>这时候GC又进来搜查了，接下来的故事就这么循环下去了。</li>
-</ol>
-<p>由于仅仅复制存活的对象，而且对于生命周期短的场景存货对象只占少部分，所以它在时间效率上很优秀。<br>但是每次只能使用堆内存的一半，这是由划分空间和复制机制决定的——牺牲空间，换取时间</p>
-<h3 id="晋升"><a href="#晋升" class="headerlink" title="晋升"></a>晋升</h3><p>当一个对象经过多次复制依旧存活的时候<br>它就会被认为是生命周期较长的对象——（GC：你居然一直有大哥罩着？）<br>这种较长生命周期的对象随后会被移动到老生代中，采用新算法进行管理。</p>
-<p>条件：</p>
-<ol>
-<li>对象从From空间复制到To空间的时候，会检查它内存地址来判断这个对象是否已经经历过一次回收。如果已经经历过了，会将该对象从From空间移动到老生代中，如果没有，则复制到To空间。<strong>就是说，如果一个对象是二次经理从From空间复制到To空间，那么这个对象就会被移动到老生代中</strong></li>
-<li>要从From空间复制一个对象到To空间时，如果To空间已经使用超过25%，则这个对象直接晋升到老生代中。设置25%这个值的原因是，当本次回收完成之后，这个To空间会变成From空间，接下来的内存分配将在这个空间中进行。如果占比过高，则会影响后续的内存分配。</li>
-</ol>
-<h3 id="老生代"><a href="#老生代" class="headerlink" title="老生代"></a>老生代</h3><p>老生代中，存货对象占较大比重，如果继续采用新生代的算法管理(Scavenge)，会存在两个问题：</p>
-<ol>
-<li>存活对象较多，复制存活对象效率很低。</li>
-<li>采用Scavenge算法会浪费一半内存，老生代占用内存很大（远超新生代），所以浪费严重。</li>
-</ol>
-<p>所以在V8老生代中主要采用Mark-Sweep和与Mark-Conpact相结合的方式进行垃圾回收</p>
-<h4 id="Mark-Sweep"><a href="#Mark-Sweep" class="headerlink" title="Mark-Sweep"></a>Mark-Sweep</h4><p>Mark-Sweep（标记清除）,分为标记和清除两个截断。</p>
-<p>与Scavenge不同，Mark-Sweep并不会将内存分为两份，所以不存在浪费一半空间的行为。<br>Mark-Sweep在标记截断遍历堆内存中的所有对象，并标记活着的对象<br>总结一下：</p>
-<ol>
-<li>Scavenge仅复制活着的对象，而Mark-Sweep只清除死了的对象。</li>
-<li>活对象在新生代中只占较少部分，死对象在老生代中只占较少部分。</li>
-</ol>
-<p>流程：</p>
-<ol>
-<li>遍历堆内存中所有的对象</li>
-<li>GC大魔王标记存活对象</li>
-<li>大魔王GC进来巡视，回收死亡的对象（被标记的存活对象得以幸免）</li>
-</ol>
-<p>但是这种方式存在问题：</p>
-<ul>
-<li>在进行一次清除回收以后，内存空间会存在不连续（GC把没有大哥罩着的干掉了，但是他们的座位还在那空着）</li>
-<li>这种内存碎片会对后续的内存分配造成问题</li>
-<li>如果需要分配一个大内存的情况，由于剩余的碎片空间不足以完成此次分配，就会提前触发垃圾回收，但是这次回收并不需要被触发。</li>
-</ul>
-<h4 id="Mark-Compact"><a href="#Mark-Compact" class="headerlink" title="Mark-Compact"></a>Mark-Compact</h4><p>为了解决Mark-Sweep的内存碎片问题，提出了Mark-Compact（标记整理）<br>Mark-Compact由Mark-Sweep演变而来。<br>作用是在标记完存货对象以后，会将活着的对象向内存空间的一端移动<br>移动完成后，清理边界外的所有内存</p>
-<p>流程：</p>
-<ol>
-<li>遍历内存中所有对象</li>
-<li>GC进入标记阶段，标记存活对象</li>
-<li>GC进入整理阶段，标记为存活的对象向内存空间的一侧移动，没被标记的原地待命</li>
-<li>GC进入清除截断，大魔王GC把另一侧的内存全都回收了</li>
-</ol>
-<h4 id="结合"><a href="#结合" class="headerlink" title="结合"></a>结合</h4><ul>
-<li>回收策略中， Mark-Sweep 和 Mark-Compact 结合使用</li>
-<li>由于 Mark-Conpact 需要移动对象，所以它执行速度慢</li>
-<li>在V8取舍上，主要使用 Mark-Sweep ,在空间不足以从新生代中晋升来的对象进行分配的时候，才使用Mark-Compact</li>
-</ul>
-<h3 id="V8垃圾处理机制总结"><a href="#V8垃圾处理机制总结" class="headerlink" title="V8垃圾处理机制总结"></a>V8垃圾处理机制总结</h3><p>V8的垃圾回收机制分为新生代和老生代</p>
-<p>新生代：</p>
-<ul>
-<li>使用Scavenge</li>
-<li>Cheney算法</li>
-<li>内存分两块From(使用)和To(闲置)</li>
-<li>进入From + 快占满的时候存活对象进入To + 清空From + 调换From和To + 循环</li>
-<li>两个条件晋升到老生代</li>
-</ul>
-<p>老生代：</p>
-<ul>
-<li>Mark-Sweep （标记清除）和 Mark-Compact （标记整理）</li>
-<li>Mark-Sweep 碎片内存</li>
-<li>Mark-Compact 清除前整理 + 活的去一侧 + 清空另一侧 + 速度慢<h2 id="v-IE有个BUG"><a href="#v-IE有个BUG" class="headerlink" title="v.IE有个BUG"></a>v.IE有个BUG</h2>如果把页面关了(body没了，他引用的地址断了)<br>地址之间互相引用，但不和外部联系<br>他们本应该被清掉<br>但是（尤其IE6）IE里，你只要不关掉整个IE，他们会一直存着。<br>垃圾一直存着…内存boom。<br>所以需要在页面关闭之前执行：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onunload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.body.onclick = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//然而需要把所有的监听的函数都设为null，需要写很多行。</span></span><br></pre></td></tr></table></figure>
-<p>这就是传说中的——内存泄漏：<br>由于浏览器的BUG,使得该被标记为垃圾的东西，没有被标记为垃圾。</p>
-<h1 id="3-深拷贝？浅拷贝？"><a href="#3-深拷贝？浅拷贝？" class="headerlink" title="3.深拷贝？浅拷贝？"></a>3.深拷贝？浅拷贝？</h1><h2 id="I-深拷贝"><a href="#I-深拷贝" class="headerlink" title="I.深拷贝"></a>I.深拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span> = <span class="number">2</span></span><br><span class="line"><span class="comment">//a = 1不改变</span></span><br></pre></td></tr></table></figure>
-<p>b的改变不影响a<br>这就是深拷贝<br>基本类型 赋值 就是深拷贝</p>
-<h2 id="II-浅拷贝"><a href="#II-浅拷贝" class="headerlink" title="II.浅拷贝"></a>II.浅拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;</span><br><span class="line">        name: <span class="string">'a'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span><span class="selector-class">.name</span> = <span class="string">'b'</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.name</span> <span class="comment">// 也是b了</span></span><br></pre></td></tr></table></figure>
-<p>指向同一个ADDR改变地址对应的内容后<br>a也变了。<br>这就是浅拷贝。</p>
-<h1 id="4-类型互相转换"><a href="#4-类型互相转换" class="headerlink" title="4.类型互相转换"></a>4.类型互相转换</h1><h2 id="I-方法"><a href="#I-方法" class="headerlink" title="I.方法"></a>I.方法</h2><h3 id="i-转字符串-toString"><a href="#i-转字符串-toString" class="headerlink" title="i.转字符串.toString"></a>i.转字符串<code>.toString</code></h3><p><code>null</code>不可以，会报错<br><code>undefined</code>不可以，会报错<br><code>object</code>并不能得到想要的<code>key:value</code>只会得到<code>[obj,Obj]</code></p>
-<p>我们热爱的<code>console.log</code>就是这个原理<br>如果你<code>console.log</code>的东西不是字符串，他会自动加上一个<code>toString</code></p>
-<h4 id="toString太长了老司机怎么转的？"><a href="#toString太长了老司机怎么转的？" class="headerlink" title=".toString太长了老司机怎么转的？"></a><code>.toString</code>太长了老司机怎么转的？</h4><p>数字：加上一个空字符串就好了。<br><code>1 + &#39;&#39;</code><br>布尔：加上一个空字符串就好了。<br><code>true + &#39;&#39;</code><br>顺序可反。<br>而且<code>&#39;&#39; + null</code>和<code>&#39;&#39; + undefined</code>也可以哟</p>
-<h4 id="这时候就引出一个问题"><a href="#这时候就引出一个问题" class="headerlink" title="这时候就引出一个问题"></a>这时候就引出一个问题</h4><p><code>1+1</code>等于2<br><code>1 + &#39;1&#39;</code>算什么<br>加号会优先加相同类型的东西，所以他会先把数字变成字符串。</p>
-<h4 id="全局方法window-String"><a href="#全局方法window-String" class="headerlink" title="全局方法window.String()"></a>全局方法<code>window.String()</code></h4><p>把不是字符串的东西，变成字符串。（可以变<code>null</code>和<code>undefined</code>）</p>
-<h4 id="所以最方便的转字符串方法是加上一个空字符串"><a href="#所以最方便的转字符串方法是加上一个空字符串" class="headerlink" title="所以最方便的转字符串方法是加上一个空字符串"></a>所以最方便的转字符串方法是加上一个空字符串</h4><h3 id="ii-转布尔Boolean"><a href="#ii-转布尔Boolean" class="headerlink" title="ii.转布尔Boolean()"></a>ii.转布尔<code>Boolean()</code></h3><p>字符串:  <code>Boolean(1) //true</code><br>        <code>Boolean(0) //false</code><br>        <code>Boolean(2) //true</code><br>        <code>Boolean( ) //true</code><br>null:   <code>Boolean(null) //false</code><br>undefined: <code>Boolean(undefined) //false</code><br>对象:    <code>Boolean({}) //true</code><br>        <code>Boolean({name:&#39;Oracle&#39;})  //true</code></p>
-<h4 id="这个API好长…"><a href="#这个API好长…" class="headerlink" title="这个API好长…"></a>这个API好长…</h4><p><code>!</code>可以取反<br>那么取反两次不就是原来的吗</p>
-<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">!!null //false</span><br><span class="line">!!<span class="number">0</span> //false</span><br><span class="line">!!&#123;&#125; //true</span><br><span class="line">!!&#123;name:'Oracle'&#125; //true</span><br></pre></td></tr></table></figure>
-<h4 id="所有类型都可以变成布尔但是好难记哦"><a href="#所有类型都可以变成布尔但是好难记哦" class="headerlink" title="所有类型都可以变成布尔但是好难记哦"></a>所有类型都可以变成布尔但是好难记哦</h4><p>只有五个特殊的<br>number： 只有两个是false<code>0</code>和<code>NaN</code><br>String： 只有空字符串是<code>false</code>其他全是<code>true</code><br>null： 就一个值，<code>false</code><br>undefined：就一个值<code>false</code><br>object：都是<code>true</code>所有的数组和函数</p>
-<p>也就是有五个<code>falsy</code>值<br><code>0</code><br><code>NaN</code><br><code>&#39;&#39;</code><br><code>null</code><br><code>undefined</code><br>还有个<code>false</code>因为他本来就是<code>false</code></p>
-<h3 id="iii-转number"><a href="#iii-转number" class="headerlink" title="iii.转number"></a>iii.转number</h3><h4 id="朴实方法Number-39-1-39"><a href="#朴实方法Number-39-1-39" class="headerlink" title="朴实方法Number(&#39;1&#39;)"></a>朴实方法<code>Number(&#39;1&#39;)</code></h4><h4 id="全局方法parseInt-39-1-39-10"><a href="#全局方法parseInt-39-1-39-10" class="headerlink" title="全局方法parseInt(&#39;1&#39;,10)"></a>全局方法<code>parseInt(&#39;1&#39;,10)</code></h4><p><code>10</code>代表是看做十进制转换<br>但是<code>parseInt(&#39;011&#39;)  //11</code><br>因为后面的参数没写，所以当成10进制。<br>用它转非数字<code>parseInt(&#39;s&#39;) //NaN</code><br>数字非数字混合 <code>parseInt(&#39;1s&#39;) //1</code><br>所以得到他的规则：从头开始解析能解析的，一旦遇到不能解析的，就返回。</p>
-<h4 id="有浮点数的话parseFloat-39-1-23-39"><a href="#有浮点数的话parseFloat-39-1-23-39" class="headerlink" title="有浮点数的话parseFloat(&#39;1.23&#39;)"></a>有浮点数的话<code>parseFloat(&#39;1.23&#39;)</code></h4><p><code>parse</code>是解析</p>
-<h4 id="39-1-39-0骚方法（最常用）"><a href="#39-1-39-0骚方法（最常用）" class="headerlink" title="&#39;1&#39;-0骚方法（最常用）"></a><code>&#39;1&#39;-0</code>骚方法（最常用）</h4><p>任何一个东西-0就会得到一个<code>number</code></p>
-<h4 id="取正-39-1-39-更骚的方法"><a href="#取正-39-1-39-更骚的方法" class="headerlink" title="取正+ &#39;1&#39;更骚的方法"></a>取正<code>+ &#39;1&#39;</code>更骚的方法</h4><p>负数也可以取正？<code>+ &#39;-1&#39;</code>这个是可以的，结果还是<code>-1</code>。</p>
-<h3 id="iv-转object"><a href="#iv-转object" class="headerlink" title="iv.转object"></a>iv.转object</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/JavaScript-数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/10/JavaScript-数据/" itemprop="url">JavaScript-数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-10T12:17:16+08:00">2018-04-10</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h1><h3 id="种类-amp-备注"><a href="#种类-amp-备注" class="headerlink" title="种类&amp;备注"></a>种类&amp;备注</h3><p>七种数据类型：</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">number<span class="comment">;</span></span><br><span class="line">string<span class="comment">;</span></span><br><span class="line">boolean<span class="comment">;</span></span><br><span class="line">symbol<span class="comment">;</span></span><br><span class="line">undefined<span class="comment">;</span></span><br><span class="line">null<span class="comment">;</span></span><br><span class="line">object</span><br></pre></td></tr></table></figure>
-<p>没有array类也没有function类，因为他们都算object。<br><strong>永远不要说JS里一切都是对象</strong></p>
-<h2 id="I-number"><a href="#I-number" class="headerlink" title="I.number"></a>I.number</h2><h3 id="i-整数和小数"><a href="#i-整数和小数" class="headerlink" title="i.整数和小数"></a>i.整数和小数</h3><p><code>1</code>是一个整数<br>如何得到<code>1.1</code>这个数呢?<br>可以用<code>0.1</code>也可以用<code>.1</code></p>
-<h3 id="ii-科学计数法"><a href="#ii-科学计数法" class="headerlink" title="ii.科学计数法"></a>ii.科学计数法</h3><p><code>1.23e2</code>是合理的可识别的<code>123</code></p>
-<h3 id="iii-二进制"><a href="#iii-二进制" class="headerlink" title="iii.二进制"></a>iii.二进制</h3><p>开头是<code>0b</code>的</p>
-<h3 id="iv-八进制"><a href="#iv-八进制" class="headerlink" title="iv.八进制"></a>iv.八进制</h3><p>开头是<code>0</code>的，后来ES5添加了0o11语法</p>
-<h3 id="v-十六进制"><a href="#v-十六进制" class="headerlink" title="v.十六进制"></a>v.十六进制</h3><p>开头是<code>0x</code>的</p>
-<h2 id="II-string"><a href="#II-string" class="headerlink" title="II.string"></a>II.string</h2><h3 id="i-空字符串"><a href="#i-空字符串" class="headerlink" title="i.空字符串"></a>i.空字符串</h3><p><code>&#39;&#39;</code>或者<code>&quot;&quot;</code>空字符串，里面什么都没有</p>
-<h3 id="ii-转义符"><a href="#ii-转义符" class="headerlink" title="ii.转义符"></a>ii.转义符</h3><p>表达这个字符串里面只有一个<code>&#39;</code>怎么办<br><code>&quot;&#39;&quot;</code>这么来<br>那么问题来了，我要表达这个字符串是<code>&quot;&#39;</code>怎么办，一个单引号一个双引号区分不开呀<br>这时候需要一个<code>\</code>反杠，<code>\</code>来告诉浏览器，这个引号不是拿来结束字符串的。<br>这就叫做，<strong>转义符</strong><br>他不仅仅有这个作用还有：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">转义符</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">Unicode</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>\0</code></td>
-<td style="text-align:center">null</td>
-<td style="text-align:center">（\u0000）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\b</code></td>
-<td style="text-align:center">后退键</td>
-<td style="text-align:center">（\u0008）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\f</code></td>
-<td style="text-align:center">换页符</td>
-<td style="text-align:center">（\u000C）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\n</code></td>
-<td style="text-align:center">换行符</td>
-<td style="text-align:center">（\u000A）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\r</code></td>
-<td style="text-align:center">回车键</td>
-<td style="text-align:center">（\u000D）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\t</code></td>
-<td style="text-align:center">制表符</td>
-<td style="text-align:center">（\u0009）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\v</code></td>
-<td style="text-align:center">垂直制表符</td>
-<td style="text-align:center">（\u000B）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\&#39;</code></td>
-<td style="text-align:center">单引号</td>
-<td style="text-align:center">（\u0027）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\&quot;</code></td>
-<td style="text-align:center">双引号</td>
-<td style="text-align:center">（\u0022）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\\</code></td>
-<td style="text-align:center">反斜杠</td>
-<td style="text-align:center">（\u005C）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="iii-多行字符串"><a href="#iii-多行字符串" class="headerlink" title="iii.多行字符串"></a>iii.多行字符串</h3><p>不是字符串里面有回车<br>而是我希望字符串有换行</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = '<span class="number">1234</span>5 \</span><br><span class="line">        <span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
-<p>就像命令行一样</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var s2 = '<span class="number">1234</span>5' + '<span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
-<p>这样也可以<br><strong>但是方法一有个很鬼的问题</strong></p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = '<span class="number">1234</span>5 \     //反杠后面如果有一堆空格</span><br><span class="line"><span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
-<p>反杠后面有一堆空格那么就热闹了，反杠会把第一个空格变成…字符串里的空格…<br>遭重了，很坑很坑。<br>所以最好用第二个方法了。</p>
-<p><strong>既然这个这么坑，那JS要解决它呀</strong><br>所以在ES6里就有了这个符号`就是这个点</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s4 = `<span class="number">12345</span></span><br><span class="line"><span class="number">67890</span>`</span><br></pre></td></tr></table></figure>
-<p>他会记录里面的一切，包括回车<br>所以这就是11个字符<code>s4.length</code>是<code>11</code></p>
-<h2 id="III-boolean"><a href="#III-boolean" class="headerlink" title="III.boolean"></a>III.boolean</h2><h3 id="i-George-Boole"><a href="#i-George-Boole" class="headerlink" title="i.George Boole"></a>i.George Boole</h3><p>数学家、哲学家，发明逻辑学。<br>为了纪念他，我们把<code>ture</code>和<code>false</code>两个值叫做布尔<br><code>&amp;&amp;</code>与<br><code>||</code>或</p>
-<h2 id="IV-symbol"><a href="#IV-symbol" class="headerlink" title="IV.symbol"></a>IV.symbol</h2><h3 id="i-是什么"><a href="#i-是什么" class="headerlink" title="i.是什么"></a>i.是什么</h3><p>ES6引入了新的数据类型Symbol，用于生成一个全局唯一的值。</p>
-<h3 id="ii-怎么用"><a href="#ii-怎么用" class="headerlink" title="ii.怎么用"></a>ii.怎么用</h3><p>借用方方老师的例子<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> race = &#123;</span><br><span class="line">  protoss: <span class="symbol">'protos</span>s', <span class="comment">// 神族</span></span><br><span class="line">  terran: <span class="symbol">'terra</span>n', <span class="comment">// 人族</span></span><br><span class="line">  zerg: <span class="symbol">'zer</span>g' <span class="comment">// 虫族</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createRole(<span class="class"><span class="keyword">type</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">protoss</span>)</span>&#123;选择神族兵种&#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">terran</span>)</span>&#123;选择人族兵种&#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">zerg</span>)</span>&#123;选择虫族兵种&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>打星际选择兵种。race的键-值组合中，值显得并不重要。<br>那么值甚至可以乱敲只要他们三个种族的值不重复就可以。<br>那么Symbol可以替代对应的值</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> race = &#123;</span><br><span class="line">  protoss: Symbol(),</span><br><span class="line">  terran: Symbol(),</span><br><span class="line">  zerg: Symbol()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">race<span class="selector-class">.protoss</span> !== race<span class="selector-class">.terran</span> <span class="comment">// true</span></span><br><span class="line">race<span class="selector-class">.protoss</span> !== race<span class="selector-class">.zerg</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>还可以给<code>Symbol()</code>加个注释<code>Symbol(&#39;protoss&#39;)</code>仅仅就是个提示，起什么和值没有任何关系。</p>
-<p>总结：占位置的。起名字福音。</p>
-<h2 id="V-undefined和null"><a href="#V-undefined和null" class="headerlink" title="V.undefined和null"></a>V.undefined和null</h2><h3 id="i-null"><a href="#i-null" class="headerlink" title="i.null"></a>i.null</h3><p>是一个类型。只有一个值<code>null</code></p>
-<h3 id="ii-undefined"><a href="#ii-undefined" class="headerlink" title="ii.undefined"></a>ii.undefined</h3><p>是一个类型。只有一个值<code>undefined</code></p>
-<h3 id="iii-这两个兄弟干嘛的"><a href="#iii-这两个兄弟干嘛的" class="headerlink" title="iii.这两个兄弟干嘛的"></a>iii.这两个兄弟干嘛的</h3><p>这是个BUG，语言问题。<br>都表达了一个：<code>什么也没有</code>原创BUG哟</p>
-<h3 id="iv-那他们有什么区别呢？？？"><a href="#iv-那他们有什么区别呢？？？" class="headerlink" title="iv.那他们有什么区别呢？？？"></a>iv.那他们有什么区别呢？？？</h3><p>① 变量没有值 - undefined<br>② 如果你想有一个对象（<code>obj</code>），但是目前不想赋值，那就给他一个<code>null</code>（推荐）.<code>var obj = null</code><br>如果你有一个非对象，目前不想赋值，那就给他一个<code>undefined</code>（推荐）。<code>var n</code>那它就是一个<code>undefine</code><br>③ <strong>②为惯例 ①为语法</strong><br>总结一下，null是空对象，undefined是非对象。</p>
-<h2 id="VI-object"><a href="#VI-object" class="headerlink" title="VI.object"></a>VI.object</h2><p>之前说的，都是基本（简单）类型，到了对象，就是复杂类型了。<br>复杂类型由简单类型组成。<br>举个例子：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> name = <span class="string">'Oracle'</span></span><br><span class="line"><span class="selector-tag">var</span> age = <span class="string">'24'</span></span><br><span class="line"><span class="selector-tag">var</span> gender = <span class="string">'male'</span></span><br></pre></td></tr></table></figure>
-<p>他们三个都是一对一，冥冥之中似乎可以放在一起。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> person = </span><br><span class="line">&#123;</span><br><span class="line"><span class="string">'name'</span>:<span class="string">'Oracle'</span>,</span><br><span class="line"><span class="string">'age'</span>:<span class="string">'24'</span>,</span><br><span class="line"><span class="string">'gender'</span>:<span class="string">'male'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>变成这种<code>键-值</code>组合</p>
-<h3 id="i-语法"><a href="#i-语法" class="headerlink" title="i.语法"></a>i.语法</h3><p><code>{</code>开头<br><code>}</code>结尾<br>左边的键，可以不用引号，左边永远都是字符串。<br>右边该怎么写怎么写<br>需要变量去容纳它<code>var person =</code>，他就是一个类型是对象的变量<br>读取它<code>person[&#39;name&#39;]</code>这个<code>name</code>必须加引号<br>为了避免之前有变量也叫name<br>如果他符合标识符规则那可以<code>person.name</code></p>
-<h3 id="ii-对象里还可以套对象"><a href="#ii-对象里还可以套对象" class="headerlink" title="ii.对象里还可以套对象"></a>ii.对象里还可以套对象</h3><p><strong>那么对象里套的对象，里面的对象是否可以是自己？</strong><br>这个麻烦了<br><strong>解决这个问题之前请参见(<a href="https://574549756.github.io/2018/04/11/JavaScript-%E7%B1%BB%E5%9E%8B/" target="_blank" rel="noopener">JavaScript-类型</a>)</strong></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span> = a</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span><span class="selector-class">.self</span><span class="selector-class">.self</span>是什么</span><br></pre></td></tr></table></figure>
-<p>首先对象存了一个ADDR然后不断引用这个地址</p>
-<h3 id="iii-空字符串是否能当做key？"><a href="#iii-空字符串是否能当做key？" class="headerlink" title="iii.空字符串是否能当做key？"></a>iii.空字符串是否能当做key？</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;'':'oracle'&#125;</span><br><span class="line">person['']   <span class="comment">//oracle</span></span><br></pre></td></tr></table></figure>
-<p>可以</p>
-<h3 id="iv-key的第一个字是否可以是数字"><a href="#iv-key的第一个字是否可以是数字" class="headerlink" title="iv.key的第一个字是否可以是数字"></a>iv.key的第一个字是否可以是数字</h3><p>不可以。<br><code>9name: &#39;oracle&#39;,</code> 这种是不可以<br>如果不加引号，key必须依照标识符（变量名）原则<br>不加引号，写起来舒服。加上引号，功能多。<br>同理，如果是<strong>数组</strong>那么读取数组成员的时候就<strong>不能用点结构</strong><br>单独的数值不能作为标识符。数组成员只能用方括号<code>arr[0]</code>来表示</p>
-<h3 id="v-key能不能有空格"><a href="#v-key能不能有空格" class="headerlink" title="v.key能不能有空格"></a>v.key能不能有空格</h3><p>一样的规则，有引号就可以，没有就GG</p>
-<h3 id="vi-key可不可以加中文"><a href="#vi-key可不可以加中文" class="headerlink" title="vi.key可不可以加中文"></a>vi.key可不可以加中文</h3><p>可以，因为中文可以当做变量名。</p>
-<h3 id="vii-for-in"><a href="#vii-for-in" class="headerlink" title="vii.for in"></a>vii.for in</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="built_in">key</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>遍历数组的<code>key</code>但是<br>出现<code>key</code>的顺序是看天的。<br>那我想打出值呢？</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(person[<span class="built_in">key</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那一起打呢？</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="built_in">key</span>,person[<span class="built_in">key</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>和上面说的一样，随机的</p>
-<h2 id="VII-typeof"><a href="#VII-typeof" class="headerlink" title="VII.typeof"></a>VII.typeof</h2><h3 id="i-干吗用的？"><a href="#i-干吗用的？" class="headerlink" title="i.干吗用的？"></a>i.干吗用的？</h3><p>看类型的</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="built_in">t</span> = <span class="number">1</span></span><br><span class="line">typeof <span class="built_in">t</span> //<span class="string">"number"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> <span class="built_in">t</span> = <span class="built_in">true</span></span><br><span class="line">typeof <span class="built_in">t</span> //<span class="string">"boolean"</span></span><br></pre></td></tr></table></figure>
-<h3 id="ii-但是有一个特殊"><a href="#ii-但是有一个特殊" class="headerlink" title="ii.但是有一个特殊"></a>ii.但是有一个特殊</h3><p><strong>这是JS的BUG</strong><br>他叫做<code>null</code><br>如果测<code>typeof null</code>会返回<code>‘object’</code><br>如果声明一个<code>函数</code><br>用<code>typeof fn</code>本应该是<code>‘object’</code>但是他会返回<code>‘function’</code><br>什么时候函数也是独立的类型了？</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2471,7 +2388,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
