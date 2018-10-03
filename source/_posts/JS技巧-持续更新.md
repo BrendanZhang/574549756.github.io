@@ -41,6 +41,7 @@ this.view.$el.on('submit', 'form', (e) => {
         return prev
     }, data)
     this.model.create(data)
+})
 ```
 
 -   keys 就是原来 data 中的 key
