@@ -99,24 +99,24 @@
 
 
 
-  <meta name="description" content="0.移动端调试 移动端调试时 由于手机浏览器没有控制台 所以在发生报错的时候（尤其是 JS 报错） 难以调试  1.alert 即便移动端没有控制台 那么就用 alert 将错误通过 alert 对话框的形式发出来  12345window.onerror = function(message, file, row)&amp;#123;    alert(message)    alert(file)">
+  <meta name="description" content="0.对象操作I.reducei.原始状态123456789this.view.$el.on(&apos;submit&apos;, &apos;form&apos;, (e)=&amp;gt;&amp;#123;    e.preventDefault()    let form = this.view.$from.get(0)    let data = &amp;#123;        name: form.name.value.trim(),">
 <meta name="keywords" content="JS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手机端调试">
-<meta property="og:url" content="http://yoursite.com/2018/10/02/手机端调试/index.html">
+<meta property="og:title" content="JS技巧-持续更新">
+<meta property="og:url" content="http://yoursite.com/2018/10/04/JS技巧-持续更新/index.html">
 <meta property="og:site_name" content="Protoss Oracle">
-<meta property="og:description" content="0.移动端调试 移动端调试时 由于手机浏览器没有控制台 所以在发生报错的时候（尤其是 JS 报错） 难以调试  1.alert 即便移动端没有控制台 那么就用 alert 将错误通过 alert 对话框的形式发出来  12345window.onerror = function(message, file, row)&amp;#123;    alert(message)    alert(file)">
-<meta property="og:updated_time" content="2018-10-01T17:34:49.383Z">
+<meta property="og:description" content="0.对象操作I.reducei.原始状态123456789this.view.$el.on(&apos;submit&apos;, &apos;form&apos;, (e)=&amp;gt;&amp;#123;    e.preventDefault()    let form = this.view.$from.get(0)    let data = &amp;#123;        name: form.name.value.trim(),">
+<meta property="og:updated_time" content="2018-10-03T18:08:53.773Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="手机端调试">
-<meta name="twitter:description" content="0.移动端调试 移动端调试时 由于手机浏览器没有控制台 所以在发生报错的时候（尤其是 JS 报错） 难以调试  1.alert 即便移动端没有控制台 那么就用 alert 将错误通过 alert 对话框的形式发出来  12345window.onerror = function(message, file, row)&amp;#123;    alert(message)    alert(file)">
+<meta name="twitter:title" content="JS技巧-持续更新">
+<meta name="twitter:description" content="0.对象操作I.reducei.原始状态123456789this.view.$el.on(&apos;submit&apos;, &apos;form&apos;, (e)=&amp;gt;&amp;#123;    e.preventDefault()    let form = this.view.$from.get(0)    let data = &amp;#123;        name: form.name.value.trim(),">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/02/手机端调试/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/04/JS技巧-持续更新/"/>
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>手机端调试 | Protoss Oracle</title>
+  <title>JS技巧-持续更新 | Protoss Oracle</title>
   
 
 
@@ -275,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/手机端调试/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/JS技巧-持续更新/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张博涵">
@@ -292,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">手机端调试</h1>
+          <h1 class="post-title" itemprop="name headline">JS技巧-持续更新</h1>
         
 
         <div class="post-meta">
@@ -304,7 +304,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-02T01:25:10+08:00">2018-10-02</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-04T01:53:38+08:00">2018-10-04</time>
             
 
             
@@ -341,24 +341,25 @@
       
 
       
-        <h1 id="0-移动端调试"><a href="#0-移动端调试" class="headerlink" title="0.移动端调试"></a>0.移动端调试</h1><ul>
-<li>移动端调试时</li>
-<li>由于手机浏览器没有控制台</li>
-<li>所以在发生报错的时候（尤其是 JS 报错）</li>
-<li>难以调试</li>
+        <h1 id="0-对象操作"><a href="#0-对象操作" class="headerlink" title="0.对象操作"></a>0.对象操作</h1><h2 id="I-reduce"><a href="#I-reduce" class="headerlink" title="I.reduce"></a>I.reduce</h2><h3 id="i-原始状态"><a href="#i-原始状态" class="headerlink" title="i.原始状态"></a>i.原始状态</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">this<span class="selector-class">.view</span>.<span class="variable">$el</span>.on(<span class="string">'submit'</span>, <span class="string">'form'</span>, (e)=&gt;&#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">    let <span class="selector-tag">form</span> = this<span class="selector-class">.view</span>.<span class="variable">$from</span>.get(<span class="number">0</span>)</span><br><span class="line">    let data = &#123;</span><br><span class="line">        name: <span class="selector-tag">form</span><span class="selector-class">.name</span><span class="selector-class">.value</span><span class="selector-class">.trim</span>(),</span><br><span class="line">        <span class="selector-tag">summary</span>: <span class="selector-tag">form</span><span class="selector-class">.name</span><span class="selector-class">.value</span><span class="selector-class">.trim</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    this<span class="selector-class">.model</span><span class="selector-class">.create</span>(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在进行 MVC 的表单提交的时候</li>
+<li>往往需要表单信息更新 model 中的 data 数据</li>
+<li>在表单信息繁多时</li>
+<li>通常<code>let data = {blablablablabla}</code>会写的很长</li>
+<li>为解决这个问题，使用 reduce</li>
 </ul>
-<h1 id="1-alert"><a href="#1-alert" class="headerlink" title="1.alert"></a>1.alert</h1><ul>
-<li>即便移动端没有控制台</li>
-<li>那么就用 alert 将错误通过 alert 对话框的形式发出来</li>
+<h3 id="ii-改良状态"><a href="#ii-改良状态" class="headerlink" title="ii.改良状态"></a>ii.改良状态</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">this<span class="selector-class">.view</span>.<span class="variable">$el</span>.on(<span class="string">'submit'</span>, <span class="string">'form'</span>, (e) =&gt; &#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">    let <span class="selector-tag">form</span> = this<span class="selector-class">.view</span>.<span class="variable">$form</span>.get(<span class="number">0</span>)</span><br><span class="line">    let keys = [<span class="string">'name'</span>, <span class="string">'summary'</span>]</span><br><span class="line">    let data = &#123;&#125;</span><br><span class="line">    keys.reduce((prev, item) =&gt; &#123;</span><br><span class="line">        prev[item] = <span class="selector-tag">form</span>[item].value</span><br><span class="line">        return prev</span><br><span class="line">    &#125;, data)</span><br><span class="line">    this<span class="selector-class">.model</span><span class="selector-class">.create</span>(data)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>keys 就是原来 data 中的 key</li>
+<li>流程如下：</li>
+<li>可以把它理解为打劫</li>
+<li>打劫 name ，把 form 里 name 的 value 抢到 data.name 里</li>
+<li>return 出来已经劫走的赃物</li>
+<li>继续打劫新的(原来的 name 保留)</li>
+<li>打劫 summary, 把 form 里的 summary 的 value 抢到 data.summary 里</li>
+<li>打劫结束</li>
 </ul>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">window.onerror = <span class="function"><span class="keyword">function</span><span class="params">(<span class="keyword">message</span>, <span class="keyword">file</span>, row)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">    alert(message)</span></span></span><br><span class="line"><span class="function"><span class="comment">    alert(file)</span></span></span><br><span class="line"><span class="function"><span class="comment">    alert(row)</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span></span></span><br></pre></td></tr></table></figure>
-<h1 id="2-VConsole"><a href="#2-VConsole" class="headerlink" title="2.VConsole"></a>2.VConsole</h1><ul>
-<li>非常棒的库</li>
-<li>可以在移动端模拟控制台</li>
-<li>腾讯做的</li>
-</ul>
-<p><code>npm install vconsole</code><br>引入<code>dist/vconsole.min.js</code>到项目</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> vConsole = <span class="keyword">new</span> VConsole()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -392,8 +393,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/02/关于URL-URI的一点tip/" rel="next" title="关于URL-URI的一点tip">
-                <i class="fa fa-chevron-left"></i> 关于URL-URI的一点tip
+              <a href="/2018/10/02/手机端调试/" rel="next" title="手机端调试">
+                <i class="fa fa-chevron-left"></i> 手机端调试
               </a>
             
           </div>
@@ -401,10 +402,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/04/JS技巧-持续更新/" rel="prev" title="JS技巧-持续更新">
-                JS技巧-持续更新 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -559,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-移动端调试"><span class="nav-number">1.</span> <span class="nav-text">0.移动端调试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-alert"><span class="nav-number">2.</span> <span class="nav-text">1.alert</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-VConsole"><span class="nav-number">3.</span> <span class="nav-text">2.VConsole</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-对象操作"><span class="nav-number">1.</span> <span class="nav-text">0.对象操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-reduce"><span class="nav-number">1.1.</span> <span class="nav-text">I.reduce</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-原始状态"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.原始状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-改良状态"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.改良状态</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
