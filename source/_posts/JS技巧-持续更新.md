@@ -37,7 +37,7 @@ this.view.$el.on('submit', 'form', (e) => {
     let keys = ['name', 'summary']
     let data = {}
     keys.reduce((prev, item) => {
-        prev[item] = form[item].value
+        prev[item] = form[item].value.trim()
         return prev
     }, data)
     this.model.create(data)
