@@ -2,6 +2,7 @@
 title: 配置Hexo博客
 date: 2018-03-17 02:08:19
 tags: Hexo博客相关
+categories: git
 ---
 ## 1.配置环境
 I. Deepin 15.5系统（Arch Linux内核）

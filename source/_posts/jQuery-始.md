@@ -2,6 +2,7 @@
 title: jQuery-始
 date: 2018-04-26 19:04:47
 tags: JS
+categories: JavaScript
 ---
 别看jQuery mobile
 

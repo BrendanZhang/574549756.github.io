@@ -2,6 +2,7 @@
 title: setTimeout模拟setInterval
 date: 2018-06-06 20:17:00
 tags: JS
+categories: JavaScript
 ---
 # 0.一个问题
 

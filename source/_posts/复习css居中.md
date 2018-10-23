@@ -2,6 +2,7 @@
 title: 复习css居中
 date: 2018-09-03 04:00:39
 tags: CSS
+categories: CSS
 ---
 
 # 0.如何居中？

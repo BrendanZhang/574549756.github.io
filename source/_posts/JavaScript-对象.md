@@ -2,6 +2,7 @@
 title: JavaScript-对象
 date: 2018-04-12 15:46:37
 tags: JS
+categories: JavaScript
 ---
 # 1.全局对象
 ## I.window（global）

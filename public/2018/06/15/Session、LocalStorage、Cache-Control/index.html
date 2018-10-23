@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="0.SessionI.如何阻止用户篡改CookieCookieCookie 是 session 的依赖  服务器通过Set-Cookie给客户端一串字符串 客户端每次访问相同域名的网页时，必须带上这段字符串 客户端要在一段时间内保存这个Cookie Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 Cookie 的过期时间这家伙不占内存  Session一般来说，Session 是基">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Session、LocalStorage、Cache-Control">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/Session、LocalStorage、Cache-Control/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="0.SessionI.如何阻止用户篡改CookieCookieCookie 是 session 的依赖  服务器通过Set-Cookie给客户端一串字符串 客户端每次访问相同域名的网页时，必须带上这段字符串 客户端要在一段时间内保存这个Cookie Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 Cookie 的过期时间这家伙不占内存  Session一般来说，Session 是基">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-23T06:41:27.932Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Session、LocalStorage、Cache-Control">
+<meta name="twitter:description" content="0.SessionI.如何阻止用户篡改CookieCookieCookie 是 session 的依赖  服务器通过Set-Cookie给客户端一串字符串 客户端每次访问相同域名的网页时，必须带上这段字符串 客户端要在一段时间内保存这个Cookie Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 Cookie 的过期时间这家伙不占内存  Session一般来说，Session 是基">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/15/Session、LocalStorage、Cache-Control/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Session、LocalStorage、Cache-Control | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Session、LocalStorage、Cache-Control/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Session、LocalStorage、Cache-Control
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-15 17:39:25" itemprop="dateCreated datePublished" datetime="2018-06-15T17:39:25+08:00">2018-06-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-23 14:41:27" itemprop="dateModified" datetime="2018-10-23T14:41:27+08:00">2018-10-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTTP/" itemprop="url" rel="index"><span itemprop="name">HTTP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0-Session"><a href="#0-Session" class="headerlink" title="0.Session"></a>0.Session</h1><h2 id="I-如何阻止用户篡改Cookie"><a href="#I-如何阻止用户篡改Cookie" class="headerlink" title="I.如何阻止用户篡改Cookie"></a>I.如何阻止用户篡改Cookie</h2><h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>Cookie 是 session 的依赖</p>
+<ul>
+<li>服务器通过<code>Set-Cookie</code>给客户端一串字符串</li>
+<li>客户端每次访问相同域名的网页时，必须带上这段字符串</li>
+<li>客户端要在一段时间内保存这个<code>Cookie</code></li>
+<li>Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 <code>Cookie</code> 的过期时间<br>这家伙不占内存</li>
+</ul>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>一般来说，Session 是基于 Cookie 实现的</p>
+<ul>
+<li>服务器通过<code>Cookie</code>给客户端一个<code>SessionId</code>（随机数）</li>
+<li>客户端访问服务器的时候，服务器读取<code>SessionId</code></li>
+<li>服务器里的一小块内存（对象）保存了所有<code>session</code></li>
+<li>这块内存（哈希表）就是服务器上所有<code>session</code></li>
+<li>服务器就通过<code>SessionId</code>读取对应的用户信息（id、email）</li>
+<li>以此获取用户的隐私信息</li>
+</ul>
+<p><code>sessionId</code>是个随机数，所以用户不能通过该随机数来获取其他用户的隐私信息。<br><strong>这样，<code>session</code>就可以阻止用户随便改Cookie</strong></p>
+<p>缺点：占内存……<br>用户多了就占很大的内存。</p>
+<p><strong>前端永远不要读/写cookie</strong><br>你有LocalStorage</p>
+<h1 id="1-LocalStorage"><a href="#1-LocalStorage" class="headerlink" title="1.LocalStorage"></a>1.LocalStorage</h1><p>这是 HTML5 提供的 API<br>实质是一个 hash<br>session 是服务器上的 hash<br>LocalStorage 是浏览器上的 hash</p>
+<ol>
+<li>LocalStorage 和 HTTP 无关</li>
+<li>HTTP 不会带上 LocalStorage 的值</li>
+<li>只有相同域名的页面才能互相读取 LocalStorage（没有同源那么严格）</li>
+<li>每个域名 LocalStorage 最大存储量 5Mb 左右 （每个浏览器不一样）</li>
+<li>常用场景：记录没有提示过的用户（没有用的信息，不能记录密码）</li>
+<li>LocalStorage 理论上永久有效，除非用户清理缓存（cookie及其他网站数据）<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">API</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clear</td>
+<td style="text-align:center">清除所有</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>getItem</strong></td>
+<td style="text-align:center">取值用的</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>removeItem</strong></td>
+<td style="text-align:center">删除相应LocalStorage</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>setItem</strong></td>
+<td style="text-align:center">只能存string</td>
+</tr>
+</tbody>
+</table>
+<h2 id="SessionStorage（会话存储）"><a href="#SessionStorage（会话存储）" class="headerlink" title="SessionStorage（会话存储）"></a>SessionStorage（会话存储）</h2><p>和LocalStorage基本一样，唯一不一样的是最后一点。</p>
+<ol>
+<li>SessionStorage 和 HTTP 无关</li>
+<li>HTTP 不会带上 SessionStorage 的值</li>
+<li>只有相同域名的页面才能互相读取 SessionStorage</li>
+<li>每个域名 SessionStorage 最大存储量 5Mb 左右 （每个浏览器不一样）</li>
+<li><strong>SessionStorage 在用户关闭页面（Session结束[会话结束]）后就失效</strong></li>
+</ol>
+<h1 id="2-缓存控制Cache-Control"><a href="#2-缓存控制Cache-Control" class="headerlink" title="2.缓存控制Cache-Control"></a>2.缓存控制Cache-Control</h1><p>在请求头中加入<code>response.setHeader(&#39;Cache-Control&#39;,&#39;max-age=30&#39;)</code><br>请求缓存控制，30秒内不再请求<br>可以让浏览器在重复请求的时候调用缓存<br>加快打开速度<br><strong>web优化相关</strong></p>
+<h2 id="I-更新缓存"><a href="#I-更新缓存" class="headerlink" title="I.更新缓存"></a>I.更新缓存</h2><ul>
+<li>js 和 css 一般设置 10 年缓存</li>
+<li>服务器要更新 js 和 css 的时候怎么办</li>
+<li>但是，只有<strong>相同</strong>的<strong>url</strong>才会利用之前的缓存</li>
+<li>所以只要稍微让 url 不一样就可以</li>
+<li>加一个查询参数就可以了</li>
+<li><code>./css/default.css?v=2/</code></li>
+<li>加了点点东西，但是 url 变了，所以会不使用之前的缓存。</li>
+<li>重新请求</li>
+</ul>
+<h2 id="II-为什么首页不能设置Cache-Control"><a href="#II-为什么首页不能设置Cache-Control" class="headerlink" title="II.为什么首页不能设置Cache-Control"></a>II.为什么首页不能设置Cache-Control</h2><ul>
+<li>chrome不允许在设置首页缓存</li>
+<li>如果首页设置缓存</li>
+<li>页面一旦更新，用户无法获取最新版本</li>
+<li>如果你设置一天或者几个小时，巨大风险</li>
+</ul>
+<h1 id="3-Expires"><a href="#3-Expires" class="headerlink" title="3.Expires"></a>3.Expires</h1><p>如果设置了 <code>max-age</code> 或者 <code>s-max-age</code> 指令的<code>Cache-Control</code>响应头，那么<code>Expires</code>头就会被忽略</p>
+<p><code>Cache-Control</code>是新的头<br><code>Expires</code>是以前用的。</p>
+<h2 id="I-语法"><a href="#I-语法" class="headerlink" title="I.语法"></a>I.语法</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.SetHeaders('Expires', 'Sat, 16 Jun <span class="number">2018</span> 20:02:34 GMT')</span><br></pre></td></tr></table></figure>
+<p>Expires 接一个 GMT 时间。<br>表示缓存的过期时间。<br>所以他和<code>Cache-Control</code>的区别是<br>前者规定过期日期<br>后者规定过期时间</p>
+<p>有没有一种有<code>效期至</code>和<code>保质期</code>的感觉</p>
+<ul>
+<li>但是<code>有效期至</code>如果写错了岂不是巨大风险</li>
+<li>所以我们有了<code>保质期</code></li>
+<li><code>Cache-Control</code>从现在开始计时 </li>
+</ul>
+<h1 id="4-ETag"><a href="#4-ETag" class="headerlink" title="4.ETag"></a>4.ETag</h1><p>这是用来给文件一个版本号的东东。</p>
+<h2 id="I-MD5"><a href="#I-MD5" class="headerlink" title="I.MD5"></a>I.MD5</h2><p>讯息摘要演算法<br>拿来校验文件的</p>
+<ul>
+<li>他把文件变成字符串</li>
+<li>如果内容改变了</li>
+<li>那么这个字符串和原来的字符串差别很大</li>
+<li>改变的差异越小，那么字符串差异就越大</li>
+</ul>
+<p>node.js 有 md5 的库</p>
+<h2 id="II-Etag如何工作"><a href="#II-Etag如何工作" class="headerlink" title="II.Etag如何工作"></a>II.Etag如何工作</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let fileMd5 = md5(<span class="keyword">string</span>)</span><br><span class="line">response.setHeader(<span class="string">'ETag'</span>, fileMd5)        </span><br><span class="line"><span class="built_in">if</span> (request.headers[<span class="string">'if-none-match'</span>] === fileMd5) &#123;</span><br><span class="line">    <span class="comment">//没有响应体，只有响应头</span></span><br><span class="line">    response.statusCode = <span class="number">304</span></span><br><span class="line">&#125; <span class="built_in">else</span> &#123;</span><br><span class="line">    <span class="comment">//有响应体</span></span><br><span class="line">    response.<span class="built_in">write</span>(<span class="keyword">string</span>)</span><br><span class="line">&#125;</span><br><span class="line">response.<span class="built_in">end</span>()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这时候，请求头里会多出一个<code>If-None-Match: 相应的md5</code></li>
+<li>如果这个<code>If-None-Match</code>的值和<code>md5</code>匹配</li>
+<li>那么说明不需要重新下载</li>
+<li>返回 304 表达：没改过</li>
+<li>如果有变化，那么再响应</li>
+</ul>
+<h3 id="i-使用场景"><a href="#i-使用场景" class="headerlink" title="i.使用场景"></a>i.使用场景</h3><ul>
+<li>帖子更新</li>
+<li>为每个帖子页面生成唯一的ETag，在其未改变时，查看话题属性比较ETag就能避免刷新帖子。</li>
+</ul>
+<h2 id="III-和缓存的区别"><a href="#III-和缓存的区别" class="headerlink" title="III.和缓存的区别"></a>III.和缓存的区别</h2><p>缓存：</p>
+<ul>
+<li>直接不请求</li>
+<li>从内存里拿</li>
+</ul>
+<p>ETag:</p>
+<ul>
+<li>正常发请求</li>
+<li>匹配 MD5</li>
+<li>如果匹配，则不下载(响应体为空)response.setHeader(‘Cache-Control’,’max-age=30’)</li>
+</ul>
+<h3 id="i-缓存和ETag哪个更优？"><a href="#i-缓存和ETag哪个更优？" class="headerlink" title="i.缓存和ETag哪个更优？"></a>i.缓存和ETag哪个更优？</h3><p>理论上，缓存更好<br>因为节省了请求时间，更加迅速</p>
+<h1 id="5-Last-Modified"><a href="#5-Last-Modified" class="headerlink" title="5.Last-Modified"></a>5.Last-Modified</h1><ul>
+<li>Last-Modified是一个响应头</li>
+<li>其中包含源头服务器认定的资源做出修改的日期及时间</li>
+<li>它通常被用作一个验证器来判断接收到的或者存储的资源是否彼此一致</li>
+<li>由于精确度比 <code>ETag</code> 要低，所以这是一个备用机制</li>
+<li>包含有  If-Modified-Since 或 If-Unmodified-Since 首部的条件请求会使用这个字段。</li>
+</ul>
+<p><code>response.SetHeaders(&#39;Last-Modified&#39;, &#39;Sat, 16 Jun 2018 20:02:34 GMT&#39;)</code></p>
+<ul>
+<li>服务端发给客户端一个最后修改的时间</li>
+<li>客户端匹配最后修改时间</li>
+<li>然后请求</li>
+</ul>
+<h2 id="I-If-Modified-Since"><a href="#I-If-Modified-Since" class="headerlink" title="I.If-Modified-Since"></a>I.If-Modified-Since</h2><ul>
+<li>条件式请求头</li>
+<li>服务器只在所请求的资源在给定的日期时间之后对内容进行过修改的情况下才会将资源返回</li>
+<li>状态码为 200</li>
+<li>如果请求的资源从那时起未经修改</li>
+<li>那么返回一个不带有消息主体的 304 响应</li>
+<li>而在 Last-Modified 首部中会带有上次修改时间。</li>
+</ul>
+<p><strong>如果和<code>If-None-Match</code>同时出现，则会被忽略</strong></p>
+<h2 id="II-If-Unmodified-Since"><a href="#II-If-Unmodified-Since" class="headerlink" title="II.If-Unmodified-Since"></a>II.If-Unmodified-Since</h2><ul>
+<li>条件式请求头</li>
+<li>只有当资源在指定的时间之后没有进行过修改的情况下，服务器才会返回请求的资源</li>
+<li>如果所请求的资源在指定的时间之后发生了修改，那么会返回 412 (Precondition Failed) 错误</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/关于Cookie/" rel="next" title="关于Cookie">
+                <i class="fa fa-chevron-left"></i> 关于Cookie
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/19/关于webpack/" rel="prev" title="关于webpack">
+                关于webpack <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-Session"><span class="nav-number">1.</span> <span class="nav-text">0.Session</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-如何阻止用户篡改Cookie"><span class="nav-number">1.1.</span> <span class="nav-text">I.如何阻止用户篡改Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session"><span class="nav-number">1.1.2.</span> <span class="nav-text">Session</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-LocalStorage"><span class="nav-number">2.</span> <span class="nav-text">1.LocalStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">2.1.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SessionStorage（会话存储）"><span class="nav-number">2.2.</span> <span class="nav-text">SessionStorage（会话存储）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-缓存控制Cache-Control"><span class="nav-number">3.</span> <span class="nav-text">2.缓存控制Cache-Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-更新缓存"><span class="nav-number">3.1.</span> <span class="nav-text">I.更新缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-为什么首页不能设置Cache-Control"><span class="nav-number">3.2.</span> <span class="nav-text">II.为什么首页不能设置Cache-Control</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Expires"><span class="nav-number">4.</span> <span class="nav-text">3.Expires</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-语法"><span class="nav-number">4.1.</span> <span class="nav-text">I.语法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-ETag"><span class="nav-number">5.</span> <span class="nav-text">4.ETag</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-MD5"><span class="nav-number">5.1.</span> <span class="nav-text">I.MD5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-Etag如何工作"><span class="nav-number">5.2.</span> <span class="nav-text">II.Etag如何工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-使用场景"><span class="nav-number">5.2.1.</span> <span class="nav-text">i.使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-和缓存的区别"><span class="nav-number">5.3.</span> <span class="nav-text">III.和缓存的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-缓存和ETag哪个更优？"><span class="nav-number">5.3.1.</span> <span class="nav-text">i.缓存和ETag哪个更优？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Last-Modified"><span class="nav-number">6.</span> <span class="nav-text">5.Last-Modified</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-If-Modified-Since"><span class="nav-number">6.1.</span> <span class="nav-text">I.If-Modified-Since</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-If-Unmodified-Since"><span class="nav-number">6.2.</span> <span class="nav-text">II.If-Unmodified-Since</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.6.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

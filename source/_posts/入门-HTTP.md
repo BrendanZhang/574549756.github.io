@@ -1,7 +1,8 @@
 ---
 title: '入门-HTTP'
 date: 2018-03-19 20:11:03
-tags:
+tags: HTTP
+categories: HTTP
 ---
 ## 1.何为HTTP（HyperText Transfer Protocol）
 I. 是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。

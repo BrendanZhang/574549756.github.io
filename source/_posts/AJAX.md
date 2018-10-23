@@ -2,6 +2,7 @@
 title: AJAX
 date: 2018-05-09 08:21:28
 tags: Ajax
+categories: HTTP
 ---
 # 0.关于发送请求
 ## I.如何发送请求

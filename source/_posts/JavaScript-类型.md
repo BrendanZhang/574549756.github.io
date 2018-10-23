@@ -1,7 +1,8 @@
 ---
 title: JavaScript-类型
 date: 2018-04-11 10:10:04
-tags: JS
+tags: JavaScript
+categories: JavaScript
 ---
 # 1.首先要搞清楚什么是内存
 干吗用的？存东西用的。通电存东西，断电就GG。

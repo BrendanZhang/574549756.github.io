@@ -2,6 +2,7 @@
 title: JavaScript-函数
 date: 2018-04-23 03:48:49
 tags: JS
+categories: JavaScript
 ---
 函数就是一段可以反复调用的代码块。
 # 1.函数的五种声明方式：

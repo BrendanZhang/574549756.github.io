@@ -2,6 +2,7 @@
 title: MVC?MVVM!
 date: 2018-06-30 22:40:50
 tags: JS
+categories: 框架
 ---
 
 # 0.猜猜看 Vue 为什么叫 Vue

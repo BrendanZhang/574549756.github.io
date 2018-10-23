@@ -2,6 +2,7 @@
 title: Session、LocalStorage、Cache-Control
 date: 2018-06-15 17:39:25
 tags: HTTP
+categories: HTTP
 ---
 
 # 0.Session

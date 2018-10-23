@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="0.关于发送请求I.如何发送请求 用form可以发送请求，但是会刷新页面或新开页面 用a可以发GET请求，但是也会刷新页面或新开页面 用img可以发GET请求，但是只能以图片的形式展示 用script可以发GET请求，但是只能以脚本的形式运行 用link可以发GET请求，但是只能以CSS、favicon的形式展示  有没有一种方法可以：  GET、POST、PUT、DELETE请求都可以做到 想用">
+<meta name="keywords" content="Ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AJAX">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/AJAX/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="0.关于发送请求I.如何发送请求 用form可以发送请求，但是会刷新页面或新开页面 用a可以发GET请求，但是也会刷新页面或新开页面 用img可以发GET请求，但是只能以图片的形式展示 用script可以发GET请求，但是只能以脚本的形式运行 用link可以发GET请求，但是只能以CSS、favicon的形式展示  有没有一种方法可以：  GET、POST、PUT、DELETE请求都可以做到 想用">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-23T06:35:56.425Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AJAX">
+<meta name="twitter:description" content="0.关于发送请求I.如何发送请求 用form可以发送请求，但是会刷新页面或新开页面 用a可以发GET请求，但是也会刷新页面或新开页面 用img可以发GET请求，但是只能以图片的形式展示 用script可以发GET请求，但是只能以脚本的形式运行 用link可以发GET请求，但是只能以CSS、favicon的形式展示  有没有一种方法可以：  GET、POST、PUT、DELETE请求都可以做到 想用">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/09/AJAX/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>AJAX | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/09/AJAX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AJAX
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-09 08:21:28" itemprop="dateCreated datePublished" datetime="2018-05-09T08:21:28+08:00">2018-05-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-23 14:35:56" itemprop="dateModified" datetime="2018-10-23T14:35:56+08:00">2018-10-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTTP/" itemprop="url" rel="index"><span itemprop="name">HTTP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0-关于发送请求"><a href="#0-关于发送请求" class="headerlink" title="0.关于发送请求"></a>0.关于发送请求</h1><h2 id="I-如何发送请求"><a href="#I-如何发送请求" class="headerlink" title="I.如何发送请求"></a>I.如何发送请求</h2><ul>
+<li>用<code>form</code>可以发送请求，但是会刷新页面或新开页面</li>
+<li>用<code>a</code>可以发<code>GET</code>请求，但是也会刷新页面或新开页面</li>
+<li>用<code>img</code>可以发<code>GET</code>请求，但是只能以图片的形式展示</li>
+<li>用<code>script</code>可以发<code>GET</code>请求，但是只能以脚本的形式运行</li>
+<li>用<code>link</code>可以发<code>GET</code>请求，但是只能以<code>CSS</code>、<code>favicon</code>的形式展示</li>
+</ul>
+<p><strong>有没有一种方法可以：</strong></p>
+<ul>
+<li><code>GET</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code>请求都可以做到</li>
+<li>想用什么形式展示就以什么形式展示</li>
+</ul>
+<h2 id="II-伟大的巨硬-Microsoft"><a href="#II-伟大的巨硬-Microsoft" class="headerlink" title="II.伟大的巨硬(Microsoft)"></a>II.伟大的巨硬(Microsoft)</h2><ul>
+<li>在IE5率先在<code>JS</code>中引入<code>ActiveX</code>对象（API），使得JS可以直接发起HTTP请求。</li>
+<li>随后<code>Mozilla</code>、<code>Safari</code>、<code>Opera</code>也跟进了，命名<code>XMLHttpRequest</code>，并被纳入<code>W3C</code>规范</li>
+</ul>
+<h3 id="i-结果巨硬飘了"><a href="#i-结果巨硬飘了" class="headerlink" title="i.结果巨硬飘了"></a>i.结果巨硬飘了</h3><ul>
+<li>巨硬认为自己的<code>IE6</code>已经无敌了，所以解散了开发小组</li>
+<li>给了<code>chrome</code>巨大的机会（现在反超IE，占有量达到40%）</li>
+</ul>
+<h3 id="ii-Google-Gmail展示了网页的体验也可以那么好"><a href="#ii-Google-Gmail展示了网页的体验也可以那么好" class="headerlink" title="ii.Google Gmail展示了网页的体验也可以那么好"></a>ii.Google Gmail展示了网页的体验也可以那么好</h3><p>页面不刷新，仅局部更新<br>网页的体验强了，很多事情不需要使用软件来完成了。<br>前端程序员开始专心于JavaScript<br>所以还是要感谢伟大的巨硬的<code>ActiveX</code></p>
+<h1 id="1-AJAX"><a href="#1-AJAX" class="headerlink" title="1.AJAX"></a>1.AJAX</h1><p>Jesse James Garrett<br>将异步的<code>JavaScript</code>和<code>XML</code>这两项技术<br>称为<code>AJAX</code></p>
+<ul>
+<li><code>async</code>异步</li>
+<li><code>JavaScript</code>我们热爱的JS</li>
+<li><code>and</code>和</li>
+<li><code>XML</code>XML</li>
+</ul>
+<h2 id="I-技术要点"><a href="#I-技术要点" class="headerlink" title="I.技术要点"></a>I.技术要点</h2><ul>
+<li>使用<code>XMLHttpRequest</code>发送请求</li>
+<li>服务器返回<code>XML</code>格式的字符串（现在都用<code>JSON</code>）</li>
+<li><code>JS</code>解析<code>XML</code>，并更新局部页面</li>
+</ul>
+<p><strong>需要知道如何使用<code>原生JS</code>来发送<code>AJAX</code>请求</strong></p>
+<h2 id="II-格式"><a href="#II-格式" class="headerlink" title="II.格式"></a>II.格式</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">myButton.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="params">(e)</span>=&gt;</span>&#123;</span><br><span class="line">    let request = <span class="keyword">new</span> XMLHttpRequest()   <span class="regexp">//</span>声明一个XMLHttpRequest对象</span><br><span class="line">    request.onreadystatechange = <span class="function"><span class="params">()</span>=&gt;</span>&#123;      <span class="regexp">//</span>监听状态改变，尽量往上放</span><br><span class="line">        <span class="built_in">console</span>.log(request.readyState)</span><br><span class="line">    &#125;</span><br><span class="line">    request.open(<span class="string">'GET'</span>, <span class="string">'/xxx'</span>)    <span class="regexp">//</span>配置request <span class="string">'Method'</span>, <span class="string">'url'</span>, <span class="string">'是否异步'</span>后三个一般不传默认就行</span><br><span class="line">    request.send()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="i-readystate"><a href="#i-readystate" class="headerlink" title="i.readystate"></a>i.readystate</h3><p>当前请求的状态</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">值</th>
+<th style="text-align:center">状态</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">UNSENT（未打开）</td>
+<td style="text-align:center">代理被创建，但尚未调用 open() 方法。</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">OPENED（未发送）</td>
+<td style="text-align:center">open() 方法已经被调用。send（）方法还未被调用</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">HEADERS_RECEIVED（已获取响应头）</td>
+<td style="text-align:center">send() 方法已经被调用，并且头部和状态已经可获得。</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">LOADING（正在下载响应体）</td>
+<td style="text-align:center">下载中； responseText 属性已经包含部分数据。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">DONE（请求完成）</td>
+<td style="text-align:center">整个请求过程已经完毕（请求，已经把响应 下载完毕）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ii-request-status"><a href="#ii-request-status" class="headerlink" title="ii.request.status"></a>ii.request.status</h3><p>请求得到的响应状态码</p>
+<p><code>&gt;= 200</code>请求成功<br><code>&gt;= 300</code>浏览器会再发一个新的请求<br><code>&gt;= 400</code>请求失败</p>
+<h1 id="2-JSON"><a href="#2-JSON" class="headerlink" title="2.JSON"></a>2.JSON</h1><p>这是一种语言<br>JSON（<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation）<br>是一种由<strong>Douglas Crockford</strong>构想和设计、轻量级的<strong>数据交换语言</strong><br>该语言以易于让人阅读的文字为基础，用来传输由属性值或者序列性的值组成的数据对象。</p>
+<ul>
+<li>Douglas和Brandon互相不爽…</li>
+<li>Douglas抄JS写了个JSON</li>
+<li>Douglas写了本蝴蝶书告诉我们JS哪里哪里很毒瘤。明着diss…</li>
+</ul>
+<h2 id="I-JSON-vs-JS"><a href="#I-JSON-vs-JS" class="headerlink" title="I.JSON vs JS"></a>I.JSON vs JS</h2><ul>
+<li>JSON 没有抄 function 和 undefined</li>
+<li>JSON 的字符串首尾必须是 “”</li>
+<li>JSON 对象：{“name”:”Oracle”} JS 对象： {name: ‘Oracle’}</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">JS</th>
+<th style="text-align:center">JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">undefined</td>
+<td style="text-align:center">没有</td>
+</tr>
+<tr>
+<td style="text-align:center">null</td>
+<td style="text-align:center">null</td>
+</tr>
+<tr>
+<td style="text-align:center">[‘a’,’b’]</td>
+<td style="text-align:center">[“a”,”b”]</td>
+</tr>
+<tr>
+<td style="text-align:center">function fn(){}</td>
+<td style="text-align:center">没有</td>
+</tr>
+<tr>
+<td style="text-align:center">{name: ‘Oracle’}</td>
+<td style="text-align:center">{“name”:”Oracle”}</td>
+</tr>
+<tr>
+<td style="text-align:center">‘Oracle’</td>
+<td style="text-align:center">“Oracle”</td>
+</tr>
+<tr>
+<td style="text-align:center">var a = {};a.self = a</td>
+<td style="text-align:center">搞不定（没有变量这个东西）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{__proto__}</code></td>
+<td style="text-align:center">没有原型链</td>
+</tr>
+</tbody>
+</table>
+<h2 id="II-为什么用JSON"><a href="#II-为什么用JSON" class="headerlink" title="II.为什么用JSON"></a>II.为什么用JSON</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务器</span></span><br><span class="line"><span class="built_in">else</span> <span class="built_in">if</span> (path === <span class="string">'/xxx'</span>)&#123;</span><br><span class="line">        response.statusCode = <span class="number">200</span></span><br><span class="line">        response.setHeader(<span class="string">'Content-type'</span>, <span class="string">'text/xml;charset=utf-8'</span>)</span><br><span class="line">        response.<span class="built_in">write</span>(`</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"note"</span>:&#123;</span><br><span class="line">                <span class="string">"to"</span>: <span class="string">"James Raynor"</span></span><br><span class="line">                <span class="string">"from"</span>: <span class="string">"Sarah Kerrigan"</span></span><br><span class="line">                <span class="string">"heading"</span>: <span class="string">"Message"</span></span><br><span class="line">                <span class="string">"body"</span>: <span class="string">"For Im the queen of blades.Vengeance shall be mine."</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        `)<span class="comment">//返回一个字符串，这个字符串，凑巧刚好符合JSON对象语法</span></span><br><span class="line">        <span class="comment">// 这不是对象这不是对象这不是对象</span></span><br><span class="line">        response.<span class="built_in">end</span>()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>tigongde<br>tigongde<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let string = request<span class="selector-class">.responseText</span>       <span class="comment">//把JSON字符串放进容器</span></span><br><span class="line">let <span class="selector-tag">object</span> = Window<span class="selector-class">.JSON</span><span class="selector-class">.parse</span>(string)      <span class="comment">//这个 JSON.parse 是浏览器提供的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//把符合JSON语法的字符串，转换成JS中对应的值</span></span><br></pre></td></tr></table></figure></p>
+<p>这时候，前端希望用和 JS 比较像的 JSON ，而放弃使用 XML 了</p>
+<h1 id="3-同源策略与CORS跨域"><a href="#3-同源策略与CORS跨域" class="headerlink" title="3.同源策略与CORS跨域"></a>3.同源策略与CORS跨域</h1><h2 id="I-同源策略"><a href="#I-同源策略" class="headerlink" title="I.同源策略"></a>I.同源策略</h2><p>只有 域名+端口+协议 一模一样才允许发 AJAX 请求</p>
+<ol>
+<li><code>http://baidu.com</code> 可以向 <code>http://www.baidu.com</code> 发 AJAX 请求吗？   ——NO</li>
+<li><code>http://baidu.com：80</code> 可以向 <code>http://baidu.com：81</code> 发 AJAX 请求吗？    ——NO</li>
+</ol>
+<p>为什么？<br>你试试<code>http://www.12306.cn</code>和<code>http://12306.cn</code>是不是同一个网站</p>
+<ul>
+<li>浏览器不能冒险呀，不能让你AJAX各种读用户数据呀。</li>
+</ul>
+<p>浏览器必须保证：</p>
+<ul>
+<li>只有 域名+端口+域名 一模一样才允许发 AJAX 请求</li>
+</ul>
+<h2 id="II-CORS跨域"><a href="#II-CORS跨域" class="headerlink" title="II.CORS跨域"></a>II.CORS跨域</h2><p><strong>C</strong>ross-<strong>O</strong>rigin <strong>R</strong>esource <strong>S</strong>haring<br>跨          站         资源          共享</p>
+<p>除了JSONP还有个别的方法<br>CORS可以：告诉浏览器，我们俩是兄弟呀，别阻止他。</p>
+<p>给你要访问的网站的后端打个电话商量一下。让他在相应接口加一条：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">response</span><span class="selector-class">.setHeader</span>(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'你想允许哪个域名+端口+协议'</span>)</span><br></pre></td></tr></table></figure>
+<p>你们就可以愉快的玩耍了</p>
+<h3 id="为什么要用CORS"><a href="#为什么要用CORS" class="headerlink" title="为什么要用CORS"></a>为什么要用CORS</h3><p>因为 <code>JSONP</code> 不能发 <code>POST</code> 呀</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ajax/" rel="tag"># Ajax</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/07/JSONP/" rel="next" title="JSONP">
+                <i class="fa fa-chevron-left"></i> JSONP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/11/用JS做一个AJAX/" rel="prev" title="用JS做一个AJAX">
+                用JS做一个AJAX <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-关于发送请求"><span class="nav-number">1.</span> <span class="nav-text">0.关于发送请求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-如何发送请求"><span class="nav-number">1.1.</span> <span class="nav-text">I.如何发送请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-伟大的巨硬-Microsoft"><span class="nav-number">1.2.</span> <span class="nav-text">II.伟大的巨硬(Microsoft)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-结果巨硬飘了"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.结果巨硬飘了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-Google-Gmail展示了网页的体验也可以那么好"><span class="nav-number">1.2.2.</span> <span class="nav-text">ii.Google Gmail展示了网页的体验也可以那么好</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-AJAX"><span class="nav-number">2.</span> <span class="nav-text">1.AJAX</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-技术要点"><span class="nav-number">2.1.</span> <span class="nav-text">I.技术要点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-格式"><span class="nav-number">2.2.</span> <span class="nav-text">II.格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-readystate"><span class="nav-number">2.2.1.</span> <span class="nav-text">i.readystate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-request-status"><span class="nav-number">2.2.2.</span> <span class="nav-text">ii.request.status</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-JSON"><span class="nav-number">3.</span> <span class="nav-text">2.JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-JSON-vs-JS"><span class="nav-number">3.1.</span> <span class="nav-text">I.JSON vs JS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-为什么用JSON"><span class="nav-number">3.2.</span> <span class="nav-text">II.为什么用JSON</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-同源策略与CORS跨域"><span class="nav-number">4.</span> <span class="nav-text">3.同源策略与CORS跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-同源策略"><span class="nav-number">4.1.</span> <span class="nav-text">I.同源策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-CORS跨域"><span class="nav-number">4.2.</span> <span class="nav-text">II.CORS跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要用CORS"><span class="nav-number">4.2.1.</span> <span class="nav-text">为什么要用CORS</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.6.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

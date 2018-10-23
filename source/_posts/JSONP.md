@@ -2,6 +2,7 @@
 title: JSONP
 date: 2018-05-07 20:09:31
 tags: JSONP
+categories: HTTP
 ---
 # 0.有些个名词
 

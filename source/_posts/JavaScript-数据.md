@@ -2,6 +2,7 @@
 title: JavaScript-数据
 date: 2018-04-10 12:17:16
 tags: JS
+categories: JavaScript
 ---
 # 1.数据类型
 ### 种类&备注

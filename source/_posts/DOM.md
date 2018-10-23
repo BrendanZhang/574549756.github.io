@@ -1,7 +1,8 @@
 ---
 title: DOM
 date: 2018-04-25 19:02:01
-tags: DOM
+tags: HTML
+categories: HTML
 ---
 
 # 1.DOM是什么

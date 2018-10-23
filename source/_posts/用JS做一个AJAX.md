@@ -2,6 +2,7 @@
 title: 用JS做一个AJAX
 date: 2018-05-11 02:26:47
 tags: AJAX
+categories: HTTP
 ---
 # 0.AJAX 的所有功能
 - 客户端的JS发起请求（浏览器上的）

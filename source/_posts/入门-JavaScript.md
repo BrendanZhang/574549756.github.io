@@ -1,7 +1,8 @@
 ---
 title: 入门-JavaScript
 date: 2018-04-02 22:50:06
-tags:
+tags: JavaScript
+categories: JavaScript
 ---
 Uncaught SyntextError: Unexpected tokken ]
 没有被处理的语法错误： 不可预知的字符串 ]

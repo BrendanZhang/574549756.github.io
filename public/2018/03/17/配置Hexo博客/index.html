@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.配置环境I. Deepin 15.5系统（Arch Linux内核）II. 需要nood.js、NPM、Git。III. 需要Github SSH公钥（linux环境下存在权限问题，务必在root用户下添加SSH公钥）——sudo ssh-keygen -t rsa -C &amp;quot;your_email@example.com&amp;quot;sudo cat ~/.ssh/id_rsa.pubs">
+<meta name="keywords" content="Hexo博客相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置Hexo博客">
+<meta property="og:url" content="http://yoursite.com/2018/03/17/配置Hexo博客/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.配置环境I. Deepin 15.5系统（Arch Linux内核）II. 需要nood.js、NPM、Git。III. 需要Github SSH公钥（linux环境下存在权限问题，务必在root用户下添加SSH公钥）——sudo ssh-keygen -t rsa -C &amp;quot;your_email@example.com&amp;quot;sudo cat ~/.ssh/id_rsa.pubs">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006bYXGVgy1fpmuzxpa06j31j10zowq3.jpg">
+<meta property="og:updated_time" content="2018-10-23T06:44:09.656Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="配置Hexo博客">
+<meta name="twitter:description" content="1.配置环境I. Deepin 15.5系统（Arch Linux内核）II. 需要nood.js、NPM、Git。III. 需要Github SSH公钥（linux环境下存在权限问题，务必在root用户下添加SSH公钥）——sudo ssh-keygen -t rsa -C &amp;quot;your_email@example.com&amp;quot;sudo cat ~/.ssh/id_rsa.pubs">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006bYXGVgy1fpmuzxpa06j31j10zowq3.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/17/配置Hexo博客/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>配置Hexo博客 | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/17/配置Hexo博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">配置Hexo博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-03-17 02:08:19" itemprop="dateCreated datePublished" datetime="2018-03-17T02:08:19+08:00">2018-03-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-23 14:44:09" itemprop="dateModified" datetime="2018-10-23T14:44:09+08:00">2018-10-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-配置环境"><a href="#1-配置环境" class="headerlink" title="1.配置环境"></a>1.配置环境</h2><p>I. Deepin 15.5系统（Arch Linux内核）<br>II. 需要nood.js、NPM、Git。<br>III. 需要Github SSH公钥（linux环境下存在权限问题，务必在root用户下添加SSH公钥）——<br><code>sudo ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</code><br><code>sudo cat ~/.ssh/id_rsa.pub</code><br><code>sudo cat ~/.ssh/id_rsa.pub</code><br>拷贝id_rsa.pub文件内所有内容去Github的SSH页面New SSH key<br>去掉<code>sudo</code>重做以上四部以添加普通用户SSH Key<br>以上操作用于<code>sudo</code>命令中由于SSH Key缺失而产生的：<br><code>Permission denied (publickey).</code><br><code>fatal: The remote end hung up unexpectedly</code><br><del>权限问题</del></p>
+<hr>
+<h2 id="2-创建博客"><a href="#2-创建博客" class="headerlink" title="2.创建博客"></a>2.创建博客</h2><p>I. 终端进入安全目录（<code>cd ~Desktop</code>or<code>cd ~/Documents</code>）<br>II. 在GitHub上创建一个空repo（即空仓库，后文统称repo）名称<code>用户名.githubio</code><br>III. 运行<code>npm install -g hexo-cli</code>安装Hexo<br>IV. <code>hexo init myBlog</code>创建博客本地路径<code>cd myBlog</code>进入博客路径<br>V. <code>npm i</code> 安装Hexo模块（Hexo规格）<br>VI. <code>hexo new 博客名</code> 创建博客<br>这里注意<code>hexo new</code>命令创建一篇博客才是有效的，仅在/source/_posts添加MarkDown文件并不能创建博客。（不然给你hexo命令干吗用？）<br>VII. <code>open _config.yml</code>打开配置文件更改网站配置（可用vim也可用其他软件）：</p>
+<font size="2" color="gray">把title改成标题名<br>把author改成你自己的名字（作者）<br>最后一行type改成<code>type: git</code>(git前有个空格，不做盲人。)<br>与type平齐加一行<code>repo: 仓库地址</code> 地址为<a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:用户名.github.io`(地址前面有个空格，其余同上括号。)</font>
+
+<p>VIII. <code>npm install hexo-developer-git --save</code>这步很重要，安装git部署插件。<br>IX. <code>Hexo deploy</code>发布发布发布<br>X. 这时候也许会遇到各种各样奇奇怪怪的问题<del>比如</del>:<br><code>Permission denied</code>这时候在命令前加<code>sudo</code><br>Git部署问题：<br><code>fatal: &#39;username.github.io&#39; does not appear to be a git repository</code><br>请确认已配置Git，或者将地址改为HTTPS地址。<br>或许还有别的特别麻烦的问题，这个原因很多列出来超长…<a href="https://hexo.io/zh-cn/docs/troubleshooting.html" target="_blank" rel="noopener">所以我决定丢一个链接</a><br>XI. 进入<code>用户名.github.io</code>即可看到效果<br>XII. 对博客的任意改动执行<code>hexo g</code> 和 <code>hexo d</code>即可发布。</p>
+<hr>
+<h2 id="3-博客创建Git仓库代码"><a href="#3-博客创建Git仓库代码" class="headerlink" title="3.博客创建Git仓库代码"></a>3.博客创建Git仓库代码</h2><p>I. 为什么需要备份呢？<br>因为<code>hexo g hexo d</code>发布的仅仅是本地博客仓库的public路径下的内容，但是我们需要博客仓库的整个代码以防意外<del>手抖</del>。<br>II. 两种方法:分支＆新仓库<br>III. 分支：<br>    1.创建仓库用户名.github.io<br>    2.创建两个分支：master和hexo<br>    3.设置Hexo默认分支（反正git push用的是Hexo分支，hexo命令只影响master）<br>    4.<code>git clone git@github.com:用户名/用户名.github.io.git</code>拷贝仓库<br>    5.<code>cd 用户名.github.io.git</code>进入文件夹<code>npm install hexo</code>、<code>hexo init</code>、<code>npm i</code>、<code>npm install hexo-deployer-git --save</code><br>    6.修改_config.uml中deploy为master<br>    7.<code>git add .</code> <code>git commit</code> <code>git push</code>三连击提交网站文件<br>    8.<code>hexo g</code> <code>hexo d</code>二连击生成部署网站（有问题？请<code>hexo clean</code>）</p>
+<p>IV. 新仓库：<br>    1.创建新仓库新仓库blog-Generator<br>    2.在myBlog里打开终端执行（注意点SSH地址）<br><img src="https://ws1.sinaimg.cn/large/006bYXGVgy1fpmuzxpa06j31j10zowq3.jpg" alt="SSH"><br>    3.每次<code>hexo d之后</code>请<code>git add .</code> <code>git commit</code> <code>git push</code>三连击提交网站文件</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo博客相关/" rel="tag"># Hexo博客相关</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/17/命令行使用/" rel="next" title="命令行使用">
+                <i class="fa fa-chevron-left"></i> 命令行使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/17/脚本入门/" rel="prev" title="脚本入门">
+                脚本入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-配置环境"><span class="nav-number">1.</span> <span class="nav-text">1.配置环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建博客"><span class="nav-number">2.</span> <span class="nav-text">2.创建博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-博客创建Git仓库代码"><span class="nav-number">3.</span> <span class="nav-text">3.博客创建Git仓库代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.6.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

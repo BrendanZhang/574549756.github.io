@@ -2,6 +2,7 @@
 title: vue的小细节
 date: 2018-06-22 12:08:17
 tags: vue
+categories: 框架
 ---
 `npm run dev`
 # vue 引入第三方 CSS

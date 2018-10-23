@@ -2,6 +2,7 @@
 title: canvas画板
 date: 2018-04-05 11:35:09
 tags: canvas
+categories: HTML
 ---
 ## 1.尝试用div画画
 ```

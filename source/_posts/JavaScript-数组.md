@@ -2,6 +2,7 @@
 title: JavaScript-数组
 date: 2018-04-23 03:44:38
 tags:  JS
+categories: JavaScript
 ---
 # 1.标准库
 

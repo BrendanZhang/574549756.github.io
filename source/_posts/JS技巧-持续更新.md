@@ -2,6 +2,7 @@
 title: JS技巧-持续更新
 date: 2018-10-04 01:53:38
 tags: JS
+categories: JavaScript
 ---
 
 # 0.对象操作

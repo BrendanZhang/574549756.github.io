@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="0.对象操作I.reducei.原始状态123456789this.view.$el.on(&apos;submit&apos;, &apos;form&apos;, (e)=&amp;gt;&amp;#123;    e.preventDefault()    let form = this.view.$from.get(0)    let data = &amp;#123;        name: form.name.value.trim(),">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS技巧-持续更新">
+<meta property="og:url" content="http://yoursite.com/2018/10/04/JS技巧-持续更新/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="0.对象操作I.reducei.原始状态123456789this.view.$el.on(&apos;submit&apos;, &apos;form&apos;, (e)=&amp;gt;&amp;#123;    e.preventDefault()    let form = this.view.$from.get(0)    let data = &amp;#123;        name: form.name.value.trim(),">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-23T06:40:43.276Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS技巧-持续更新">
+<meta name="twitter:description" content="0.对象操作I.reducei.原始状态123456789this.view.$el.on(&apos;submit&apos;, &apos;form&apos;, (e)=&amp;gt;&amp;#123;    e.preventDefault()    let form = this.view.$from.get(0)    let data = &amp;#123;        name: form.name.value.trim(),">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/04/JS技巧-持续更新/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JS技巧-持续更新 | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/JS技巧-持续更新/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS技巧-持续更新
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-04 01:53:38" itemprop="dateCreated datePublished" datetime="2018-10-04T01:53:38+08:00">2018-10-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-23 14:40:43" itemprop="dateModified" datetime="2018-10-23T14:40:43+08:00">2018-10-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0-对象操作"><a href="#0-对象操作" class="headerlink" title="0.对象操作"></a>0.对象操作</h1><h2 id="I-reduce"><a href="#I-reduce" class="headerlink" title="I.reduce"></a>I.reduce</h2><h3 id="i-原始状态"><a href="#i-原始状态" class="headerlink" title="i.原始状态"></a>i.原始状态</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">this<span class="selector-class">.view</span>.<span class="variable">$el</span>.on(<span class="string">'submit'</span>, <span class="string">'form'</span>, (e)=&gt;&#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">    let <span class="selector-tag">form</span> = this<span class="selector-class">.view</span>.<span class="variable">$from</span>.get(<span class="number">0</span>)</span><br><span class="line">    let data = &#123;</span><br><span class="line">        name: <span class="selector-tag">form</span><span class="selector-class">.name</span><span class="selector-class">.value</span><span class="selector-class">.trim</span>(),</span><br><span class="line">        <span class="selector-tag">summary</span>: <span class="selector-tag">form</span><span class="selector-class">.name</span><span class="selector-class">.value</span><span class="selector-class">.trim</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    this<span class="selector-class">.model</span><span class="selector-class">.create</span>(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在进行 MVC 的表单提交的时候</li>
+<li>往往需要表单信息更新 model 中的 data 数据</li>
+<li>在表单信息繁多时</li>
+<li>通常<code>let data = {blablablablabla}</code>会写的很长</li>
+<li>为解决这个问题，使用 reduce</li>
+</ul>
+<h3 id="ii-改良状态"><a href="#ii-改良状态" class="headerlink" title="ii.改良状态"></a>ii.改良状态</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">this<span class="selector-class">.view</span>.<span class="variable">$el</span>.on(<span class="string">'submit'</span>, <span class="string">'form'</span>, (e) =&gt; &#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">    let <span class="selector-tag">form</span> = this<span class="selector-class">.view</span>.<span class="variable">$form</span>.get(<span class="number">0</span>)</span><br><span class="line">    let keys = [<span class="string">'name'</span>, <span class="string">'summary'</span>]</span><br><span class="line">    let data = &#123;&#125;</span><br><span class="line">    keys.reduce((prev, item) =&gt; &#123;</span><br><span class="line">        prev[item] = <span class="selector-tag">form</span>[item]<span class="selector-class">.value</span><span class="selector-class">.trim</span>()</span><br><span class="line">        return prev</span><br><span class="line">    &#125;, data)</span><br><span class="line">    this<span class="selector-class">.model</span><span class="selector-class">.create</span>(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>keys 就是原来 data 中的 key</li>
+<li>流程如下：</li>
+<li>可以把它理解为打劫</li>
+<li>打劫 name ，把 form 里 name 的 value 抢到 data.name 里</li>
+<li>return 出来已经劫走的赃物</li>
+<li>继续打劫新的(原来的 name 保留)</li>
+<li>打劫 summary, 把 form 里的 summary 的 value 抢到 data.summary 里</li>
+<li>打劫结束</li>
+</ul>
+<h1 id="1-数组操作"><a href="#1-数组操作" class="headerlink" title="1.数组操作"></a>1.数组操作</h1><h2 id="I-Promise相关"><a href="#I-Promise相关" class="headerlink" title="I.Promise相关"></a>I.Promise相关</h2><p><strong>前言：</strong></p>
+<ul>
+<li>JavaScript 是以单线程运行于浏览器中</li>
+<li>JS 和 UI 线程处于同一个线程</li>
+<li>长时间的耗时操作，会阻塞 UI 的相应</li>
+<li>浏览器大多数任务都应该以异步执行</li>
+<li>Event Loop 的浏览器内部事件循环机制,使得 JS 一直以callback回调的方式进行。</li>
+<li>喜闻乐见的回调地狱（callback hell）</li>
+</ul>
+<h3 id="i-遍历过程中的异步执行"><a href="#i-遍历过程中的异步执行" class="headerlink" title="i.遍历过程中的异步执行"></a>i.遍历过程中的异步执行</h3><p>使用<code>leancloud</code>获取对象信息的过程中遇到了这个问题</p>
+<ol>
+<li>第二轮<code>promise</code>操作依赖第一轮查找操作的结果</li>
+<li>第一轮返回一个数组，第二轮需要对数组进行遍历</li>
+<li>数组的每一项需要分别进行查询(异步操作)</li>
+<li>最终返回一个数组进行第三轮<code>promise</code>操作</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> playlistResult = <span class="keyword">new</span> AV.Object.createWithoutData(</span><br><span class="line">    <span class="string">'Playlist'</span>,</span><br><span class="line">    playlistId</span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> query = <span class="keyword">new</span> AV.Query(<span class="string">'playlistMap'</span>)                     <span class="comment">// 建立查询</span></span><br><span class="line">query.equalTo(<span class="string">'playlistPointer'</span>, playlistResult)                <span class="comment">// 设置查询条件</span></span><br><span class="line"><span class="keyword">return</span> query                                                <span class="comment">// 第一轮查询开始</span></span><br><span class="line">    .find()</span><br><span class="line">    .then(<span class="function"><span class="params">playlistMap</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> songResultsId = []</span><br><span class="line">        playlistMap.forEach(<span class="function"><span class="params">scm</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.data.templateMap.push(scm.id)</span><br><span class="line">            <span class="keyword">var</span> songs = scm.get(<span class="string">'songPointer'</span>)</span><br><span class="line">            songResultsId.push(songs.id)</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> songResultsId                                <span class="comment">// 返回第一轮查询结果</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="keyword">async</span> songResultsId =&gt; &#123;                              <span class="comment">// 传入第一轮查询数组 标记异步</span></span><br><span class="line">        <span class="keyword">let</span> songAfter = []                                  <span class="comment">// 建立目标数组</span></span><br><span class="line">        <span class="keyword">var</span> searchSong = <span class="keyword">new</span> AV.Query(<span class="string">'Song'</span>)                   <span class="comment">// 建立查询对象</span></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; songResultsId.length; i++) &#123;        <span class="comment">// 遍历开始</span></span><br><span class="line">            <span class="keyword">await</span> searchSong.get(songResultsId[i]).then(<span class="function"><span class="params">songResult</span> =&gt;</span> &#123;     <span class="comment">// 查询开始(告诉遍历，等我查完) </span></span><br><span class="line">                songAfter.push(songResult)                  <span class="comment">// 查询完毕，推送到目标数组</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> songAfter                                    <span class="comment">// 返回目标数组</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">songAfter</span> =&gt;</span> &#123;                                    </span><br><span class="line">        <span class="keyword">this</span>.data.songs = songAfter.map(<span class="function"><span class="params">song</span> =&gt;</span> &#123;           <span class="comment">// 遍历目标数组选取需要的信息</span></span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                id: song.id,</span><br><span class="line">                ...song.attributes</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>async 和 await</strong></p>
+<ol>
+<li>语义简单明确，和普通的函数执行一模一样，<code>async</code> 表达函数里有异步操作，<code>await</code> 表达紧跟在后面的表达式需要等待。</li>
+<li><code>async</code>自带执行器</li>
+<li>适用性更好，<code>async</code>函数的<code>await</code>命令后面，可以跟 Promise 对象和原始类型的值（数值、字符串、布尔，等同于同步操作）</li>
+<li><code>async</code>返回一个 Promise 对象，可以 then 链式调用。函数执行过程遇到<code>await</code>就先返回，等待<code>await</code>的异步操作完成，再继续执行后面的语句。</li>
+<li><code>await</code>后的 Promise 对象，运行结果可能是失败，所以最好放在 try…catch 块里抓取错误信息</li>
+<li><code>await</code>只能用在<code>async</code>函数之中，用于普通函数会报错。</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag"># JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/02/手机端调试/" rel="next" title="手机端调试">
+                <i class="fa fa-chevron-left"></i> 手机端调试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-对象操作"><span class="nav-number">1.</span> <span class="nav-text">0.对象操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-reduce"><span class="nav-number">1.1.</span> <span class="nav-text">I.reduce</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-原始状态"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.原始状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-改良状态"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.改良状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-数组操作"><span class="nav-number">2.</span> <span class="nav-text">1.数组操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-Promise相关"><span class="nav-number">2.1.</span> <span class="nav-text">I.Promise相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-遍历过程中的异步执行"><span class="nav-number">2.1.1.</span> <span class="nav-text">i.遍历过程中的异步执行</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.6.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

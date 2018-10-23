@@ -1,7 +1,8 @@
 ---
 title: JavaScript-记了两个API
 date: 2018-04-16 21:28:55
-tags: JS
+tags: JavaScript
+categories: JavaScript
 ---
 
 # 1.关于JS找兄弟
