@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Protoss Oracle">
 <meta property="og:description" content="0. 首先需要检查 vim 是否支持 clipboard终端输入vim --version | grep &amp;quot;clipboard&amp;quot;检查 vim 版本是否支持 clipboard如果显示 -clipboard 则说明不支持 I. 安装图形化界面的 vimsudo apt get install vim-gnome安装完成后再次运行vim --version | grep &amp;quot">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-25T09:48:57.182Z">
+<meta property="og:updated_time" content="2018-10-25T10:57:00.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置vim">
 <meta name="twitter:description" content="0. 首先需要检查 vim 是否支持 clipboard终端输入vim --version | grep &amp;quot;clipboard&amp;quot;检查 vim 版本是否支持 clipboard如果显示 -clipboard 则说明不支持 I. 安装图形化界面的 vimsudo apt get install vim-gnome安装完成后再次运行vim --version | grep &amp;quot">
@@ -333,7 +333,7 @@
                 
               
 
-              <time title="Created: 2018-10-25 17:40:42 / Modified: 17:48:57" itemprop="dateCreated datePublished" datetime="2018-10-25T17:40:42+08:00">2018-10-25</time>
+              <time title="Created: 2018-10-25 17:40:42 / Modified: 18:57:00" itemprop="dateCreated datePublished" datetime="2018-10-25T17:40:42+08:00">2018-10-25</time>
             
 
             
@@ -372,9 +372,15 @@
 
       
         <h1 id="0-首先需要检查-vim-是否支持-clipboard"><a href="#0-首先需要检查-vim-是否支持-clipboard" class="headerlink" title="0. 首先需要检查 vim 是否支持 clipboard"></a>0. 首先需要检查 vim 是否支持 clipboard</h1><p>终端输入<br><code>vim --version | grep &quot;clipboard&quot;</code><br>检查 vim 版本是否支持 clipboard<br>如果显示 <code>-clipboard</code> 则说明不支持</p>
-<h2 id="I-安装图形化界面的-vim"><a href="#I-安装图形化界面的-vim" class="headerlink" title="I. 安装图形化界面的 vim"></a>I. 安装图形化界面的 vim</h2><p>sudo apt get install vim-gnome<br>安装完成后再次运行<br><code>vim --version | grep &quot;clipboard&quot;</code><br>发现之前的减号变成了加号<code>+</code></p>
+<h2 id="I-安装图形化界面的-vim"><a href="#I-安装图形化界面的-vim" class="headerlink" title="I. 安装图形化界面的 vim"></a>I. 安装图形化界面的 vim</h2><p><code>sudo apt get install vim-gnome</code><br>安装完成后再次运行<br><code>vim --version | grep &quot;clipboard&quot;</code><br>发现之前的减号变成了加号<code>+</code></p>
 <p>这时 vim 已经支持 clipboard 了</p>
-<h1 id="1-导入-vimrc"><a href="#1-导入-vimrc" class="headerlink" title="1. 导入 vimrc"></a>1. 导入 vimrc</h1><p>已上传 github<br>快捷键<code>space + y</code>即可复制到系统剪贴板</p>
+<h1 id="1-导入-vimrc-配置-vim"><a href="#1-导入-vimrc-配置-vim" class="headerlink" title="1. 导入 vimrc 配置 vim"></a>1. 导入 vimrc 配置 vim</h1><p>已上传 github<br>快捷键<code>space + y</code>即可复制到系统剪贴板</p>
+<h2 id="I-安装-vim-plug"><a href="#I-安装-vim-plug" class="headerlink" title="I.安装 vim-plug"></a>I.安装 vim-plug</h2><p>这是个管理 vim 其他插件的工具</p>
+<p>install:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fLo ~/.<span class="keyword">vim</span>/autoload/plug.<span class="keyword">vim</span> --create-dirs \</span><br><span class="line">    http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/junegunn/<span class="keyword">vim</span>-plug/master/plug.<span class="keyword">vim</span></span><br></pre></td></tr></table></figure>
+<h2 id="II-如何使用"><a href="#II-如何使用" class="headerlink" title="II. 如何使用"></a>II. 如何使用</h2><p>vi ~/.vimrc</p>
+<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">call plug<span class="function"><span class="keyword">#</span><span class="title">begin</span><span class="params">('/.<span class="variable">vim</span>/<span class="variable">plugged</span>')</span></span></span><br><span class="line">Plug '插件名'</span><br><span class="line">Plug 'mattn/emmet-vim'</span><br><span class="line">...这里都是插件</span><br><span class="line">call plug<span class="function"><span class="keyword">#</span><span class="title">end</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>保存-退出-重进<br>执行<code>:PlugInstall</code></p>
 
       
     </div>
@@ -605,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-首先需要检查-vim-是否支持-clipboard"><span class="nav-number">1.</span> <span class="nav-text">0. 首先需要检查 vim 是否支持 clipboard</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-安装图形化界面的-vim"><span class="nav-number">1.1.</span> <span class="nav-text">I. 安装图形化界面的 vim</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-导入-vimrc"><span class="nav-number">2.</span> <span class="nav-text">1. 导入 vimrc</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-首先需要检查-vim-是否支持-clipboard"><span class="nav-number">1.</span> <span class="nav-text">0. 首先需要检查 vim 是否支持 clipboard</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-安装图形化界面的-vim"><span class="nav-number">1.1.</span> <span class="nav-text">I. 安装图形化界面的 vim</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-导入-vimrc-配置-vim"><span class="nav-number">2.</span> <span class="nav-text">1. 导入 vimrc 配置 vim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-安装-vim-plug"><span class="nav-number">2.1.</span> <span class="nav-text">I.安装 vim-plug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-如何使用"><span class="nav-number">2.2.</span> <span class="nav-text">II. 如何使用</span></a></li></ol></li></ol></div>
             
 
           </div>
