@@ -27,6 +27,20 @@ categories: 框架
 不考虑复杂情况的前提下，参考以下代码：
 
 ```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+   <div id="root"></div>
+   <button id="btn">change</button>
+</body>
+</html>
+```
+
+```
 class VNode {
   constructor(tag, children, text) {
     this.tag = tag
@@ -68,7 +82,7 @@ let nodesData = {
           children: [
             {
               tag: '#text',
-              text: 'xiedaimala.com'
+              text: 'oracle.zealot.fun'
             }
           ]
         }
@@ -79,7 +93,7 @@ let nodesData = {
         children: [
           {
             tag: '#text',
-            text: 'jirengu.com'
+            text: 'zealot.fun'
           }
         ]
     }
@@ -91,11 +105,11 @@ let nodesData = {
 
 let vNodes = v('div', [
       v('p', [
-        v('span', [ v('#text', 'xiedaimala.com') ] )
+        v('span', [ v('#text', 'oracle.zealot.fun') ] )
         ]
       ),
       v('span', [
-        v('#text',  'jirengu.com')
+        v('#text',  'zealot.fun')
         ])
     ]
   )
@@ -122,11 +136,11 @@ function patchElement(parent, newVNode, oldVNode, index = 0) {
 
 let vNodes1 = v('div', [
       v('p', [
-        v('span', [ v('#text', 'xiedaimala.com') ] )
+        v('span', [ v('#text', 'oracle.zealot.fun') ] )
         ]
       ),
       v('span', [
-        v('#text',  'jirengu.com')
+        v('#text',  'zealot.fun')
         ])
     ]
   )
@@ -134,13 +148,13 @@ let vNodes1 = v('div', [
 let vNodes2 = v('div', [
       v('p', [
         v('span', [ 
-          v('#text', 'xiedaimala.com') 
+          v('#text', 'oracle.zealot.fun') 
           ] )
         ]
       ),
       v('span', [
-        v('#text',  'jirengu.coms'),
-        v('#text',  'ruoyu')
+        v('#text',  'zealot.fun'),
+        v('#text',  'content')
         ])
     ]
   )
@@ -148,4 +162,21 @@ const root = document.querySelector('#root')
 patchElement(root, vNodes1)
 ```
 
-- 
+- DOM 本身就是一个包含很多数据的对象
+- 我们通过用 JS 写一个简化的对象
+- 操作 DOM 时改变这个简化对象的数据
+- render 时通过 appendChild 添加到 DOM 上
+
+**但是我们发现一个问题：**
+- 这样开销依然很大,即便更改一个很小的数据，也会有多次的createElement操作
+- 于是乎有了下面的 patchElement
+- 审查判断条件：
+    1. 如果存在新 DOM ，但是没有旧 DOM ，就把新 DOM 渲染到页面
+    2. 如果什么新旧 DOM 都没有传入，那么删除目标父元素的第一个子元素
+    3. 如果新标签不等于旧标签，或新内容不等于旧内容，那么用新 DOM 替换旧 DOM
+    4. 其他情况，递归遍历找不同，把不同的替换掉
+- 到这里就完成了动态改变，动态查找，动态渲染。
+
+**简单情况下适用，不包括复杂情况：**
+例如 DOM 节点换位置，调整顺序
+不过这个例子已经可以体现虚拟 DOM 的原理了
