@@ -287,6 +287,597 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/关于webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/19/关于webpack/" itemprop="url">
+                  关于webpack
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-19 22:17:38" itemprop="dateCreated datePublished" datetime="2018-06-19T22:17:38+08:00">2018-06-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-23 14:43:14" itemprop="dateModified" datetime="2018-10-23T14:43:14+08:00">2018-10-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/框架/" itemprop="url" rel="index"><span itemprop="name">框架</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-文件结构"><a href="#0-文件结构" class="headerlink" title="0.文件结构"></a>0.文件结构</h1><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.____</span><br><span class="line">    <span class="string">|-- src      source            //未经翻译的代码</span></span><br><span class="line">    <span class="string">|</span></span><br><span class="line">    <span class="string">|-- dist     distribution      //待发布的代码</span></span><br><span class="line">    <span class="string">|</span></span><br><span class="line">    <span class="string">|-- vendors      //第三方代码jQuery什么的</span></span><br><span class="line">    <span class="string">|</span></span><br><span class="line">    <span class="string">|-- node_modules    //第三方包</span></span><br></pre></td></tr></table></figure>
+<h1 id="1-关于webpack"><a href="#1-关于webpack" class="headerlink" title="1.关于webpack"></a>1.关于webpack</h1><h2 id="I-什么是webpack"><a href="#I-什么是webpack" class="headerlink" title="I.什么是webpack"></a>I.什么是webpack</h2><ul>
+<li>webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)</li>
+<li>当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)</li>
+<li>其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle<h3 id="i-四个核心概念"><a href="#i-四个核心概念" class="headerlink" title="i.四个核心概念"></a>i.四个核心概念</h3></li>
+<li>入口(entry)：你要从什么转过去(src)</li>
+<li>输出(output)：你要输出到哪 bundle (dist)</li>
+<li>loader：最痛苦的部分，webpack 能理解一等公民JS，但是理解不了其他文件，所以我们需要插件把他们转换成 webpack 能处理的有效模块</li>
+<li>插件(plugins)：loader拿来转模块，插件可以执行更多任务（各种各样）<h2 id="II-gulp-grunt-与-webpack"><a href="#II-gulp-grunt-与-webpack" class="headerlink" title="II.gulp/grunt 与 webpack"></a>II.gulp/grunt 与 webpack</h2><h3 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h3></li>
+<li>gulp强调的是前端开发的工作流程</li>
+<li>我们可以通过配置一系列的task，定义task处理的事务（例如文件压缩合并、雪碧图、启动server、版本控制等）</li>
+<li>然后定义执行顺序，来让gulp执行这些task，从而构建项目的整个前端开发流程。<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3></li>
+<li>webpack是一个前端模块化方案，更侧重模块打包</li>
+<li>我们可以把开发中的所有资源（图片、js文件、css文件等）都看成模块，通过loader（加载器）和plugins（插件）对资源进行处理</li>
+<li>打包成符合生产环境部署的前端资源。<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3></li>
+<li>虽然都是前端自动化构建工具，但看他们的定位就知道不是对等的。</li>
+<li>gulp严格上讲，模块化不是他强调的东西，他旨在规范前端开发流程。</li>
+<li>webpack更是明显强调模块化开发，而那些文件压缩合并、预处理等功能，不过是他附带的功能。<h2 id="III-webpack-如何配置多入口文件页面"><a href="#III-webpack-如何配置多入口文件页面" class="headerlink" title="III.webpack 如何配置多入口文件页面"></a>III.webpack 如何配置多入口文件页面</h2>前面所介绍的四个核心概念，在这里显得尤为重要<br>标准的配置文件应该长这样：</li>
+</ul>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module.exports=&#123;</span><br><span class="line">    <span class="comment">//入口文件的配置项</span></span><br><span class="line"><span class="symbol">    entry:</span>&#123;&#125;,</span><br><span class="line">    <span class="comment">//出口文件的配置项</span></span><br><span class="line"><span class="symbol">    output:</span>&#123;&#125;,</span><br><span class="line">    <span class="comment">//模块：例如解读CSS,图片如何转换，压缩</span></span><br><span class="line"><span class="symbol">    module:</span>&#123;&#125;,</span><br><span class="line">    <span class="comment">//插件，用于生产模版和各项功能</span></span><br><span class="line"><span class="symbol">    plugins:</span>[],</span><br><span class="line">    <span class="comment">//配置webpack开发服务功能</span></span><br><span class="line"><span class="symbol">    devServer:</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>entry：配置入口文件的地址，可以是单一入口，也可以是多入口。</li>
+<li>output：配置出口文件的地址，在webpack2.X版本后，支持多出口配置。</li>
+<li>module：配置模块，主要是解析CSS和图片转换压缩等功能。</li>
+<li>plugins：配置插件，根据你的需要配置不同功能的插件。</li>
+<li>devServer：配置开发服务功能</li>
+</ul>
+<h3 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h3><p>单页面中：<code>entry: resolve(&quot;src/home/index.js&quot;)</code><br>多页面中：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多页应用程序，则需要多个入口文件，例如：</span></span><br><span class="line"><span class="symbol">entry:</span> &#123;</span><br><span class="line"><span class="symbol">  home:</span> resolve(<span class="string">"src/home/index.js"</span>),</span><br><span class="line"><span class="symbol">  about:</span> resolve(<span class="string">"src/about/index.js"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，整个项目就有了两个入口 <code>home</code> 和 <code>about</code></p>
+<h3 id="入口变多以后"><a href="#入口变多以后" class="headerlink" title="入口变多以后"></a>入口变多以后</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    <span class="comment">//入口文件的配置项</span></span><br><span class="line">    entry:&#123;</span><br><span class="line">        home:<span class="string">'./src/home.js'</span>,</span><br><span class="line">        <span class="comment">//这里我们又引入了一个入口文件</span></span><br><span class="line">        about:<span class="string">'./src/about.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//出口文件的配置项</span></span><br><span class="line">    output:&#123;</span><br><span class="line">        <span class="comment">//输出的路径，用了Node语法</span></span><br><span class="line">        path:path.resolve(__dirname,<span class="string">'dist'</span>),</span><br><span class="line">        <span class="comment">//输出的文件名称</span></span><br><span class="line">        filename:<span class="string">'[name].js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//模块：例如解读CSS,图片如何转换，压缩</span></span><br><span class="line">    <span class="keyword">module</span>:&#123;&#125;,</span><br><span class="line">    <span class="comment">//插件，用于生产模版和各项功能</span></span><br><span class="line">    plugins:[],</span><br><span class="line">    <span class="comment">//配置webpack开发服务功能</span></span><br><span class="line">    devServer:&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到代码，在入口文件配置中，增加了一个entry2.js的入口文件（这个文件你需要自己手动建立），这时候要打包的就有了两个入口文件。<code>output</code> 中的<code>filename</code> 我们改成了<code>[name].js</code></p>
+<p><code>[name]</code>的意思是根据入口文件的名称，打包成相同的名称，有几个入口文件，就可以打包出几个文件。</p>
+<ul>
+<li>进去 <code>home.js</code> 和 <code>about.js</code></li>
+<li>出来 <code>home.js</code> 和 <code>about.js</code></li>
+</ul>
+<h2 id="IV-webpack解决了什么问题"><a href="#IV-webpack解决了什么问题" class="headerlink" title="IV.webpack解决了什么问题"></a>IV.webpack解决了什么问题</h2><p><strong>前端资源依赖管理</strong></p>
+<ul>
+<li><p>我们在浏览器中的 js 中，不能直接引用其它 js, css 等文件（或说，模块）- 而 webpack 就是用来解决这个问题的，让你的项目可以很好地分文件、分模块</p>
+</li>
+<li><p>支持依赖各种拓展名的文件</p>
+</li>
+<li>能够在不依赖 gulp 或 grunt 的情况下直接产出打包文件</li>
+<li>支持实时编译，浏览器同步刷新</li>
+</ul>
+<h3 id="i-前端用的语言太多了"><a href="#i-前端用的语言太多了" class="headerlink" title="i.前端用的语言太多了"></a>i.前端用的语言太多了</h3><ul>
+<li>html、css和js的配合才能保证webapp的运行，增量安装是按需加载的需要</li>
+<li>开发完成后输出三种以上不同格式的静态资源，静态资源之间有可能存在互相依赖关系，最终构成一个复杂的资源依赖树（甚至网）</li>
+</ul>
+<p>问题：</p>
+<ol>
+<li><p>为什么老项目构建臃肿不堪？<br> 基于requirejs进行打包，会把项目所有的一来都打包到一个文件里，如果项目中同时依赖一个模块，</p>
+</li>
+<li><p>老项目为什么模块化不足？<br> 老项目的模块化，仅仅体现在js层面，解决了模块引用的问题，但在开发方式上，依然可以看做是过程式的， 这样的结果就导致了项目的难扩展和难维护，让开发人员在与产品汪的对峙中，并不从容。</p>
+</li>
+<li><p>如何避免手动管理DOM？<br> 如果你在做数据展示这一块的开发工作，相信你一定体会颇深，发送http请求到服务端，拿到返回的数据后手动渲染DOM至页面，这是最原始的开发方式，无非再加一个模板引擎之类的，但最终还是避免不了手动渲染，如果页面逻辑复杂，比如给你来一个翻页的功能，再来一个筛选项，估计你会觉得世界并不那么美好。</p>
+</li>
+</ol>
+<h3 id="ii-webpack-的优势"><a href="#ii-webpack-的优势" class="headerlink" title="ii.webpack 的优势"></a>ii.webpack 的优势</h3><ol>
+<li>代码分割：<ul>
+<li>webpack支持二种依赖加载：同步和异步。同步的依赖会在编译时直接打包输出到目的文件</li>
+<li>异步加载会单独生成代码块，只有在浏览器中需要时才会异步加载这些代码块。</li>
+</ul>
+</li>
+<li>Loaders：<ul>
+<li>默认加载js，通过loaders来把其他类型的资源转换成js输出。</li>
+</ul>
+</li>
+<li>各种插件<ul>
+<li>webpack提供强大插件来提高工作效率。</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-Couldn’t-find-preset-“env”"><a href="#2-Couldn’t-find-preset-“env”" class="headerlink" title="2.Couldn’t find preset “env”"></a>2.Couldn’t find preset “env”</h1><p>找不到他娘的env！<br><code>npm install babel-preset-env</code></p>
+<ul>
+<li>webpack这玩意，他说找不到啥你就装啥。</li>
+<li>所以修好你的npm</li>
+<li><code>npm i fucking-webpack</code></li>
+</ul>
+<h1 id="3-Can-I-use？"><a href="#3-Can-I-use？" class="headerlink" title="3.Can I use？"></a>3.Can I use？</h1><p><a href="http://caniuse.com" target="_blank" rel="noopener">这个网站可以查询兼容性问题</a><br><a href="http://autoprefixer.github.io" target="_blank" rel="noopener">这个网站可以自动转换CSS</a></p>
+<h2 id="I-如何让-webpack-解决-flex-布局的兼容性问题"><a href="#I-如何让-webpack-解决-flex-布局的兼容性问题" class="headerlink" title="I.如何让 webpack 解决 flex 布局的兼容性问题"></a>I.如何让 webpack 解决 flex 布局的兼容性问题</h2><p><a href="https://github.com/postcss/postcss-loader" target="_blank" rel="noopener">postcss-loader</a></p>
+<p>他来帮你加前缀<code>-webkit-`</code>-ms-flexbox`等等</p>
+<h3 id="i-碰到的诡异问题-postcss"><a href="#i-碰到的诡异问题-postcss" class="headerlink" title="i.碰到的诡异问题(postcss)"></a>i.碰到的诡异问题(postcss)</h3><h4 id="迷之花括号"><a href="#迷之花括号" class="headerlink" title="迷之花括号"></a>迷之花括号</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">body</span>&#123;</span><br><span class="line">  //↑说我<span class="keyword">body</span>的花括号是不必要的</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>告诉我们有时候文档也不能全信</li>
+<li>遇事不决还是查<code>stack overflow</code></li>
+</ul>
+<p>postcss.config.js</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  //parser: <span class="string">'sugarss'</span>,</span><br><span class="line">  //这一行 parser 删了就没问题了</span><br><span class="line">  plugins: &#123;</span><br><span class="line">    <span class="string">'postcss-import'</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">'postcss-cssnext'</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">'cssnano'</span>: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这个 <code>sugarss</code> 在默认情况是不必要的</li>
+</ul>
+<h4 id="重复的插件"><a href="#重复的插件" class="headerlink" title="重复的插件"></a>重复的插件</h4><ul>
+<li>postcss-cssnext found a duplicate plugin (‘autoprefixer’) in your postcss plugins. </li>
+<li>This might be inefficient. </li>
+<li><p>You should remove ‘autoprefixer’ from your postcss plugin list since it’s already included by postcss-cssnext.</p>
+</li>
+<li><p>他说我使用了重复的插件(‘autoprefixer’)</p>
+</li>
+<li>很低效</li>
+<li>应该把它删了，因为 <code>postcss-cssnext</code> 已经包含这个插件了</li>
+</ul>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  //parser: <span class="string">'sugarss'</span>,</span><br><span class="line">  plugins: &#123;</span><br><span class="line">    <span class="string">'postcss-import'</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">'postcss-cssnext'</span>: &#123;&#125;,</span><br><span class="line">    //<span class="string">'cssnano'</span>: &#123;&#125;</span><br><span class="line">    //把这行删了，他就不会提示这个 warning 了 </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Session、LocalStorage、Cache-Control/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/Session、LocalStorage、Cache-Control/" itemprop="url">
+                  Session、LocalStorage、Cache-Control
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-15 17:39:25" itemprop="dateCreated datePublished" datetime="2018-06-15T17:39:25+08:00">2018-06-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-23 14:41:27" itemprop="dateModified" datetime="2018-10-23T14:41:27+08:00">2018-10-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTTP/" itemprop="url" rel="index"><span itemprop="name">HTTP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-Session"><a href="#0-Session" class="headerlink" title="0.Session"></a>0.Session</h1><h2 id="I-如何阻止用户篡改Cookie"><a href="#I-如何阻止用户篡改Cookie" class="headerlink" title="I.如何阻止用户篡改Cookie"></a>I.如何阻止用户篡改Cookie</h2><h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>Cookie 是 session 的依赖</p>
+<ul>
+<li>服务器通过<code>Set-Cookie</code>给客户端一串字符串</li>
+<li>客户端每次访问相同域名的网页时，必须带上这段字符串</li>
+<li>客户端要在一段时间内保存这个<code>Cookie</code></li>
+<li>Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 <code>Cookie</code> 的过期时间<br>这家伙不占内存</li>
+</ul>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>一般来说，Session 是基于 Cookie 实现的</p>
+<ul>
+<li>服务器通过<code>Cookie</code>给客户端一个<code>SessionId</code>（随机数）</li>
+<li>客户端访问服务器的时候，服务器读取<code>SessionId</code></li>
+<li>服务器里的一小块内存（对象）保存了所有<code>session</code></li>
+<li>这块内存（哈希表）就是服务器上所有<code>session</code></li>
+<li>服务器就通过<code>SessionId</code>读取对应的用户信息（id、email）</li>
+<li>以此获取用户的隐私信息</li>
+</ul>
+<p><code>sessionId</code>是个随机数，所以用户不能通过该随机数来获取其他用户的隐私信息。<br><strong>这样，<code>session</code>就可以阻止用户随便改Cookie</strong></p>
+<p>缺点：占内存……<br>用户多了就占很大的内存。</p>
+<p><strong>前端永远不要读/写cookie</strong><br>你有LocalStorage</p>
+<h1 id="1-LocalStorage"><a href="#1-LocalStorage" class="headerlink" title="1.LocalStorage"></a>1.LocalStorage</h1><p>这是 HTML5 提供的 API<br>实质是一个 hash<br>session 是服务器上的 hash<br>LocalStorage 是浏览器上的 hash</p>
+<ol>
+<li>LocalStorage 和 HTTP 无关</li>
+<li>HTTP 不会带上 LocalStorage 的值</li>
+<li>只有相同域名的页面才能互相读取 LocalStorage（没有同源那么严格）</li>
+<li>每个域名 LocalStorage 最大存储量 5Mb 左右 （每个浏览器不一样）</li>
+<li>常用场景：记录没有提示过的用户（没有用的信息，不能记录密码）</li>
+<li>LocalStorage 理论上永久有效，除非用户清理缓存（cookie及其他网站数据）<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">API</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clear</td>
+<td style="text-align:center">清除所有</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>getItem</strong></td>
+<td style="text-align:center">取值用的</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>removeItem</strong></td>
+<td style="text-align:center">删除相应LocalStorage</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>setItem</strong></td>
+<td style="text-align:center">只能存string</td>
+</tr>
+</tbody>
+</table>
+<h2 id="SessionStorage（会话存储）"><a href="#SessionStorage（会话存储）" class="headerlink" title="SessionStorage（会话存储）"></a>SessionStorage（会话存储）</h2><p>和LocalStorage基本一样，唯一不一样的是最后一点。</p>
+<ol>
+<li>SessionStorage 和 HTTP 无关</li>
+<li>HTTP 不会带上 SessionStorage 的值</li>
+<li>只有相同域名的页面才能互相读取 SessionStorage</li>
+<li>每个域名 SessionStorage 最大存储量 5Mb 左右 （每个浏览器不一样）</li>
+<li><strong>SessionStorage 在用户关闭页面（Session结束[会话结束]）后就失效</strong></li>
+</ol>
+<h1 id="2-缓存控制Cache-Control"><a href="#2-缓存控制Cache-Control" class="headerlink" title="2.缓存控制Cache-Control"></a>2.缓存控制Cache-Control</h1><p>在请求头中加入<code>response.setHeader(&#39;Cache-Control&#39;,&#39;max-age=30&#39;)</code><br>请求缓存控制，30秒内不再请求<br>可以让浏览器在重复请求的时候调用缓存<br>加快打开速度<br><strong>web优化相关</strong></p>
+<h2 id="I-更新缓存"><a href="#I-更新缓存" class="headerlink" title="I.更新缓存"></a>I.更新缓存</h2><ul>
+<li>js 和 css 一般设置 10 年缓存</li>
+<li>服务器要更新 js 和 css 的时候怎么办</li>
+<li>但是，只有<strong>相同</strong>的<strong>url</strong>才会利用之前的缓存</li>
+<li>所以只要稍微让 url 不一样就可以</li>
+<li>加一个查询参数就可以了</li>
+<li><code>./css/default.css?v=2/</code></li>
+<li>加了点点东西，但是 url 变了，所以会不使用之前的缓存。</li>
+<li>重新请求</li>
+</ul>
+<h2 id="II-为什么首页不能设置Cache-Control"><a href="#II-为什么首页不能设置Cache-Control" class="headerlink" title="II.为什么首页不能设置Cache-Control"></a>II.为什么首页不能设置Cache-Control</h2><ul>
+<li>chrome不允许在设置首页缓存</li>
+<li>如果首页设置缓存</li>
+<li>页面一旦更新，用户无法获取最新版本</li>
+<li>如果你设置一天或者几个小时，巨大风险</li>
+</ul>
+<h1 id="3-Expires"><a href="#3-Expires" class="headerlink" title="3.Expires"></a>3.Expires</h1><p>如果设置了 <code>max-age</code> 或者 <code>s-max-age</code> 指令的<code>Cache-Control</code>响应头，那么<code>Expires</code>头就会被忽略</p>
+<p><code>Cache-Control</code>是新的头<br><code>Expires</code>是以前用的。</p>
+<h2 id="I-语法"><a href="#I-语法" class="headerlink" title="I.语法"></a>I.语法</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.SetHeaders('Expires', 'Sat, 16 Jun <span class="number">2018</span> 20:02:34 GMT')</span><br></pre></td></tr></table></figure>
+<p>Expires 接一个 GMT 时间。<br>表示缓存的过期时间。<br>所以他和<code>Cache-Control</code>的区别是<br>前者规定过期日期<br>后者规定过期时间</p>
+<p>有没有一种有<code>效期至</code>和<code>保质期</code>的感觉</p>
+<ul>
+<li>但是<code>有效期至</code>如果写错了岂不是巨大风险</li>
+<li>所以我们有了<code>保质期</code></li>
+<li><code>Cache-Control</code>从现在开始计时 </li>
+</ul>
+<h1 id="4-ETag"><a href="#4-ETag" class="headerlink" title="4.ETag"></a>4.ETag</h1><p>这是用来给文件一个版本号的东东。</p>
+<h2 id="I-MD5"><a href="#I-MD5" class="headerlink" title="I.MD5"></a>I.MD5</h2><p>讯息摘要演算法<br>拿来校验文件的</p>
+<ul>
+<li>他把文件变成字符串</li>
+<li>如果内容改变了</li>
+<li>那么这个字符串和原来的字符串差别很大</li>
+<li>改变的差异越小，那么字符串差异就越大</li>
+</ul>
+<p>node.js 有 md5 的库</p>
+<h2 id="II-Etag如何工作"><a href="#II-Etag如何工作" class="headerlink" title="II.Etag如何工作"></a>II.Etag如何工作</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let fileMd5 = md5(<span class="keyword">string</span>)</span><br><span class="line">response.setHeader(<span class="string">'ETag'</span>, fileMd5)        </span><br><span class="line"><span class="built_in">if</span> (request.headers[<span class="string">'if-none-match'</span>] === fileMd5) &#123;</span><br><span class="line">    <span class="comment">//没有响应体，只有响应头</span></span><br><span class="line">    response.statusCode = <span class="number">304</span></span><br><span class="line">&#125; <span class="built_in">else</span> &#123;</span><br><span class="line">    <span class="comment">//有响应体</span></span><br><span class="line">    response.<span class="built_in">write</span>(<span class="keyword">string</span>)</span><br><span class="line">&#125;</span><br><span class="line">response.<span class="built_in">end</span>()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这时候，请求头里会多出一个<code>If-None-Match: 相应的md5</code></li>
+<li>如果这个<code>If-None-Match</code>的值和<code>md5</code>匹配</li>
+<li>那么说明不需要重新下载</li>
+<li>返回 304 表达：没改过</li>
+<li>如果有变化，那么再响应</li>
+</ul>
+<h3 id="i-使用场景"><a href="#i-使用场景" class="headerlink" title="i.使用场景"></a>i.使用场景</h3><ul>
+<li>帖子更新</li>
+<li>为每个帖子页面生成唯一的ETag，在其未改变时，查看话题属性比较ETag就能避免刷新帖子。</li>
+</ul>
+<h2 id="III-和缓存的区别"><a href="#III-和缓存的区别" class="headerlink" title="III.和缓存的区别"></a>III.和缓存的区别</h2><p>缓存：</p>
+<ul>
+<li>直接不请求</li>
+<li>从内存里拿</li>
+</ul>
+<p>ETag:</p>
+<ul>
+<li>正常发请求</li>
+<li>匹配 MD5</li>
+<li>如果匹配，则不下载(响应体为空)response.setHeader(‘Cache-Control’,’max-age=30’)</li>
+</ul>
+<h3 id="i-缓存和ETag哪个更优？"><a href="#i-缓存和ETag哪个更优？" class="headerlink" title="i.缓存和ETag哪个更优？"></a>i.缓存和ETag哪个更优？</h3><p>理论上，缓存更好<br>因为节省了请求时间，更加迅速</p>
+<h1 id="5-Last-Modified"><a href="#5-Last-Modified" class="headerlink" title="5.Last-Modified"></a>5.Last-Modified</h1><ul>
+<li>Last-Modified是一个响应头</li>
+<li>其中包含源头服务器认定的资源做出修改的日期及时间</li>
+<li>它通常被用作一个验证器来判断接收到的或者存储的资源是否彼此一致</li>
+<li>由于精确度比 <code>ETag</code> 要低，所以这是一个备用机制</li>
+<li>包含有  If-Modified-Since 或 If-Unmodified-Since 首部的条件请求会使用这个字段。</li>
+</ul>
+<p><code>response.SetHeaders(&#39;Last-Modified&#39;, &#39;Sat, 16 Jun 2018 20:02:34 GMT&#39;)</code></p>
+<ul>
+<li>服务端发给客户端一个最后修改的时间</li>
+<li>客户端匹配最后修改时间</li>
+<li>然后请求</li>
+</ul>
+<h2 id="I-If-Modified-Since"><a href="#I-If-Modified-Since" class="headerlink" title="I.If-Modified-Since"></a>I.If-Modified-Since</h2><ul>
+<li>条件式请求头</li>
+<li>服务器只在所请求的资源在给定的日期时间之后对内容进行过修改的情况下才会将资源返回</li>
+<li>状态码为 200</li>
+<li>如果请求的资源从那时起未经修改</li>
+<li>那么返回一个不带有消息主体的 304 响应</li>
+<li>而在 Last-Modified 首部中会带有上次修改时间。</li>
+</ul>
+<p><strong>如果和<code>If-None-Match</code>同时出现，则会被忽略</strong></p>
+<h2 id="II-If-Unmodified-Since"><a href="#II-If-Unmodified-Since" class="headerlink" title="II.If-Unmodified-Since"></a>II.If-Unmodified-Since</h2><ul>
+<li>条件式请求头</li>
+<li>只有当资源在指定的时间之后没有进行过修改的情况下，服务器才会返回请求的资源</li>
+<li>如果所请求的资源在指定的时间之后发生了修改，那么会返回 412 (Precondition Failed) 错误</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/关于Cookie/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2076,796 +2667,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/DOM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/DOM/" itemprop="url">
-                  DOM
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-04-25 19:02:01" itemprop="dateCreated datePublished" datetime="2018-04-25T19:02:01+08:00">2018-04-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-23 14:38:24" itemprop="dateModified" datetime="2018-10-23T14:38:24+08:00">2018-10-23</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-DOM是什么"><a href="#1-DOM是什么" class="headerlink" title="1.DOM是什么"></a>1.DOM是什么</h1><p>Document Object Model<br>XML文档<br>把文档变成对象的一种模型</p>
-<h2 id="I-DOM标准"><a href="#I-DOM标准" class="headerlink" title="I.DOM标准"></a>I.DOM标准</h2><p><code>Element</code>对象：<code>body</code> <code>head</code> <code>meta</code> <code>title</code> <code>script</code> <code>h1</code> <code>h2</code> <code>p</code>这些都是<code>Element</code>对象<br><code>Text</code>对象专门指文本：<code>span</code> 之类的<br><code>Document</code>对象：<code>html</code>因为它是用<code>Document</code>构造出来的<br><code>Comment</code>对象：注释</p>
-<p>而他们原型链的顶端叫做<code>Node</code><br>就像我们熟知的<code>Object.prorotype</code></p>
-<p>每一个标签都有它相应的构造函数，浏览器看到标签就用对应的构造函数给它构造出一个对应的内存中的对象。</p>
-<pre><code>构造函数
-</code></pre><p>页面中节点  ========&gt;  对象</p>
-<h1 id="2-Node的接口"><a href="#2-Node的接口" class="headerlink" title="2.Node的接口"></a>2.Node的接口</h1><p>就像讨论Object.prototype一样<br>需要注意<code>Node</code>也是一种<code>object</code></p>
-<p>因为超级多，记几个单词然后：<br><code>child</code>/<code>children</code>/<code>parent</code><br><code>node</code><br><code>first</code>/<code>last</code><br><code>next</code>/<code>previous</code><br><code>sibling</code>/<code>siblings</code><br><code>type</code><br><code>value</code>/<code>text</code>/<code>content</code><br><code>inner</code>/<code>outer</code><br><code>element</code><br>互相组合</p>
-<h2 id="I-childNodes"><a href="#I-childNodes" class="headerlink" title="I.childNodes"></a>I.childNodes</h2><p>所有的子节点（不是子元素）<br>所以一旦有回车，就会得到一个text</p>
-<p>所以想要所有标签请使用<code>children</code></p>
-<p><code>nextSibling</code>是下一个兄弟节点（有回车也会返回text）</p>
-<p><code>nextElementSibling</code>才是下一个兄弟标签（就是兼容性不好）</p>
-<p>导致这一堆奇怪问题的原因:<code>DOM</code>不是设计来给<code>HTML</code>用的，是给<code>XML</code>用的，所以不是很配套。</p>
-<h2 id="II-常用接口"><a href="#II-常用接口" class="headerlink" title="II.常用接口"></a>II.常用接口</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">接口</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">childNodes</td>
-<td style="text-align:center">所有子节点</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">firstChild</td>
-<td style="text-align:center">第一个子节点</td>
-</tr>
-<tr>
-<td style="text-align:center">innerText</td>
-<td style="text-align:center">内容文本</td>
-<td style="text-align:center">IE加的那点料，在小于等于IE11中修改<code>innerText</code>会移除当前元素的子节点，且永久性破坏所有后代文本节点</td>
-</tr>
-<tr>
-<td style="text-align:center">lastChild</td>
-<td style="text-align:center">最后一个子节点</td>
-</tr>
-<tr>
-<td style="text-align:center">nextSibling</td>
-<td style="text-align:center">下一个节点</td>
-</tr>
-<tr>
-<td style="text-align:center">nodeName</td>
-<td style="text-align:center">节点名称</td>
-<td style="text-align:center">（获取的是大写除了svg）</td>
-</tr>
-<tr>
-<td style="text-align:center">nodeType</td>
-<td style="text-align:center">节点类型</td>
-<td style="text-align:center">1:element 3:text 8:comment 9:document 10:DOCTYPE 11:DocumentFragment</td>
-</tr>
-<tr>
-<td style="text-align:center">nodeValue</td>
-<td style="text-align:center">value是一个包含当前节点的值的字符串（如果有的话）。</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">outerText</td>
-<td style="text-align:center">是一个非标准的属性。作为一个获得器，它返回与Node.innerText一致的值</td>
-<td style="text-align:center">作为一个设置器，它将删除当前节点并将其替换为给定的文本。</td>
-</tr>
-<tr>
-<td style="text-align:center">ownerDocument</td>
-<td style="text-align:center">会返回当前节点的顶层的 document 对象</td>
-<td style="text-align:center">返回祖先</td>
-</tr>
-<tr>
-<td style="text-align:center">parentElement</td>
-<td style="text-align:center">父级元素</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">parentNode</td>
-<td style="text-align:center">父级节点</td>
-<td style="text-align:center">和上面那位作用不一样吗？</td>
-</tr>
-<tr>
-<td style="text-align:center">previousSibling</td>
-<td style="text-align:center">上一个兄弟节点</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">textContent</td>
-<td style="text-align:center">内容文本</td>
-<td style="text-align:center">FF和Opera加的那点料,会获取所有元素内容，包括<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h1 id="3-方法"><a href="#3-方法" class="headerlink" title="3.方法"></a>3.方法</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">方法</th>
-<th style="text-align:center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">appendChild()</td>
-<td style="text-align:center">将一个节点添加到指定父节点的子节点列表末尾。</td>
-</tr>
-<tr>
-<td style="text-align:center">cloneNode()</td>
-<td style="text-align:center">拷贝节点，可选深拷贝或浅拷贝</td>
-</tr>
-<tr>
-<td style="text-align:center">contains()</td>
-<td style="text-align:center">判断传入的节点是否为该节点的后代节点。</td>
-</tr>
-<tr>
-<td style="text-align:center">hasChildNodes()</td>
-<td style="text-align:center">一个元素是否有子节点</td>
-</tr>
-<tr>
-<td style="text-align:center">insertBefore()</td>
-<td style="text-align:center">把一个东西插入一个东西的前面</td>
-</tr>
-<tr>
-<td style="text-align:center">isEqualNode()</td>
-<td style="text-align:center">两个节点是否相等</td>
-</tr>
-<tr>
-<td style="text-align:center">isSameNode()</td>
-<td style="text-align:center">两个节点是否是同一个节点<code>===</code></td>
-</tr>
-<tr>
-<td style="text-align:center">removeChild()</td>
-<td style="text-align:center">（从页面）干掉辣个子节点（但是他还在内存里）</td>
-</tr>
-<tr>
-<td style="text-align:center">replaceChild()</td>
-<td style="text-align:center">替换子节点 （被替换的还在内存里）</td>
-</tr>
-<tr>
-<td style="text-align:center">normalize()</td>
-<td style="text-align:center">常规化</td>
-</tr>
-</tbody>
-</table>
-<h2 id="I-cloneNode"><a href="#I-cloneNode" class="headerlink" title="I.cloneNode()"></a>I.cloneNode()</h2><p><code>var dupNode = node.cloneNode(deep)</code></p>
-<p>deep是可选参数，是否采用深拷贝。如果为true，则该节点的所有后代节点也都会被克隆，如果为false，则只克隆该节点本身</p>
-<h3 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h3><p>深拷贝和浅拷贝只针对Object，Array这种复杂类型<br>简单来说，浅复制只复制一层对象的属性，而深复制则递归复制了所有层级。</p>
-<h2 id="II-normalize"><a href="#II-normalize" class="headerlink" title="II.normalize()"></a>II.normalize()</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wrapper = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line"></span><br><span class="line">wrapper.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">"part 1"</span>)); <span class="comment">//俩都是文本</span></span><br><span class="line">wrapper.appentChild(<span class="built_in">document</span>.createTextNode(<span class="string">"part 2"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//这时候 wrapper.childNodes.length === 2</span></span><br><span class="line"><span class="comment">//wrapper.childNodes[0].textContent === "part 1"</span></span><br><span class="line"><span class="comment">//wrapper.childNodes[1].textContent === "part 2"</span></span><br><span class="line"></span><br><span class="line">wrapper.normalize();</span><br><span class="line"></span><br><span class="line"><span class="comment">//常规化以后 wrapper.childNodes.length === 1</span></span><br><span class="line">wrapper.childNodes[<span class="number">0</span>].textContent === <span class="string">"Part 1 Part 2"</span></span><br></pre></td></tr></table></figure>
-<p>使这个 拆成两部分的文本合在一起了。（把不合常规的常规化）</p>
-<h2 id="III-学习方法"><a href="#III-学习方法" class="headerlink" title="III.学习方法"></a>III.学习方法</h2><p>1.他写的什么就是什么意思，看懂单词就明白它是干嘛的了<br>2.看懂单词还是不知道怎么用？查MDN吧…</p>
-<p>把该记的特殊的记住就可以了。</p>
-<h1 id="4-Document接口"><a href="#4-Document接口" class="headerlink" title="4.Document接口"></a>4.Document接口</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">接口</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">anchors</td>
-<td style="text-align:center">获取页面<code>&lt;a&gt;</code>标签</td>
-<td style="text-align:center"><code>H5已弃用</code>。由于向后兼容的原因，该属性只返回那些拥有<code>name</code>属性的<code>a</code>元素，而不是拥有<code>id</code>属性的<code>a</code>元素</td>
-</tr>
-<tr>
-<td style="text-align:center">body</td>
-<td style="text-align:center">获取<code>&lt;body&gt;</code>元素</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">characterSet</td>
-<td style="text-align:center">就是<code>char</code>（字符）字符编码</td>
-<td style="text-align:center"><code>document.characterSet</code>看它的字符编码是什么</td>
-</tr>
-<tr>
-<td style="text-align:center">childElementCount</td>
-<td style="text-align:center">返回一个无符号长整型数字，表示给定元素的子元素数</td>
-</tr>
-<tr>
-<td style="text-align:center">children</td>
-<td style="text-align:center">获取子元素咯</td>
-<td style="text-align:center"><code>document</code>是<code>html</code>的父级哟，但<code>html</code>还是根元素</td>
-</tr>
-<tr>
-<td style="text-align:center">doctype</td>
-<td style="text-align:center">就是<code>!DOCTYPE</code>协议咯</td>
-</tr>
-<tr>
-<td style="text-align:center">documentElement</td>
-<td style="text-align:center">返回文档对象的根元素</td>
-<td style="text-align:center"><code>HTML</code>文档的<html>元素</html></td>
-</tr>
-<tr>
-<td style="text-align:center">domain</td>
-<td style="text-align:center">域名</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">fullscreen</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">head</td>
-<td style="text-align:center">头部</td>
-</tr>
-<tr>
-<td style="text-align:center">hidden</td>
-<td style="text-align:center">是否被隐藏？</td>
-<td style="text-align:center">返回布尔值</td>
-</tr>
-<tr>
-<td style="text-align:center">images</td>
-<td style="text-align:center">获取页面中所有<code>&lt;img&gt;</code>标签</td>
-</tr>
-<tr>
-<td style="text-align:center">links</td>
-<td style="text-align:center">获取页面中所有<code>&lt;a&gt;</code>标签</td>
-</tr>
-<tr>
-<td style="text-align:center">location</td>
-<td style="text-align:center">返回一个 Location 对象</td>
-<td style="text-align:center">包含有文档的 URL 相关的信息，并提供了改变该 URL 和加载其他 URL 的方法。</td>
-</tr>
-<tr>
-<td style="text-align:center">onxxxxxxxx</td>
-<td style="text-align:center">当xxx时的事件监听</td>
-<td style="text-align:center"><code>onclick</code> <code>onmousemove</code> <code>onmousedown</code> 之类的</td>
-</tr>
-<tr>
-<td style="text-align:center">origin</td>
-<td style="text-align:center">源</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">plugins</td>
-<td style="text-align:center">检测用户有没有开启插件</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">readyState</td>
-<td style="text-align:center">检测用户是否是否下载完毕</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">referrer</td>
-<td style="text-align:center">引荐者</td>
-<td style="text-align:center">发请求的时候，浏览器要告诉服务器，它是通过什么渠道进来的。服务器可以通过<code>referrer</code>来拒绝为其他网站提供服务</td>
-</tr>
-<tr>
-<td style="text-align:center">scripts</td>
-<td style="text-align:center">获取所有<code>script</code>标签</td>
-</tr>
-<tr>
-<td style="text-align:center">scrollingElement</td>
-<td style="text-align:center">正在滚动的元素</td>
-</tr>
-<tr>
-<td style="text-align:center">styleSheets</td>
-<td style="text-align:center">获取所有CSS</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">title</td>
-<td style="text-align:center">获取所有<code>&lt;title&gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">visibilityState</td>
-<td style="text-align:center">获取页面是否被显示（当前标签是否被激活）</td>
-<td style="text-align:center">返回布尔值</td>
-</tr>
-</tbody>
-</table>
-<h2 id="I-方法"><a href="#I-方法" class="headerlink" title="I.方法"></a>I.方法</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">方法</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">close()</td>
-<td style="text-align:center">关闭文档</td>
-<td style="text-align:center">关闭向当前文档的数据写入，想要打开要使用document.open()</td>
-</tr>
-<tr>
-<td style="text-align:center">createDocumentFragment()</td>
-<td style="text-align:center">创建一个DocumentFragment</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">createElement()</td>
-<td style="text-align:center">创建由tagName 指定的HTML元素</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">createTextNode()</td>
-<td style="text-align:center">创建一个文本节点</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">execCommand()</td>
-<td style="text-align:center">执行一个命令</td>
-<td style="text-align:center">允许命令操纵可编辑区域的内容，主要用于富文本编辑器，相关内容查mdn</td>
-</tr>
-<tr>
-<td style="text-align:center">exitFullscreen()</td>
-<td style="text-align:center">退出全屏</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">getElementById()</td>
-<td style="text-align:center">通过<code>id</code>获取元素</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">getElementsByClassName()</td>
-<td style="text-align:center">通过<code>class</code>名获取元素</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">getElementsByName()</td>
-<td style="text-align:center">通过<code>name</code>属性获取元素</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">getElementsByTagName</td>
-<td style="text-align:center">通过<code>标签名</code>获取元素</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">getSelection()</td>
-<td style="text-align:center">获取用户选中的文本</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">hasFocus()</td>
-<td style="text-align:center">用户是否<code>focus</code>到当前页面</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">open()</td>
-<td style="text-align:center">和<code>close</code>对应</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">querySelector()</td>
-<td style="text-align:center">通过<code>选择器（css）</code>获取元素</td>
-<td style="text-align:center">抄jQuery的</td>
-</tr>
-<tr>
-<td style="text-align:center">querySelectorALL()</td>
-<td style="text-align:center">通过<code>选择器（css）</code>获取元素（返回所有元素）</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">registerElement()</td>
-<td style="text-align:center">在浏览器注册一个新的 自定义元素 ，返回一个该元素的构造函数。</td>
-<td style="text-align:center">用的并不多…建议使用：customElements.define（）</td>
-</tr>
-<tr>
-<td style="text-align:center">write()</td>
-<td style="text-align:center">写文本</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">writeln()</td>
-<td style="text-align:center">写一行文本</td>
-</tr>
-</tbody>
-</table>
-<h3 id="i-close"><a href="#i-close" class="headerlink" title="i.close()"></a>i.close()</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">hello</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        documetn.write(1)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="number">2</span>)</span></span><br><span class="line"><span class="javascript">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="number">3</span>)</span></span><br><span class="line"><span class="undefined">        &#125;,3000)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>document =&gt; open =&gt; write =&gt; close =&gt; open</code></p>
-<p>每次在<code>script</code>执行完以后页面会关闭，如果有延时性的<code>write</code>，就会把页面冲掉<br>上面代码块中首先有<code>hello</code>和<code>1</code> <code>2</code>这时候文档close<br>但是文档<code>close</code>了之后写了<code>3</code><br>所以就会把页面冲掉</p>
-<p>所以在写write的时候要谨慎设置延时和异步 </p>
-<h1 id="5-Element接口"><a href="#5-Element接口" class="headerlink" title="5.Element接口"></a>5.Element接口</h1><p>最熟悉的<code>classList.add()</code><br>而且<code>Element</code>也可以<code>querySelector()</code>的<br>可以<code>div.querySelector()</code></p>
-<h3 id="i-innerHTML和innerText"><a href="#i-innerHTML和innerText" class="headerlink" title="i.innerHTML和innerText"></a>i.innerHTML和innerText</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"text"</span> id=<span class="string">"input1"</span>&gt; &lt;<span class="selector-tag">button</span> id=x&gt;写入页面&lt;/button&gt;</span><br><span class="line">    &lt;<span class="selector-tag">div</span> id=<span class="string">"output"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">x<span class="selector-class">.onclick</span> = function()&#123;</span><br><span class="line">    output<span class="selector-class">.innerHTML</span> = input1.value</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*x.onclick = function()&#123;</span></span><br><span class="line"><span class="comment">    output.innerText = input1.value</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
-<p>innerHTML可以识别写入页面的代码<code>&lt;b&gt;&lt;/b&gt;</code>就会加粗<code>&lt;i&gt;&lt;/i&gt;</code>就会变斜<br><code>&lt;script&gt;&lt;/script&gt;</code>怎么搞<br>那麻烦了，用户真拿这个输入框把<code>cookie</code>爬了怎么办。<br>所以还是很危险的<br>他会把用户写的标签，真的当做开发者写的。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/JavaScript-函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/23/JavaScript-函数/" itemprop="url">
-                  JavaScript-函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-04-23 03:48:49" itemprop="dateCreated datePublished" datetime="2018-04-23T03:48:49+08:00">2018-04-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-23 14:38:56" itemprop="dateModified" datetime="2018-10-23T14:38:56+08:00">2018-10-23</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>函数就是一段可以反复调用的代码块。</p>
-<h1 id="1-函数的五种声明方式："><a href="#1-函数的五种声明方式：" class="headerlink" title="1.函数的五种声明方式："></a>1.函数的五种声明方式：</h1><h2 id="I-具名函数"><a href="#I-具名函数" class="headerlink" title="I.具名函数"></a>I.具名函数</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title">f</span>(x,y)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">x+y</span></span><br><span class="line">&#125;</span><br><span class="line">f.name // <span class="string">'f'</span></span><br></pre></td></tr></table></figure>
-<p>.name就是函数名</p>
-<h2 id="II-匿名函数"><a href="#II-匿名函数" class="headerlink" title="II.匿名函数"></a>II.匿名函数</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f</span><br><span class="line">f = <span class="function"><span class="keyword">function</span><span class="params">(x,y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line">&#125;</span><br><span class="line">f.name <span class="comment">//'f'</span></span><br></pre></td></tr></table></figure>
-<p>.name就是变量名</p>
-<p>如果要声明匿名函数，必须把它给一个变量</p>
-<h2 id="III-具名函数赋值"><a href="#III-具名函数赋值" class="headerlink" title="III.具名函数赋值"></a>III.具名函数赋值</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f</span><br><span class="line">f = <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">x,y</span>)</span>&#123; <span class="keyword">return</span> x+y &#125;</span><br><span class="line">f.name <span class="comment">// 'f2'</span></span><br><span class="line"><span class="built_in">console</span>.log(f2) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-<p>.name随具名函数的函数名</p>
-<p>和具名函数的区别： <code>f.name</code>是他相应具名函数的名字。<br><code>console.log(f)</code>的时候，会报错,因为js会找不到<code>f2</code><br>就很蠢：<strong>这就是它的不一致性</strong><br>这是个作用域问题：<br><code>function f2(){}</code>中的<code>f2</code>只能作用于花括号内</p>
-<h2 id="IV-window-Function"><a href="#IV-window-Function" class="headerlink" title="IV.window.Function"></a>IV.window.Function</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> f = new Function(<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'return x+y'</span>)</span><br><span class="line">f<span class="selector-class">.name</span> <span class="comment">// anonymous</span></span><br></pre></td></tr></table></figure>
-<p>.name 是<code>anonymous</code> 他他娘的是匿名的，名字叫<code>匿名的</code></p>
-<p>很不常用<br>所有的部分用字符串表示，字符串可以拼起来，也可以在里面加变量。</p>
-<h2 id="V-箭头函数"><a href="#V-箭头函数" class="headerlink" title="V.箭头函数"></a>V.箭头函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">x,y</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> x+y</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> sum = <span class="function">(<span class="params">x,y</span>) =&gt;</span> x+y</span><br><span class="line"> <span class="keyword">var</span> n2 = <span class="function"><span class="params">n</span> =&gt;</span> n*n</span><br></pre></td></tr></table></figure>
-<p>.name 是变量名</p>
-<p><strong>只有一个参数</strong>，不需要圆括号<br>如果<strong>只有一句话</strong>，不需要花括号也不需要return(也不能返回对象)<br><strong>多句话</strong>的时候，用<strong>分号</strong>隔开</p>
-<p>箭头函数是匿名的（没看到地方写名字呀）</p>
-<h1 id="2-调用函数"><a href="#2-调用函数" class="headerlink" title="2.调用函数"></a>2.调用函数</h1><p>调用： call</p>
-<h2 id="I-函数是如何储存在内存里的"><a href="#I-函数是如何储存在内存里的" class="headerlink" title="I.函数是如何储存在内存里的"></a>I.函数是如何储存在内存里的</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Function(<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'return x+y'</span>)  <span class="comment">//这时候栈里面存了地址ADDR</span></span><br><span class="line"><span class="comment">//堆里存了函数的内容：</span></span><br><span class="line"><span class="string">name:</span>   <span class="comment">//名字，他叫匿名的</span></span><br><span class="line"><span class="string">params:</span> [<span class="string">'x'</span>,<span class="string">'y'</span>]   <span class="comment">//参数</span></span><br><span class="line"><span class="string">fbody:</span> <span class="string">'return x+y'</span>     <span class="comment">//函数体</span></span><br><span class="line"><span class="string">__proto__:</span>指向函数，里面有个call</span><br></pre></td></tr></table></figure>
-<p><code>eval：把字符串当代码执行</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f.call = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.evaleval（f.functionBody）</span><br><span class="line">&#125;</span><br><span class="line">f()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.eval(f.functionBody)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以理解为：f指的是这个对象<br>f.call()指的是执行这个对象的函数体</p>
-<p><strong>可以执行代码的对象被叫做函数</strong></p>
-<h2 id="II-f-1-2-和f-call-undefined-1-2"><a href="#II-f-1-2-和f-call-undefined-1-2" class="headerlink" title="II.f(1,2)和f.call(undefined,1,2)"></a>II.f(1,2)和f.call(undefined,1,2)</h2><p>f.call()才是硬核（hardcore）调用<br>贴心的f()语法糖</p>
-<p>不吃糖的选手一定喜欢玩黑魂<br>不吃糖才能更加从容的了解this</p>
-<h2 id="III-如何使用call"><a href="#III-如何使用call" class="headerlink" title="III.如何使用call"></a>III.如何使用call</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x,y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line">&#125;</span><br><span class="line">f.call(<span class="literal">undefined</span>,<span class="number">1</span>,<span class="number">2</span>)   <span class="comment">//3</span></span><br><span class="line"><span class="comment">//第一个参数写undefined，从第二个参数开始传</span></span><br></pre></td></tr></table></figure>
-<h1 id="3-this-arguments"><a href="#3-this-arguments" class="headerlink" title="3.this? arguments?"></a>3.this? arguments?</h1><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f.call(undefined,<span class="number">1</span>,<span class="number">2</span>) <span class="comment">//3</span></span><br><span class="line"><span class="comment">//这时候好玩了，第一个参数就是this</span></span><br><span class="line"><span class="comment">//第二第三个参数就是arguments</span></span><br></pre></td></tr></table></figure>
-<h2 id="I-规律"><a href="#I-规律" class="headerlink" title="I.规律"></a>I.规律</h2><p>1.call的第一个参数可以用this得到<br>2.call的后面的参数可以用arguments得到</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line">f.call(<span class="literal">undefined</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>arguments会打出参数（除了第一个）组成<strong>伪数组</strong><br><strong>普通模式下：</strong><br>如果this是undefined，浏览器会自动把this变成window(潜规则)<br><strong>严格模式下：</strong><br>this是什么他就打什么。</p>
-<p><strong>所以，this就是call的第一个参数</strong></p>
-<p>为何JS一定要this，一定要new。因为：<strong>要长得像JAVA</strong></p>
-<h1 id="4-call-stack"><a href="#4-call-stack" class="headerlink" title="4. call stack"></a>4. call stack</h1><h2 id="I-调用队栈"><a href="#I-调用队栈" class="headerlink" title="I.调用队栈"></a>I.调用队栈</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'a'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'b'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'b'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'c'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'c'</span></span><br><span class="line">&#125;</span><br><span class="line">a.call()</span><br><span class="line">b.call()</span><br><span class="line">c.call()</span><br></pre></td></tr></table></figure>
-<p>先进后出：<br>先a.call()再console.log(‘a’)<br>然后console.log(‘a’)抹<br>a.call()最后被抹掉</p>
-<p><strong>先进入call stack的后出去</strong></p>
-<h2 id="II-递归"><a href="#II-递归" class="headerlink" title="II.递归"></a>II.递归</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> <span class="built_in">sum</span>(n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(n =+ <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n + <span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, n-<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, <span class="number">5</span>)  //<span class="number">5</span> + <span class="built_in">sum</span>(<span class="number">4</span>)</span><br><span class="line">//<span class="built_in">sum</span>(<span class="number">10</span>)  //<span class="number">10</span> + <span class="built_in">sum</span>(<span class="number">9</span>)</span><br><span class="line">//<span class="built_in">sum</span>(<span class="number">4</span>)  //<span class="number">4</span> + <span class="built_in">sum</span>(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>求sum(5)的时候发现要找sum(4)<br>求sum(4)的时候发现要求sum(3)<br>…<br>一路找到sum(1)<br>之后一个一个抹掉，出来到sum(5)</p>
-<h2 id="III-什么叫Stack-Overflow"><a href="#III-什么叫Stack-Overflow" class="headerlink" title="III.什么叫Stack Overflow"></a>III.什么叫Stack Overflow</h2><p>栈溢出</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> <span class="built_in">sum</span>(n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(n =+ <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n + <span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, n-<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, <span class="number">1000000</span>)</span><br></pre></td></tr></table></figure>
-<p>如果栈的长度没有1000000就会爆栈</p>
-<p>chrome里压stack是有上限的</p>
-<p>同时Stack Overflow是个网站，专门讨论bug的</p>
-<h1 id="5-作用域（scope）"><a href="#5-作用域（scope）" class="headerlink" title="5.作用域（scope）"></a>5.作用域（scope）</h1><h2 id="I-tree"><a href="#I-tree" class="headerlink" title="I.tree"></a>I.tree</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">a</span> = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>()&#123;</span></span><br><span class="line">    var <span class="keyword">a</span> = <span class="number">2</span></span><br><span class="line">    f2.call()</span><br><span class="line">    console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>()&#123;</span></span><br><span class="line">        var <span class="keyword">a</span> = <span class="number">3</span></span><br><span class="line">        console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1.call()</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">           全局作用域（window/<span class="built_in">global</span>）</span><br><span class="line">                       |</span><br><span class="line">   f1的作用域                         变量<span class="keyword">a</span></span><br><span class="line">       |</span><br><span class="line">变量<span class="keyword">a</span>      f2的作用域</span><br><span class="line">              |</span><br><span class="line">            变量<span class="keyword">a</span></span><br></pre></td></tr></table></figure>
-<p>如果把<code>var a = 2</code>改成<code>a = 2</code>JS会优先认为这是个赋值<br>JS会在上一级作用域找，找到了就用这个a—— <strong>就近原则</strong><br>什么时候<code>a = 2</code>算声明全局？<br>在找到最后也没找到<code>a</code>的时候</p>
-<h2 id="II-声明提升"><a href="#II-声明提升" class="headerlink" title="II.声明提升"></a>II.声明提升</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    <span class="comment">//var a 应该在这里</span></span><br><span class="line">    f2.call()   </span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>           <span class="comment">//变量提升： 先把它拆开看 var a 和 a = 2。 a = 2在这里</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//这里也有</span></span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">3</span>       <span class="comment">//这里也有</span></span><br><span class="line">        <span class="built_in">console</span>.log(a)  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1.call()</span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br></pre></td></tr></table></figure>
-<p>拿到代码先提升<strong>声明</strong>部分<br>声明部分声明部分声明部分<br>改装完毕后它是这样的：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line">function f1()&#123;</span><br><span class="line">    <span class="selector-tag">var</span> <span class="selector-tag">a</span>               <span class="comment">//提升声明</span></span><br><span class="line">    function f2()&#123;          <span class="comment">//函数声明就不是声明了吗？也要提升</span></span><br><span class="line">        <span class="selector-tag">var</span> <span class="selector-tag">a</span>           <span class="comment">//提升声明</span></span><br><span class="line">        <span class="selector-tag">a</span> = <span class="number">3</span></span><br><span class="line">        console.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">    f2.call()</span><br><span class="line">    console.log(a)</span><br><span class="line">    <span class="selector-tag">a</span> = <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">f1.call()</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
-<p>所以调用f1以后<code>a</code>是什么？<br>赋值在console.log后面，f2的作用域又碰不到<br>那只有undefined咯</p>
-<p>作用域仅代表变量<strong>是哪个</strong><br>不表达变量的<strong>值</strong></p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">1</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">2</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">3</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">4</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">5</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">6</span>&lt;/<span class="built_in">li</span>&gt;    </span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> liTags = document.querySelectorAll('<span class="built_in">li</span>')</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> i=<span class="number">0</span>; i&lt;liTags.<span class="built_in">length</span>; i++)&#123;</span><br><span class="line">    </span><br><span class="line">    liTags[i].onclick = function()&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(i)  //这个i是多少</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(i)</span><br></pre></td></tr></table></figure>
-<p>i还是那个i</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> liTags</span><br><span class="line"><span class="selector-tag">var</span> i</span><br><span class="line">liTags = document.querySelectorAll(<span class="string">'li'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(var i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    liTags[i]<span class="selector-class">.onclick</span> = function()&#123;</span><br><span class="line">        console.log(i)  <span class="comment">//这个i是多少</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(i)</span><br></pre></td></tr></table></figure>
-<p>遍历之后才是点击，结果是6</p>
-<p><strong>只要它不是当场执行，都有可能变。</strong></p>
-<h1 id="6-闭包（Closure）"><a href="#6-闭包（Closure）" class="headerlink" title="6.闭包（Closure）"></a>6.闭包（Closure）</h1><p>如果一个函数，使用了它范围外的变量，那么这个（函数+这个变量）就叫做闭包。</p>
-<h1 id="7-全局变量可耻！"><a href="#7-全局变量可耻！" class="headerlink" title="7.全局变量可耻！"></a>7.全局变量可耻！</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>parent是个全局变量，直接声明赋值会覆盖它<br>所以我们希望在用这个函数的局部变量——立即调用</p>
-<p>就是声明一个匿名函数，然后立即调用。只是为了用局部变量</p>
-<h2 id="I-浏览器会认为这是个语法错误"><a href="#I-浏览器会认为这是个语法错误" class="headerlink" title="I.浏览器会认为这是个语法错误"></a>I.浏览器会认为这是个语法错误</h2><p>所以需要一些小技巧来改一下↓这一坨</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="i-括号"><a href="#i-括号" class="headerlink" title="i.括号"></a>i.括号</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call())</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="ii-括号写在调用之前"><a href="#ii-括号写在调用之前" class="headerlink" title="ii.括号写在调用之前"></a>ii.括号写在调用之前</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;).call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="iii-符号"><a href="#iii-符号" class="headerlink" title="iii.符号"></a>iii.符号</h3><p>负号<br>因为不需要这个值，只是为了这个局部变量<br>为了让浏览器知道：现在不是在声明一个函数，而是在声明并调用求值</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">-<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>同理<code>+</code>也可以咯</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">-<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>那<code>!</code>取反 <code>~</code>二进制的取反都可以</p>
-<p>只要触发，让浏览器明白这不是一个声明而是一个立即执行函数，就可以。浏览器就不报错。 </p>
-<h2 id="II-为了解决这个问题，我们有了let"><a href="#II-为了解决这个问题，我们有了let" class="headerlink" title="II.为了解决这个问题，我们有了let"></a>II.为了解决这个问题，我们有了<code>let</code></h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>用一个代码块来把它框起来，这时候不能用<code>var</code>因为：<br><code>var</code>这个东西只认函数，有函数就认没函数就创建全局变量。<br>但是<code>let</code>不一样，它的作用域就在这个代码块里面</p>
-<p>做个试验</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)  </span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>这时候，有一个变量提升</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> parent</span></span><br><span class="line"><span class="undefined">&#123;</span></span><br><span class="line"><span class="javascript">    parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)  </span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这没办法呀，<code>var</code>就这样跑出去声明了一个全局变量，因为块包不住它。</p>
-<h3 id="i-伟大的es6特性"><a href="#i-伟大的es6特性" class="headerlink" title="i.伟大的es6特性"></a>i.伟大的es6特性</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2913,7 +2714,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2942,7 +2743,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -2989,7 +2792,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
