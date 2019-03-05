@@ -5,9 +5,9 @@
   
   <link href="/Brendan-s-Blog/atom.xml" rel="self"/>
   
-  <link href="http://brendanzhang.github.io/"/>
+  <link href="http://brendanzhang.github.io/Brendan-s-Blog/"/>
   <updated>2019-03-05T10:16:46.611Z</updated>
-  <id>http://brendanzhang.github.io/</id>
+  <id>http://brendanzhang.github.io/Brendan-s-Blog/</id>
   
   <author>
     <name>张博涵</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>虚拟DOM</title>
-    <link href="http://brendanzhang.github.io/2018/10/30/%E8%99%9A%E6%8B%9FDOM/"/>
-    <id>http://brendanzhang.github.io/2018/10/30/虚拟DOM/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/10/30/%E8%99%9A%E6%8B%9FDOM/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/10/30/虚拟DOM/</id>
     <published>2018-10-30T10:36:13.000Z</published>
     <updated>2019-03-05T10:16:46.611Z</updated>
     
@@ -34,17 +34,17 @@
     
     </summary>
     
-      <category term="框架" scheme="http://brendanzhang.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
+      <category term="框架" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/%E6%A1%86%E6%9E%B6/"/>
     
     
-      <category term="DOM" scheme="http://brendanzhang.github.io/tags/DOM/"/>
+      <category term="DOM" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/DOM/"/>
     
   </entry>
   
   <entry>
     <title>koa初体验</title>
-    <link href="http://brendanzhang.github.io/2018/10/30/koa%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
-    <id>http://brendanzhang.github.io/2018/10/30/koa初体验/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/10/30/koa%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/10/30/koa初体验/</id>
     <published>2018-10-30T08:43:58.000Z</published>
     <updated>2019-03-05T10:16:46.454Z</updated>
     
@@ -59,17 +59,17 @@
     
     </summary>
     
-      <category term="node.js" scheme="http://brendanzhang.github.io/categories/node-js/"/>
+      <category term="node.js" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/node-js/"/>
     
     
-      <category term="node.js" scheme="http://brendanzhang.github.io/tags/node-js/"/>
+      <category term="node.js" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/node-js/"/>
     
   </entry>
   
   <entry>
     <title>配置vim</title>
-    <link href="http://brendanzhang.github.io/2018/10/25/%E9%85%8D%E7%BD%AEvim/"/>
-    <id>http://brendanzhang.github.io/2018/10/25/配置vim/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/10/25/%E9%85%8D%E7%BD%AEvim/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/10/25/配置vim/</id>
     <published>2018-10-25T09:40:42.000Z</published>
     <updated>2019-03-05T10:16:46.627Z</updated>
     
@@ -85,14 +85,14 @@
     </summary>
     
     
-      <category term="cli" scheme="http://brendanzhang.github.io/tags/cli/"/>
+      <category term="cli" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/cli/"/>
     
   </entry>
   
   <entry>
     <title>JS技巧-持续更新</title>
-    <link href="http://brendanzhang.github.io/2018/10/04/JS%E6%8A%80%E5%B7%A7-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
-    <id>http://brendanzhang.github.io/2018/10/04/JS技巧-持续更新/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/10/04/JS%E6%8A%80%E5%B7%A7-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/10/04/JS技巧-持续更新/</id>
     <published>2018-10-03T17:53:38.000Z</published>
     <updated>2019-03-05T10:16:46.281Z</updated>
     
@@ -107,17 +107,17 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://brendanzhang.github.io/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/JavaScript/"/>
     
     
-      <category term="JS" scheme="http://brendanzhang.github.io/tags/JS/"/>
+      <category term="JS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/JS/"/>
     
   </entry>
   
   <entry>
     <title>手机端调试</title>
-    <link href="http://brendanzhang.github.io/2018/10/02/%E6%89%8B%E6%9C%BA%E7%AB%AF%E8%B0%83%E8%AF%95/"/>
-    <id>http://brendanzhang.github.io/2018/10/02/手机端调试/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/10/02/%E6%89%8B%E6%9C%BA%E7%AB%AF%E8%B0%83%E8%AF%95/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/10/02/手机端调试/</id>
     <published>2018-10-01T17:25:10.000Z</published>
     <updated>2019-03-05T10:16:46.591Z</updated>
     
@@ -135,17 +135,17 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://brendanzhang.github.io/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/JavaScript/"/>
     
     
-      <category term="JS" scheme="http://brendanzhang.github.io/tags/JS/"/>
+      <category term="JS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/JS/"/>
     
   </entry>
   
   <entry>
     <title>关于URL-URI的一点tip</title>
-    <link href="http://brendanzhang.github.io/2018/10/02/%E5%85%B3%E4%BA%8EURL-URI%E7%9A%84%E4%B8%80%E7%82%B9tip/"/>
-    <id>http://brendanzhang.github.io/2018/10/02/关于URL-URI的一点tip/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/10/02/%E5%85%B3%E4%BA%8EURL-URI%E7%9A%84%E4%B8%80%E7%82%B9tip/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/10/02/关于URL-URI的一点tip/</id>
     <published>2018-10-01T16:28:23.000Z</published>
     <updated>2019-03-05T10:16:46.543Z</updated>
     
@@ -160,17 +160,17 @@
     
     </summary>
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/categories/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/HTTP/"/>
     
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/tags/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>复习css居中</title>
-    <link href="http://brendanzhang.github.io/2018/09/03/%E5%A4%8D%E4%B9%A0css%E5%B1%85%E4%B8%AD/"/>
-    <id>http://brendanzhang.github.io/2018/09/03/复习css居中/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/09/03/%E5%A4%8D%E4%B9%A0css%E5%B1%85%E4%B8%AD/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/09/03/复习css居中/</id>
     <published>2018-09-02T20:00:39.000Z</published>
     <updated>2019-03-05T10:16:46.563Z</updated>
     
@@ -185,17 +185,17 @@
     
     </summary>
     
-      <category term="CSS" scheme="http://brendanzhang.github.io/categories/CSS/"/>
+      <category term="CSS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/CSS/"/>
     
     
-      <category term="CSS" scheme="http://brendanzhang.github.io/tags/CSS/"/>
+      <category term="CSS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>MVC?MVVM!</title>
-    <link href="http://brendanzhang.github.io/2018/06/30/MVC-MVVM/"/>
-    <id>http://brendanzhang.github.io/2018/06/30/MVC-MVVM/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/30/MVC-MVVM/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/06/30/MVC-MVVM/</id>
     <published>2018-06-30T14:40:50.000Z</published>
     <updated>2019-03-05T10:16:46.406Z</updated>
     
@@ -211,17 +211,17 @@
     
     </summary>
     
-      <category term="框架" scheme="http://brendanzhang.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
+      <category term="框架" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/%E6%A1%86%E6%9E%B6/"/>
     
     
-      <category term="JS" scheme="http://brendanzhang.github.io/tags/JS/"/>
+      <category term="JS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/JS/"/>
     
   </entry>
   
   <entry>
     <title>复习一下移动端自适应</title>
-    <link href="http://brendanzhang.github.io/2018/06/23/%E5%A4%8D%E4%B9%A0%E4%B8%80%E4%B8%8B%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%87%AA%E9%80%82%E5%BA%94/"/>
-    <id>http://brendanzhang.github.io/2018/06/23/复习一下移动端自适应/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/23/%E5%A4%8D%E4%B9%A0%E4%B8%80%E4%B8%8B%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%87%AA%E9%80%82%E5%BA%94/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/06/23/复习一下移动端自适应/</id>
     <published>2018-06-23T10:24:27.000Z</published>
     <updated>2019-03-05T10:16:46.571Z</updated>
     
@@ -237,17 +237,17 @@
     
     </summary>
     
-      <category term="CSS" scheme="http://brendanzhang.github.io/categories/CSS/"/>
+      <category term="CSS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/CSS/"/>
     
     
-      <category term="css" scheme="http://brendanzhang.github.io/tags/css/"/>
+      <category term="css" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>vue的小细节</title>
-    <link href="http://brendanzhang.github.io/2018/06/22/vue%E7%9A%84%E5%B0%8F%E7%BB%86%E8%8A%82/"/>
-    <id>http://brendanzhang.github.io/2018/06/22/vue的小细节/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/22/vue%E7%9A%84%E5%B0%8F%E7%BB%86%E8%8A%82/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/06/22/vue的小细节/</id>
     <published>2018-06-22T04:08:17.000Z</published>
     <updated>2019-03-05T10:16:46.466Z</updated>
     
@@ -263,17 +263,17 @@
     
     </summary>
     
-      <category term="框架" scheme="http://brendanzhang.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
+      <category term="框架" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/%E6%A1%86%E6%9E%B6/"/>
     
     
-      <category term="vue" scheme="http://brendanzhang.github.io/tags/vue/"/>
+      <category term="vue" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/vue/"/>
     
   </entry>
   
   <entry>
     <title>关于webpack</title>
-    <link href="http://brendanzhang.github.io/2018/06/19/%E5%85%B3%E4%BA%8Ewebpack/"/>
-    <id>http://brendanzhang.github.io/2018/06/19/关于webpack/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/19/%E5%85%B3%E4%BA%8Ewebpack/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/06/19/关于webpack/</id>
     <published>2018-06-19T14:17:38.000Z</published>
     <updated>2019-03-05T10:16:46.547Z</updated>
     
@@ -288,17 +288,17 @@
     
     </summary>
     
-      <category term="框架" scheme="http://brendanzhang.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
+      <category term="框架" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/%E6%A1%86%E6%9E%B6/"/>
     
     
-      <category term="webpack" scheme="http://brendanzhang.github.io/tags/webpack/"/>
+      <category term="webpack" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/webpack/"/>
     
   </entry>
   
   <entry>
     <title>Session、LocalStorage、Cache-Control</title>
-    <link href="http://brendanzhang.github.io/2018/06/15/Session%E3%80%81LocalStorage%E3%80%81Cache-Control/"/>
-    <id>http://brendanzhang.github.io/2018/06/15/Session、LocalStorage、Cache-Control/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/15/Session%E3%80%81LocalStorage%E3%80%81Cache-Control/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/06/15/Session、LocalStorage、Cache-Control/</id>
     <published>2018-06-15T09:39:25.000Z</published>
     <updated>2019-03-05T10:16:46.418Z</updated>
     
@@ -313,17 +313,17 @@
     
     </summary>
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/categories/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/HTTP/"/>
     
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/tags/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>关于Cookie</title>
-    <link href="http://brendanzhang.github.io/2018/06/07/%E5%85%B3%E4%BA%8ECookie/"/>
-    <id>http://brendanzhang.github.io/2018/06/07/关于Cookie/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/07/%E5%85%B3%E4%BA%8ECookie/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/06/07/关于Cookie/</id>
     <published>2018-06-07T10:38:15.000Z</published>
     <updated>2019-03-05T10:16:46.531Z</updated>
     
@@ -340,17 +340,17 @@
     
     </summary>
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/categories/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/HTTP/"/>
     
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/tags/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>setTimeout模拟setInterval</title>
-    <link href="http://brendanzhang.github.io/2018/06/06/setTimeout%E6%A8%A1%E6%8B%9FsetInterval/"/>
-    <id>http://brendanzhang.github.io/2018/06/06/setTimeout模拟setInterval/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/06/setTimeout%E6%A8%A1%E6%8B%9FsetInterval/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/06/06/setTimeout模拟setInterval/</id>
     <published>2018-06-06T12:17:00.000Z</published>
     <updated>2019-03-05T10:16:46.458Z</updated>
     
@@ -365,17 +365,17 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://brendanzhang.github.io/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/JavaScript/"/>
     
     
-      <category term="JS" scheme="http://brendanzhang.github.io/tags/JS/"/>
+      <category term="JS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/JS/"/>
     
   </entry>
   
   <entry>
     <title>异步＆回调</title>
-    <link href="http://brendanzhang.github.io/2018/06/04/%E5%BC%82%E6%AD%A5%EF%BC%86%E5%9B%9E%E8%B0%83/"/>
-    <id>http://brendanzhang.github.io/2018/06/04/异步＆回调/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/04/%E5%BC%82%E6%AD%A5%EF%BC%86%E5%9B%9E%E8%B0%83/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/06/04/异步＆回调/</id>
     <published>2018-06-04T13:41:23.000Z</published>
     <updated>2019-03-05T10:16:46.579Z</updated>
     
@@ -390,17 +390,17 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://brendanzhang.github.io/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/JavaScript/"/>
     
     
-      <category term="JS" scheme="http://brendanzhang.github.io/tags/JS/"/>
+      <category term="JS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/JS/"/>
     
   </entry>
   
   <entry>
     <title>用JS做一个AJAX</title>
-    <link href="http://brendanzhang.github.io/2018/05/11/%E7%94%A8JS%E5%81%9A%E4%B8%80%E4%B8%AAAJAX/"/>
-    <id>http://brendanzhang.github.io/2018/05/11/用JS做一个AJAX/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/05/11/%E7%94%A8JS%E5%81%9A%E4%B8%80%E4%B8%AAAJAX/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/05/11/用JS做一个AJAX/</id>
     <published>2018-05-10T18:26:47.000Z</published>
     <updated>2019-03-05T10:16:46.595Z</updated>
     
@@ -417,17 +417,17 @@
     
     </summary>
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/categories/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/HTTP/"/>
     
     
-      <category term="AJAX" scheme="http://brendanzhang.github.io/tags/AJAX/"/>
+      <category term="AJAX" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/AJAX/"/>
     
   </entry>
   
   <entry>
     <title>AJAX</title>
-    <link href="http://brendanzhang.github.io/2018/05/09/AJAX/"/>
-    <id>http://brendanzhang.github.io/2018/05/09/AJAX/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/05/09/AJAX/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/05/09/AJAX/</id>
     <published>2018-05-09T00:21:28.000Z</published>
     <updated>2019-03-05T10:16:46.227Z</updated>
     
@@ -442,17 +442,17 @@
     
     </summary>
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/categories/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/HTTP/"/>
     
     
-      <category term="Ajax" scheme="http://brendanzhang.github.io/tags/Ajax/"/>
+      <category term="Ajax" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/Ajax/"/>
     
   </entry>
   
   <entry>
     <title>JSONP</title>
-    <link href="http://brendanzhang.github.io/2018/05/07/JSONP/"/>
-    <id>http://brendanzhang.github.io/2018/05/07/JSONP/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/05/07/JSONP/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/05/07/JSONP/</id>
     <published>2018-05-07T12:09:31.000Z</published>
     <updated>2019-03-05T10:16:46.261Z</updated>
     
@@ -467,17 +467,17 @@
     
     </summary>
     
-      <category term="HTTP" scheme="http://brendanzhang.github.io/categories/HTTP/"/>
+      <category term="HTTP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/HTTP/"/>
     
     
-      <category term="JSONP" scheme="http://brendanzhang.github.io/tags/JSONP/"/>
+      <category term="JSONP" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/JSONP/"/>
     
   </entry>
   
   <entry>
     <title>重构-始</title>
-    <link href="http://brendanzhang.github.io/2018/04/28/%E9%87%8D%E6%9E%84-%E5%A7%8B/"/>
-    <id>http://brendanzhang.github.io/2018/04/28/重构-始/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/28/%E9%87%8D%E6%9E%84-%E5%A7%8B/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/04/28/重构-始/</id>
     <published>2018-04-28T15:46:19.000Z</published>
     <updated>2019-03-05T10:16:46.631Z</updated>
     
@@ -493,17 +493,17 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://brendanzhang.github.io/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/JavaScript/"/>
     
     
-      <category term="重构" scheme="http://brendanzhang.github.io/tags/%E9%87%8D%E6%9E%84/"/>
+      <category term="重构" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/%E9%87%8D%E6%9E%84/"/>
     
   </entry>
   
   <entry>
     <title>jQuery-始</title>
-    <link href="http://brendanzhang.github.io/2018/04/26/jQuery-%E5%A7%8B/"/>
-    <id>http://brendanzhang.github.io/2018/04/26/jQuery-始/</id>
+    <link href="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/26/jQuery-%E5%A7%8B/"/>
+    <id>http://brendanzhang.github.io/Brendan-s-Blog/2018/04/26/jQuery-始/</id>
     <published>2018-04-26T11:04:47.000Z</published>
     <updated>2019-03-05T10:16:46.438Z</updated>
     
@@ -519,10 +519,10 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://brendanzhang.github.io/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="http://brendanzhang.github.io/Brendan-s-Blog/categories/JavaScript/"/>
     
     
-      <category term="JS" scheme="http://brendanzhang.github.io/tags/JS/"/>
+      <category term="JS" scheme="http://brendanzhang.github.io/Brendan-s-Blog/tags/JS/"/>
     
   </entry>
   

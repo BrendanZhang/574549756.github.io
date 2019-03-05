@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/Brendan-s-Blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/Brendan-s-Blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Brendan-s-Blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Brendan-s-Blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Brendan-s-Blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/Brendan-s-Blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JS," />
+
+
+
+
+
+  <link rel="alternate" href="/Brendan-s-Blog/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="函数就是一段可以反复调用的代码块。 1.函数的五种声明方式：I.具名函数1234function f(x,y)&amp;#123;    return x+y&amp;#125;f.name // &apos;f&apos; .name就是函数名 II.匿名函数12345var ff = function(x,y)&amp;#123;    return x+y&amp;#125;f.name //&apos;f&apos; .name就是变量名 如果要声明匿名函数，">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-函数">
+<meta property="og:url" content="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/23/JavaScript-函数/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="函数就是一段可以反复调用的代码块。 1.函数的五种声明方式：I.具名函数1234function f(x,y)&amp;#123;    return x+y&amp;#125;f.name // &apos;f&apos; .name就是函数名 II.匿名函数12345var ff = function(x,y)&amp;#123;    return x+y&amp;#125;f.name //&apos;f&apos; .name就是变量名 如果要声明匿名函数，">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-05T10:16:46.293Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-函数">
+<meta name="twitter:description" content="函数就是一段可以反复调用的代码块。 1.函数的五种声明方式：I.具名函数1234function f(x,y)&amp;#123;    return x+y&amp;#125;f.name // &apos;f&apos; .name就是函数名 II.匿名函数12345var ff = function(x,y)&amp;#123;    return x+y&amp;#125;f.name //&apos;f&apos; .name就是变量名 如果要声明匿名函数，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Brendan-s-Blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/23/JavaScript-函数/"/>
+
+
+
+
+
+  <title>JavaScript-函数 | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Brendan-s-Blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Brendan-s-Blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Brendan-s-Blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/04/23/JavaScript-函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript-函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T03:48:49+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Brendan-s-Blog/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>函数就是一段可以反复调用的代码块。</p>
+<h1 id="1-函数的五种声明方式："><a href="#1-函数的五种声明方式：" class="headerlink" title="1.函数的五种声明方式："></a>1.函数的五种声明方式：</h1><h2 id="I-具名函数"><a href="#I-具名函数" class="headerlink" title="I.具名函数"></a>I.具名函数</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title">f</span>(x,y)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">x+y</span></span><br><span class="line">&#125;</span><br><span class="line">f.name // <span class="string">'f'</span></span><br></pre></td></tr></table></figure>
+<p>.name就是函数名</p>
+<h2 id="II-匿名函数"><a href="#II-匿名函数" class="headerlink" title="II.匿名函数"></a>II.匿名函数</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f</span><br><span class="line">f = <span class="function"><span class="keyword">function</span><span class="params">(x,y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line">&#125;</span><br><span class="line">f.name <span class="comment">//'f'</span></span><br></pre></td></tr></table></figure>
+<p>.name就是变量名</p>
+<p>如果要声明匿名函数，必须把它给一个变量</p>
+<h2 id="III-具名函数赋值"><a href="#III-具名函数赋值" class="headerlink" title="III.具名函数赋值"></a>III.具名函数赋值</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f</span><br><span class="line">f = <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">x,y</span>)</span>&#123; <span class="keyword">return</span> x+y &#125;</span><br><span class="line">f.name <span class="comment">// 'f2'</span></span><br><span class="line"><span class="built_in">console</span>.log(f2) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>.name随具名函数的函数名</p>
+<p>和具名函数的区别： <code>f.name</code>是他相应具名函数的名字。<br><code>console.log(f)</code>的时候，会报错,因为js会找不到<code>f2</code><br>就很蠢：<strong>这就是它的不一致性</strong><br>这是个作用域问题：<br><code>function f2(){}</code>中的<code>f2</code>只能作用于花括号内</p>
+<h2 id="IV-window-Function"><a href="#IV-window-Function" class="headerlink" title="IV.window.Function"></a>IV.window.Function</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> f = new Function(<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'return x+y'</span>)</span><br><span class="line">f<span class="selector-class">.name</span> <span class="comment">// anonymous</span></span><br></pre></td></tr></table></figure>
+<p>.name 是<code>anonymous</code> 他他娘的是匿名的，名字叫<code>匿名的</code></p>
+<p>很不常用<br>所有的部分用字符串表示，字符串可以拼起来，也可以在里面加变量。</p>
+<h2 id="V-箭头函数"><a href="#V-箭头函数" class="headerlink" title="V.箭头函数"></a>V.箭头函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">x,y</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> x+y</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> sum = <span class="function">(<span class="params">x,y</span>) =&gt;</span> x+y</span><br><span class="line"> <span class="keyword">var</span> n2 = <span class="function"><span class="params">n</span> =&gt;</span> n*n</span><br></pre></td></tr></table></figure>
+<p>.name 是变量名</p>
+<p><strong>只有一个参数</strong>，不需要圆括号<br>如果<strong>只有一句话</strong>，不需要花括号也不需要return(也不能返回对象)<br><strong>多句话</strong>的时候，用<strong>分号</strong>隔开</p>
+<p>箭头函数是匿名的（没看到地方写名字呀）</p>
+<h1 id="2-调用函数"><a href="#2-调用函数" class="headerlink" title="2.调用函数"></a>2.调用函数</h1><p>调用： call</p>
+<h2 id="I-函数是如何储存在内存里的"><a href="#I-函数是如何储存在内存里的" class="headerlink" title="I.函数是如何储存在内存里的"></a>I.函数是如何储存在内存里的</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Function(<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'return x+y'</span>)  <span class="comment">//这时候栈里面存了地址ADDR</span></span><br><span class="line"><span class="comment">//堆里存了函数的内容：</span></span><br><span class="line"><span class="string">name:</span>   <span class="comment">//名字，他叫匿名的</span></span><br><span class="line"><span class="string">params:</span> [<span class="string">'x'</span>,<span class="string">'y'</span>]   <span class="comment">//参数</span></span><br><span class="line"><span class="string">fbody:</span> <span class="string">'return x+y'</span>     <span class="comment">//函数体</span></span><br><span class="line"><span class="string">__proto__:</span>指向函数，里面有个call</span><br></pre></td></tr></table></figure>
+<p><code>eval：把字符串当代码执行</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f.call = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.evaleval（f.functionBody）</span><br><span class="line">&#125;</span><br><span class="line">f()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.eval(f.functionBody)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以理解为：f指的是这个对象<br>f.call()指的是执行这个对象的函数体</p>
+<p><strong>可以执行代码的对象被叫做函数</strong></p>
+<h2 id="II-f-1-2-和f-call-undefined-1-2"><a href="#II-f-1-2-和f-call-undefined-1-2" class="headerlink" title="II.f(1,2)和f.call(undefined,1,2)"></a>II.f(1,2)和f.call(undefined,1,2)</h2><p>f.call()才是硬核（hardcore）调用<br>贴心的f()语法糖</p>
+<p>不吃糖的选手一定喜欢玩黑魂<br>不吃糖才能更加从容的了解this</p>
+<h2 id="III-如何使用call"><a href="#III-如何使用call" class="headerlink" title="III.如何使用call"></a>III.如何使用call</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x,y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line">&#125;</span><br><span class="line">f.call(<span class="literal">undefined</span>,<span class="number">1</span>,<span class="number">2</span>)   <span class="comment">//3</span></span><br><span class="line"><span class="comment">//第一个参数写undefined，从第二个参数开始传</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-this-arguments"><a href="#3-this-arguments" class="headerlink" title="3.this? arguments?"></a>3.this? arguments?</h1><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f.call(undefined,<span class="number">1</span>,<span class="number">2</span>) <span class="comment">//3</span></span><br><span class="line"><span class="comment">//这时候好玩了，第一个参数就是this</span></span><br><span class="line"><span class="comment">//第二第三个参数就是arguments</span></span><br></pre></td></tr></table></figure>
+<h2 id="I-规律"><a href="#I-规律" class="headerlink" title="I.规律"></a>I.规律</h2><p>1.call的第一个参数可以用this得到<br>2.call的后面的参数可以用arguments得到</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line">f.call(<span class="literal">undefined</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>arguments会打出参数（除了第一个）组成<strong>伪数组</strong><br><strong>普通模式下：</strong><br>如果this是undefined，浏览器会自动把this变成window(潜规则)<br><strong>严格模式下：</strong><br>this是什么他就打什么。</p>
+<p><strong>所以，this就是call的第一个参数</strong></p>
+<p>为何JS一定要this，一定要new。因为：<strong>要长得像JAVA</strong></p>
+<h1 id="4-call-stack"><a href="#4-call-stack" class="headerlink" title="4. call stack"></a>4. call stack</h1><h2 id="I-调用队栈"><a href="#I-调用队栈" class="headerlink" title="I.调用队栈"></a>I.调用队栈</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'a'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'b'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'b'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'c'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'c'</span></span><br><span class="line">&#125;</span><br><span class="line">a.call()</span><br><span class="line">b.call()</span><br><span class="line">c.call()</span><br></pre></td></tr></table></figure>
+<p>先进后出：<br>先a.call()再console.log(‘a’)<br>然后console.log(‘a’)抹<br>a.call()最后被抹掉</p>
+<p><strong>先进入call stack的后出去</strong></p>
+<h2 id="II-递归"><a href="#II-递归" class="headerlink" title="II.递归"></a>II.递归</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> <span class="built_in">sum</span>(n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(n =+ <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n + <span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, n-<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, <span class="number">5</span>)  //<span class="number">5</span> + <span class="built_in">sum</span>(<span class="number">4</span>)</span><br><span class="line">//<span class="built_in">sum</span>(<span class="number">10</span>)  //<span class="number">10</span> + <span class="built_in">sum</span>(<span class="number">9</span>)</span><br><span class="line">//<span class="built_in">sum</span>(<span class="number">4</span>)  //<span class="number">4</span> + <span class="built_in">sum</span>(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>求sum(5)的时候发现要找sum(4)<br>求sum(4)的时候发现要求sum(3)<br>…<br>一路找到sum(1)<br>之后一个一个抹掉，出来到sum(5)</p>
+<h2 id="III-什么叫Stack-Overflow"><a href="#III-什么叫Stack-Overflow" class="headerlink" title="III.什么叫Stack Overflow"></a>III.什么叫Stack Overflow</h2><p>栈溢出</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> <span class="built_in">sum</span>(n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(n =+ <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n + <span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, n-<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span>.<span class="keyword">call</span>(undefined, <span class="number">1000000</span>)</span><br></pre></td></tr></table></figure>
+<p>如果栈的长度没有1000000就会爆栈</p>
+<p>chrome里压stack是有上限的</p>
+<p>同时Stack Overflow是个网站，专门讨论bug的</p>
+<h1 id="5-作用域（scope）"><a href="#5-作用域（scope）" class="headerlink" title="5.作用域（scope）"></a>5.作用域（scope）</h1><h2 id="I-tree"><a href="#I-tree" class="headerlink" title="I.tree"></a>I.tree</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">a</span> = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>()&#123;</span></span><br><span class="line">    var <span class="keyword">a</span> = <span class="number">2</span></span><br><span class="line">    f2.call()</span><br><span class="line">    console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>()&#123;</span></span><br><span class="line">        var <span class="keyword">a</span> = <span class="number">3</span></span><br><span class="line">        console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1.call()</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">           全局作用域（window/<span class="built_in">global</span>）</span><br><span class="line">                       |</span><br><span class="line">   f1的作用域                         变量<span class="keyword">a</span></span><br><span class="line">       |</span><br><span class="line">变量<span class="keyword">a</span>      f2的作用域</span><br><span class="line">              |</span><br><span class="line">            变量<span class="keyword">a</span></span><br></pre></td></tr></table></figure>
+<p>如果把<code>var a = 2</code>改成<code>a = 2</code>JS会优先认为这是个赋值<br>JS会在上一级作用域找，找到了就用这个a—— <strong>就近原则</strong><br>什么时候<code>a = 2</code>算声明全局？<br>在找到最后也没找到<code>a</code>的时候</p>
+<h2 id="II-声明提升"><a href="#II-声明提升" class="headerlink" title="II.声明提升"></a>II.声明提升</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    <span class="comment">//var a 应该在这里</span></span><br><span class="line">    f2.call()   </span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>           <span class="comment">//变量提升： 先把它拆开看 var a 和 a = 2。 a = 2在这里</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//这里也有</span></span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">3</span>       <span class="comment">//这里也有</span></span><br><span class="line">        <span class="built_in">console</span>.log(a)  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1.call()</span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br></pre></td></tr></table></figure>
+<p>拿到代码先提升<strong>声明</strong>部分<br>声明部分声明部分声明部分<br>改装完毕后它是这样的：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line">function f1()&#123;</span><br><span class="line">    <span class="selector-tag">var</span> <span class="selector-tag">a</span>               <span class="comment">//提升声明</span></span><br><span class="line">    function f2()&#123;          <span class="comment">//函数声明就不是声明了吗？也要提升</span></span><br><span class="line">        <span class="selector-tag">var</span> <span class="selector-tag">a</span>           <span class="comment">//提升声明</span></span><br><span class="line">        <span class="selector-tag">a</span> = <span class="number">3</span></span><br><span class="line">        console.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">    f2.call()</span><br><span class="line">    console.log(a)</span><br><span class="line">    <span class="selector-tag">a</span> = <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">f1.call()</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
+<p>所以调用f1以后<code>a</code>是什么？<br>赋值在console.log后面，f2的作用域又碰不到<br>那只有undefined咯</p>
+<p>作用域仅代表变量<strong>是哪个</strong><br>不表达变量的<strong>值</strong></p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">1</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">2</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">3</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">4</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">5</span>&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span>&gt;选项<span class="number">6</span>&lt;/<span class="built_in">li</span>&gt;    </span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> liTags = document.querySelectorAll('<span class="built_in">li</span>')</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> i=<span class="number">0</span>; i&lt;liTags.<span class="built_in">length</span>; i++)&#123;</span><br><span class="line">    </span><br><span class="line">    liTags[i].onclick = function()&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(i)  //这个i是多少</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(i)</span><br></pre></td></tr></table></figure>
+<p>i还是那个i</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> liTags</span><br><span class="line"><span class="selector-tag">var</span> i</span><br><span class="line">liTags = document.querySelectorAll(<span class="string">'li'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(var i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    liTags[i]<span class="selector-class">.onclick</span> = function()&#123;</span><br><span class="line">        console.log(i)  <span class="comment">//这个i是多少</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(i)</span><br></pre></td></tr></table></figure>
+<p>遍历之后才是点击，结果是6</p>
+<p><strong>只要它不是当场执行，都有可能变。</strong></p>
+<h1 id="6-闭包（Closure）"><a href="#6-闭包（Closure）" class="headerlink" title="6.闭包（Closure）"></a>6.闭包（Closure）</h1><p>如果一个函数，使用了它范围外的变量，那么这个（函数+这个变量）就叫做闭包。</p>
+<h1 id="7-全局变量可耻！"><a href="#7-全局变量可耻！" class="headerlink" title="7.全局变量可耻！"></a>7.全局变量可耻！</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>parent是个全局变量，直接声明赋值会覆盖它<br>所以我们希望在用这个函数的局部变量——立即调用</p>
+<p>就是声明一个匿名函数，然后立即调用。只是为了用局部变量</p>
+<h2 id="I-浏览器会认为这是个语法错误"><a href="#I-浏览器会认为这是个语法错误" class="headerlink" title="I.浏览器会认为这是个语法错误"></a>I.浏览器会认为这是个语法错误</h2><p>所以需要一些小技巧来改一下↓这一坨</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="i-括号"><a href="#i-括号" class="headerlink" title="i.括号"></a>i.括号</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call())</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="ii-括号写在调用之前"><a href="#ii-括号写在调用之前" class="headerlink" title="ii.括号写在调用之前"></a>ii.括号写在调用之前</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;).call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="iii-符号"><a href="#iii-符号" class="headerlink" title="iii.符号"></a>iii.符号</h3><p>负号<br>因为不需要这个值，只是为了这个局部变量<br>为了让浏览器知道：现在不是在声明一个函数，而是在声明并调用求值</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">-<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同理<code>+</code>也可以咯</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">-<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;.call()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>那<code>!</code>取反 <code>~</code>二进制的取反都可以</p>
+<p>只要触发，让浏览器明白这不是一个声明而是一个立即执行函数，就可以。浏览器就不报错。 </p>
+<h2 id="II-为了解决这个问题，我们有了let"><a href="#II-为了解决这个问题，我们有了let" class="headerlink" title="II.为了解决这个问题，我们有了let"></a>II.为了解决这个问题，我们有了<code>let</code></h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>用一个代码块来把它框起来，这时候不能用<code>var</code>因为：<br><code>var</code>这个东西只认函数，有函数就认没函数就创建全局变量。<br>但是<code>let</code>不一样，它的作用域就在这个代码块里面</p>
+<p>做个试验</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)  </span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>这时候，有一个变量提升</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> parent</span></span><br><span class="line"><span class="undefined">&#123;</span></span><br><span class="line"><span class="javascript">    parent = <span class="built_in">document</span>.querySelector(<span class="string">'#self'</span>)  </span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(parent)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这没办法呀，<code>var</code>就这样跑出去声明了一个全局变量，因为块包不住它。</p>
+<h3 id="i-伟大的es6特性"><a href="#i-伟大的es6特性" class="headerlink" title="i.伟大的es6特性"></a>i.伟大的es6特性</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Brendan-s-Blog/tags/JS/" rel="tag"># JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/23/JavaScript-数组/" rel="next" title="JavaScript-数组">
+                <i class="fa fa-chevron-left"></i> JavaScript-数组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/25/DOM/" rel="prev" title="DOM">
+                DOM <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Brendan-s-Blog/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Brendan-s-Blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/Brendan-s-Blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-函数的五种声明方式："><span class="nav-number">1.</span> <span class="nav-text">1.函数的五种声明方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-具名函数"><span class="nav-number">1.1.</span> <span class="nav-text">I.具名函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-匿名函数"><span class="nav-number">1.2.</span> <span class="nav-text">II.匿名函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-具名函数赋值"><span class="nav-number">1.3.</span> <span class="nav-text">III.具名函数赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV-window-Function"><span class="nav-number">1.4.</span> <span class="nav-text">IV.window.Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V-箭头函数"><span class="nav-number">1.5.</span> <span class="nav-text">V.箭头函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-调用函数"><span class="nav-number">2.</span> <span class="nav-text">2.调用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-函数是如何储存在内存里的"><span class="nav-number">2.1.</span> <span class="nav-text">I.函数是如何储存在内存里的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-f-1-2-和f-call-undefined-1-2"><span class="nav-number">2.2.</span> <span class="nav-text">II.f(1,2)和f.call(undefined,1,2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-如何使用call"><span class="nav-number">2.3.</span> <span class="nav-text">III.如何使用call</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-this-arguments"><span class="nav-number">3.</span> <span class="nav-text">3.this? arguments?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-规律"><span class="nav-number">3.1.</span> <span class="nav-text">I.规律</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-call-stack"><span class="nav-number">4.</span> <span class="nav-text">4. call stack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-调用队栈"><span class="nav-number">4.1.</span> <span class="nav-text">I.调用队栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-递归"><span class="nav-number">4.2.</span> <span class="nav-text">II.递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-什么叫Stack-Overflow"><span class="nav-number">4.3.</span> <span class="nav-text">III.什么叫Stack Overflow</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-作用域（scope）"><span class="nav-number">5.</span> <span class="nav-text">5.作用域（scope）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-tree"><span class="nav-number">5.1.</span> <span class="nav-text">I.tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-声明提升"><span class="nav-number">5.2.</span> <span class="nav-text">II.声明提升</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-闭包（Closure）"><span class="nav-number">6.</span> <span class="nav-text">6.闭包（Closure）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-全局变量可耻！"><span class="nav-number">7.</span> <span class="nav-text">7.全局变量可耻！</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-浏览器会认为这是个语法错误"><span class="nav-number">7.1.</span> <span class="nav-text">I.浏览器会认为这是个语法错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-括号"><span class="nav-number">7.1.1.</span> <span class="nav-text">i.括号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-括号写在调用之前"><span class="nav-number">7.1.2.</span> <span class="nav-text">ii.括号写在调用之前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-符号"><span class="nav-number">7.1.3.</span> <span class="nav-text">iii.符号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-为了解决这个问题，我们有了let"><span class="nav-number">7.2.</span> <span class="nav-text">II.为了解决这个问题，我们有了let</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-伟大的es6特性"><span class="nav-number">7.2.1.</span> <span class="nav-text">i.伟大的es6特性</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/Brendan-s-Blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/Brendan-s-Blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/Brendan-s-Blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Brendan-s-Blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Brendan-s-Blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Brendan-s-Blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/Brendan-s-Blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/Brendan-s-Blog/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.首先要搞清楚什么是内存干吗用的？存东西用的。通电存东西，断电就GG。外存没有内存快最快的外存不就是SSD嘛，因为它能接近内存的速度。机械硬盘，就很容易坏，十年基本就坏了。SSD，不容易坏，但是一坏就全坏了。 I.它是怎么工作的i.举个例子假设内存有2G开机操作系统 512M浏览器 1G （浏览器真的很占内存）假设浏览器两个页面 1234页面1（100M）        HTML+CSS+JS+">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-类型">
+<meta property="og:url" content="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/11/JavaScript-类型/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.首先要搞清楚什么是内存干吗用的？存东西用的。通电存东西，断电就GG。外存没有内存快最快的外存不就是SSD嘛，因为它能接近内存的速度。机械硬盘，就很容易坏，十年基本就坏了。SSD，不容易坏，但是一坏就全坏了。 I.它是怎么工作的i.举个例子假设内存有2G开机操作系统 512M浏览器 1G （浏览器真的很占内存）假设浏览器两个页面 1234页面1（100M）        HTML+CSS+JS+">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-05T10:16:46.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-类型">
+<meta name="twitter:description" content="1.首先要搞清楚什么是内存干吗用的？存东西用的。通电存东西，断电就GG。外存没有内存快最快的外存不就是SSD嘛，因为它能接近内存的速度。机械硬盘，就很容易坏，十年基本就坏了。SSD，不容易坏，但是一坏就全坏了。 I.它是怎么工作的i.举个例子假设内存有2G开机操作系统 512M浏览器 1G （浏览器真的很占内存）假设浏览器两个页面 1234页面1（100M）        HTML+CSS+JS+">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Brendan-s-Blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/11/JavaScript-类型/"/>
+
+
+
+
+
+  <title>JavaScript-类型 | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Brendan-s-Blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Brendan-s-Blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Brendan-s-Blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/04/11/JavaScript-类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript-类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-11T10:10:04+08:00">
+                2018-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Brendan-s-Blog/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-首先要搞清楚什么是内存"><a href="#1-首先要搞清楚什么是内存" class="headerlink" title="1.首先要搞清楚什么是内存"></a>1.首先要搞清楚什么是内存</h1><p>干吗用的？存东西用的。通电存东西，断电就GG。<br>外存没有内存快<br>最快的外存不就是SSD嘛，因为它能接近内存的速度。<br>机械硬盘，就很容易坏，十年基本就坏了。<br>SSD，不容易坏，但是一坏就全坏了。</p>
+<h2 id="I-它是怎么工作的"><a href="#I-它是怎么工作的" class="headerlink" title="I.它是怎么工作的"></a>I.它是怎么工作的</h2><h3 id="i-举个例子"><a href="#i-举个例子" class="headerlink" title="i.举个例子"></a>i.举个例子</h3><p>假设内存有2G<br>开机<br>操作系统 512M<br>浏览器 1G （浏览器真的很占内存）<br>假设浏览器两个页面</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">页面<span class="number">1</span>（<span class="number">100</span>M）</span><br><span class="line">        HTML+CSS+JS+网络HTTP+其他 </span><br><span class="line">页面<span class="number">2</span>（<span class="number">100</span>M）</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<p>假设JS分到了100M<br>我们写了一个<code>var a = 1</code><br>小心翼翼分成两个大区</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">代码区</span><br><span class="line">        a</span><br><span class="line">        </span><br><span class="line">数据区</span><br><span class="line">        <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>如果写复杂点</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = <span class="string">'Oracle'</span></span><br><span class="line"><span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">var</span> o = &#123;</span><br><span class="line">        name:<span class="string">'Oracle'</span>,</span><br><span class="line">        age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">var</span> c = true</span><br><span class="line">o<span class="selector-class">.gender</span> = <span class="string">'male'</span></span><br><span class="line"><span class="selector-tag">var</span> o2 = &#123;</span><br><span class="line">        name: <span class="string">'Protoss'</span></span><br><span class="line">&#125;</span><br><span class="line">o2 = o</span><br><span class="line">第一步：变量提升，把var都放在前面</span><br><span class="line">之后依次执行</span><br></pre></td></tr></table></figure>
+<p>其实数据区也分为两个——<br>Stack（栈）和Heap（堆）</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Stack（栈内存）</span><br><span class="line">        <span class="selector-tag">a</span>:<span class="number">64</span>位浮点数储存a</span><br><span class="line">        <span class="selector-tag">b</span>:<span class="number">64</span>位浮点数储存b</span><br><span class="line">        b=<span class="selector-tag">a</span>:把a存的东西，覆盖到b上</span><br><span class="line">        c:第一位为<span class="number">1</span>后面全是<span class="number">0</span>存一个true</span><br><span class="line">        <span class="selector-tag">var</span> o =&#123;&#125;:存一个地址ADDR <span class="number">100</span> <span class="comment">//去Heap（堆内存）找</span></span><br><span class="line">        o<span class="selector-class">.gender</span> = <span class="string">'male'</span>:找到o的地址（ADDR <span class="number">100</span>）把它加进去。</span><br><span class="line">        <span class="selector-tag">var</span> o2 = &#123;&#125;:和o一样存一个地址ADDR <span class="number">200</span></span><br><span class="line">        o2 = o: 和<span class="selector-tag">b</span> = a的操作一样，不一样的是把o的地址给o2</span><br><span class="line">                o2的ADDR <span class="number">200</span>变成了ADDR <span class="number">100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Heap（堆内存）</span><br><span class="line">        ADDR <span class="number">100</span></span><br><span class="line">                name:<span class="string">'Oracle'</span></span><br><span class="line">                age: <span class="number">24</span></span><br><span class="line">                <span class="comment">/////////////</span></span><br><span class="line">                gender: <span class="string">'male'</span></span><br><span class="line">        ADDR <span class="number">200</span></span><br><span class="line">                name:<span class="string">'protoss'</span></span><br></pre></td></tr></table></figure>
+<p>这一套操作</p>
+<h3 id="ii-数据"><a href="#ii-数据" class="headerlink" title="ii.数据"></a>ii.数据</h3><p>数字：64位<br>字符：16位（ES3）<br>值：<br><strong>简单</strong>:存Stack<br><strong>复杂</strong>(obj):存Heap地址（还是存在Stack里面）</p>
+<h3 id="iii-引用"><a href="#iii-引用" class="headerlink" title="iii.引用"></a>iii.引用</h3><p>object存入ADDR 100<br>就可以称object是对象的<strong>引用</strong><br>所有变量和对象的<strong>关系</strong>，都是<strong>引用关系</strong></p>
+<h3 id="iv-存在对象问题的时候，走一遍i里的流程就清楚了"><a href="#iv-存在对象问题的时候，走一遍i里的流程就清楚了" class="headerlink" title="iv.存在对象问题的时候，走一遍i里的流程就清楚了"></a>iv.存在对象问题的时候，走一遍i里的流程就清楚了</h3><p>PS：连续赋值从右往左顺序拆开写。</p>
+<h1 id="2-垃圾回收-GC"><a href="#2-垃圾回收-GC" class="headerlink" title="2.垃圾回收(GC)"></a>2.垃圾回收(GC)</h1><p><strong>Garbage Collection</strong></p>
+<p>我们热爱的V8引擎就是为了JavaScript在浏览器执行而打造的。<br>可申请的最大内存不是很高：</p>
+<ul>
+<li>64位系统下1.4GB</li>
+<li>32位系统下约700MB</li>
+</ul>
+<p>如果一个<code>对象</code><strong>没有被引用</strong><br>它就是<strong>垃圾</strong><br>将被回收</p>
+<h2 id="i-关于活动对象"><a href="#i-关于活动对象" class="headerlink" title="i.关于活动对象"></a>i.关于活动对象</h2><p>在一个函数对象被调用的时候，会创建一个活动对象<br>首先将该函数的每个形参和实参，都添加为该活动对象的属性和值。<br>将该函数体内显示声明和变量的函数，也添加为该活动的属性（在刚进入该函数执行环境的时候，未赋值，所以值为undefined，这个是JS提前声明机制）<br>然后将这个活动对象作为该函数执行环境的作用于链的最前端，并将这个函数对象的<code>[scope]</code>属性里作用域链接接入到该函数执行环境作用域链的后端。</p>
+<p>这就是我们常说的，大哥罩小弟的模式。</p>
+<p>如果一个对象和其关联对象不再通过引用关系被当前活动对象引用了，这个对象就会被垃圾回收。<br><strong>没人罩着就会被干掉</strong></p>
+<h2 id="ii-如何判断"><a href="#ii-如何判断" class="headerlink" title="ii.如何判断"></a>ii.如何判断</h2><p>变量进入环境（在函数中声明一个变量）的时候，就将这个变量标记为<code>&quot;进入环境&quot;</code>。<br>变量离开环境时，则将其标记为<code>&quot;离开环境&quot;</code></p>
+<p>可以用任何方式来标记变量。例如：</p>
+<ul>
+<li>可以通过翻转某个特殊标记来记录一个变量何时进入环境</li>
+<li>或者使用一个变量列表来计入进入环境的变量，以及另一个变量列表来记录离开环境的变量</li>
+</ul>
+<ol>
+<li>垃圾回收器会在运行的时候给存储在内存中所有变量加上标记（如上所说）</li>
+<li>然后，会去掉运行环境中的变量以及被环境中变量所引用的变量的标记</li>
+<li>在此之后，依然有标记的变量就会被视为准备清除的变量，原因在运行环境中已经无法访问到这些变量了。</li>
+<li>最后，垃圾回收器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间。<h2 id="iii-例"><a href="#iii-例" class="headerlink" title="iii.例"></a>iii.例</h2></li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;name:<span class="string">'a'</span>&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = &#123;name:<span class="string">'b'</span>&#125;</span><br><span class="line"><span class="selector-tag">a</span> = b</span><br></pre></td></tr></table></figure>
+<p>这时候，b和a指向了同一个ADDR<br>那么a原来的ADDR就变成了垃圾<br><strong>没人罩着，就要被干掉…</strong></p>
+<h2 id="vi-V8引擎的垃圾回收策略"><a href="#vi-V8引擎的垃圾回收策略" class="headerlink" title="vi.V8引擎的垃圾回收策略"></a>vi.V8引擎的垃圾回收策略</h2><p>但是由于不同对象的生存周期不同，所以无法只用一种回收策略解决问题，这样效率也不高<br>V8采用了一种<code>&#39;代&#39;</code>回收的策略，将内存分为两个<code>&#39;代&#39;</code>。没错，就是代沟的那个代<br>新生代(new generation)和老生代(old generation)</p>
+<p>新生代中的对象为存活时间较短的对象。<br>老生代中的对象为存活时间较长或者常驻内存的对象，分别对新老声带采用不同的垃圾回收算法以提高效率。<br>对象最开始都会先被分到新生代(如果新生代占用的内存满了，那就直接分到老生代)<br>新生代对象会在满足某些条件后，晋升到老生代。</p>
+<h3 id="两代的内存分配"><a href="#两代的内存分配" class="headerlink" title="两代的内存分配"></a>两代的内存分配</h3><p>默认情况下：<br>32位：</p>
+<ul>
+<li>新生代16MB</li>
+<li>老生代700MB</li>
+</ul>
+<p>64位：</p>
+<ul>
+<li>新生代32MB</li>
+<li>老生代1.4GB</li>
+</ul>
+<h3 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h3><p>新生代存的都是生存周期短的对象<br>垃圾回收机制——在储存空间快满的时候，就进行一次垃圾回收</p>
+<ol>
+<li>将新生代内存分为两部分：From(使用状态)和To(闲置状态)</li>
+<li>GC进入From空间搜查一遍，看看谁没有被其他活动对象引用，没有被罩着的被无情拖走。</li>
+<li>From空间里依旧被活动对象罩着的家伙被复制一遍以后放进To空间</li>
+<li>清空From空间里所有内存(上一步中被罩着的家伙在To里面幸存了下来)</li>
+<li>交换From空间和To空间(让这两个房间名交换一下)</li>
+<li>在From空间里新增新对象</li>
+<li>这时候GC又进来搜查了，接下来的故事就这么循环下去了。</li>
+</ol>
+<p>由于仅仅复制存活的对象，而且对于生命周期短的场景存货对象只占少部分，所以它在时间效率上很优秀。<br>但是每次只能使用堆内存的一半，这是由划分空间和复制机制决定的——牺牲空间，换取时间</p>
+<h3 id="晋升"><a href="#晋升" class="headerlink" title="晋升"></a>晋升</h3><p>当一个对象经过多次复制依旧存活的时候<br>它就会被认为是生命周期较长的对象——（GC：你居然一直有大哥罩着？）<br>这种较长生命周期的对象随后会被移动到老生代中，采用新算法进行管理。</p>
+<p>条件：</p>
+<ol>
+<li>对象从From空间复制到To空间的时候，会检查它内存地址来判断这个对象是否已经经历过一次回收。如果已经经历过了，会将该对象从From空间移动到老生代中，如果没有，则复制到To空间。<strong>就是说，如果一个对象是二次经理从From空间复制到To空间，那么这个对象就会被移动到老生代中</strong></li>
+<li>要从From空间复制一个对象到To空间时，如果To空间已经使用超过25%，则这个对象直接晋升到老生代中。设置25%这个值的原因是，当本次回收完成之后，这个To空间会变成From空间，接下来的内存分配将在这个空间中进行。如果占比过高，则会影响后续的内存分配。</li>
+</ol>
+<h3 id="老生代"><a href="#老生代" class="headerlink" title="老生代"></a>老生代</h3><p>老生代中，存货对象占较大比重，如果继续采用新生代的算法管理(Scavenge)，会存在两个问题：</p>
+<ol>
+<li>存活对象较多，复制存活对象效率很低。</li>
+<li>采用Scavenge算法会浪费一半内存，老生代占用内存很大（远超新生代），所以浪费严重。</li>
+</ol>
+<p>所以在V8老生代中主要采用Mark-Sweep和与Mark-Conpact相结合的方式进行垃圾回收</p>
+<h4 id="Mark-Sweep"><a href="#Mark-Sweep" class="headerlink" title="Mark-Sweep"></a>Mark-Sweep</h4><p>Mark-Sweep（标记清除）,分为标记和清除两个截断。</p>
+<p>与Scavenge不同，Mark-Sweep并不会将内存分为两份，所以不存在浪费一半空间的行为。<br>Mark-Sweep在标记截断遍历堆内存中的所有对象，并标记活着的对象<br>总结一下：</p>
+<ol>
+<li>Scavenge仅复制活着的对象，而Mark-Sweep只清除死了的对象。</li>
+<li>活对象在新生代中只占较少部分，死对象在老生代中只占较少部分。</li>
+</ol>
+<p>流程：</p>
+<ol>
+<li>遍历堆内存中所有的对象</li>
+<li>GC大魔王标记存活对象</li>
+<li>大魔王GC进来巡视，回收死亡的对象（被标记的存活对象得以幸免）</li>
+</ol>
+<p>但是这种方式存在问题：</p>
+<ul>
+<li>在进行一次清除回收以后，内存空间会存在不连续（GC把没有大哥罩着的干掉了，但是他们的座位还在那空着）</li>
+<li>这种内存碎片会对后续的内存分配造成问题</li>
+<li>如果需要分配一个大内存的情况，由于剩余的碎片空间不足以完成此次分配，就会提前触发垃圾回收，但是这次回收并不需要被触发。</li>
+</ul>
+<h4 id="Mark-Compact"><a href="#Mark-Compact" class="headerlink" title="Mark-Compact"></a>Mark-Compact</h4><p>为了解决Mark-Sweep的内存碎片问题，提出了Mark-Compact（标记整理）<br>Mark-Compact由Mark-Sweep演变而来。<br>作用是在标记完存货对象以后，会将活着的对象向内存空间的一端移动<br>移动完成后，清理边界外的所有内存</p>
+<p>流程：</p>
+<ol>
+<li>遍历内存中所有对象</li>
+<li>GC进入标记阶段，标记存活对象</li>
+<li>GC进入整理阶段，标记为存活的对象向内存空间的一侧移动，没被标记的原地待命</li>
+<li>GC进入清除截断，大魔王GC把另一侧的内存全都回收了</li>
+</ol>
+<h4 id="结合"><a href="#结合" class="headerlink" title="结合"></a>结合</h4><ul>
+<li>回收策略中， Mark-Sweep 和 Mark-Compact 结合使用</li>
+<li>由于 Mark-Conpact 需要移动对象，所以它执行速度慢</li>
+<li>在V8取舍上，主要使用 Mark-Sweep ,在空间不足以从新生代中晋升来的对象进行分配的时候，才使用Mark-Compact</li>
+</ul>
+<h3 id="V8垃圾处理机制总结"><a href="#V8垃圾处理机制总结" class="headerlink" title="V8垃圾处理机制总结"></a>V8垃圾处理机制总结</h3><p>V8的垃圾回收机制分为新生代和老生代</p>
+<p>新生代：</p>
+<ul>
+<li>使用Scavenge</li>
+<li>Cheney算法</li>
+<li>内存分两块From(使用)和To(闲置)</li>
+<li>进入From + 快占满的时候存活对象进入To + 清空From + 调换From和To + 循环</li>
+<li>两个条件晋升到老生代</li>
+</ul>
+<p>老生代：</p>
+<ul>
+<li>Mark-Sweep （标记清除）和 Mark-Compact （标记整理）</li>
+<li>Mark-Sweep 碎片内存</li>
+<li>Mark-Compact 清除前整理 + 活的去一侧 + 清空另一侧 + 速度慢<h2 id="v-IE有个BUG"><a href="#v-IE有个BUG" class="headerlink" title="v.IE有个BUG"></a>v.IE有个BUG</h2>如果把页面关了(body没了，他引用的地址断了)<br>地址之间互相引用，但不和外部联系<br>他们本应该被清掉<br>但是（尤其IE6）IE里，你只要不关掉整个IE，他们会一直存着。<br>垃圾一直存着…内存boom。<br>所以需要在页面关闭之前执行：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onunload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.body.onclick = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//然而需要把所有的监听的函数都设为null，需要写很多行。</span></span><br></pre></td></tr></table></figure>
+<p>这就是传说中的——内存泄漏：<br>由于浏览器的BUG,使得该被标记为垃圾的东西，没有被标记为垃圾。</p>
+<h1 id="3-深拷贝？浅拷贝？"><a href="#3-深拷贝？浅拷贝？" class="headerlink" title="3.深拷贝？浅拷贝？"></a>3.深拷贝？浅拷贝？</h1><h2 id="I-深拷贝"><a href="#I-深拷贝" class="headerlink" title="I.深拷贝"></a>I.深拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span> = <span class="number">2</span></span><br><span class="line"><span class="comment">//a = 1不改变</span></span><br></pre></td></tr></table></figure>
+<p>b的改变不影响a<br>这就是深拷贝<br>基本类型 赋值 就是深拷贝</p>
+<h2 id="II-浅拷贝"><a href="#II-浅拷贝" class="headerlink" title="II.浅拷贝"></a>II.浅拷贝</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;</span><br><span class="line">        name: <span class="string">'a'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">b</span><span class="selector-class">.name</span> = <span class="string">'b'</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.name</span> <span class="comment">// 也是b了</span></span><br></pre></td></tr></table></figure>
+<p>指向同一个ADDR改变地址对应的内容后<br>a也变了。<br>这就是浅拷贝。</p>
+<h1 id="4-类型互相转换"><a href="#4-类型互相转换" class="headerlink" title="4.类型互相转换"></a>4.类型互相转换</h1><h2 id="I-方法"><a href="#I-方法" class="headerlink" title="I.方法"></a>I.方法</h2><h3 id="i-转字符串-toString"><a href="#i-转字符串-toString" class="headerlink" title="i.转字符串.toString"></a>i.转字符串<code>.toString</code></h3><p><code>null</code>不可以，会报错<br><code>undefined</code>不可以，会报错<br><code>object</code>并不能得到想要的<code>key:value</code>只会得到<code>[obj,Obj]</code></p>
+<p>我们热爱的<code>console.log</code>就是这个原理<br>如果你<code>console.log</code>的东西不是字符串，他会自动加上一个<code>toString</code></p>
+<h4 id="toString太长了老司机怎么转的？"><a href="#toString太长了老司机怎么转的？" class="headerlink" title=".toString太长了老司机怎么转的？"></a><code>.toString</code>太长了老司机怎么转的？</h4><p>数字：加上一个空字符串就好了。<br><code>1 + &#39;&#39;</code><br>布尔：加上一个空字符串就好了。<br><code>true + &#39;&#39;</code><br>顺序可反。<br>而且<code>&#39;&#39; + null</code>和<code>&#39;&#39; + undefined</code>也可以哟</p>
+<h4 id="这时候就引出一个问题"><a href="#这时候就引出一个问题" class="headerlink" title="这时候就引出一个问题"></a>这时候就引出一个问题</h4><p><code>1+1</code>等于2<br><code>1 + &#39;1&#39;</code>算什么<br>加号会优先加相同类型的东西，所以他会先把数字变成字符串。</p>
+<h4 id="全局方法window-String"><a href="#全局方法window-String" class="headerlink" title="全局方法window.String()"></a>全局方法<code>window.String()</code></h4><p>把不是字符串的东西，变成字符串。（可以变<code>null</code>和<code>undefined</code>）</p>
+<h4 id="所以最方便的转字符串方法是加上一个空字符串"><a href="#所以最方便的转字符串方法是加上一个空字符串" class="headerlink" title="所以最方便的转字符串方法是加上一个空字符串"></a>所以最方便的转字符串方法是加上一个空字符串</h4><h3 id="ii-转布尔Boolean"><a href="#ii-转布尔Boolean" class="headerlink" title="ii.转布尔Boolean()"></a>ii.转布尔<code>Boolean()</code></h3><p>字符串:  <code>Boolean(1) //true</code><br>        <code>Boolean(0) //false</code><br>        <code>Boolean(2) //true</code><br>        <code>Boolean( ) //true</code><br>null:   <code>Boolean(null) //false</code><br>undefined: <code>Boolean(undefined) //false</code><br>对象:    <code>Boolean({}) //true</code><br>        <code>Boolean({name:&#39;Oracle&#39;})  //true</code></p>
+<h4 id="这个API好长…"><a href="#这个API好长…" class="headerlink" title="这个API好长…"></a>这个API好长…</h4><p><code>!</code>可以取反<br>那么取反两次不就是原来的吗</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">!!null //false</span><br><span class="line">!!<span class="number">0</span> //false</span><br><span class="line">!!&#123;&#125; //true</span><br><span class="line">!!&#123;name:'Oracle'&#125; //true</span><br></pre></td></tr></table></figure>
+<h4 id="所有类型都可以变成布尔但是好难记哦"><a href="#所有类型都可以变成布尔但是好难记哦" class="headerlink" title="所有类型都可以变成布尔但是好难记哦"></a>所有类型都可以变成布尔但是好难记哦</h4><p>只有五个特殊的<br>number： 只有两个是false<code>0</code>和<code>NaN</code><br>String： 只有空字符串是<code>false</code>其他全是<code>true</code><br>null： 就一个值，<code>false</code><br>undefined：就一个值<code>false</code><br>object：都是<code>true</code>所有的数组和函数</p>
+<p>也就是有五个<code>falsy</code>值<br><code>0</code><br><code>NaN</code><br><code>&#39;&#39;</code><br><code>null</code><br><code>undefined</code><br>还有个<code>false</code>因为他本来就是<code>false</code></p>
+<h3 id="iii-转number"><a href="#iii-转number" class="headerlink" title="iii.转number"></a>iii.转number</h3><h4 id="朴实方法Number-39-1-39"><a href="#朴实方法Number-39-1-39" class="headerlink" title="朴实方法Number(&#39;1&#39;)"></a>朴实方法<code>Number(&#39;1&#39;)</code></h4><h4 id="全局方法parseInt-39-1-39-10"><a href="#全局方法parseInt-39-1-39-10" class="headerlink" title="全局方法parseInt(&#39;1&#39;,10)"></a>全局方法<code>parseInt(&#39;1&#39;,10)</code></h4><p><code>10</code>代表是看做十进制转换<br>但是<code>parseInt(&#39;011&#39;)  //11</code><br>因为后面的参数没写，所以当成10进制。<br>用它转非数字<code>parseInt(&#39;s&#39;) //NaN</code><br>数字非数字混合 <code>parseInt(&#39;1s&#39;) //1</code><br>所以得到他的规则：从头开始解析能解析的，一旦遇到不能解析的，就返回。</p>
+<h4 id="有浮点数的话parseFloat-39-1-23-39"><a href="#有浮点数的话parseFloat-39-1-23-39" class="headerlink" title="有浮点数的话parseFloat(&#39;1.23&#39;)"></a>有浮点数的话<code>parseFloat(&#39;1.23&#39;)</code></h4><p><code>parse</code>是解析</p>
+<h4 id="39-1-39-0骚方法（最常用）"><a href="#39-1-39-0骚方法（最常用）" class="headerlink" title="&#39;1&#39;-0骚方法（最常用）"></a><code>&#39;1&#39;-0</code>骚方法（最常用）</h4><p>任何一个东西-0就会得到一个<code>number</code></p>
+<h4 id="取正-39-1-39-更骚的方法"><a href="#取正-39-1-39-更骚的方法" class="headerlink" title="取正+ &#39;1&#39;更骚的方法"></a>取正<code>+ &#39;1&#39;</code>更骚的方法</h4><p>负数也可以取正？<code>+ &#39;-1&#39;</code>这个是可以的，结果还是<code>-1</code>。</p>
+<h3 id="iv-转object"><a href="#iv-转object" class="headerlink" title="iv.转object"></a>iv.转object</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Brendan-s-Blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/10/JavaScript-数据/" rel="next" title="JavaScript-数据">
+                <i class="fa fa-chevron-left"></i> JavaScript-数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/12/JavaScript-对象/" rel="prev" title="JavaScript-对象">
+                JavaScript-对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Brendan-s-Blog/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Brendan-s-Blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/Brendan-s-Blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-首先要搞清楚什么是内存"><span class="nav-number">1.</span> <span class="nav-text">1.首先要搞清楚什么是内存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-它是怎么工作的"><span class="nav-number">1.1.</span> <span class="nav-text">I.它是怎么工作的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-举个例子"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.举个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-数据"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-引用"><span class="nav-number">1.1.3.</span> <span class="nav-text">iii.引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-存在对象问题的时候，走一遍i里的流程就清楚了"><span class="nav-number">1.1.4.</span> <span class="nav-text">iv.存在对象问题的时候，走一遍i里的流程就清楚了</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-垃圾回收-GC"><span class="nav-number">2.</span> <span class="nav-text">2.垃圾回收(GC)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#i-关于活动对象"><span class="nav-number">2.1.</span> <span class="nav-text">i.关于活动对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ii-如何判断"><span class="nav-number">2.2.</span> <span class="nav-text">ii.如何判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iii-例"><span class="nav-number">2.3.</span> <span class="nav-text">iii.例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vi-V8引擎的垃圾回收策略"><span class="nav-number">2.4.</span> <span class="nav-text">vi.V8引擎的垃圾回收策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两代的内存分配"><span class="nav-number">2.4.1.</span> <span class="nav-text">两代的内存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新生代"><span class="nav-number">2.4.2.</span> <span class="nav-text">新生代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#晋升"><span class="nav-number">2.4.3.</span> <span class="nav-text">晋升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#老生代"><span class="nav-number">2.4.4.</span> <span class="nav-text">老生代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-Sweep"><span class="nav-number">2.4.4.1.</span> <span class="nav-text">Mark-Sweep</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-Compact"><span class="nav-number">2.4.4.2.</span> <span class="nav-text">Mark-Compact</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结合"><span class="nav-number">2.4.4.3.</span> <span class="nav-text">结合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V8垃圾处理机制总结"><span class="nav-number">2.4.5.</span> <span class="nav-text">V8垃圾处理机制总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-IE有个BUG"><span class="nav-number">2.5.</span> <span class="nav-text">v.IE有个BUG</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-深拷贝？浅拷贝？"><span class="nav-number">3.</span> <span class="nav-text">3.深拷贝？浅拷贝？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-深拷贝"><span class="nav-number">3.1.</span> <span class="nav-text">I.深拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-浅拷贝"><span class="nav-number">3.2.</span> <span class="nav-text">II.浅拷贝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-类型互相转换"><span class="nav-number">4.</span> <span class="nav-text">4.类型互相转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-方法"><span class="nav-number">4.1.</span> <span class="nav-text">I.方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-转字符串-toString"><span class="nav-number">4.1.1.</span> <span class="nav-text">i.转字符串.toString</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#toString太长了老司机怎么转的？"><span class="nav-number">4.1.1.1.</span> <span class="nav-text">.toString太长了老司机怎么转的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这时候就引出一个问题"><span class="nav-number">4.1.1.2.</span> <span class="nav-text">这时候就引出一个问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局方法window-String"><span class="nav-number">4.1.1.3.</span> <span class="nav-text">全局方法window.String()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所以最方便的转字符串方法是加上一个空字符串"><span class="nav-number">4.1.1.4.</span> <span class="nav-text">所以最方便的转字符串方法是加上一个空字符串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-转布尔Boolean"><span class="nav-number">4.1.2.</span> <span class="nav-text">ii.转布尔Boolean()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这个API好长…"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">这个API好长…</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所有类型都可以变成布尔但是好难记哦"><span class="nav-number">4.1.2.2.</span> <span class="nav-text">所有类型都可以变成布尔但是好难记哦</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-转number"><span class="nav-number">4.1.3.</span> <span class="nav-text">iii.转number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#朴实方法Number-39-1-39"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">朴实方法Number(&#39;1&#39;)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局方法parseInt-39-1-39-10"><span class="nav-number">4.1.3.2.</span> <span class="nav-text">全局方法parseInt(&#39;1&#39;,10)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有浮点数的话parseFloat-39-1-23-39"><span class="nav-number">4.1.3.3.</span> <span class="nav-text">有浮点数的话parseFloat(&#39;1.23&#39;)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#39-1-39-0骚方法（最常用）"><span class="nav-number">4.1.3.4.</span> <span class="nav-text">&#39;1&#39;-0骚方法（最常用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取正-39-1-39-更骚的方法"><span class="nav-number">4.1.3.5.</span> <span class="nav-text">取正+ &#39;1&#39;更骚的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-转object"><span class="nav-number">4.1.4.</span> <span class="nav-text">iv.转object</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/Brendan-s-Blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

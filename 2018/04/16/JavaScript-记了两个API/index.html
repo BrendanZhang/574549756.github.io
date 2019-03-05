@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/Brendan-s-Blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/Brendan-s-Blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Brendan-s-Blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Brendan-s-Blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Brendan-s-Blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/Brendan-s-Blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/Brendan-s-Blog/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.关于JS找兄弟1234567891011121314151617181920212223242526272829303132&amp;lt;script&amp;gt;    setTimeout(function()&amp;#123;            siteWelcome.classList.remove(&apos;active&apos;)    &amp;#125;,3000)    window.onscroll = fun">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-记了两个API">
+<meta property="og:url" content="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/16/JavaScript-记了两个API/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.关于JS找兄弟1234567891011121314151617181920212223242526272829303132&amp;lt;script&amp;gt;    setTimeout(function()&amp;#123;            siteWelcome.classList.remove(&apos;active&apos;)    &amp;#125;,3000)    window.onscroll = fun">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-05T10:16:46.390Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-记了两个API">
+<meta name="twitter:description" content="1.关于JS找兄弟1234567891011121314151617181920212223242526272829303132&amp;lt;script&amp;gt;    setTimeout(function()&amp;#123;            siteWelcome.classList.remove(&apos;active&apos;)    &amp;#125;,3000)    window.onscroll = fun">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Brendan-s-Blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/16/JavaScript-记了两个API/"/>
+
+
+
+
+
+  <title>JavaScript-记了两个API | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Brendan-s-Blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Brendan-s-Blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Brendan-s-Blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/04/16/JavaScript-记了两个API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript-记了两个API</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-16T21:28:55+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Brendan-s-Blog/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-关于JS找兄弟"><a href="#1-关于JS找兄弟" class="headerlink" title="1.关于JS找兄弟"></a>1.关于JS找兄弟</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">            siteWelcome.classList.remove(<span class="string">'active'</span>)</span></span><br><span class="line"><span class="undefined">    &#125;,3000)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(<span class="built_in">window</span>.scrollY &gt; <span class="number">0</span>)&#123;</span></span><br><span class="line"><span class="actionscript">            topNavBar.classList.add(<span class="string">'sticky'</span>)</span></span><br><span class="line"><span class="actionscript">        &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">            topNavBar.classList.remove(<span class="string">'sticky'</span>)                </span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> aTags = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'menuTigger'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;aTags.length; i++)&#123;</span></span><br><span class="line"><span class="actionscript">        aTags[i].onmouseenter = <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> a = x.currentTarget</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> brother = a.nextSibling             <span class="comment">//这种找兄弟...真的毛病多。</span></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">while</span>(brother.tagName !== <span class="string">'UL'</span>)&#123;   <span class="comment">//nodeType去查文档，表达了不同元素节点。 1是元素节点 3是文字 PS:为什么大写UL，因为brother.tagName会返回一个大写的UL。</span></span></span><br><span class="line"><span class="actionscript">                brother = brother.nextSibling    <span class="comment">//递归找节点，不是节点继续找。</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="actionscript">            brother.classList.add(<span class="string">'active'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="actionscript">        aTags[i].onmouseleave = <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> a = x.currentTarget</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> brother = a.nextSibling</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">while</span>(brother.tagName !== <span class="string">'UL'</span>)&#123;</span></span><br><span class="line"><span class="undefined">                brother = brother.nextSibling</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="actionscript">            brother.classList.remove(<span class="string">'active'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="找父级"><a href="#找父级" class="headerlink" title="找父级"></a>找父级</h2><p><code>.parentNode</code></p>
+<h1 id="2-关于不找兄弟直接监听父级元素"><a href="#2-关于不找兄弟直接监听父级元素" class="headerlink" title="2.关于不找兄弟直接监听父级元素"></a>2.关于不找兄弟直接监听父级元素</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let liTags = document.getElementsByClassName(<span class="string">'menuTigger'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseenter</span> = function(x)&#123;</span><br><span class="line">        let <span class="selector-tag">li</span> = x.currentTarget</span><br><span class="line">        let brother = <span class="selector-tag">li</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>]</span><br><span class="line">        brother<span class="selector-class">.classList</span><span class="selector-class">.add</span>(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseleave</span> = function(x)&#123;</span><br><span class="line">        let <span class="selector-tag">li</span> = x.currentTarget</span><br><span class="line">        let brother = <span class="selector-tag">li</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>]</span><br><span class="line">        brother<span class="selector-class">.classList</span><span class="selector-class">.remove</span>(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-既然a和ul都要active，那我为什么不把他们的父元素active呢？"><a href="#3-既然a和ul都要active，那我为什么不把他们的父元素active呢？" class="headerlink" title="3.既然a和ul都要active，那我为什么不把他们的父元素active呢？"></a>3.既然a和ul都要active，那我为什么不把他们的父元素active呢？</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let liTags = document.getElementsByClassName(<span class="string">'menuTigger'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseenter</span> = function(x)&#123;</span><br><span class="line">        x<span class="selector-class">.currentTarget</span><span class="selector-class">.classList</span><span class="selector-class">.add</span>(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseleave</span> = function(x)&#123;</span><br><span class="line">        x<span class="selector-class">.currentTarget</span><span class="selector-class">.classList</span><span class="selector-class">.remove</span>(<span class="string">'active'</span>)            </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-不想每个都加-menuTigger那么我们就加个选择器吧"><a href="#4-不想每个都加-menuTigger那么我们就加个选择器吧" class="headerlink" title="4.不想每个都加.menuTigger那么我们就加个选择器吧"></a>4.不想每个都加.menuTigger那么我们就加个选择器吧</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let liTags = document.querySelectorAll(<span class="string">'nav.menu &gt; ul &gt; li'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i=<span class="number">0</span>; i&lt;liTags.length; i++)</span></span>&#123;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseenter</span> = function(x)&#123;</span><br><span class="line">        x<span class="selector-class">.currentTarget</span><span class="selector-class">.classList</span><span class="selector-class">.add</span>(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    liTags[i]<span class="selector-class">.onmouseleave</span> = function(x)&#123;</span><br><span class="line">        x<span class="selector-class">.currentTarget</span><span class="selector-class">.classList</span><span class="selector-class">.remove</span>(<span class="string">'active'</span>)            </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>给nav一个.menu的class然后给他一个选择器，其中<code>querySelectorALL</code>就可以啦</p>
+<h1 id="5-关于调整锚点"><a href="#5-关于调整锚点" class="headerlink" title="5.关于调整锚点"></a>5.关于调整锚点</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let aTags = document.querySelectorAll(<span class="string">'nav.menu &gt; ul &gt; li &gt; a'</span>)</span><br><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i = <span class="number">0</span>; i&lt;aTags.length; i++)</span></span>&#123;</span><br><span class="line">    aTags[i]<span class="selector-class">.onclick</span> = function(x)&#123;</span><br><span class="line">        x.preventDefault()          <span class="comment">//阻止默认动作</span></span><br><span class="line">        let <span class="selector-tag">a</span> = x.currentTarget</span><br><span class="line">        <span class="selector-tag">a</span>.getAttribute(<span class="string">'href'</span>)   <span class="comment">//用户写什么，打什么。不像a.href是带http协议的。</span></span><br><span class="line">        console.log(<span class="selector-tag">a</span>.getAttribute(<span class="string">'href'</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="需要获取div距离顶部的距离"><a href="#需要获取div距离顶部的距离" class="headerlink" title="需要获取div距离顶部的距离"></a>需要获取div距离顶部的距离</h2><p><code>getBoundingClientRect</code>这个api可以返回一组矩形集合（数组）<br>一组用于描述边框的只读属性（left top right bottom）单位px<br>除了width和heigth外的属性都相对于视口左上角位置而言。</p>
+<p>计算边界矩形时，会考虑视口区域（或其他可滚动元素）内的滚动操作which means:<br>滚动的时候这个值会变，不是计算页面顶部而是计算视口顶部。<br><strong>不想让他变的话：</strong><br>给top和left加上当前滚动位置：<code>window.scrollX</code>和<code>window.scrollY</code>这样获取与当前滚动位置无关的常量值。<br>为兼容请使用：<code>window.pageXOffset</code>和<code>window.pageYOffset</code></p>
+<h2 id="这个才是我们需要的"><a href="#这个才是我们需要的" class="headerlink" title="这个才是我们需要的"></a>这个才是我们需要的</h2><p><code>element.offsetTop</code></p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> aTags = <span class="built_in">document</span>.querySelectorAll(<span class="string">'nav.menu &gt; ul &gt; li &gt; a'</span>)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;aTags.length; i++)&#123;</span><br><span class="line">    aTags[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">        x.preventDefault()          <span class="comment">//阻止默认动作</span></span><br><span class="line">        <span class="keyword">let</span> a = x.currentTarget</span><br><span class="line">        <span class="keyword">let</span> href = a.getAttribute(<span class="string">'href'</span>) <span class="comment">//'#siteAbout'</span></span><br><span class="line">        <span class="keyword">let</span> element = <span class="built_in">document</span>.querySelector(href)</span><br><span class="line">        <span class="keyword">let</span> <span class="built_in">rect</span> = element.getBoundingClientRect()</span><br><span class="line">        <span class="keyword">let</span> top = element.offsetTop</span><br><span class="line">        <span class="built_in">window</span>.scrollTo(<span class="number">0</span>,top<span class="number">-80</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="6-总结一下"><a href="#6-总结一下" class="headerlink" title="6.总结一下"></a>6.总结一下</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">setTimeout</span><span class="params">()</span></span>        <span class="comment">//设置延迟</span></span><br><span class="line">window<span class="selector-class">.onscroll</span> <span class="comment">//滚动时触发</span></span><br><span class="line">window<span class="selector-class">.scrollY</span>      <span class="comment">//获取滚动高度</span></span><br><span class="line">document.querySelectorALL()   <span class="comment">//接收一个选择器，获取选择器的所有元素</span></span><br><span class="line"><span class="selector-class">.onmouseenter</span>   <span class="comment">//鼠标进入元素的时候触发函数</span></span><br><span class="line"><span class="selector-class">.onmouseleave</span>       <span class="comment">//鼠标离开元素的时候触发函数</span></span><br><span class="line"><span class="selector-class">.preventDefault</span> <span class="comment">//调用它就不会有默认的动作了</span></span><br><span class="line">.getAttribute()     <span class="comment">//获取用户在元素上写的原文（不加HTTP协议）</span></span><br><span class="line">document.querySelector()      <span class="comment">//只会获取到第一个元素</span></span><br><span class="line"><span class="selector-class">.offsetTop</span>      <span class="comment">//获取元素距离页面顶部的像素数。</span></span><br><span class="line">window.scrollTo(X,Y)    <span class="comment">//滑动到某个位置X：左右 Y：上下。改成0就是不会划。</span></span><br></pre></td></tr></table></figure>
+<h1 id="7-用js做动画"><a href="#7-用js做动画" class="headerlink" title="7.用js做动画"></a>7.用js做动画</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#div1&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">background</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">div1<span class="selector-class">.style</span><span class="selector-class">.position</span> = <span class="string">'relative'</span></span><br><span class="line">div1<span class="selector-class">.style</span><span class="selector-class">.left</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">var</span> n = <span class="number">0</span></span><br><span class="line"><span class="selector-tag">var</span> id = setInterval( ()=&gt; &#123;</span><br><span class="line">	n = n+<span class="number">10</span></span><br><span class="line">	div1<span class="selector-class">.style</span><span class="selector-class">.left</span> = n + <span class="string">'px'</span></span><br><span class="line">	<span class="keyword">if</span>(n&gt;=<span class="number">200</span>)&#123;</span><br><span class="line">		window.clearInterval(id)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,<span class="number">40</span>)</span><br></pre></td></tr></table></figure>
+<p>通过每秒动很多下，让人感觉它是个动画。<br><code>.setInterval</code>让他按延迟一直动<br><code>.setTimeout</code>让他延迟几秒后动一下<br><code>window.clearInterval(id)</code>让他在条件下停止</p>
+<h1 id="8-console-log调试大法"><a href="#8-console-log调试大法" class="headerlink" title="8.console.log调试大法"></a>8.console.log调试大法</h1><p>发现bug的时候，请console.log相关变量<br>看看哪个值和想象中不一样。</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">n</span> = <span class="number">25</span> //一共动多少次</span><br><span class="line"><span class="keyword">let</span> <span class="attr">duration</span> = <span class="number">500</span> / n  //多长时间动一次</span><br><span class="line"><span class="keyword">let</span> <span class="attr">currentTop</span> = window.scrollY</span><br><span class="line"><span class="keyword">let</span> <span class="attr">targetTop</span> = top - <span class="number">80</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">distance</span> = (targetTop - currentTop)/ n</span><br><span class="line"><span class="keyword">let</span> <span class="attr">i</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">id</span> = setInterval(()=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="attr">i===n)&#123;</span></span><br><span class="line">    window.clearInterval(id)</span><br><span class="line">    return</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attr">i</span> = i + <span class="number">1</span></span><br><span class="line">    window.scrollTo(<span class="number">0</span>,currentTop + distance * i)</span><br><span class="line">&#125;,duration)</span><br></pre></td></tr></table></figure>
+<p>平滑的滚屏，但是还不够平滑。</p>
+<h2 id="我们需要神奇的tween-js"><a href="#我们需要神奇的tween-js" class="headerlink" title="我们需要神奇的tween.js"></a>我们需要神奇的tween.js</h2><p>缓动<br>要调用他需要cdnjs(google it)<br>这个库还是蛮好的。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">            requestAnimationFrame(animate);    <span class="comment">//请求动画帧数（问浏览器这台机器可以让你有多少FPS）</span></span><br><span class="line">            TWEEN.update(time);</span><br><span class="line">        &#125;</span><br><span class="line">        requestAnimationFrame(animate);</span><br><span class="line"></span><br><span class="line"><span class="comment">///////////////////////tween文档让加的告诉我们间隔多少毫秒动一次///////////////////////////</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;aTags.length; i++)&#123;</span><br><span class="line">            aTags[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">                x.preventDefault()          <span class="comment">//阻止默认动作</span></span><br><span class="line">                <span class="keyword">let</span> a = x.currentTarget</span><br><span class="line">                <span class="keyword">let</span> href = a.getAttribute(<span class="string">'href'</span>) <span class="comment">//'#siteAbout'</span></span><br><span class="line">                <span class="keyword">let</span> element = <span class="built_in">document</span>.querySelector(href)</span><br><span class="line">                <span class="keyword">let</span> <span class="built_in">rect</span> = element.getBoundingClientRect()</span><br><span class="line">                <span class="keyword">let</span> top = element.offsetTop</span><br><span class="line"></span><br><span class="line">                <span class="keyword">let</span> currentTop = <span class="built_in">window</span>.scrollY</span><br><span class="line">                <span class="keyword">let</span> targetTop = top - <span class="number">80</span></span><br><span class="line">                <span class="keyword">let</span> s = targetTop - currentTop              <span class="comment">//路程</span></span><br><span class="line">                <span class="keyword">var</span> t = <span class="built_in">Math</span>.abs((s/<span class="number">100</span>)*<span class="number">300</span>)           <span class="comment">//时间（绝对值）</span></span><br><span class="line">                <span class="keyword">if</span>(t&gt;<span class="number">500</span>)&#123;t = <span class="number">500</span>&#125;</span><br><span class="line">                <span class="keyword">var</span> coords = &#123; <span class="attribute">y</span>: currentTop &#125;;         <span class="comment">//初始位置</span></span><br><span class="line">                <span class="keyword">var</span> tween = <span class="keyword">new</span> TWEEN.Tween(coords)         <span class="comment">//初始位置</span></span><br><span class="line">                    .to(&#123; <span class="attribute">y</span>: targetTop&#125;, t)             <span class="comment">//结束位置，时间（不能使负值）</span></span><br><span class="line">                    .easing(TWEEN.Easing.Quadratic.InOut)   <span class="comment">//缓动类型</span></span><br><span class="line">                    .onUpdate(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;             <span class="comment">//在这里coords.y已经变了</span></span><br><span class="line">                        <span class="built_in">window</span>.scrollTo(<span class="number">0</span>,coords.y)         <span class="comment">//如何更新界面（向下滚动coords.y）</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                    .start();       <span class="comment">//开始缓动</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>通过tween.js来计算滚动速度<br>Math.abs()来得出绝对值</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Brendan-s-Blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/12/JavaScript-对象/" rel="next" title="JavaScript-对象">
+                <i class="fa fa-chevron-left"></i> JavaScript-对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/23/JavaScript-数组/" rel="prev" title="JavaScript-数组">
+                JavaScript-数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Brendan-s-Blog/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Brendan-s-Blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/Brendan-s-Blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-关于JS找兄弟"><span class="nav-number">1.</span> <span class="nav-text">1.关于JS找兄弟</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#找父级"><span class="nav-number">1.1.</span> <span class="nav-text">找父级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-关于不找兄弟直接监听父级元素"><span class="nav-number">2.</span> <span class="nav-text">2.关于不找兄弟直接监听父级元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-既然a和ul都要active，那我为什么不把他们的父元素active呢？"><span class="nav-number">3.</span> <span class="nav-text">3.既然a和ul都要active，那我为什么不把他们的父元素active呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-不想每个都加-menuTigger那么我们就加个选择器吧"><span class="nav-number">4.</span> <span class="nav-text">4.不想每个都加.menuTigger那么我们就加个选择器吧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-关于调整锚点"><span class="nav-number">5.</span> <span class="nav-text">5.关于调整锚点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需要获取div距离顶部的距离"><span class="nav-number">5.1.</span> <span class="nav-text">需要获取div距离顶部的距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这个才是我们需要的"><span class="nav-number">5.2.</span> <span class="nav-text">这个才是我们需要的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-总结一下"><span class="nav-number">6.</span> <span class="nav-text">6.总结一下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-用js做动画"><span class="nav-number">7.</span> <span class="nav-text">7.用js做动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-console-log调试大法"><span class="nav-number">8.</span> <span class="nav-text">8.console.log调试大法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#我们需要神奇的tween-js"><span class="nav-number">8.1.</span> <span class="nav-text">我们需要神奇的tween.js</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/Brendan-s-Blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

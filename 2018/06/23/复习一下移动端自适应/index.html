@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/Brendan-s-Blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/Brendan-s-Blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Brendan-s-Blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Brendan-s-Blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Brendan-s-Blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/Brendan-s-Blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+  <link rel="alternate" href="/Brendan-s-Blog/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="0.meta viewport 2010年以前移动设备的分辨率一般都小于PC，为了能在移动设备上正常显示那些为PC浏览器设计的网站（伟大的3GS） 移动设备上的浏览器都会把自己默认的viewport设为980px（或者其他值） 之后用低分辨率的移动设备模拟网页页面，也就是等比缩放。 好歹解决了看全网页的问题。需要细看，双击放大  I.标签&amp;lt;meta name=&amp;quot;viewport&amp;q">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复习一下移动端自适应">
+<meta property="og:url" content="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/23/复习一下移动端自适应/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="0.meta viewport 2010年以前移动设备的分辨率一般都小于PC，为了能在移动设备上正常显示那些为PC浏览器设计的网站（伟大的3GS） 移动设备上的浏览器都会把自己默认的viewport设为980px（或者其他值） 之后用低分辨率的移动设备模拟网页页面，也就是等比缩放。 好歹解决了看全网页的问题。需要细看，双击放大  I.标签&amp;lt;meta name=&amp;quot;viewport&amp;q">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-05T10:16:46.571Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="复习一下移动端自适应">
+<meta name="twitter:description" content="0.meta viewport 2010年以前移动设备的分辨率一般都小于PC，为了能在移动设备上正常显示那些为PC浏览器设计的网站（伟大的3GS） 移动设备上的浏览器都会把自己默认的viewport设为980px（或者其他值） 之后用低分辨率的移动设备模拟网页页面，也就是等比缩放。 好歹解决了看全网页的问题。需要细看，双击放大  I.标签&amp;lt;meta name=&amp;quot;viewport&amp;q">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Brendan-s-Blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://brendanzhang.github.io/Brendan-s-Blog/2018/06/23/复习一下移动端自适应/"/>
+
+
+
+
+
+  <title>复习一下移动端自适应 | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Brendan-s-Blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Brendan-s-Blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Brendan-s-Blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/06/23/复习一下移动端自适应/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">复习一下移动端自适应</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-23T18:24:27+08:00">
+                2018-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Brendan-s-Blog/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0-meta-viewport"><a href="#0-meta-viewport" class="headerlink" title="0.meta viewport"></a>0.meta viewport</h1><ul>
+<li>2010年以前移动设备的分辨率一般都小于PC，为了能在移动设备上正常显示那些为PC浏览器设计的网站（伟大的3GS）</li>
+<li>移动设备上的浏览器都会把自己默认的viewport设为980px（或者其他值）</li>
+<li>之后用低分辨率的移动设备模拟网页页面，也就是等比缩放。</li>
+<li>好歹解决了看全网页的问题。需要细看，双击放大</li>
+</ul>
+<h2 id="I-标签"><a href="#I-标签" class="headerlink" title="I.标签"></a>I.标签</h2><p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;</code></p>
+<ul>
+<li><code>name</code>名字<code>viewport</code></li>
+<li><code>content</code>内容:<ul>
+<li>width = device-width 页面宽度等于设备宽度（别缩放）</li>
+<li>user-scalable = no 不要用户自己缩放了，我页面和设备的分辨率比例已经1:1了</li>
+<li>initial-scale=1 初始缩放比例1:1</li>
+<li>minimum-scale=1.0, maximum-scale=1.0 最小/最大缩放比例1:1</li>
+<li>在 user-scalable = no 的时候，最大/最小缩放比例可以不写（都不让用户缩放了我还写它干嘛）</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-媒体查询"><a href="#1-媒体查询" class="headerlink" title="1.媒体查询"></a>1.媒体查询</h1><p>不同设备尺寸不同，所以使用媒体查询，符合相应尺寸则调用相应CSS（查设备、调CSS）</p>
+<h2 id="I-内嵌样式的例子"><a href="#I-内嵌样式的例子" class="headerlink" title="I.内嵌样式的例子"></a>I.内嵌样式的例子</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">@media (<span class="built_in">max</span>-<span class="built_in">width</span>: <span class="number">800</span>px) &#123;   <span class="comment">//如果媒体宽度满足0~800px</span></span><br><span class="line">  body &#123;</span><br><span class="line">    <span class="built_in">background</span>: black                   <span class="comment">//body的背景变为黑色</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@media (<span class="built_in">min</span>-<span class="built_in">width</span>: <span class="number">100</span>px) <span class="keyword">and</span> (<span class="built_in">max</span>-<span class="built_in">width</span>: <span class="number">500</span>px) &#123;   </span><br><span class="line">    <span class="comment">//如果媒体宽度满足100~500px</span></span><br><span class="line">  body &#123;</span><br><span class="line">    <span class="built_in">background</span>: red                     <span class="comment">//body的背景变为黑色</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="II-外部式"><a href="#II-外部式" class="headerlink" title="II.外部式"></a>II.外部式</h2><figure class="highlight flix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="keyword">rel</span>=<span class="string">"stylesheet"</span> href=<span class="string">"./style800.css"</span> media=<span class="string">"(max-width: 800px)"</span>&gt;   <span class="comment">// 如果媒体宽度&lt;=800px的时候，当前目录style800.css生效</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-动态-REM"><a href="#2-动态-REM" class="headerlink" title="2.动态 REM"></a>2.动态 REM</h1><p><strong>这是手机专用</strong><br>也就是说，IPAD不得行</p>
+<ul>
+<li>rem是通过根元素<html>的font-size,以此来达在不同屏幕尺寸中等比例缩放的效果</html></li>
+<li>1rem = 根元素字体大小</li>
+<li>那么rem就是整个页面的度量尺度——以屏幕宽度为基准，动态变化。<h2 id="I-如何实现"><a href="#I-如何实现" class="headerlink" title="I.如何实现"></a>I.如何实现</h2>通过js让rem与屏幕宽度联系起来 , 让CSS样式自动适应各种不同屏幕的宽度</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">//不准缩放！！！</span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    body&#123;</span></span><br><span class="line"><span class="undefined">        font-size: 16px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">// 重置 body 的 font-size 大小</span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> pageWidth = <span class="built_in">window</span>.innerWidth</span></span><br><span class="line"><span class="handlebars"><span class="xml">     document.write('<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"><span class="selector-tag">html</span>&#123;<span class="attribute">font-size</span>:<span class="string">'+pageWidth/10+'</span>px;&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span>')</span></span></span><br><span class="line"><span class="actionscript">     <span class="comment">//让pageWidth/10是的rem单位变成宽度的1/10，使得操作更加可控</span></span></span><br><span class="line"><span class="undefined"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面尽量不要用 <code>document.write</code> ，做到在<code>style</code>标签里写东西可以用别的方法</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTML:</span><br><span class="line"></span><br><span class="line">&lt;style id=<span class="string">"styleTag"</span>&gt;&lt;style&gt;</span><br><span class="line"></span><br><span class="line">JS:</span><br><span class="line"></span><br><span class="line">let pageWidth = window.innerWidth</span><br><span class="line">styleTag<span class="selector-class">.innerHTML</span> = <span class="string">'html&#123;font-size'</span> + pageWidth/<span class="number">10</span> + <span class="string">'px;&#125;'</span></span><br></pre></td></tr></table></figure>
+<h2 id="II-关于最小字体大小"><a href="#II-关于最小字体大小" class="headerlink" title="II.关于最小字体大小"></a>II.关于最小字体大小</h2><ul>
+<li>在chrome浏览器中有一个问题是字体小于12px统一都按12px</li>
+<li>这麻烦了，我们关联的是<html>的font-size那么意味着pageWidth/10的值如果小于12</html></li>
+<li>碰到1rem这种单位的字体大小，浏览器就会按照12px算</li>
+<li><code>html{font-size:&#39;+pageWidth/100+&#39;px;}</code>操作是好操作了，但可能很多字就不会自适应的变化了</li>
+</ul>
+<h2 id="III-换算有点烦"><a href="#III-换算有点烦" class="headerlink" title="III.换算有点烦"></a>III.换算有点烦</h2><p>rem都是自己算的，乖乖，那岂不是每一个尺寸都得换算？</p>
+<h3 id="i-伟大的-sass"><a href="#i-伟大的-sass" class="headerlink" title="i.伟大的 sass"></a>i.伟大的 sass</h3><ul>
+<li>scss可以减少很多复写</li>
+<li>也可以自动换算rem和px，通过变量</li>
+<li>（相当于是通过一个函数）</li>
+</ul>
+<p>再次赞美伟大的 Ruby 社区</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$designWidth</span> : <span class="number">640</span>;   </span><br><span class="line"><span class="comment">/*设计稿的宽度*/</span></span><br><span class="line"></span><br><span class="line">@function px( <span class="variable">$px</span> )&#123;</span><br><span class="line">    @return <span class="variable">$px</span>/<span class="variable">$designWidth</span>*<span class="number">10</span> + rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*上面就是转换过程</span></span><br><span class="line"><span class="comment">传入一个像素数为参数</span></span><br><span class="line"><span class="comment">返回一个转换后的数 + rem*/</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: px(<span class="number">320</span>);</span><br><span class="line">    <span class="attribute">height</span>: px(<span class="number">160</span>);</span><br><span class="line">    <span class="attribute">margin</span>: px(<span class="number">40</span>) px(<span class="number">40</span>);</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1.2em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-移动端"><a href="#3-移动端" class="headerlink" title="3.移动端"></a>3.移动端</h1><ul>
+<li>没有 hover</li>
+<li>有 touch</li>
+<li>没有 resize</li>
+<li>没有滚动条</li>
+<li>手机上没有IE，开不开心？</li>
+</ul>
+<h2 id="I-TouchSwiper"><a href="#I-TouchSwiper" class="headerlink" title="I.TouchSwiper"></a>I.TouchSwiper</h2><p><a href="https://github.com/mattbryson/TouchSwipe-Jquery-Plugin" target="_blank" rel="noopener">jQuery插件</a><br><a href="https://github.com/ElemeFE/vue-swipe" target="_blank" rel="noopener">vue插件</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Brendan-s-Blog/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/06/22/vue的小细节/" rel="next" title="vue的小细节">
+                <i class="fa fa-chevron-left"></i> vue的小细节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/06/30/MVC-MVVM/" rel="prev" title="MVC?MVVM!">
+                MVC?MVVM! <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Brendan-s-Blog/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Brendan-s-Blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/Brendan-s-Blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-meta-viewport"><span class="nav-number">1.</span> <span class="nav-text">0.meta viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-标签"><span class="nav-number">1.1.</span> <span class="nav-text">I.标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-媒体查询"><span class="nav-number">2.</span> <span class="nav-text">1.媒体查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-内嵌样式的例子"><span class="nav-number">2.1.</span> <span class="nav-text">I.内嵌样式的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-外部式"><span class="nav-number">2.2.</span> <span class="nav-text">II.外部式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-动态-REM"><span class="nav-number">3.</span> <span class="nav-text">2.动态 REM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-如何实现"><span class="nav-number">3.1.</span> <span class="nav-text">I.如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-关于最小字体大小"><span class="nav-number">3.2.</span> <span class="nav-text">II.关于最小字体大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-换算有点烦"><span class="nav-number">3.3.</span> <span class="nav-text">III.换算有点烦</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-伟大的-sass"><span class="nav-number">3.3.1.</span> <span class="nav-text">i.伟大的 sass</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-移动端"><span class="nav-number">4.</span> <span class="nav-text">3.移动端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-TouchSwiper"><span class="nav-number">4.1.</span> <span class="nav-text">I.TouchSwiper</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/Brendan-s-Blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

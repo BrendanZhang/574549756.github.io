@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/Brendan-s-Blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/Brendan-s-Blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Brendan-s-Blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Brendan-s-Blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Brendan-s-Blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/Brendan-s-Blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JS," />
+
+
+
+
+
+  <link rel="alternate" href="/Brendan-s-Blog/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.标准库123456Object()String()Number()Array()Boolean()Function() 这些东西。 2.new除了Object其他类型加上new都会变成对应的对象（复杂类型）。 不加new返回的是基本类型 3.Array人类：数组就是数据的有序集合JS：数据就是原型链中有 Array.prototype 的对象(用Array构造出来的对象) I.他的一些属性ne">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-数组">
+<meta property="og:url" content="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/23/JavaScript-数组/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.标准库123456Object()String()Number()Array()Boolean()Function() 这些东西。 2.new除了Object其他类型加上new都会变成对应的对象（复杂类型）。 不加new返回的是基本类型 3.Array人类：数组就是数据的有序集合JS：数据就是原型链中有 Array.prototype 的对象(用Array构造出来的对象) I.他的一些属性ne">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-05T10:16:46.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-数组">
+<meta name="twitter:description" content="1.标准库123456Object()String()Number()Array()Boolean()Function() 这些东西。 2.new除了Object其他类型加上new都会变成对应的对象（复杂类型）。 不加new返回的是基本类型 3.Array人类：数组就是数据的有序集合JS：数据就是原型链中有 Array.prototype 的对象(用Array构造出来的对象) I.他的一些属性ne">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Brendan-s-Blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/23/JavaScript-数组/"/>
+
+
+
+
+
+  <title>JavaScript-数组 | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Brendan-s-Blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Brendan-s-Blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Brendan-s-Blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/04/23/JavaScript-数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript-数组</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T03:44:38+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Brendan-s-Blog/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-标准库"><a href="#1-标准库" class="headerlink" title="1.标准库"></a>1.标准库</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Object</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">String</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Number</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Array</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Boolean</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">Function</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>这些东西。</p>
+<h1 id="2-new"><a href="#2-new" class="headerlink" title="2.new"></a>2.new</h1><p>除了<code>Object</code><br>其他类型加上<code>new</code><br>都会变成对应的对象（<code>复杂类型</code>）。</p>
+<p>不加new返回的是<code>基本类型</code></p>
+<h1 id="3-Array"><a href="#3-Array" class="headerlink" title="3.Array"></a>3.Array</h1><p><code>人类</code>：数组就是数据的有序集合<br><code>JS</code>：数据就是原型链中有 Array.prototype 的对象(用Array构造出来的对象)</p>
+<h2 id="I-他的一些属性"><a href="#I-他的一些属性" class="headerlink" title="I.他的一些属性"></a>I.他的一些属性</h2><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>因为它是对象，所以加不加<code>new</code>都一样。</p>
+<h3 id="它存在不一致性"><a href="#它存在不一致性" class="headerlink" title="它存在不一致性"></a>它存在不一致性</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = Array(<span class="number">3</span>)    <span class="comment">//length = 3</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = Array(<span class="number">3</span>,<span class="number">3</span>)      <span class="comment">//0:3,1:3,length: 2</span></span><br></pre></td></tr></table></figure>
+<p>是不是很坑，它传一个参数和传两个参数的功能是不一样的<br>传一个参数的时候仅代表它的长度。</p>
+<h2 id="II-伪数组"><a href="#II-伪数组" class="headerlink" title="II.伪数组"></a>II.伪数组</h2><p>原型链中没有Array.prototype</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"><span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.dir(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//argument就是一个伪数组    长得像数组，但是__proto__直接指向Object.Prototype</span></span><br></pre></td></tr></table></figure>
+<h2 id="III-API"><a href="#III-API" class="headerlink" title="III.API"></a>III.API</h2><h3 id="i-forEach"><a href="#i-forEach" class="headerlink" title="i..forEach()"></a>i..forEach()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">a.forEach( <span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;        <span class="comment">//接受参数是一个函数</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'value'</span>, x)     <span class="comment">//函数必定有两个参数</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'key'</span>, y)        </span><br><span class="line">&#125; )</span><br></pre></td></tr></table></figure>
+<p>在写出<code>a.forEach</code>的时候，<code>a</code>这个数组已经被当做参数传进去了（想象成<code>this</code>）</p>
+<h3 id="ii-sort"><a href="#ii-sort" class="headerlink" title="ii..sort"></a>ii..sort</h3><p>排序用的，一般内置的排序是快排<br>但是如何让JS知道你要<code>顺序</code>还是<code>倒序</code>呢？</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">43</span>,<span class="number">5</span>]</span><br><span class="line">a.sort(function(x,y)&#123;       <span class="comment">//传入一个函数，函数必须有两个参数</span></span><br><span class="line">    return x-y            <span class="comment">//返回值必须是0 正数 负数</span></span><br><span class="line">&#125; )                         <span class="comment">//0表示相等，位置相同 正数表示前一个大，放后面 负数表示前一个放前面。</span></span><br></pre></td></tr></table></figure>
+<p>这里可以得出，改变顺序和倒序只需要改变<code>return</code>后面的<code>x-y</code>或<code>y-x</code>就可以了<br>所以排完以后不是你想要的时候<strong>换一下就行了</strong></p>
+<h3 id="iii-join"><a href="#iii-join" class="headerlink" title="iii..join"></a>iii..join</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="selector-tag">a</span>.join(<span class="string">'逗号'</span>)   <span class="comment">//"1逗号2逗号3"</span></span><br><span class="line"><span class="selector-tag">a</span>.join(<span class="string">','</span>)         <span class="comment">//"1,2,3"</span></span><br></pre></td></tr></table></figure>
+<p>干吗用的，加我一个用的。</p>
+<h3 id="iv-concat"><a href="#iv-concat" class="headerlink" title="iv..concat"></a>iv..concat</h3><p>干嘛用的？<br>连起来用的</p>
+<p><strong>一般用法：</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="selector-tag">var</span> c = <span class="selector-tag">a</span>.concat(b)      <span class="comment">//c = [1,2,3,4,5,6]</span></span><br></pre></td></tr></table></figure>
+<p>用来连接数组</p>
+<p><strong>特殊用法：</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = <span class="selector-tag">a</span>.concat([])    <span class="comment">//b = [1,2,3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这时候 a === b   //false</span></span><br><span class="line">    <span class="comment">//所以这是一种复制数组的方法</span></span><br><span class="line"><span class="comment">//b是一个和a数组内容相同的不同数组（ADDR不一样）</span></span><br></pre></td></tr></table></figure>
+<p>用来复制数组。</p>
+<h3 id="v-map"><a href="#v-map" class="headerlink" title="v..map"></a>v..map</h3><p>和<code>forEach</code>几乎一样<br>区别在于<code>.map</code>有返回值<br><code>forEach</code>返回<code>undefined</code></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">a</span>.map(<span class="function"><span class="keyword">function</span>(<span class="title">value</span>,<span class="title">key</span>)&#123;</span></span><br><span class="line">    <span class="literal">return</span> <span class="built_in">value</span> * <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]</span><br><span class="line">   <span class="comment"> //也可以这么写，好看一点：</span></span><br><span class="line"><span class="keyword">a</span>.map(<span class="built_in">value</span> =&gt; <span class="built_in">value</span> * <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>映射</strong><br>一波操作以后，<code>a</code>还是没有变化<br><strong>return</strong><br>想return什么就return什么<br>对象什么的都可以。</p>
+<h3 id="vi-filter"><a href="#vi-filter" class="headerlink" title="vi..filter"></a>vi..filter</h3><p><strong>过滤</strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line">a.filter(function(value, <span class="type">key</span>)&#123;</span><br><span class="line">    return value &gt;= <span class="number">5</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//[5, 6, 7, 8, 9, 10]</span></span><br></pre></td></tr></table></figure>
+<p><strong>拿来判断奇偶也可以</strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line">a.filter(function(value, <span class="type">key</span>)&#123;      </span><br><span class="line">    return value % <span class="number">2</span> === <span class="number">0</span>      <span class="comment">//能被2整除的数</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//[2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
+<h3 id="vii-reduce"><a href="#vii-reduce" class="headerlink" title="vii..reduce"></a>vii..reduce</h3><p><strong>减少</strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求和用</span></span><br><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">a.reduce(function(sum,n)&#123;   <span class="comment">//参数是个函数(必须两个参数)和一个初始项</span></span><br><span class="line">    return sum + n              <span class="comment">//把之前的项和当前项相加，返回下一次遍历的结果</span></span><br><span class="line">&#125;,<span class="number">0</span>)                        <span class="comment">//遍历一遍以后得到总和</span></span><br><span class="line"><span class="comment">// 45</span></span><br><span class="line">a.reduce((sum,n)=&gt; sum + n , <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="map可以用reduce表示"><a href="#map可以用reduce表示" class="headerlink" title="map可以用reduce表示"></a>map可以用reduce表示</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a.reduce(<span class="function"><span class="keyword">function</span><span class="params">(arr,n)</span></span>&#123;   <span class="comment">//之前项是arr，当前项是n</span></span><br><span class="line">    arr.push(n*<span class="number">2</span>)               <span class="comment">//把当前项的两倍push进数组</span></span><br><span class="line">    <span class="keyword">return</span> arr              <span class="comment">//返回到初始项(空数组)</span></span><br><span class="line">&#125;[])                            <span class="comment">//遍历一遍以后填满空数组</span></span><br><span class="line"><span class="comment">// [2,4,6]</span></span><br></pre></td></tr></table></figure>
+<h4 id="filter可以用reduce表示"><a href="#filter可以用reduce表示" class="headerlink" title="filter可以用reduce表示"></a>filter可以用reduce表示</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line">a.reduce(function(arr,n)&#123;   <span class="comment">//之前项是arr，当前项是n</span></span><br><span class="line">    if(n % <span class="number">2</span> === <span class="number">0</span>)&#123;            <span class="comment">//是不是偶数？是偶数就到碗里来</span></span><br><span class="line">        arr.push(n)         <span class="comment">//偶数推进去</span></span><br><span class="line">    &#125;</span><br><span class="line">    return arr                  <span class="comment">//返回到数组</span></span><br><span class="line">&#125;[])                        <span class="comment">//遍历一遍后填满空数组</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-Function"><a href="#4-Function" class="headerlink" title="4.Function"></a>4.Function</h1><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="keyword">function</span>(a,b)&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">/用构造函数构造出来/</span><span class="regexp">////</span>/</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Function(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a+b'</span>)        <span class="regexp">//把所有参数一字排开</span></span><br><span class="line"><span class="regexp">//</span><span class="keyword">var</span> f = <span class="keyword">new</span> Function(<span class="string">'参数'</span>, <span class="string">'参数'</span>, <span class="string">'构造体'</span>) </span><br><span class="line"></span><br><span class="line"><span class="regexp">//加不加new都一样</span></span><br></pre></td></tr></table></figure>
+<h2 id="I-函数"><a href="#I-函数" class="headerlink" title="I.函数"></a>I.函数</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Brendan-s-Blog/tags/JS/" rel="tag"># JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/16/JavaScript-记了两个API/" rel="next" title="JavaScript-记了两个API">
+                <i class="fa fa-chevron-left"></i> JavaScript-记了两个API
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/23/JavaScript-函数/" rel="prev" title="JavaScript-函数">
+                JavaScript-函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Brendan-s-Blog/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Brendan-s-Blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/Brendan-s-Blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-标准库"><span class="nav-number">1.</span> <span class="nav-text">1.标准库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-new"><span class="nav-number">2.</span> <span class="nav-text">2.new</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Array"><span class="nav-number">3.</span> <span class="nav-text">3.Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-他的一些属性"><span class="nav-number">3.1.</span> <span class="nav-text">I.他的一些属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#new"><span class="nav-number">3.1.1.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#它存在不一致性"><span class="nav-number">3.1.2.</span> <span class="nav-text">它存在不一致性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-伪数组"><span class="nav-number">3.2.</span> <span class="nav-text">II.伪数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-API"><span class="nav-number">3.3.</span> <span class="nav-text">III.API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-forEach"><span class="nav-number">3.3.1.</span> <span class="nav-text">i..forEach()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-sort"><span class="nav-number">3.3.2.</span> <span class="nav-text">ii..sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-join"><span class="nav-number">3.3.3.</span> <span class="nav-text">iii..join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-concat"><span class="nav-number">3.3.4.</span> <span class="nav-text">iv..concat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-map"><span class="nav-number">3.3.5.</span> <span class="nav-text">v..map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vi-filter"><span class="nav-number">3.3.6.</span> <span class="nav-text">vi..filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vii-reduce"><span class="nav-number">3.3.7.</span> <span class="nav-text">vii..reduce</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#map可以用reduce表示"><span class="nav-number">3.3.7.1.</span> <span class="nav-text">map可以用reduce表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter可以用reduce表示"><span class="nav-number">3.3.7.2.</span> <span class="nav-text">filter可以用reduce表示</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Function"><span class="nav-number">4.</span> <span class="nav-text">4.Function</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-函数"><span class="nav-number">4.1.</span> <span class="nav-text">I.函数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/Brendan-s-Blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/Brendan-s-Blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/Brendan-s-Blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Brendan-s-Blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Brendan-s-Blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Brendan-s-Blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/Brendan-s-Blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTML," />
+
+
+
+
+
+  <link rel="alternate" href="/Brendan-s-Blog/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.DOM是什么Document Object ModelXML文档把文档变成对象的一种模型 I.DOM标准Element对象：body head meta title script h1 h2 p这些都是Element对象Text对象专门指文本：span 之类的Document对象：html因为它是用Document构造出来的Comment对象：注释 而他们原型链的顶端叫做Node就像我们熟知的">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM">
+<meta property="og:url" content="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/25/DOM/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.DOM是什么Document Object ModelXML文档把文档变成对象的一种模型 I.DOM标准Element对象：body head meta title script h1 h2 p这些都是Element对象Text对象专门指文本：span 之类的Document对象：html因为它是用Document构造出来的Comment对象：注释 而他们原型链的顶端叫做Node就像我们熟知的">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-05T10:16:46.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM">
+<meta name="twitter:description" content="1.DOM是什么Document Object ModelXML文档把文档变成对象的一种模型 I.DOM标准Element对象：body head meta title script h1 h2 p这些都是Element对象Text对象专门指文本：span 之类的Document对象：html因为它是用Document构造出来的Comment对象：注释 而他们原型链的顶端叫做Node就像我们熟知的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Brendan-s-Blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/25/DOM/"/>
+
+
+
+
+
+  <title>DOM | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Brendan-s-Blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Brendan-s-Blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Brendan-s-Blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/04/25/DOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DOM</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T19:02:01+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Brendan-s-Blog/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-DOM是什么"><a href="#1-DOM是什么" class="headerlink" title="1.DOM是什么"></a>1.DOM是什么</h1><p>Document Object Model<br>XML文档<br>把文档变成对象的一种模型</p>
+<h2 id="I-DOM标准"><a href="#I-DOM标准" class="headerlink" title="I.DOM标准"></a>I.DOM标准</h2><p><code>Element</code>对象：<code>body</code> <code>head</code> <code>meta</code> <code>title</code> <code>script</code> <code>h1</code> <code>h2</code> <code>p</code>这些都是<code>Element</code>对象<br><code>Text</code>对象专门指文本：<code>span</code> 之类的<br><code>Document</code>对象：<code>html</code>因为它是用<code>Document</code>构造出来的<br><code>Comment</code>对象：注释</p>
+<p>而他们原型链的顶端叫做<code>Node</code><br>就像我们熟知的<code>Object.prorotype</code></p>
+<p>每一个标签都有它相应的构造函数，浏览器看到标签就用对应的构造函数给它构造出一个对应的内存中的对象。</p>
+<pre><code>构造函数
+</code></pre><p>页面中节点  ========&gt;  对象</p>
+<h1 id="2-Node的接口"><a href="#2-Node的接口" class="headerlink" title="2.Node的接口"></a>2.Node的接口</h1><p>就像讨论Object.prototype一样<br>需要注意<code>Node</code>也是一种<code>object</code></p>
+<p>因为超级多，记几个单词然后：<br><code>child</code>/<code>children</code>/<code>parent</code><br><code>node</code><br><code>first</code>/<code>last</code><br><code>next</code>/<code>previous</code><br><code>sibling</code>/<code>siblings</code><br><code>type</code><br><code>value</code>/<code>text</code>/<code>content</code><br><code>inner</code>/<code>outer</code><br><code>element</code><br>互相组合</p>
+<h2 id="I-childNodes"><a href="#I-childNodes" class="headerlink" title="I.childNodes"></a>I.childNodes</h2><p>所有的子节点（不是子元素）<br>所以一旦有回车，就会得到一个text</p>
+<p>所以想要所有标签请使用<code>children</code></p>
+<p><code>nextSibling</code>是下一个兄弟节点（有回车也会返回text）</p>
+<p><code>nextElementSibling</code>才是下一个兄弟标签（就是兼容性不好）</p>
+<p>导致这一堆奇怪问题的原因:<code>DOM</code>不是设计来给<code>HTML</code>用的，是给<code>XML</code>用的，所以不是很配套。</p>
+<h2 id="II-常用接口"><a href="#II-常用接口" class="headerlink" title="II.常用接口"></a>II.常用接口</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">接口</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">childNodes</td>
+<td style="text-align:center">所有子节点</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">firstChild</td>
+<td style="text-align:center">第一个子节点</td>
+</tr>
+<tr>
+<td style="text-align:center">innerText</td>
+<td style="text-align:center">内容文本</td>
+<td style="text-align:center">IE加的那点料，在小于等于IE11中修改<code>innerText</code>会移除当前元素的子节点，且永久性破坏所有后代文本节点</td>
+</tr>
+<tr>
+<td style="text-align:center">lastChild</td>
+<td style="text-align:center">最后一个子节点</td>
+</tr>
+<tr>
+<td style="text-align:center">nextSibling</td>
+<td style="text-align:center">下一个节点</td>
+</tr>
+<tr>
+<td style="text-align:center">nodeName</td>
+<td style="text-align:center">节点名称</td>
+<td style="text-align:center">（获取的是大写除了svg）</td>
+</tr>
+<tr>
+<td style="text-align:center">nodeType</td>
+<td style="text-align:center">节点类型</td>
+<td style="text-align:center">1:element 3:text 8:comment 9:document 10:DOCTYPE 11:DocumentFragment</td>
+</tr>
+<tr>
+<td style="text-align:center">nodeValue</td>
+<td style="text-align:center">value是一个包含当前节点的值的字符串（如果有的话）。</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">outerText</td>
+<td style="text-align:center">是一个非标准的属性。作为一个获得器，它返回与Node.innerText一致的值</td>
+<td style="text-align:center">作为一个设置器，它将删除当前节点并将其替换为给定的文本。</td>
+</tr>
+<tr>
+<td style="text-align:center">ownerDocument</td>
+<td style="text-align:center">会返回当前节点的顶层的 document 对象</td>
+<td style="text-align:center">返回祖先</td>
+</tr>
+<tr>
+<td style="text-align:center">parentElement</td>
+<td style="text-align:center">父级元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">parentNode</td>
+<td style="text-align:center">父级节点</td>
+<td style="text-align:center">和上面那位作用不一样吗？</td>
+</tr>
+<tr>
+<td style="text-align:center">previousSibling</td>
+<td style="text-align:center">上一个兄弟节点</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">textContent</td>
+<td style="text-align:center">内容文本</td>
+<td style="text-align:center">FF和Opera加的那点料,会获取所有元素内容，包括<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="3-方法"><a href="#3-方法" class="headerlink" title="3.方法"></a>3.方法</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">appendChild()</td>
+<td style="text-align:center">将一个节点添加到指定父节点的子节点列表末尾。</td>
+</tr>
+<tr>
+<td style="text-align:center">cloneNode()</td>
+<td style="text-align:center">拷贝节点，可选深拷贝或浅拷贝</td>
+</tr>
+<tr>
+<td style="text-align:center">contains()</td>
+<td style="text-align:center">判断传入的节点是否为该节点的后代节点。</td>
+</tr>
+<tr>
+<td style="text-align:center">hasChildNodes()</td>
+<td style="text-align:center">一个元素是否有子节点</td>
+</tr>
+<tr>
+<td style="text-align:center">insertBefore()</td>
+<td style="text-align:center">把一个东西插入一个东西的前面</td>
+</tr>
+<tr>
+<td style="text-align:center">isEqualNode()</td>
+<td style="text-align:center">两个节点是否相等</td>
+</tr>
+<tr>
+<td style="text-align:center">isSameNode()</td>
+<td style="text-align:center">两个节点是否是同一个节点<code>===</code></td>
+</tr>
+<tr>
+<td style="text-align:center">removeChild()</td>
+<td style="text-align:center">（从页面）干掉辣个子节点（但是他还在内存里）</td>
+</tr>
+<tr>
+<td style="text-align:center">replaceChild()</td>
+<td style="text-align:center">替换子节点 （被替换的还在内存里）</td>
+</tr>
+<tr>
+<td style="text-align:center">normalize()</td>
+<td style="text-align:center">常规化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="I-cloneNode"><a href="#I-cloneNode" class="headerlink" title="I.cloneNode()"></a>I.cloneNode()</h2><p><code>var dupNode = node.cloneNode(deep)</code></p>
+<p>deep是可选参数，是否采用深拷贝。如果为true，则该节点的所有后代节点也都会被克隆，如果为false，则只克隆该节点本身</p>
+<h3 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h3><p>深拷贝和浅拷贝只针对Object，Array这种复杂类型<br>简单来说，浅复制只复制一层对象的属性，而深复制则递归复制了所有层级。</p>
+<h2 id="II-normalize"><a href="#II-normalize" class="headerlink" title="II.normalize()"></a>II.normalize()</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wrapper = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line"></span><br><span class="line">wrapper.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">"part 1"</span>)); <span class="comment">//俩都是文本</span></span><br><span class="line">wrapper.appentChild(<span class="built_in">document</span>.createTextNode(<span class="string">"part 2"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//这时候 wrapper.childNodes.length === 2</span></span><br><span class="line"><span class="comment">//wrapper.childNodes[0].textContent === "part 1"</span></span><br><span class="line"><span class="comment">//wrapper.childNodes[1].textContent === "part 2"</span></span><br><span class="line"></span><br><span class="line">wrapper.normalize();</span><br><span class="line"></span><br><span class="line"><span class="comment">//常规化以后 wrapper.childNodes.length === 1</span></span><br><span class="line">wrapper.childNodes[<span class="number">0</span>].textContent === <span class="string">"Part 1 Part 2"</span></span><br></pre></td></tr></table></figure>
+<p>使这个 拆成两部分的文本合在一起了。（把不合常规的常规化）</p>
+<h2 id="III-学习方法"><a href="#III-学习方法" class="headerlink" title="III.学习方法"></a>III.学习方法</h2><p>1.他写的什么就是什么意思，看懂单词就明白它是干嘛的了<br>2.看懂单词还是不知道怎么用？查MDN吧…</p>
+<p>把该记的特殊的记住就可以了。</p>
+<h1 id="4-Document接口"><a href="#4-Document接口" class="headerlink" title="4.Document接口"></a>4.Document接口</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">接口</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">anchors</td>
+<td style="text-align:center">获取页面<code>&lt;a&gt;</code>标签</td>
+<td style="text-align:center"><code>H5已弃用</code>。由于向后兼容的原因，该属性只返回那些拥有<code>name</code>属性的<code>a</code>元素，而不是拥有<code>id</code>属性的<code>a</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:center">body</td>
+<td style="text-align:center">获取<code>&lt;body&gt;</code>元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">characterSet</td>
+<td style="text-align:center">就是<code>char</code>（字符）字符编码</td>
+<td style="text-align:center"><code>document.characterSet</code>看它的字符编码是什么</td>
+</tr>
+<tr>
+<td style="text-align:center">childElementCount</td>
+<td style="text-align:center">返回一个无符号长整型数字，表示给定元素的子元素数</td>
+</tr>
+<tr>
+<td style="text-align:center">children</td>
+<td style="text-align:center">获取子元素咯</td>
+<td style="text-align:center"><code>document</code>是<code>html</code>的父级哟，但<code>html</code>还是根元素</td>
+</tr>
+<tr>
+<td style="text-align:center">doctype</td>
+<td style="text-align:center">就是<code>!DOCTYPE</code>协议咯</td>
+</tr>
+<tr>
+<td style="text-align:center">documentElement</td>
+<td style="text-align:center">返回文档对象的根元素</td>
+<td style="text-align:center"><code>HTML</code>文档的<html>元素</html></td>
+</tr>
+<tr>
+<td style="text-align:center">domain</td>
+<td style="text-align:center">域名</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">fullscreen</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">head</td>
+<td style="text-align:center">头部</td>
+</tr>
+<tr>
+<td style="text-align:center">hidden</td>
+<td style="text-align:center">是否被隐藏？</td>
+<td style="text-align:center">返回布尔值</td>
+</tr>
+<tr>
+<td style="text-align:center">images</td>
+<td style="text-align:center">获取页面中所有<code>&lt;img&gt;</code>标签</td>
+</tr>
+<tr>
+<td style="text-align:center">links</td>
+<td style="text-align:center">获取页面中所有<code>&lt;a&gt;</code>标签</td>
+</tr>
+<tr>
+<td style="text-align:center">location</td>
+<td style="text-align:center">返回一个 Location 对象</td>
+<td style="text-align:center">包含有文档的 URL 相关的信息，并提供了改变该 URL 和加载其他 URL 的方法。</td>
+</tr>
+<tr>
+<td style="text-align:center">onxxxxxxxx</td>
+<td style="text-align:center">当xxx时的事件监听</td>
+<td style="text-align:center"><code>onclick</code> <code>onmousemove</code> <code>onmousedown</code> 之类的</td>
+</tr>
+<tr>
+<td style="text-align:center">origin</td>
+<td style="text-align:center">源</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">plugins</td>
+<td style="text-align:center">检测用户有没有开启插件</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">readyState</td>
+<td style="text-align:center">检测用户是否是否下载完毕</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">referrer</td>
+<td style="text-align:center">引荐者</td>
+<td style="text-align:center">发请求的时候，浏览器要告诉服务器，它是通过什么渠道进来的。服务器可以通过<code>referrer</code>来拒绝为其他网站提供服务</td>
+</tr>
+<tr>
+<td style="text-align:center">scripts</td>
+<td style="text-align:center">获取所有<code>script</code>标签</td>
+</tr>
+<tr>
+<td style="text-align:center">scrollingElement</td>
+<td style="text-align:center">正在滚动的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">styleSheets</td>
+<td style="text-align:center">获取所有CSS</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">title</td>
+<td style="text-align:center">获取所有<code>&lt;title&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">visibilityState</td>
+<td style="text-align:center">获取页面是否被显示（当前标签是否被激活）</td>
+<td style="text-align:center">返回布尔值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="I-方法"><a href="#I-方法" class="headerlink" title="I.方法"></a>I.方法</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">close()</td>
+<td style="text-align:center">关闭文档</td>
+<td style="text-align:center">关闭向当前文档的数据写入，想要打开要使用document.open()</td>
+</tr>
+<tr>
+<td style="text-align:center">createDocumentFragment()</td>
+<td style="text-align:center">创建一个DocumentFragment</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">createElement()</td>
+<td style="text-align:center">创建由tagName 指定的HTML元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">createTextNode()</td>
+<td style="text-align:center">创建一个文本节点</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">execCommand()</td>
+<td style="text-align:center">执行一个命令</td>
+<td style="text-align:center">允许命令操纵可编辑区域的内容，主要用于富文本编辑器，相关内容查mdn</td>
+</tr>
+<tr>
+<td style="text-align:center">exitFullscreen()</td>
+<td style="text-align:center">退出全屏</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getElementById()</td>
+<td style="text-align:center">通过<code>id</code>获取元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getElementsByClassName()</td>
+<td style="text-align:center">通过<code>class</code>名获取元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getElementsByName()</td>
+<td style="text-align:center">通过<code>name</code>属性获取元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getElementsByTagName</td>
+<td style="text-align:center">通过<code>标签名</code>获取元素</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">getSelection()</td>
+<td style="text-align:center">获取用户选中的文本</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">hasFocus()</td>
+<td style="text-align:center">用户是否<code>focus</code>到当前页面</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">open()</td>
+<td style="text-align:center">和<code>close</code>对应</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">querySelector()</td>
+<td style="text-align:center">通过<code>选择器（css）</code>获取元素</td>
+<td style="text-align:center">抄jQuery的</td>
+</tr>
+<tr>
+<td style="text-align:center">querySelectorALL()</td>
+<td style="text-align:center">通过<code>选择器（css）</code>获取元素（返回所有元素）</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">registerElement()</td>
+<td style="text-align:center">在浏览器注册一个新的 自定义元素 ，返回一个该元素的构造函数。</td>
+<td style="text-align:center">用的并不多…建议使用：customElements.define（）</td>
+</tr>
+<tr>
+<td style="text-align:center">write()</td>
+<td style="text-align:center">写文本</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">writeln()</td>
+<td style="text-align:center">写一行文本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="i-close"><a href="#i-close" class="headerlink" title="i.close()"></a>i.close()</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">hello</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        documetn.write(1)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="number">2</span>)</span></span><br><span class="line"><span class="javascript">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="number">3</span>)</span></span><br><span class="line"><span class="undefined">        &#125;,3000)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>document =&gt; open =&gt; write =&gt; close =&gt; open</code></p>
+<p>每次在<code>script</code>执行完以后页面会关闭，如果有延时性的<code>write</code>，就会把页面冲掉<br>上面代码块中首先有<code>hello</code>和<code>1</code> <code>2</code>这时候文档close<br>但是文档<code>close</code>了之后写了<code>3</code><br>所以就会把页面冲掉</p>
+<p>所以在写write的时候要谨慎设置延时和异步 </p>
+<h1 id="5-Element接口"><a href="#5-Element接口" class="headerlink" title="5.Element接口"></a>5.Element接口</h1><p>最熟悉的<code>classList.add()</code><br>而且<code>Element</code>也可以<code>querySelector()</code>的<br>可以<code>div.querySelector()</code></p>
+<h3 id="i-innerHTML和innerText"><a href="#i-innerHTML和innerText" class="headerlink" title="i.innerHTML和innerText"></a>i.innerHTML和innerText</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;<span class="selector-tag">input</span> type=<span class="string">"text"</span> id=<span class="string">"input1"</span>&gt; &lt;<span class="selector-tag">button</span> id=x&gt;写入页面&lt;/button&gt;</span><br><span class="line">    &lt;<span class="selector-tag">div</span> id=<span class="string">"output"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">x<span class="selector-class">.onclick</span> = function()&#123;</span><br><span class="line">    output<span class="selector-class">.innerHTML</span> = input1.value</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*x.onclick = function()&#123;</span></span><br><span class="line"><span class="comment">    output.innerText = input1.value</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+<p>innerHTML可以识别写入页面的代码<code>&lt;b&gt;&lt;/b&gt;</code>就会加粗<code>&lt;i&gt;&lt;/i&gt;</code>就会变斜<br><code>&lt;script&gt;&lt;/script&gt;</code>怎么搞<br>那麻烦了，用户真拿这个输入框把<code>cookie</code>爬了怎么办。<br>所以还是很危险的<br>他会把用户写的标签，真的当做开发者写的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Brendan-s-Blog/tags/HTML/" rel="tag"># HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/23/JavaScript-函数/" rel="next" title="JavaScript-函数">
+                <i class="fa fa-chevron-left"></i> JavaScript-函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/26/jQuery-始/" rel="prev" title="jQuery-始">
+                jQuery-始 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Brendan-s-Blog/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Brendan-s-Blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/Brendan-s-Blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-DOM是什么"><span class="nav-number">1.</span> <span class="nav-text">1.DOM是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-DOM标准"><span class="nav-number">1.1.</span> <span class="nav-text">I.DOM标准</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Node的接口"><span class="nav-number">2.</span> <span class="nav-text">2.Node的接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-childNodes"><span class="nav-number">2.1.</span> <span class="nav-text">I.childNodes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-常用接口"><span class="nav-number">2.2.</span> <span class="nav-text">II.常用接口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-方法"><span class="nav-number">3.</span> <span class="nav-text">3.方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-cloneNode"><span class="nav-number">3.1.</span> <span class="nav-text">I.cloneNode()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#深拷贝和浅拷贝"><span class="nav-number">3.1.1.</span> <span class="nav-text">深拷贝和浅拷贝</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-normalize"><span class="nav-number">3.2.</span> <span class="nav-text">II.normalize()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-学习方法"><span class="nav-number">3.3.</span> <span class="nav-text">III.学习方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Document接口"><span class="nav-number">4.</span> <span class="nav-text">4.Document接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-方法"><span class="nav-number">4.1.</span> <span class="nav-text">I.方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-close"><span class="nav-number">4.1.1.</span> <span class="nav-text">i.close()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Element接口"><span class="nav-number">5.</span> <span class="nav-text">5.Element接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-innerHTML和innerText"><span class="nav-number">5.0.1.</span> <span class="nav-text">i.innerHTML和innerText</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/Brendan-s-Blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/Brendan-s-Blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/Brendan-s-Blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Brendan-s-Blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Brendan-s-Blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Brendan-s-Blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/Brendan-s-Blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JS," />
+
+
+
+
+
+  <link rel="alternate" href="/Brendan-s-Blog/atom.xml" title="Protoss Oracle" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.数据类型种类&amp;amp;备注七种数据类型： 1234567number;string;boolean;symbol;undefined;null;object 没有array类也没有function类，因为他们都算object。永远不要说JS里一切都是对象 I.numberi.整数和小数1是一个整数如何得到1.1这个数呢?可以用0.1也可以用.1 ii.科学计数法1.23e2是合理的可识别的12">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-数据">
+<meta property="og:url" content="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/10/JavaScript-数据/index.html">
+<meta property="og:site_name" content="Protoss Oracle">
+<meta property="og:description" content="1.数据类型种类&amp;amp;备注七种数据类型： 1234567number;string;boolean;symbol;undefined;null;object 没有array类也没有function类，因为他们都算object。永远不要说JS里一切都是对象 I.numberi.整数和小数1是一个整数如何得到1.1这个数呢?可以用0.1也可以用.1 ii.科学计数法1.23e2是合理的可识别的12">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-05T10:16:46.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-数据">
+<meta name="twitter:description" content="1.数据类型种类&amp;amp;备注七种数据类型： 1234567number;string;boolean;symbol;undefined;null;object 没有array类也没有function类，因为他们都算object。永远不要说JS里一切都是对象 I.numberi.整数和小数1是一个整数如何得到1.1这个数呢?可以用0.1也可以用.1 ii.科学计数法1.23e2是合理的可识别的12">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Brendan-s-Blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://brendanzhang.github.io/Brendan-s-Blog/2018/04/10/JavaScript-数据/"/>
+
+
+
+
+
+  <title>JavaScript-数据 | Protoss Oracle</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Brendan-s-Blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Protoss Oracle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Brendan-s-Blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Brendan-s-Blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/04/10/JavaScript-数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript-数据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-10T12:17:16+08:00">
+                2018-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Brendan-s-Blog/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h1><h3 id="种类-amp-备注"><a href="#种类-amp-备注" class="headerlink" title="种类&amp;备注"></a>种类&amp;备注</h3><p>七种数据类型：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">number<span class="comment">;</span></span><br><span class="line">string<span class="comment">;</span></span><br><span class="line">boolean<span class="comment">;</span></span><br><span class="line">symbol<span class="comment">;</span></span><br><span class="line">undefined<span class="comment">;</span></span><br><span class="line">null<span class="comment">;</span></span><br><span class="line">object</span><br></pre></td></tr></table></figure>
+<p>没有array类也没有function类，因为他们都算object。<br><strong>永远不要说JS里一切都是对象</strong></p>
+<h2 id="I-number"><a href="#I-number" class="headerlink" title="I.number"></a>I.number</h2><h3 id="i-整数和小数"><a href="#i-整数和小数" class="headerlink" title="i.整数和小数"></a>i.整数和小数</h3><p><code>1</code>是一个整数<br>如何得到<code>1.1</code>这个数呢?<br>可以用<code>0.1</code>也可以用<code>.1</code></p>
+<h3 id="ii-科学计数法"><a href="#ii-科学计数法" class="headerlink" title="ii.科学计数法"></a>ii.科学计数法</h3><p><code>1.23e2</code>是合理的可识别的<code>123</code></p>
+<h3 id="iii-二进制"><a href="#iii-二进制" class="headerlink" title="iii.二进制"></a>iii.二进制</h3><p>开头是<code>0b</code>的</p>
+<h3 id="iv-八进制"><a href="#iv-八进制" class="headerlink" title="iv.八进制"></a>iv.八进制</h3><p>开头是<code>0</code>的，后来ES5添加了0o11语法</p>
+<h3 id="v-十六进制"><a href="#v-十六进制" class="headerlink" title="v.十六进制"></a>v.十六进制</h3><p>开头是<code>0x</code>的</p>
+<h2 id="II-string"><a href="#II-string" class="headerlink" title="II.string"></a>II.string</h2><h3 id="i-空字符串"><a href="#i-空字符串" class="headerlink" title="i.空字符串"></a>i.空字符串</h3><p><code>&#39;&#39;</code>或者<code>&quot;&quot;</code>空字符串，里面什么都没有</p>
+<h3 id="ii-转义符"><a href="#ii-转义符" class="headerlink" title="ii.转义符"></a>ii.转义符</h3><p>表达这个字符串里面只有一个<code>&#39;</code>怎么办<br><code>&quot;&#39;&quot;</code>这么来<br>那么问题来了，我要表达这个字符串是<code>&quot;&#39;</code>怎么办，一个单引号一个双引号区分不开呀<br>这时候需要一个<code>\</code>反杠，<code>\</code>来告诉浏览器，这个引号不是拿来结束字符串的。<br>这就叫做，<strong>转义符</strong><br>他不仅仅有这个作用还有：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">转义符</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">Unicode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>\0</code></td>
+<td style="text-align:center">null</td>
+<td style="text-align:center">（\u0000）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\b</code></td>
+<td style="text-align:center">后退键</td>
+<td style="text-align:center">（\u0008）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\f</code></td>
+<td style="text-align:center">换页符</td>
+<td style="text-align:center">（\u000C）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\n</code></td>
+<td style="text-align:center">换行符</td>
+<td style="text-align:center">（\u000A）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\r</code></td>
+<td style="text-align:center">回车键</td>
+<td style="text-align:center">（\u000D）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\t</code></td>
+<td style="text-align:center">制表符</td>
+<td style="text-align:center">（\u0009）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\v</code></td>
+<td style="text-align:center">垂直制表符</td>
+<td style="text-align:center">（\u000B）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\&#39;</code></td>
+<td style="text-align:center">单引号</td>
+<td style="text-align:center">（\u0027）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\&quot;</code></td>
+<td style="text-align:center">双引号</td>
+<td style="text-align:center">（\u0022）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\</code></td>
+<td style="text-align:center">反斜杠</td>
+<td style="text-align:center">（\u005C）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="iii-多行字符串"><a href="#iii-多行字符串" class="headerlink" title="iii.多行字符串"></a>iii.多行字符串</h3><p>不是字符串里面有回车<br>而是我希望字符串有换行</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = '<span class="number">1234</span>5 \</span><br><span class="line">        <span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
+<p>就像命令行一样</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var s2 = '<span class="number">1234</span>5' + '<span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
+<p>这样也可以<br><strong>但是方法一有个很鬼的问题</strong></p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = '<span class="number">1234</span>5 \     //反杠后面如果有一堆空格</span><br><span class="line"><span class="number">6789</span>0'</span><br></pre></td></tr></table></figure>
+<p>反杠后面有一堆空格那么就热闹了，反杠会把第一个空格变成…字符串里的空格…<br>遭重了，很坑很坑。<br>所以最好用第二个方法了。</p>
+<p><strong>既然这个这么坑，那JS要解决它呀</strong><br>所以在ES6里就有了这个符号`就是这个点</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s4 = `<span class="number">12345</span></span><br><span class="line"><span class="number">67890</span>`</span><br></pre></td></tr></table></figure>
+<p>他会记录里面的一切，包括回车<br>所以这就是11个字符<code>s4.length</code>是<code>11</code></p>
+<h2 id="III-boolean"><a href="#III-boolean" class="headerlink" title="III.boolean"></a>III.boolean</h2><h3 id="i-George-Boole"><a href="#i-George-Boole" class="headerlink" title="i.George Boole"></a>i.George Boole</h3><p>数学家、哲学家，发明逻辑学。<br>为了纪念他，我们把<code>ture</code>和<code>false</code>两个值叫做布尔<br><code>&amp;&amp;</code>与<br><code>||</code>或</p>
+<h2 id="IV-symbol"><a href="#IV-symbol" class="headerlink" title="IV.symbol"></a>IV.symbol</h2><h3 id="i-是什么"><a href="#i-是什么" class="headerlink" title="i.是什么"></a>i.是什么</h3><p>ES6引入了新的数据类型Symbol，用于生成一个全局唯一的值。</p>
+<h3 id="ii-怎么用"><a href="#ii-怎么用" class="headerlink" title="ii.怎么用"></a>ii.怎么用</h3><p>借用方方老师的例子<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> race = &#123;</span><br><span class="line">  protoss: <span class="symbol">'protos</span>s', <span class="comment">// 神族</span></span><br><span class="line">  terran: <span class="symbol">'terra</span>n', <span class="comment">// 人族</span></span><br><span class="line">  zerg: <span class="symbol">'zer</span>g' <span class="comment">// 虫族</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createRole(<span class="class"><span class="keyword">type</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">protoss</span>)</span>&#123;选择神族兵种&#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">terran</span>)</span>&#123;选择人族兵种&#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">===</span> <span class="title">race</span>.<span class="title">zerg</span>)</span>&#123;选择虫族兵种&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>打星际选择兵种。race的键-值组合中，值显得并不重要。<br>那么值甚至可以乱敲只要他们三个种族的值不重复就可以。<br>那么Symbol可以替代对应的值</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> race = &#123;</span><br><span class="line">  protoss: Symbol(),</span><br><span class="line">  terran: Symbol(),</span><br><span class="line">  zerg: Symbol()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">race<span class="selector-class">.protoss</span> !== race<span class="selector-class">.terran</span> <span class="comment">// true</span></span><br><span class="line">race<span class="selector-class">.protoss</span> !== race<span class="selector-class">.zerg</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>还可以给<code>Symbol()</code>加个注释<code>Symbol(&#39;protoss&#39;)</code>仅仅就是个提示，起什么和值没有任何关系。</p>
+<p>总结：占位置的。起名字福音。</p>
+<h2 id="V-undefined和null"><a href="#V-undefined和null" class="headerlink" title="V.undefined和null"></a>V.undefined和null</h2><h3 id="i-null"><a href="#i-null" class="headerlink" title="i.null"></a>i.null</h3><p>是一个类型。只有一个值<code>null</code></p>
+<h3 id="ii-undefined"><a href="#ii-undefined" class="headerlink" title="ii.undefined"></a>ii.undefined</h3><p>是一个类型。只有一个值<code>undefined</code></p>
+<h3 id="iii-这两个兄弟干嘛的"><a href="#iii-这两个兄弟干嘛的" class="headerlink" title="iii.这两个兄弟干嘛的"></a>iii.这两个兄弟干嘛的</h3><p>这是个BUG，语言问题。<br>都表达了一个：<code>什么也没有</code>原创BUG哟</p>
+<h3 id="iv-那他们有什么区别呢？？？"><a href="#iv-那他们有什么区别呢？？？" class="headerlink" title="iv.那他们有什么区别呢？？？"></a>iv.那他们有什么区别呢？？？</h3><p>① 变量没有值 - undefined<br>② 如果你想有一个对象（<code>obj</code>），但是目前不想赋值，那就给他一个<code>null</code>（推荐）.<code>var obj = null</code><br>如果你有一个非对象，目前不想赋值，那就给他一个<code>undefined</code>（推荐）。<code>var n</code>那它就是一个<code>undefine</code><br>③ <strong>②为惯例 ①为语法</strong><br>总结一下，null是空对象，undefined是非对象。</p>
+<h2 id="VI-object"><a href="#VI-object" class="headerlink" title="VI.object"></a>VI.object</h2><p>之前说的，都是基本（简单）类型，到了对象，就是复杂类型了。<br>复杂类型由简单类型组成。<br>举个例子：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> name = <span class="string">'Oracle'</span></span><br><span class="line"><span class="selector-tag">var</span> age = <span class="string">'24'</span></span><br><span class="line"><span class="selector-tag">var</span> gender = <span class="string">'male'</span></span><br></pre></td></tr></table></figure>
+<p>他们三个都是一对一，冥冥之中似乎可以放在一起。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> person = </span><br><span class="line">&#123;</span><br><span class="line"><span class="string">'name'</span>:<span class="string">'Oracle'</span>,</span><br><span class="line"><span class="string">'age'</span>:<span class="string">'24'</span>,</span><br><span class="line"><span class="string">'gender'</span>:<span class="string">'male'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>变成这种<code>键-值</code>组合</p>
+<h3 id="i-语法"><a href="#i-语法" class="headerlink" title="i.语法"></a>i.语法</h3><p><code>{</code>开头<br><code>}</code>结尾<br>左边的键，可以不用引号，左边永远都是字符串。<br>右边该怎么写怎么写<br>需要变量去容纳它<code>var person =</code>，他就是一个类型是对象的变量<br>读取它<code>person[&#39;name&#39;]</code>这个<code>name</code>必须加引号<br>为了避免之前有变量也叫name<br>如果他符合标识符规则那可以<code>person.name</code></p>
+<h3 id="ii-对象里还可以套对象"><a href="#ii-对象里还可以套对象" class="headerlink" title="ii.对象里还可以套对象"></a>ii.对象里还可以套对象</h3><p><strong>那么对象里套的对象，里面的对象是否可以是自己？</strong><br>这个麻烦了<br><strong>解决这个问题之前请参见(<a href="https://574549756.github.io/2018/04/11/JavaScript-%E7%B1%BB%E5%9E%8B/" target="_blank" rel="noopener">JavaScript-类型</a>)</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = &#123;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span> = a</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.self</span><span class="selector-class">.self</span><span class="selector-class">.self</span>是什么</span><br></pre></td></tr></table></figure>
+<p>首先对象存了一个ADDR然后不断引用这个地址</p>
+<h3 id="iii-空字符串是否能当做key？"><a href="#iii-空字符串是否能当做key？" class="headerlink" title="iii.空字符串是否能当做key？"></a>iii.空字符串是否能当做key？</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;'':'oracle'&#125;</span><br><span class="line">person['']   <span class="comment">//oracle</span></span><br></pre></td></tr></table></figure>
+<p>可以</p>
+<h3 id="iv-key的第一个字是否可以是数字"><a href="#iv-key的第一个字是否可以是数字" class="headerlink" title="iv.key的第一个字是否可以是数字"></a>iv.key的第一个字是否可以是数字</h3><p>不可以。<br><code>9name: &#39;oracle&#39;,</code> 这种是不可以<br>如果不加引号，key必须依照标识符（变量名）原则<br>不加引号，写起来舒服。加上引号，功能多。<br>同理，如果是<strong>数组</strong>那么读取数组成员的时候就<strong>不能用点结构</strong><br>单独的数值不能作为标识符。数组成员只能用方括号<code>arr[0]</code>来表示</p>
+<h3 id="v-key能不能有空格"><a href="#v-key能不能有空格" class="headerlink" title="v.key能不能有空格"></a>v.key能不能有空格</h3><p>一样的规则，有引号就可以，没有就GG</p>
+<h3 id="vi-key可不可以加中文"><a href="#vi-key可不可以加中文" class="headerlink" title="vi.key可不可以加中文"></a>vi.key可不可以加中文</h3><p>可以，因为中文可以当做变量名。</p>
+<h3 id="vii-for-in"><a href="#vii-for-in" class="headerlink" title="vii.for in"></a>vii.for in</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="built_in">key</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遍历数组的<code>key</code>但是<br>出现<code>key</code>的顺序是看天的。<br>那我想打出值呢？</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(person[<span class="built_in">key</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那一起打呢？</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">var</span> <span class="built_in">key</span> <span class="keyword">in</span> person)&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="built_in">key</span>,person[<span class="built_in">key</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和上面说的一样，随机的</p>
+<h2 id="VII-typeof"><a href="#VII-typeof" class="headerlink" title="VII.typeof"></a>VII.typeof</h2><h3 id="i-干吗用的？"><a href="#i-干吗用的？" class="headerlink" title="i.干吗用的？"></a>i.干吗用的？</h3><p>看类型的</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="built_in">t</span> = <span class="number">1</span></span><br><span class="line">typeof <span class="built_in">t</span> //<span class="string">"number"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> <span class="built_in">t</span> = <span class="built_in">true</span></span><br><span class="line">typeof <span class="built_in">t</span> //<span class="string">"boolean"</span></span><br></pre></td></tr></table></figure>
+<h3 id="ii-但是有一个特殊"><a href="#ii-但是有一个特殊" class="headerlink" title="ii.但是有一个特殊"></a>ii.但是有一个特殊</h3><p><strong>这是JS的BUG</strong><br>他叫做<code>null</code><br>如果测<code>typeof null</code>会返回<code>‘object’</code><br>如果声明一个<code>函数</code><br>用<code>typeof fn</code>本应该是<code>‘object’</code>但是他会返回<code>‘function’</code><br>什么时候函数也是独立的类型了？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Brendan-s-Blog/tags/JS/" rel="tag"># JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/05/canvas画板/" rel="next" title="canvas画板">
+                <i class="fa fa-chevron-left"></i> canvas画板
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Brendan-s-Blog/2018/04/11/JavaScript-类型/" rel="prev" title="JavaScript-类型">
+                JavaScript-类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">张博涵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Brendan-s-Blog/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Brendan-s-Blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/Brendan-s-Blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-数据类型"><span class="nav-number">1.</span> <span class="nav-text">1.数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#种类-amp-备注"><span class="nav-number">1.0.1.</span> <span class="nav-text">种类&amp;备注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-number"><span class="nav-number">1.1.</span> <span class="nav-text">I.number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-整数和小数"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.整数和小数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-科学计数法"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.科学计数法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-二进制"><span class="nav-number">1.1.3.</span> <span class="nav-text">iii.二进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-八进制"><span class="nav-number">1.1.4.</span> <span class="nav-text">iv.八进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-十六进制"><span class="nav-number">1.1.5.</span> <span class="nav-text">v.十六进制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-string"><span class="nav-number">1.2.</span> <span class="nav-text">II.string</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-空字符串"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.空字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-转义符"><span class="nav-number">1.2.2.</span> <span class="nav-text">ii.转义符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-多行字符串"><span class="nav-number">1.2.3.</span> <span class="nav-text">iii.多行字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-boolean"><span class="nav-number">1.3.</span> <span class="nav-text">III.boolean</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-George-Boole"><span class="nav-number">1.3.1.</span> <span class="nav-text">i.George Boole</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV-symbol"><span class="nav-number">1.4.</span> <span class="nav-text">IV.symbol</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-是什么"><span class="nav-number">1.4.1.</span> <span class="nav-text">i.是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-怎么用"><span class="nav-number">1.4.2.</span> <span class="nav-text">ii.怎么用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V-undefined和null"><span class="nav-number">1.5.</span> <span class="nav-text">V.undefined和null</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-null"><span class="nav-number">1.5.1.</span> <span class="nav-text">i.null</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-undefined"><span class="nav-number">1.5.2.</span> <span class="nav-text">ii.undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-这两个兄弟干嘛的"><span class="nav-number">1.5.3.</span> <span class="nav-text">iii.这两个兄弟干嘛的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-那他们有什么区别呢？？？"><span class="nav-number">1.5.4.</span> <span class="nav-text">iv.那他们有什么区别呢？？？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VI-object"><span class="nav-number">1.6.</span> <span class="nav-text">VI.object</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-语法"><span class="nav-number">1.6.1.</span> <span class="nav-text">i.语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-对象里还可以套对象"><span class="nav-number">1.6.2.</span> <span class="nav-text">ii.对象里还可以套对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-空字符串是否能当做key？"><span class="nav-number">1.6.3.</span> <span class="nav-text">iii.空字符串是否能当做key？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-key的第一个字是否可以是数字"><span class="nav-number">1.6.4.</span> <span class="nav-text">iv.key的第一个字是否可以是数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-key能不能有空格"><span class="nav-number">1.6.5.</span> <span class="nav-text">v.key能不能有空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vi-key可不可以加中文"><span class="nav-number">1.6.6.</span> <span class="nav-text">vi.key可不可以加中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vii-for-in"><span class="nav-number">1.6.7.</span> <span class="nav-text">vii.for in</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VII-typeof"><span class="nav-number">1.7.</span> <span class="nav-text">VII.typeof</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-干吗用的？"><span class="nav-number">1.7.1.</span> <span class="nav-text">i.干吗用的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-但是有一个特殊"><span class="nav-number">1.7.2.</span> <span class="nav-text">ii.但是有一个特殊</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张博涵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Brendan-s-Blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/Brendan-s-Blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Brendan-s-Blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
