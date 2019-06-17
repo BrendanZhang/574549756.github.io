@@ -231,6 +231,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/06/22/vue的小细节/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张博涵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Protoss Oracle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Brendan-s-Blog/2018/06/22/vue的小细节/" itemprop="url">vue的小细节</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T12:08:17+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Brendan-s-Blog/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>npm run dev</code></p>
+<h1 id="vue-引入第三方-CSS"><a href="#vue-引入第三方-CSS" class="headerlink" title="vue 引入第三方 CSS"></a>vue 引入第三方 CSS</h1><ul>
+<li>reset css 和 normalize css 哪个好？<ul>
+<li>normalize css 让页面默认样式在每一个浏览器上是一样的（统一默认样式）</li>
+<li>reset css 篡改默认样式（特别不喜欢的样式给它改了）</li>
+<li>他们是不冲突的</li>
+<li>我们可以先统一样式，然后再改些特别不喜欢的。</li>
+</ul>
+</li>
+</ul>
+<h1 id="element"><a href="#element" class="headerlink" title="element"></a>element</h1><p>饿了么做的 vue 2.0 组件库<br><a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">element</a></p>
+<p>main.js 里加入这点东西</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">'element-ui'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'element-ui/lib/theme-chalk/index.css'</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line"><span class="comment">// 注册很多全局组件，不用声明就可以使用</span></span><br></pre></td></tr></table></figure>
+<h1 id="添加事件"><a href="#添加事件" class="headerlink" title="添加事件"></a>添加事件</h1><p><code>v-on:click=&quot;你要干嘛&quot;</code></p>
+<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">i</span> class=<span class="string">"el-icon-remove"</span> v-on:click=<span class="string">"removeJobExperience(index)"</span>&gt;&lt;/i&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">////////////////////////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">remoteJobExperience</span><span class="params">(index)</span></span> &#123;</span><br><span class="line">    this<span class="selector-class">.jobExperience</span><span class="selector-class">.splice</span>(index, <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<code>splice</code>从数组里删除一个</p>
+<h1 id="从外部传变量"><a href="#从外部传变量" class="headerlink" title="从外部传变量"></a>从外部传变量</h1><p>比如需要用一个<code>profile</code></p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">// 下面是组件里（被分出来封装的），假设文件名为 whoAmI.vue</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  props: ['profile']</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">//</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">//封装的时候//</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">///</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">//</span> 下面是主文件里</span><br><span class="line"></span><br><span class="line">&lt;whoAmI v-bind:profile=<span class="string">"profile"</span>/&gt;</span><br><span class="line"><span class="keyword">import</span> whoAmI <span class="keyword">from</span> <span class="string">'./whoAmI'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    components: &#123; whoAmI &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="regexp">// 绑定这个叫做 profile 的 data</span></span><br></pre></td></tr></table></figure>
+<p>注意： </p>
+<ul>
+<li>组件的模板必须包含<strong>一个</strong>根元素</li>
+<li>翻译一下： 最外面包着的，必须只有一个(除了template)</li>
+</ul>
+<h1 id="想要在-git-上预览-vue-项目"><a href="#想要在-git-上预览-vue-项目" class="headerlink" title="想要在 git 上预览 vue 项目"></a>想要在 git 上预览 vue 项目</h1><p>我们需要在 <code>gitignore</code> 目录里把 <code>dist</code> 取消忽略</p>
+<ol>
+<li>进入 <code>config/index.js</code></li>
+<li>在 <code>build</code> 下的 <code>assetsPublicPath</code></li>
+<li>把它的值改成 <code>&#39;/vue-demo(项目名是什么就改成什么)/dist/&#39;</code></li>
+<li>这个字符串会被加在编译后的<code>index</code>里每一个脚本的前面</li>
+<li><code>npm run build</code></li>
+<li>去 <code>.gitignore</code> 里面把 <code>dist</code> 目录删掉</li>
+<li><code>add commit push</code> 三连</li>
+</ol>
+<h2 id="解决-404-问题的终极方法"><a href="#解决-404-问题的终极方法" class="headerlink" title="解决 404 问题的终极方法"></a>解决 404 问题的终极方法</h2><ul>
+<li>加一个目录</li>
+<li>如果不行</li>
+<li>再加一个目录</li>
+<li>如果不行</li>
+<li>再加一个目录</li>
+<li>如果还不行</li>
+<li>减一个目录</li>
+<li>如果还不行</li>
+<li>减两个目录</li>
+</ul>
+<p>总结一下： <strong>加目录和减目录</strong></p>
+<h2 id="vue-如何增减目录"><a href="#vue-如何增减目录" class="headerlink" title="vue 如何增减目录"></a>vue 如何增减目录</h2><p>在 <code>config/index.js</code> 的 <code>module.exports.build.assetsPublicPath</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/06/19/关于webpack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2159,180 +2346,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://brendanzhang.github.io/Brendan-s-Blog/Brendan-s-Blog/2018/04/26/jQuery-始/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张博涵">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/Brendan-s-Blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Protoss Oracle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Brendan-s-Blog/2018/04/26/jQuery-始/" itemprop="url">jQuery-始</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T19:04:47+08:00">
-                2018-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Brendan-s-Blog/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>别看jQuery mobile</p>
-<h1 id="1-如何自己实现一个jQuery"><a href="#1-如何自己实现一个jQuery" class="headerlink" title="1.如何自己实现一个jQuery"></a>1.如何自己实现一个jQuery</h1><h2 id="I-找兄弟"><a href="#I-找兄弟" class="headerlink" title="I.找兄弟"></a>I.找兄弟</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item1"</span>&gt;</span>选项1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item2"</span>&gt;</span>选项2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item3"</span>&gt;</span>选项3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item4"</span>&gt;</span>选项4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item5"</span>&gt;</span>选项5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">getSiblings</span><span class="params">(node)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">var</span> allChildren = item3.parentNode.children</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">var</span> array = &#123;length: <span class="number">0</span>&#125;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;allChildren.length; i++)&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">if</span>(allChildren[i]  !== node)&#123;</span></span><br><span class="line"><span class="undefined">                array[array.length] = allChildren[i]</span></span><br><span class="line"><span class="undefined">                array.length += 1</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> array</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="actionscript">        getSiblings(item3)  <span class="comment">//找兄弟（不包括自己）就完成了</span></span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="II-改class"><a href="#II-改class" class="headerlink" title="II.改class"></a>II.改class</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function addClass(node, classes) &#123;</span><br><span class="line">    <span class="keyword">for</span> (let key <span class="keyword">in</span> classes) &#123;</span><br><span class="line">        <span class="selector-tag">var</span> value = classes[key]</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            item3<span class="selector-class">.classList</span><span class="selector-class">.add</span>(key)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            item3<span class="selector-class">.classList</span><span class="selector-class">.remove</span>(key)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addClass</span><span class="params">(item3, &#123; a: true, b: false, c: true &#125;)</span></span>     <span class="comment">//改class就完成了</span></span><br></pre></td></tr></table></figure>
-<p>优化一下？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addClass</span>(<span class="params">node, classes</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> classes) &#123;</span><br><span class="line">        <span class="keyword">var</span> value = classes[key]</span><br><span class="line">        <span class="keyword">var</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">        node.classList[methodName](key)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">addClass(item3, &#123; <span class="attr">a</span>: <span class="literal">true</span>, <span class="attr">b</span>: <span class="literal">false</span>, <span class="attr">c</span>: <span class="literal">true</span> &#125;)     <span class="comment">//改class就完成了</span></span><br></pre></td></tr></table></figure>
-<h2 id="III-如何优化代码"><a href="#III-如何优化代码" class="headerlink" title="III.如何优化代码"></a>III.如何优化代码</h2><h3 id="i-如果出现类似的代码，就存在优化的可能"><a href="#i-如果出现类似的代码，就存在优化的可能" class="headerlink" title="i.如果出现类似的代码，就存在优化的可能"></a>i.如果出现类似的代码，就存在优化的可能</h3><h2 id="IV-命名空间"><a href="#IV-命名空间" class="headerlink" title="IV.命名空间"></a>IV.命名空间</h2><p>辛辛苦苦封装的函数，得找个方法调用吧<br>所以找一个别人没取过的名字<br>然后放进去，既避免了覆盖变量，又可以方便调用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.oracleDOM = &#123;&#125;</span><br><span class="line">oracleDOM.getSiblings = <span class="function"><span class="keyword">function</span> <span class="title">addClass</span>(<span class="params">node, classes</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> classes) &#123;</span><br><span class="line">        <span class="keyword">var</span> value = classes[key]</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            item3.classList.add(key)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            item3.classList.remove(key)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">oracleDOM.addClass = <span class="function"><span class="keyword">function</span> (<span class="params">node, classes</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> classes) &#123;</span><br><span class="line">        <span class="keyword">var</span> value = classes[key]</span><br><span class="line">        <span class="keyword">var</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">        node.classList[methodName](key)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">oracleDOM.getSibling(item3)</span><br><span class="line">oracleDOM.addClass(item3,[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>])</span><br></pre></td></tr></table></figure>
-<h3 id="i-还是感觉调用很麻烦？"><a href="#i-还是感觉调用很麻烦？" class="headerlink" title="i.还是感觉调用很麻烦？"></a>i.还是感觉调用很麻烦？</h3><p>加到原型链里面去</p>
-<h4 id="找兄弟："><a href="#找兄弟：" class="headerlink" title="找兄弟："></a>找兄弟：</h4><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Node.prorotype.getSiblings = function getSiblings(node)&#123;</span><br><span class="line">    <span class="built_in">var</span> allChildren = this.parentNode.children</span><br><span class="line">    <span class="built_in">var</span> <span class="built_in">array</span> = &#123;<span class="built_in">length</span>: <span class="number">0</span>&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">let</span> i=<span class="number">0</span>; i&lt;allChildren.<span class="built_in">length</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(allChildren[i]  !== this)&#123;</span><br><span class="line">        <span class="built_in">array</span>[<span class="built_in">array</span>.<span class="built_in">length</span>] = allChildren[i]</span><br><span class="line">        <span class="built_in">array</span>.<span class="built_in">length</span> += <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="built_in">array</span></span><br><span class="line">&#125;</span><br><span class="line">item3.getSiblings()</span><br></pre></td></tr></table></figure>
-<p>这里面把node替换成this，使node作为第一个参数传进去。<br>所以item3.getSiblings()可以将item3作为第一个参数传进去</p>
-<h4 id="加Class："><a href="#加Class：" class="headerlink" title="加Class："></a>加Class：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Node.prototype.addClass = <span class="function"><span class="keyword">function</span> (<span class="params">classes</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> classes) &#123;</span><br><span class="line">        <span class="keyword">var</span> value = classes[key]</span><br><span class="line">        <span class="keyword">var</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">        <span class="keyword">this</span>.classList[methodName](key)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">item3.addClass([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>])</span><br></pre></td></tr></table></figure>
-<p>第一个参数node替换为this，在第五行的<code>node.classList</code>由调用时开头的<code>item3</code>传入</p>
-<h4 id="什么？看不懂这个this？"><a href="#什么？看不懂这个this？" class="headerlink" title="什么？看不懂这个this？"></a>什么？看不懂这个this？</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">item3<span class="selector-class">.getSiblings</span><span class="selector-class">.call</span>(item3)</span><br><span class="line"><span class="comment">//相当于 item3.getSiblings()</span></span><br><span class="line">item3<span class="selector-class">.addClass</span><span class="selector-class">.call</span>(item3, [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>])</span><br><span class="line"><span class="comment">//相当于 item3.addClass(['a','b','c'])</span></span><br></pre></td></tr></table></figure>
-<p>用call把第一个参数写出来是不是就清楚了<br><strong>不吃糖，好理解，吃糖，写的爽。</strong></p>
-<h3 id="ii-覆盖原型是不是有点不太好？"><a href="#ii-覆盖原型是不是有点不太好？" class="headerlink" title="ii.覆盖原型是不是有点不太好？"></a>ii.覆盖原型是不是有点不太好？</h3><h4 id="通过jQuery这个容器来封装他？"><a href="#通过jQuery这个容器来封装他？" class="headerlink" title="通过jQuery这个容器来封装他？"></a>通过jQuery这个容器来封装他？</h4><figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">window.jQuery = <span class="function"><span class="keyword">function</span><span class="params">(node)</span></span>&#123;         <span class="comment">//名字改成jQuery</span></span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        getSiblings: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">var</span> allChildren = node.parentNode.children      <span class="comment">//这时候node不是this了</span></span><br><span class="line">            <span class="keyword">var</span> <span class="keyword">array</span> = &#123;length: <span class="number">0</span>&#125;                             <span class="comment">//因为现在用的是node2</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;allChildren.length; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(allChildren[i]  !== node)&#123;</span><br><span class="line">                    <span class="keyword">array</span>[<span class="keyword">array</span>.length] = allChildren[i]</span><br><span class="line">                    <span class="keyword">array</span>.length += <span class="number">1</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">array</span></span><br><span class="line">        &#125;,</span><br><span class="line">        addClass: <span class="function"><span class="keyword">function</span><span class="params">(classes)</span></span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> key in classes) &#123;</span><br><span class="line">            <span class="keyword">var</span> value = classes[key]</span><br><span class="line">            <span class="keyword">var</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">            node.classList[methodName](key)             <span class="comment">//这里也要改成node了</span></span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = jQuery(item3)</span><br><span class="line">node2.getSiblings()</span><br><span class="line">node2.addClass([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>])</span><br></pre></td></tr></table></figure>
-<p>所以jQuery框架就是这个思路，封装函数，随时调用，返回新对象。</p>
-<h1 id="2-jQuery其实还要厉害一点"><a href="#2-jQuery其实还要厉害一点" class="headerlink" title="2.jQuery其实还要厉害一点"></a>2.jQuery其实还要厉害一点</h1><h2 id="I-功能还是多"><a href="#I-功能还是多" class="headerlink" title="I.功能还是多"></a>I.功能还是多</h2><h3 id="i-不但能传节点，还能传别的"><a href="#i-不但能传节点，还能传别的" class="headerlink" title="i.不但能传节点，还能传别的"></a>i.不但能传节点，还能传别的</h3><figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">window.jQuery = <span class="function"><span class="keyword">function</span><span class="params">(nodeOrSelector)</span></span>&#123;</span><br><span class="line">    <span class="keyword">let</span> node</span><br><span class="line">    <span class="keyword">if</span>(typeof nodeOrSelector === <span class="string">'string'</span>)&#123;             <span class="comment">//让传入参数还能是个选择器</span></span><br><span class="line">        node = document.querySelector(nodeOrSelector)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;                                                  <span class="comment">//内容审查</span></span><br><span class="line">        node = nodeOrSelector</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        getSiblings: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">var</span> allChildren = node.parentNode.children  </span><br><span class="line">            <span class="keyword">var</span> <span class="keyword">array</span> = &#123;length: <span class="number">0</span>&#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;allChildren.length; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(allChildren[i]  !== node)&#123;</span><br><span class="line">                    <span class="keyword">array</span>[<span class="keyword">array</span>.length] = allChildren[i]</span><br><span class="line">                    <span class="keyword">array</span>.length += <span class="number">1</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">array</span></span><br><span class="line">        &#125;,</span><br><span class="line">        addClass: <span class="function"><span class="keyword">function</span><span class="params">(classes)</span></span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> key in classes) &#123;</span><br><span class="line">                <span class="keyword">var</span> value = classes[key]</span><br><span class="line">                <span class="keyword">var</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">                node.classList[methodName](key)         <span class="comment">//这里node用到了闭包哟</span></span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = jQuery(<span class="string">'#item3'</span>)            <span class="comment">//传入一个选择器</span></span><br><span class="line">node2.getSiblings()</span><br><span class="line">node2.addClass([<span class="string">'red'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>])             <span class="comment">//改这个选择器对应标签的class</span></span><br></pre></td></tr></table></figure>
-<h4 id="这期间发生了什么？"><a href="#这期间发生了什么？" class="headerlink" title="这期间发生了什么？"></a>这期间发生了什么？</h4><p>使用<code>jQuery</code>调用字符串<code>#item3</code><br>内容审查发现他是字符串<br>找到相应节点<br><code>node</code>作为容器保存这个节点</p>
-<p><code>jQuery</code>返回一个<code>对象</code><br>对象有两个key：<code>getSiblings</code>和<code>addClass</code></p>
-<p>调用<code>getSiblings</code><br>调用<code>addClass</code><br>发现<code>addClass</code>获取了一个数组（<code>[&#39;red&#39;,&#39;b&#39;,&#39;c&#39;]</code>）以后遍历这个数组<br>之后不停地在<code>node</code>上添加classList<br>这个<code>node</code>就是刚才容器保存的节点</p>
-<h4 id="不信你写个别的选择器试试？"><a href="#不信你写个别的选择器试试？" class="headerlink" title="不信你写个别的选择器试试？"></a>不信你写个别的选择器试试？</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> node2 = jQuery(<span class="string">'ul &gt; li:nth-child(3)'</span>)            <span class="comment">//传入一个选择器</span></span><br><span class="line">node2.getSiblings()</span><br><span class="line">node2.addClass([<span class="string">'blue'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>])</span><br></pre></td></tr></table></figure>
-<h3 id="ii-我想通过选择器选好几个怎么办？"><a href="#ii-我想通过选择器选好几个怎么办？" class="headerlink" title="ii.我想通过选择器选好几个怎么办？"></a>ii.我想通过选择器选好几个怎么办？</h3><p>那可能要变了个大样了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">nodeOrSelector</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> nodes = &#123;&#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> nodeOrSelector === <span class="string">'string'</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> temp = <span class="built_in">document</span>.querySelectorAll(nodeOrSelector)    <span class="comment">//希望得到一个伪数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;temp.length; i++)&#123;                    <span class="comment">//不想要NodeList的属性</span></span><br><span class="line">            nodes[i] = temp[i]                            <span class="comment">//遍历容器一个一个加进去</span></span><br><span class="line">        &#125;</span><br><span class="line">        nodes.length = temp.length</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nodeOrSelector <span class="keyword">instanceof</span> Node)&#123;               <span class="comment">//考虑只有一个节点的情况</span></span><br><span class="line">        nodes = &#123;<span class="number">0</span>:nodeOrSelector, <span class="attr">length</span>: <span class="number">1</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nodes.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;                  <span class="comment">//调用addClass</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> classes) &#123;                      <span class="comment">//遍历class</span></span><br><span class="line">            <span class="keyword">var</span> value = classes[key]</span><br><span class="line">            <span class="keyword">var</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;nodes.length; i++)&#123;</span><br><span class="line">                nodes[i].classList[methodName](key)      <span class="comment">//逐步的放在伪数组的每一项里</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    nodes.getText = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;                         <span class="comment">//加个功能，获取文本</span></span><br><span class="line">        <span class="keyword">var</span> texts = []</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt; nodes.length; i++)&#123;               <span class="comment">//遍历后塞进去</span></span><br><span class="line">            texts.push(nodes[i].textContent)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> texts                                    <span class="comment">//返回文本</span></span><br><span class="line">    &#125;</span><br><span class="line">    nodes.setText = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;                     <span class="comment">//再加个功能，设置文本</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;nodes.length; i++)&#123;</span><br><span class="line">            nodes[i].textContent = text          <span class="comment">//把传进去的参数text赋予textContent</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//////////////////jQuery不喜欢写get和set所以合并成text/////////////////////</span></span><br><span class="line">    </span><br><span class="line">    nodes.text = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(text === <span class="literal">undefined</span>)&#123;                         <span class="comment">//如果没传参数</span></span><br><span class="line">            <span class="keyword">var</span> texts = []                            <span class="comment">//说明是想获取text</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt; nodes.length; i++)&#123;</span><br><span class="line">                texts.push(nodes[i].textContent)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> texts</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;                                          <span class="comment">//给了参数</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;nodes.length; i++)&#123;        <span class="comment">//说明是想设置text</span></span><br><span class="line">                nodes[i].textContent = text</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = jQuery(<span class="string">'ul &gt; li'</span>)</span><br><span class="line">node2.addClass([<span class="string">'blue'</span>])</span><br><span class="line"><span class="keyword">var</span> text = node2.text()     <span class="comment">//不给参数 === 获取</span></span><br><span class="line">node2.text(<span class="string">'hi'</span>)                <span class="comment">//给了参数 === 设置</span></span><br></pre></td></tr></table></figure>
-<h1 id="3-看看jQuery的文档吧"><a href="#3-看看jQuery的文档吧" class="headerlink" title="3.看看jQuery的文档吧"></a>3.看看jQuery的文档吧</h1><p><code>&lt;script src=&quot;//code.jquery.com/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;</code><br>引入jQuery的库，就可以调用它的API了</p>
-<h2 id="I-API"><a href="#I-API" class="headerlink" title="I.API"></a>I.API</h2><p><a href="http://api.jquery.com" target="_blank" rel="noopener">超多API</a></p>
-<h3 id="i-可以几个连着用"><a href="#i-可以几个连着用" class="headerlink" title="i.可以几个连着用"></a>i.可以几个连着用</h3><p>x.onclick = function(){<br>    nodes.removeClass(‘red’).addClass(‘green’)<br>}</p>
-<p>让大家喜爱的<strong>链式操作</strong></p>
-<h2 id="II-jQuery厉害在哪里"><a href="#II-jQuery厉害在哪里" class="headerlink" title="II.jQuery厉害在哪里"></a>II.jQuery厉害在哪里</h2><p>1.兼容性好，1.7兼容到IE6，现在放弃兼容了…<br>2.还有动画、AJAX等模块，DOM操作只是一小部分<br>3.功能强大，功能丰富<br>4.jQuery使用了<code>prototype</code>还有需要了解<code>new</code></p>
-<h2 id="III-的几种用法"><a href="#III-的几种用法" class="headerlink" title="III.$()的几种用法"></a>III.$()的几种用法</h2><h3 id="i-object"><a href="#i-object" class="headerlink" title="i.$(object)"></a>i.$(object)</h3><p>传入一个object，将该对象封装到jQuery对象中并返回</p>
-<h3 id="ii-callback"><a href="#ii-callback" class="headerlink" title="ii.$(callback)"></a>ii.$(callback)</h3><p>传进去参数是函数的时候，在document对象上绑定一个ready事件监听函数，当DOM结构加载完成的时候执行</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//以上代码和下面的效果是一样的</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    ...<span class="comment">//代码</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="iii-jQuery-object"><a href="#iii-jQuery-object" class="headerlink" title="iii.$(jQuery object)"></a>iii.$(jQuery object)</h3><p>传进去的参数是一个jQuery对象的时候，则创建该jQuery对象的一个副本并返回。副本与传入jQuery对象的引用完全相同的元素</p>
-<h3 id="iv"><a href="#iv" class="headerlink" title="iv.$()"></a>iv.$()</h3><p>什么都不传，返回一个空jQuery对象，属性length: 0<br>可以用来复用jQuery对象：<br>创建空jQuery对象，需要时先手动修改其中元素，再调用jQuery方法。避免重复创建jQuery对象。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2383,7 +2396,7 @@
               
                 <a href="/Brendan-s-Blog/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
